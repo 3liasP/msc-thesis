@@ -1,0 +1,50 @@
+### .gitignore
+#
+# Defines which files are to be allowed as a part of the project. Instead of
+# denying specific folder and/or files, this file first denies EVERYTHING, and
+# then specifically allows for wanted files and file types with an exclamation
+# mark ! at the start of each allowed pattern.
+#
+
+## Disallow everything.
+
+*
+
+## Allow specific files.
+
+!.gitignore
+
+!README.md
+
+!LICENSE
+
+!tauthesis.cls
+
+!main.tex
+
+## Allow file types in subdirectories.
+
+!tex/
+!tex/*.tex
+
+!code/
+!code/*.c
+!code/*.h
+!code/*.cc
+!code/*.cpp
+!code/*.hh
+!code/*.py
+!code/*.jl
+!code/*.m
+!code/*.rs
+!code/*.js
+!code/*.yml
+!code/*.yaml
+!code/*.json
+!code/*.toml
+
+!figures/
+!figures/**/*.pdf
+!figures/**/*.eps
+!figures/**/*.png
+!figures/**/*.jpg
