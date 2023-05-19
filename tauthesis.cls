@@ -225,7 +225,8 @@
 
 \DefineBibliographyStrings{finnish}{%
     bibliography = {Lähteet},
-    references = {Lähteet}
+    references = {Lähteet},
+    andothers = {ym\adddot}
 }
 \DefineBibliographyStrings{english}{%
     bibliography = {References},
