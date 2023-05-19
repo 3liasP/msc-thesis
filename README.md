@@ -37,6 +37,10 @@ All feedback (preferably in English, Finnish works too) is most welcome!
 
 ## Version history
 
+###### Version 2.01
+
+* Minor change in Finnish terminology in tauthesis.cls.
+
 ###### Version 2.0
 
 * Overhaul of the citation and glossary systems; more user control.
