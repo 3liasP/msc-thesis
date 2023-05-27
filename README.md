@@ -1,11 +1,10 @@
-# Tampere University theses using LaTeX
+# Tampere University theses using LaTeΧ
 
-This repository contains a template for writing BSc and MSc (Tech) theses in Tampere University using the LaTeX system. The styles used try to match the official Word template as closely as possible (or is worth the while).
+This repository contains a template for writing BSc and MSc (Tech) theses in Tampere University using the LaTeΧ system. The styles used try to match the official Word template as closely as possible (or is worth the while).
 
 ## Compilation
 
-This template makes use of both `biblatex` and `glossaries` packages, and therefore needs a non-standard compilation sequence. The following should do the trick, as long as your main project file is named `main.tex`.
-
+This template makes use of both `biblatex` and `glossaries` packages, and therefore needs a non-standard compilation sequence. The following should do the trick, as long as your main project file is named `main.tex`:
 ```
 pdflatex main.tex
 makeindex -s main.ist -t main.glg -o main.gls main.glo
@@ -16,19 +15,19 @@ pdflatex main.tex
 
 ## Usage notes
 
-The easiest way to use this template is to download this repository as a ZIP file, and upload the ZIP to Overleaf as a new project, on the page that lists your Overleaf projects ([link][overleaf-projects]). The ZIP file can be downloaded by navigating to the tags-page of this repository, and choosing the ZIP option of the latest tag. Then on Overleaf, press <kbd>New Project</kbd> > <kbd>Upload Project</kbd> > <kbd>Select a .zip file</kbd>. This will generate a new Overlead project for you.
+The easiest way to use this template is to download this repository as a ZIP file, and upload the ZIP to Overleaf as a new project, on the page that lists your Overleaf projects ([link][overleaf-projects]). The ZIP file can be downloaded by navigating to the tags-page of this repository, and choosing the ZIP option of the latest tag. Then on Overleaf, press <kbd>New Project</kbd> → <kbd>Upload Project</kbd> → <kbd>Select a .zip file</kbd>. This will generate a new Overleaf project for you.
 
 [overleaf-projects]: https://www.overleaf.com/project
 
-If you wish to write your thesis locally instead, you should install the latest version of the [TeX Live] LaTeX distribution onto your computer. This will provide access to the necessary LaTeX compilers and libraries, and will allow you to run the command sequence listed in the above section. Any plaintext editor can be used to write LaTeX code, but a recommended choice is [VS Code], with the [LaTeX Workshop] add-on.
+If you wish to write your thesis locally instead, you should install the latest version of the [TeX Live] LaTeΧ distribution onto your computer. This will provide access to the necessary LaTeΧ compilers and libraries, and will allow you to run the command sequence listed in the above section. Any plaintext editor can be used to write LaTeΧ code, but a recommended choice is [VS Code], with the [LaTeΧ Workshop] add-on.
 
 [TeX Live]: https://www.tug.org/texlive/
 [VS Code]: https://code.visualstudio.com
-[LaTeX Workshop]: https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
+[LaTeΧ Workshop]: https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
 
 Whichever approach you choose, local or online, go ahead and try to compile the template as-is, before starting to modify it. The resulting PDF file `main.pdf` contains some directions for using the template. More helpful instructions can be found in the `.tex` files as comments.
 
-If you run into compilation errors, please check your LaTeX distribution version and install the newest versions of the following packages.
+If you run into compilation errors, please check your LaTeΧ distribution version and install the newest versions of the following packages.
 
 * `pdfx`, `ìnputenc`, `babel`, `csquotes`, `hyperref`
 * `fontenc`, `helvet`
@@ -41,7 +40,7 @@ If you ran into a compilation error and installed newer versions of the needed p
 
 	rm main.aux main.xmpdata main.blg main.bbl main.bcf
 
-Otherwise LaTeX might try to use the metadata from the failed compilation sequence, and not generate new auxiliary files where they are needed. You will not need to do this on Overleaf, as the service deletes the files for you.
+Otherwise the LaTeΧ compiler might try to use the metadata from the failed compilation sequence, and not generate new auxiliary files where they are needed. You will not need to do this on Overleaf, as the service deletes the files for you.
 
 
 ## Bugs and improvements
