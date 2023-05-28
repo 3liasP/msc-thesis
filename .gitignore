@@ -14,6 +14,8 @@
 
 !.gitignore
 
+!.gitattributes
+
 !README.md
 
 !LICENSE
@@ -33,25 +35,27 @@
 
 !code/
 !code/*.c
-!code/*.h
 !code/*.cc
 !code/*.cpp
+!code/*.h
 !code/*.hh
-!code/*.py
 !code/*.jl
-!code/*.m
-!code/*.rs
 !code/*.js
-!code/*.yml
-!code/*.yaml
 !code/*.json
+!code/*.m
+!code/*.py
+!code/*.rs
 !code/*.toml
+!code/*.ts
+!code/*.yaml
+!code/*.yml
+!code/*.zig
 
 !figures/
-!figures/**/*.pdf
 !figures/**/*.eps
-!figures/**/*.png
 !figures/**/*.jpg
+!figures/**/*.pdf
+!figures/**/*.png
 
 # Disallow PDF figures automatically generated from EPS via epstopdf. Only the
 # original EPS figures should be in the repository to avoid repetition.
