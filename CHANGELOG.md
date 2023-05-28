@@ -1,5 +1,17 @@
 # Changelog
 
+This file lists the changes that have been made to this project along its
+development. Note that as of version `2.0`, the changes should also be
+discoverable via the Git tags of the project.
+
+###### Version 2.2
+
+* Added support for compiling the project with `lualatex`, in addition to
+  `pdflatex`.
+
+* Note that the package `axessibility` is not loaded if `lualatex` is used, as
+  the accsupp branch of said package does not support `lualatex`.
+
 ###### Version 2.1
 
 * Minor change in Finnish terminology in [`tauthesis.cls`](./tauthesis.cls).

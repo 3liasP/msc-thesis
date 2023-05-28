@@ -13,6 +13,8 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
+**Note:** the compiler `lualatex` can also be used instead of `pdflatex`, but the package `axessibility` will not be loaded in that case.
+
 ## Usage notes
 
 The easiest way to use this template is to download this repository as a ZIP file, and upload the ZIP to Overleaf as a new project, on the page that lists your Overleaf projects ([link][overleaf-projects]). The ZIP file can be downloaded by navigating to the tags-page of this repository, and choosing the ZIP option of the latest tag. Then on Overleaf, press <kbd>New Project</kbd> → <kbd>Upload Project</kbd> → <kbd>Select a .zip file</kbd>. This will generate a new Overleaf project for you.
