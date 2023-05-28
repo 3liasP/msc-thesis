@@ -100,3 +100,33 @@ make sure no work is lost along the way.
 [rebase]: https://www.atlassian.com/git/tutorials/rewriting-history/git-rebase
 [merge conflicts]: https://www.atlassian.com/git/tutorials/using-branches/merge-conflicts
 [git-config]: https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
+
+## Create Git tags for new releases
+
+When a feature is added or a bug is fixed, the commit where this occurred
+should be tagged with an *annotated* tag via Git, to signify that the commit
+is one of the versions a user should concern themselves with
+([documentation][git-tag]). The command to do this with is
+
+	git tag -a vA.B.C
+
+where the `A` is the *major* version, `B` is the *minor* version and `C` is
+the *patch* version. The number `A` should be incremented, if the new version
+introduces a backwards incompatible change, number `B` should be incremented
+if a new backwards-compatible feature was added, and `C` should be
+incremented, if a bug in the code was fixed.
+
+When the annotated tagging command is issued, Git will open up a text editor,
+where you *must* insert bullet points regarding what changes were made to the
+project since the last tagged commit:
+
+	Versio A.B.C
+
+	- Some change.
+
+	- Some other change.
+
+If this tag message is not descriptive enough, the tag *will* be rejected by
+the project team.
+
+[git-tag]: https://git-scm.com/book/en/v2/Git-Basics-Tagging
