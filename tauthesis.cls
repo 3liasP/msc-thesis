@@ -12,7 +12,7 @@
 % version 2005/12/01 or later.
 %
 % This work has the LPPL maintenance status `maintained'.
-% 
+%
 % The Current Maintainer of this work is
 %   Ville Koljonen (ville.koljonen (at) tuni.fi)
 %
@@ -337,7 +337,13 @@
 \RequirePackage{pdfcomment}
 
 % Automated math alt texts.
-\RequirePackage[accsupp]{axessibility}
+\ifluatex
+    % Do nothing for now, as the axessibility package does not support lualatex.
+    % See pull request https://github.com/integr-abile/axessibility/pull/23
+    % for details.
+\else
+    \RequirePackage[accsupp]{axessibility}
+\fi
 
 % Text hyperlinking
 \RequirePackage{hyperref}

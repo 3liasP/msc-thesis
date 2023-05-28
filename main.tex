@@ -56,6 +56,30 @@
 %% in LaTeX specific editors.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%% Set PDF version before doing anything else.
+
+\RequirePackage{ifluatex}
+
+\ifluatex
+
+    \directlua {
+        if pdf.getminorversion() \string~= 6 then
+            if (status.pdf_gone and status.pdf_gone > 0)
+            or (status.pdf_ptr and status.pdf_ptr > 0)
+            then
+                tex.error("PDF version cannot be changed anymore")
+            else
+                pdf.setminorversion(6)
+            end
+        end
+    }
+
+\else
+
+    \pdfminorversion=6
+
+\fi
+
 %%%%% METADATA %%%%%
 %% Always keep the following metadata up to date!
 %% This is important for your PDF file to comply
@@ -73,7 +97,6 @@
 \Language{en-US}
 \end{filecontents*}
 
-\pdfminorversion=6
 
 %%%%% PREAMBLE %%%%%
 
