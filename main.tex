@@ -81,27 +81,38 @@
 \fi
 
 %%%%% METADATA %%%%%
-%% Always keep the following metadata up to date!
-%% This is important for your PDF file to comply
-%% to accessibility standards.
-%% (And yes, this information must remain here,
-%% before \documentclass[...]{...}.)
+%
+% Always keep the following metadata up to date! This is important for your
+% PDF file to comply to accessibility standards. (And yes, this information
+% must remain here, before \documentclass[...]{...}.)
 
-% \Title and \Language are mandatory,
-% others desirable
-% The appropriate Finnish language code is 'fi',
-% UK English is en-UK
+\def\myfititle{Kuvaava otsikko}
+\def\myentitle{A Descriptive title}
+\def\myfisubtitle{Tarkentava alaotsikko}
+\def\myensubtitle{A Specifying Subtitle}
+\def\myauthor{Firstname Lastname}
+\def\myfikeywords{avainsana1, avaninsana2, ...}
+\def\myenkeywords{keyword1, keyword2, ...}
+\def\mylanguagecode{en-US}
+\def\mysubject{A short description of the thesis subject.}
+
+% Place PDF metadata into an external main.xmpdata file.
+
 \begin{filecontents*}[overwrite]{\jobname.xmpdata}
-\Title{Title}
-\Author{Firstname Lastname}
-\Language{en-US}
+\Title{\myfititle}
+\Author{\myauthor}
+\Language{\mylanguagecode}
+\Keywords{\myfikeywords, \myenkeywords}
+\Subject{\mysubject}
 \end{filecontents*}
 
 
 %%%%% PREAMBLE %%%%%
 
 %%%%% Document class declaration.
+%
 % The possible optional arguments are
+%
 %   finnish - thesis in Finnish (default)
 %   english - thesis in English
 %   numeric - citations in numeric style (default)
@@ -113,19 +124,18 @@
 %   programs - if you wish to display code snippets
 % Example: \documentclass[english, authoryear]{tauthesis}
 %          thesis in English with author-year citations
+
 \documentclass{tauthesis}
 
-% The glossaries package throws a warning:
-% No language module detected for 'finnish'.
-% You can safely ignore this. All other
-% warnings should be taken care of!
+% The glossaries package throws a warning: No language module detected for
+% 'finnish'. You can safely ignore this. All other warnings should be taken
+% care of!
 
 %%%%% Your packages.
-% Before adding packages, see if they can be found
-% in tauthesis.cls already. If you're not sure that
-% you need a certain package, don't include it in
-% the document! This can dramatically reduce
-% compilation time.
+%
+% Before adding packages, see if they can be found in tauthesis.cls already.
+% If you're not sure that you need a certain package, don't include it in the
+% document! This can dramatically reduce compilation time.
 
 % Graphs
 % \usepackage{pgfplots}
@@ -195,6 +205,7 @@
 
 % Use this line if using the default glossary.
 % Otherwise comment out.
+
 \loadglsentries[main]{tex/sanasto.tex}
 
 % Use this line if using more than one glossary.
@@ -251,62 +262,67 @@
 
 %%%%% Thesis information and title page.
 
-% The titles of the work. If there is no subtitle,
-% leave the arguments empty. Pass the title in
-% the primary language as the first argument
-% and its translation to the secondary language
+% The titles of the work. If there is no subtitle, leave the \myfisubtitle or
+% \myensubtitle command arguments empty. Pass the title in the primary
+% language as the first argument and its translation to the secondary language
 % as the second.
-\title{Kuvaava otsikko}{A Descriptive Title}
+
+\title{\myfititle}{\myentitle}
+
 \subtitle{Tarkentava alaotsikko}{A Specifying Subtitle}
 
 % The author name.
-\author{Etunimi Sukunimi}
 
-% The examiner information.
-% If your work has multiple examiners, replace with
-% \examiner[<label>]{<name> \\ <name>}
-% where <label> is an appropriate (plural) label,
-% e.g. Examiners or Tarkastajat, and <name>s are
-% replaced by the examiner names, each on their
+\author{\myauthor}
+
+% The examiner information. If your work has multiple examiners, replace with
+%
+%   \examiner[<label>]{<name> \\ <name>}
+%
+% where <label> is an appropriate (plural) label, e.g. Examiners or
+% Tarkastajat, and <name>s are replaced by the examiner names, each on their
 % separate line.
+
 \examiner[Tarkastajat]{Prof. Proffa Proffanen}
 
 % The finishing date of the thesis (YYYY-MM-DD).
+
 \finishdate{2021}{06}{24}
 
-% The type of the thesis (e.g. Kandidaatintyö
-% or Master of Science Thesis) in the primary
-% and the secondary languages of the thesis.
+% The type of the thesis (e.g. Kandidaatintyö or Master of Science Thesis) in
+% the primary and the secondary languages of the thesis.
+
 \thesistype{Opinnäytetyön taso}{Thesis type}
 
-% The faculty and degree programme names in
-% the primary and the secondary languages of
-% the thesis.
+% The faculty and degree programme names in the primary and the secondary
+% languages of the thesis.
+
 \facultyname{Tiedekunnan nimi}{Faculty Name}
+
 \programmename{Tutkinto-ohjelma}{Degree Programme}
 
-% The keywords to the thesis in the primary and
-% the secondary languages of the thesis
+% The keywords to the thesis in the primary and the secondary languages of the
+% thesis.
+
 \keywords%
-    {avainsana, avainsana, avainsana, avainsana, avainsana}
-    {keyword, keyword, keyword, keyword, keyword}
+    {\myfikeywords}
+    {\myenkeywords}
 
 \maketitle
 
 %%%%% Abstracts and preface.
+%
+% Write the abstract(s) and the preface into a separate file for the sake of
+% clarity. Pass the appropriate file name as the first argument to these
+% commands. Put the \abstract in the primary language first and the
+% \otherabstract in the secondary language second. Those who do not speak
+% Finnish only need the first abstract. The second argument of the \preface
+% command takes the place where the thesis was signed in.
 
-% Write the abstract(s) and the preface
-% into a separate file for the sake of clarity.
-% Pass the appropriate file name as the first
-% argument to these commands. Put the \abstract
-% in the primary language first and the
-% \otherabstract in the secondary language second.
-% Those who do not speak Finnish only need the
-% first abstract. The second argument of
-% the \preface command takes the place where
-% the thesis was signed in.
 \abstract{tex/tiivistelma.tex}
+
 \otherabstract{tex/abstract.tex}
+
 \preface{tex/alkusanat.tex}{Tampereella}
 
 %%%%% Table of contents.
@@ -314,31 +330,31 @@
 \tableofcontents
 
 %%%%% Lists of figures, tables, listings and terms.
-
-% Print the lists of figures and/or tables.
-% Uncomment either of these commands as required.
-% Both are optional, but if there are many important
+%
+% Print the lists of figures and/or tables. Uncomment either of these commands
+% as required. Both are optional, but if there are many important
 % figures/tables, listing them may be a good idea.
 
 % \listoffigures
 % \listoftables
 % \lstlistoflistings
 
-% Misc stuff related to how the glossary is displayed.
-% You can especially tweak the lengths to suit you!
+% Misc stuff related to how the glossary is displayed. You can especially
+% tweak the lengths to suit you!
+
 \glsaddall
 \setglossarystyle{taulong}
 \setlength{\glsnamewidth}{0.25\textwidth}
 \setlength{\glsdescwidth}{0.75\textwidth}
 \renewcommand*{\glsgroupskip}{}
 
-% Print the default glossary of abbreviations,
-% if necessary. Otherwise comment out.
-% The appropriate Finnish variant is 'Lyhenteet'
+% Print the default glossary of abbreviations, if necessary. Otherwise comment
+% out. The appropriate Finnish variant is 'Lyhenteet'
+
 \printglossary[title={Lyhenteet ja merkinnät}]
 
-% Print more than one glossary with these lines.
-% Otherwise comment out.
+% Print more than one glossary with these lines. Otherwise comment out.
+
 % \printglossary[type=symbs]
 % \printglossary[type=label]
 % ...
@@ -347,11 +363,10 @@
 
 \mainmatter
 
-% Write each of the chapters of the thesis
-% into a separate file for the sake of clarity.
-% They can be \input as shown below. Give both
-% the chapters and their files as descriptive
-% names as possible.
+% Write each of the chapters of the thesis into a separate file for the sake
+% of clarity. They can be \input as shown below. Give both the chapters and
+% their files as descriptive names as possible.
+
 \chapter{Johdanto}
 \label{ch:johdanto}
 
@@ -373,18 +388,16 @@
 
 %%%%% Bibliography/references.
 
-% Print the bibliography according to the
-% information in ./tex/references.bib and
-% the in-line citations used in the body of
-% the thesis.
+% Print the bibliography according to the information in ./tex/references.bib
+% and the in-line citations used in the body of the thesis.
+
 % \emergencystretch=2em
 \printbibliography[heading=bibintoc]
 
 %%%%% Appendices.
 
-% Use only if it clarifies the structure of
-% the document. Remember to introduce each
-% appendix and its content.
+% Use only if it clarifies the structure of the document. Remember to
+% introduce each appendix and its content.
 
 \begin{appendices}
 
