@@ -5,11 +5,11 @@ This repository contains a template for writing BSc and MSc (Tech) theses in Tam
 ## Compilation
 
 This template makes use of both `biblatex` and `glossaries` packages, and therefore needs a non-standard compilation sequence. The following should do the trick, as long as your main project file is named `main.tex`:
-```
-pdflatex main.tex
-makeindex -s main.ist -t main.glg -o main.gls main.glo
-biber main
-pdflatex main.tex
+```sh
+pdflatex main.tex &&
+makeindex -s main.ist -t main.glg -o main.gls main.glo &&
+biber main &&
+pdflatex main.tex &&
 pdflatex main.tex
 ```
 
