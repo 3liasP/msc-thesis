@@ -1,5 +1,5 @@
 %% tauthesis.cls
-%% Copyright 2018 Tampere University
+%% Copyright 2023 Tampere University
 %
 % This work may be distributed and/or modified
 % under the conditions of the LaTeX Project Public
@@ -14,7 +14,8 @@
 % This work has the LPPL maintenance status `maintained'.
 %
 % The Current Maintainer of this work is
-%   Ville Koljonen (ville.koljonen (at) tuni.fi)
+%
+%   Santtu Söderholm <santtu.soderholm (at) tuni.fi>
 %
 % This work consists of the files tauthesis.cls.
 
