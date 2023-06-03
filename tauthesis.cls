@@ -409,9 +409,9 @@
 
 % \examiner command
 \if@langenglish
-    \newcommand{\@examinername}{Examiner}
+    \newcommand{\@examinername}{Examiners}
 \else
-    \newcommand{\@examinername}{Tarkastaja}
+    \newcommand{\@examinername}{Tarkastajat}
 \fi
 
 \newcommand{\examiner}[2][\@examinername]{
