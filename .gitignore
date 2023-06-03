@@ -26,6 +26,10 @@
 
 !tauthesis.cls
 
+!titlepage.tex
+
+!preamble.tex
+
 !main.tex
 
 ## Allow file types in subdirectories.
