@@ -88,9 +88,16 @@
 
 \def\myfititle{Kuvaava otsikko}
 \def\myentitle{A Descriptive title}
+\def\myauthor{Firstname Lastname}
 \def\myfisubtitle{Tarkentava alaotsikko}
 \def\myensubtitle{A Specifying Subtitle}
-\def\myauthor{Firstname Lastname}
+\def\myfithesistype{Opinnäytetyön taso}
+\def\myenthesistype{Thesis type}
+\def\myexaminers{Title1 Firstname1 Lastname1 \\ Title2 Firstname2 Lastname2 \\ ...}
+\def\myfifacultyname{Tiedekunnan nimi}
+\def\myenfacultyname{The name of the faculty}
+\def\myfiprogrammename{Tutkinto-ohjelman nimi}
+\def\myenprogrammename{The name of the study programme}
 \def\myfikeywords{avainsana1, avaninsana2, ...}
 \def\myenkeywords{keyword1, keyword2, ...}
 \def\mylanguagecode{en-US}
@@ -283,26 +290,29 @@
 % Tarkastajat, and <name>s are replaced by the examiner names, each on their
 % separate line.
 
-\examiner[Tarkastajat]{Prof. Proffa Proffanen}
+\examiner{\myexaminers}
 
 % The finishing date of the thesis (YYYY-MM-DD).
 
 \finishdate{2021}{06}{24}
 
 % The type of the thesis (e.g. Kandidaatintyö or Master of Science Thesis) in
-% the primary and the secondary languages of the thesis.
+% the primary and the secondary languages of the thesis. Change fi and en
+% around, if the language order is different.
 
-\thesistype{Opinnäytetyön taso}{Thesis type}
+\thesistype{\myfithesistype}{\myenthesistype}
 
 % The faculty and degree programme names in the primary and the secondary
-% languages of the thesis.
+% languages of the thesis, respectively. Switch fi and en around, if the main
+% language is English instead.
 
-\facultyname{Tiedekunnan nimi}{Faculty Name}
+\facultyname{\myfifacultyname}{\myenfacultyname}
 
-\programmename{Tutkinto-ohjelma}{Degree Programme}
+\programmename{\myfiprogrammename}{\myenprogrammename}
 
-% The keywords to the thesis in the primary and the secondary languages of the
-% thesis.
+% The keywords of the thesis in the primary and the secondary languages of the
+% thesis. Again, change fi and en around, if primary language is English
+% instead.
 
 \keywords{\myfikeywords}{\myenkeywords}
 
