@@ -4,59 +4,97 @@ This file lists the changes that have been made to this project along its
 development. Note that as of version `2.0`, the changes should also be
 discoverable via the Git tags of the project.
 
-###### Version 2.2
+###### v2.5.2 Update tauthesis.cls date and CHANGELOG
 
-* Added support for compiling the project with `lualatex`, in addition to
-  `pdflatex`.
+- Updates the date specified in tauthesis.cls to be in line with the tags. The
+  file version now follows the project tags.
 
-* Note that the package `axessibility` is not loaded if `lualatex` is used, as
-  the accsupp branch of said package does not support `lualatex`.
+- Brings the file CHANGELOG.md up to date with the recently added Git-tags.
 
-###### Version 2.1
+- Also unifies the format between them, so that things are easy to copy over.
 
-* Minor change in Finnish terminology in [`tauthesis.cls`](./tauthesis.cls).
+###### v2.5.1 Move chapter and label commands to respective chapter files
 
-###### Version 2.0
+- Move \chapter and the respective \label commands into the files that contain
+  the chapters, as it makes more sense for everything related to a chapter to
+  be in the file that contains it.
 
-* Overhaul of the citation and glossary systems; more user control.
-* Added support for APA 7 and IEEE style citations.
-* Cleaned up tauthesis.cls.
-* Published in GitHub for better issues handling mechanism.
-* Added support for basic accessibility features:
-  * Alt texts for images using \pdftooltip{...}{...}
-  * Specifying mandatory document metadata
-  * Alt texts for mathematics automatically in compatible environments
+- Added comment symbols % at the ends of the \chapter command lines, before
+  the \label commands, so that any TeΧ compilers would interpret the \label
+  commands as being on the same line with each \chapter. This might get rid of
+  some warnings related to page numbering.
 
-###### Version 1.6
+###### v2.5 Move preamble and title page to their own files
 
-* Overall cleaning, better bibliography sorting and examiner functionalities. Major performance and math font improvements!
+- Moved preamble from main.tex → preamble.tex.
 
-###### Version 1.5
+- Moved title page from main.tex → titlepage.tex.
 
-* Better sorting and display of the bibliography entries, unsorted and last name first.
+- Automated primary language selection on title page via language commands
+  defined in the file tauthesis.cls. Now a user no longer needs to modify
+  these themselves, which should provide for a better user experience.
 
-###### Version 1.4
+- Added metadata commands \myyear, \mymonth and \myday in main.tex.
 
-* Minor terminology fixes.
+- Changed the command invocation \documentclass{tauthesis} →
+  \documentclass[finnish]{tauthesis}, to make it clear how the language is
+  selected.
 
-###### Version 1.3
+###### v2.4.2 Update © and maintainer info
 
-* Some updates to appearance.
-* Removed front matter entries from ToC.
-* Fixed a problem with default document class options.
+- Copyright year from 2018 → 2023.
 
-###### Version 1.2
+- Maintainer from Ville Koljonen → Santtu Söderholm.
 
-* Updated the template to conform to new appearance guidelines.
-* Increased the width of the glossary for it to take less space.
-* Added compilation instructions to main.tex as well.
-* Fixed encoding issues relating to listings fix for Scandinavian letters in code comments.
+###### v2.4.1 Update documentation
 
-###### Version 1.1
+- Added short-circuiting to the compilation sequence in the README, so that
+  later commands in the sequence are not attempted if a previous one fails
+  with an exit code other than 0.
 
-* Replaced the glossaries package option xindy to automake. Now the template does not require Perl to be installed.
-* Added instructions how to compile the thesis using this template into the conclusion text.
+- Also marked the related code block as a shell script, so that it would be
+  highlighted when the README is viewed with a suitable reader.
 
-###### Version 1.0
+###### v2.4 Replace amsmath with mathtools
 
-* First published template.
+- Replaces the included package amsmath with its patched and extended version,
+  called mathtools.
+
+###### v2.3.2 Utilize subtitle commands from metadata section
+
+- Fixed the subtitle defined by the user in the metadata section of main.tex
+  not being displayed on the title page of the thesis.
+
+###### v2.3.1 Add instructions related ot Git-tagging
+
+- Add instructions related to Git tagging to CONTRIBUTING.md.
+
+###### v2.3 Simplify metadata insertion
+
+- Simplify metadata insertion by defining metadata via commands that get
+  reused.
+
+- This metadata section is close to the start of main.tex, and users should
+  simply replace each myvalue in the commands \def\mykey{myvalue}.
+
+###### v2.2 Allow building the project with LuaLaTeX
+
+- Allows building the project with lualatex.
+
+- Note that the axessibility package is unavailable, if lualatex is used.
+
+###### v2.1 Update formatting in Finnish lists of references + CHANGELOG and CONTRIBUTING files
+
+- Change "et al." → "ym." in Finnish lists of references.
+
+- Add separate CHANGELOG.md and CONTRIBUTING.md files.
+
+- Update README with more detailed usage instructions.
+
+###### v2.0.1 Add a .gitignore file
+
+- Added a .gitignore file to prevent unwanted files from being uploaded into the repository.
+
+###### v2.0 Original upload by Ville Koljonen
+
+- Contains the repository as originally uploaded by Ville Koljonen.

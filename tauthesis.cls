@@ -21,7 +21,7 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{tauthesis}
-[2021/06/24 v2.0 Thesis styles used in Tampere University]
+[2023/06/05 v2.5.2 Thesis styles used in Tampere University]
 
 % Inherit from the report document class.
 % Use 12pt nonetheless and scale fonts back
