@@ -20,8 +20,31 @@
 % Subfigures and wrapping text
 % \usepackage{subcaption}
 
+%% Theorem environments and their numbering.
+%
+% Define both English and Finnish theorem types. These all follow the same
+% counter. See the documentation of amsthm to see how these can be changed to
+% suit your needs, if necessary.
+%
+
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}[definition]{Theorem}
+\newtheorem{lemma}[definition]{Lemma}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{example}[definition]{Example}
+
+\newtheorem{maaritelma}[definition]{Määritelmä}
+\newtheorem{lause}[definition]{Lause}
+\newtheorem{apulause}[definition]{Apulause}
+\newtheorem{seurauslause}[definition]{Seurauslause}
+\newtheorem{esimerkki}[definition]{Esimerkki}
+
 % Mathematics packages
-\usepackage{mathtools, amssymb, amsthm}
+\usepackage{mathtools, amssymb}
 %\usepackage{bm}
 
 % Chemistry packages
@@ -46,6 +69,10 @@
 
 % Print verbatim LaTeX commands
 \newcommand{\verbcommand}[1]{\texttt{\textbackslash #1}}
+
+% Command for formatting code.
+
+\newcommand\code[1]{\texttt{#1}}
 
 % Basic theorems in Finnish and in English.
 % Remove [chapter] if you wish a simply

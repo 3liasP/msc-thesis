@@ -4,6 +4,32 @@ This file lists the changes that have been made to this project along its
 development. Note that as of version `2.0`, the changes should also be
 discoverable via the Git tags of the project.
 
+###### v2.6 Define new theorem environments + \code
+
+- The file preamble.tex now defines new theorem environments using the package
+  amsthm:
+
+  - maaritelma,
+  - lause,
+  - apulause,
+  - seurauslause and
+  - esimerkki.
+
+  These have the English equivalents
+
+  - definition,
+  - theorem,
+  - lemma,
+  - corollary and
+  - example.
+
+  These all subscribe to the same counter.
+
+- Added a (Finnish) section under the writing style chapter, on how these
+  environments should be utilized.
+
+- Also defined the command \code for inline teletyped text.
+
 ###### v2.5.3 Fix load order of pdfx + improve main.tex
 
 - The loading of the package pdfx is moved to the end of tauthesis.cls, in

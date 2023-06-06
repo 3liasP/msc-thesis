@@ -18,6 +18,39 @@ Tekstin sisällön lisäksi esitystyyli vaikuttaa suuresti viestinnän onnistumi
 \item Lyhenteitä ei tulisi käyttää liikaa. Käytä lyhenteissä pieniä ja isoja kirjaimia johdonmukaisesti.
 \end{itemize}
 
+\section{Lauseympäristöt}
+
+Tiedostossa \code{preamble.tex} on määritelty lauseympäristöjä matemaattisen
+tekstin kirjoittamista varten. Näistä esimerkkeinä toimivat suomen- ja
+englanninkieliset lauseet~\ref{lause:pythagoras} ja \ref{theorem:pythagoras}.
+
+\begin{lause}[Pythagoraan lause]\label{lause:pythagoras}
+    Suorakulmaisen kolmion sivujen \(a\), \(b\) ja \(c\) pituuksille on voimassa yhtälö
+    \begin{equation}\label{yht:pythagoras}
+        a^2 + b^2 = c^2\,,
+    \end{equation}
+    jos \(c\) on hypotenuusa.
+\end{lause}
+
+\begin{lause}[Pythagorean theorem]\label{theorem:pythagoras}
+    For the sides of a right triangle, \(a\), \(b\) and \(c\), the equation
+    \begin{equation}\label{eq:pythagoras}
+        a^2 + b^2 = c^2
+    \end{equation}
+    holds, if \(c\) is the hypotenuse.
+\end{lause}
+
+Tällä hetkellä määritellyt ympäristöt ovat \code{maaritelma}, \code{lause},
+\code{apulause}, \code{seurauslause} ja \code{esimerkki}, sekä vastaavat
+englanninkieliset ympäristöt \code{definition}, \code{theorem}, \code{lemma},
+\code{corollary} ja \code{example}. Näitä on suotavaa käyttää silloin, kun
+tekstissä esitellään jokin tärkeä tulos tai määritelmä, johon tarvitsee
+viitata myöhemmin. Liika lauseympäristöjen käyttö johtaa kuitenkin
+listamaiseen Landaun kirjoitustyyliin, joka ei ole kovin helppolukuista, ja on
+sopivaa vain referenssityylisissä teksteissä, joista vain haetaan faktoja.
+Diplomityö ei ole tällainen tekstityyppi.
+
+
 \section{Kuvat}
 
 Kaikkiin kuviin täytyy viitata tekstissä. Kuvan avulla voidaan esittää tietoa tiiviissä muodossa, mutta kuvan täytyy olla merkityksellinen työn sisällön kannalta ja kuva täytyy selittää tekstissä. Viittaus on mielellään samalla sivulla kuin kuva tai sitä ennen. Kuvat ja taulukot numeroidaan ja sijoitetaan pääsääntöisesti sivun yläreunaan, oman harkinnan mukaan. \LaTeX{}issa tämä tapahtuu sijoittamalla \verbcommand{caption}-komentoa seuraavalle riville \verbcommand{label}-komennon, jonka argumentti on kyseisen kuvan (tai taulukon) yksikäsitteinen tunniste. Viittaaminen tapahtuu \verbcommand{ref}-komennolla, johon syötetään haluttu tunniste. Lukua ei saa aloittaa (eikä mielellään lopettaa) kuvalla, taulukolla, kaavalla tai luettelolla, vaan sen ympärillä on oltava tekstiä. Kuvateksti sijoitetaan kuvan alle.
