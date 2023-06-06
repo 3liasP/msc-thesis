@@ -58,27 +58,7 @@
 
 %%% Set PDF version before doing anything else.
 
-\RequirePackage{ifluatex}
-
-\ifluatex
-
-    \directlua {
-        if pdf.getminorversion() \string~= 6 then
-            if (status.pdf_gone and status.pdf_gone > 0)
-            or (status.pdf_ptr and status.pdf_ptr > 0)
-            then
-                tex.error("PDF version cannot be changed anymore")
-            else
-                pdf.setminorversion(6)
-            end
-        end
-    }
-
-\else
-
-    \pdfminorversion=6
-
-\fi
+\input{set-pdf-version.tex}
 
 %%%%% METADATA %%%%%
 %
@@ -98,24 +78,13 @@
 \def\myenfacultyname{The name of the faculty}
 \def\myfiprogrammename{Tutkinto-ohjelman nimi}
 \def\myenprogrammename{The name of the study programme}
-\def\myfikeywords{avainsana1, avaninsana2, ...}
+\def\myfikeywords{avainsana1, avainsana2, ...}
 \def\myenkeywords{keyword1, keyword2, ...}
 \def\mylanguagecode{en-US}
 \def\mysubject{A short description of the thesis subject.}
 \def\myyear{2023}
 \def\mymonth{06}
 \def\myday{03}
-
-% Place PDF metadata into an external main.xmpdata file.
-
-\begin{filecontents*}[overwrite]{\jobname.xmpdata}
-\Title{\myfititle}
-\Author{\myauthor}
-\Language{\mylanguagecode}
-\Keywords{\myfikeywords, \myenkeywords}
-\Subject{\mysubject}
-\end{filecontents*}
-
 
 %%%%% PREAMBLE %%%%%
 

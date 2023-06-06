@@ -4,6 +4,16 @@ This file lists the changes that have been made to this project along its
 development. Note that as of version `2.0`, the changes should also be
 discoverable via the Git tags of the project.
 
+###### v2.5.3 Fix load order of pdfx + improve main.tex
+
+- The loading of the package pdfx is moved to the end of tauthesis.cls, in
+  order to facilitate the setting of the title language in the metadata file
+  \jobname.xmpdata, before the information is written to the output PDF.
+
+- Move PDF version setting to the file set-pdf-version.tex, to again make the
+  file main.tex more readable. This is not something that the user should
+  worry about, so this should again provide for a better user experience.
+
 ###### v2.5.2 Update tauthesis.cls date and CHANGELOG
 
 - Updates the date specified in tauthesis.cls to be in line with the tags. The

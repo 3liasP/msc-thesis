@@ -96,12 +96,6 @@
 
 %%%%% PACKAGES AND RELATED DEFINITIONS %%%%%
 
-% ISO-19005 compliant document (pdf/A-2b)
-\if@taunotdraftmode
-    \RequirePackage[a-2b,mathxmp]{pdfx}
-    \catcode30=12
-\fi
-
 % UTF-8 input
 \RequirePackage[utf8]{inputenc}
 
@@ -606,6 +600,43 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \noindent\@author
     \clearpage
 }
+
+%%% ISO-19005 compliant document (pdf/A-2b)
+
+%% Choose title langauge in the metadata that is written to the PDF.
+
+\def\mymetatitle{%
+    \if@langenglish%
+        \myentitle%
+    \else%
+        \myfititle%
+    \fi%
+}
+
+\def\mymetasubtitle{%
+    \if@langenglish%
+        \myensubtitle%
+    \else%
+        \myfisubtitle%
+    \fi%
+}
+
+% Place PDF metadata into an external main.xmpdata file.
+
+\begin{filecontents*}[overwrite]{\jobname.xmpdata}
+\Title{\mymetatitle: \mymetasubtitle}
+\Author{\myauthor}
+\Language{\mylanguagecode}
+\Keywords{\myfikeywords, \myenkeywords}
+\Subject{\mysubject}
+\end{filecontents*}
+
+%% Load the data from the metadata file with pdfx.
+
+\if@taunotdraftmode
+    \RequirePackage[a-2b,mathxmp]{pdfx}
+    \catcode30=12
+\fi
 
 \makeatother
 

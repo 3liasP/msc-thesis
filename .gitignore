@@ -30,6 +30,8 @@
 
 !preamble.tex
 
+!set-pdf-version.tex
+
 !main.tex
 
 ## Allow file types in subdirectories.
