@@ -4,6 +4,10 @@ This file lists the changes that have been made to this project along its
 development. Note that as of version `2.0`, the changes should also be
 discoverable via the Git tags of the project.
 
+###### v2.6.1 Change example theorem environment lause → theorem
+
+- Fix the incorrectly set English theorem environment example in the file tex/esitystyyli.tex.
+
 ###### v2.6 Define new theorem environments + \code
 
 - The file preamble.tex now defines new theorem environments using the package
