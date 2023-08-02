@@ -17,9 +17,10 @@ pdflatex main.tex
 
 ## Usage notes
 
-The easiest way to use this template is to download this repository as a ZIP file, and upload the ZIP to Overleaf as a new project, on the page that lists your Overleaf projects ([link][overleaf-projects]). The ZIP file can be downloaded by navigating to the tags-page of this repository, and choosing the ZIP option of the latest tag. Then on Overleaf, press <kbd>New Project</kbd> → <kbd>Upload Project</kbd> → <kbd>Select a .zip file</kbd>. This will generate a new Overleaf project for you.
+The easiest way to use this template is to download this repository as a ZIP file, and upload the ZIP to Overleaf as a new project, on the page that lists your Overleaf projects ([link][overleaf-projects]). The ZIP file can be downloaded by navigating to the [Tags-page][project-tags-page] of this repository, and choosing the ZIP option of the latest tag. Then on Overleaf, press <kbd>New Project</kbd> → <kbd>Upload Project</kbd> → <kbd>Select a .zip file</kbd>. This will generate a new Overleaf project for you.
 
 [overleaf-projects]: https://www.overleaf.com/project
+[project-tags-page]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/tags
 
 If you wish to write your thesis locally instead, you should install the latest version of the [TeX Live] LaTeΧ distribution onto your computer. This will provide access to the necessary LaTeΧ compilers and libraries, and will allow you to run the command sequence listed in the above section. Any plaintext editor can be used to write LaTeΧ code, but a recommended choice is [VS Code], with the [LaTeΧ Workshop] add-on.
 
