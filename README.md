@@ -47,9 +47,12 @@ Otherwise the LaTeΧ compiler might try to use the metadata from the failed comp
 
 ## Bugs and improvements
 
-Please use the **Issues** dialogue above if you have found something in the template that needs fixing, or if you have a suggestion for improvement. If you instead have something to ask about the template (clarifications on how to use it, how to accomplish something, etc.), please post your question to **Discussions**. Be sure to use the Q&A category.
+Please use the [**Issues page**][gitlab-issues], if you have found something in the template that needs fixing, or if you have a suggestion for improvement. You might need to [create a GitLab account][gitlab-sign-up] to be able to post issues. All feedback (preferably in English, Finnish works too) is most welcome!
 
-All feedback (preferably in English, Finnish works too) is most welcome!
+**Note:** Please keep each issue concise and to the point. If you have a list of suggestions, please create a separate issue for each individual suggestion. This makes the issues easier to keep track of.
+
+[gitlab-issues]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/issues
+[gitlab-sign-up]: https://gitlab.com/users/sign_up
 
 ## Version history
 
