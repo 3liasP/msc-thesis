@@ -2,7 +2,18 @@
 
 This file lists the changes that have been made to this project along its
 development. Note that as of version `2.0`, the changes should also be
-discoverable via the Git tags of the project.
+discoverable via the [Git tags of the project][project-tags-page].
+
+[project-tags-page]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/tags
+
+##### v2.6.2 Update Bugs and improvements section in README
+
+- There is now a link to the canonical project Issues page.
+
+- Also added a suggestion to sign up, in case one wants to post issues.
+
+- Since GitLab does not provide a forum for project discussions, instructions
+  regarding it were removed.
 
 ###### v2.6.1 Change example theorem environment lause → theorem
 
