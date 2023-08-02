@@ -6,7 +6,11 @@ discoverable via the [Git tags of the project][project-tags-page].
 
 [project-tags-page]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/tags
 
-##### v2.6.2 Update Bugs and improvements section in README
+###### v2.6.3 Update Usage section in README
+
+- It now contains a link to the canonical Tags-page of the project.
+
+###### v2.6.2 Update Bugs and improvements section in README
 
 - There is now a link to the canonical project Issues page.
 
