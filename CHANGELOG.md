@@ -6,6 +6,21 @@ discoverable via the [Git tags of the project][project-tags-page].
 
 [project-tags-page]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/tags
 
+###### v2.7 Uncomment inclusion of siunitx and add \norm command
+
+- There is no point in commenting out the inclusion of the package `siunitx`,
+  as it does not increase compilation times noticeably. This also allowed the
+  SI-unit example in `tex/esitystyyli.tex` to be uncommented.
+
+- Added the `\norm` command to `preamble.tex`, which allows typesetting the
+  norm of a vector 𝐯 as ‖𝐯‖. This is utilized in the now-uncommented SI-unit
+  example.
+
+- Added some space before punctuation at the ends of equation examples. This
+  makes the punctuation more noticeable.
+
+- Removed an unnecessary hyphen in a paragraph.
+
 ###### v2.6.3 Update Usage section in README
 
 - It now contains a link to the canonical Tags-page of the project.
