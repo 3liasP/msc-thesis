@@ -155,15 +155,18 @@ Koodin kirjasinlajina käytetään \texttt{tasalevyistä kirjasinlajia}, jonka m
 
 Koodiin on hyvä lisätä muutamia kommentteja ja sisentää se johdonmukaisesti. Koodin toiminta selitetään aina myös juoksevassa tekstissä pääpiirteissään, lähinnä siitä esitetään muutamia avainhuomioita. Esimerkiksi \LaTeX{}in paketti \texttt{listings} \parencite{listings,notsoshort} osaa kätevästi sisällyttää sekä oikeita kooditiedostoja että pseudokoodia tekstiin, lisätä automaattisesti rivinumeroinnin ja korostaa monet varatut sanat. Käytä sitä kaiken koodin esittämiseen \LaTeX{}in avulla.
 
-%\renewcommand{\lstlistingname}{Ohjelma}
-%\lstinputlisting
-%    [float,
-%    caption={Esimerkki ohjelmakoodin esittämisestä.},
-%    label=prog:esimerkki,
-%    language=C,
-%    numbers=left,
-%    morekeywords={Kirjainpari}]
-%    {code/esimerkkikoodi.c}
+\renewcommand{\lstlistingname}{Ohjelma}
+\lstinputlisting
+    [
+        float,
+        caption={Esimerkki ohjelmakoodin esittämisestä.},
+        label=prog:esimerkki,
+        language=C,
+        numbers=left,
+        morekeywords={Kirjainpari},
+        inputencoding=utf8,
+    ]
+    {code/esimerkkikoodi.c}
 
 \section{Saavutettava opinnäytetyö}
 
