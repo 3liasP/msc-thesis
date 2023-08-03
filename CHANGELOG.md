@@ -6,6 +6,18 @@ discoverable via the [Git tags of the project][project-tags-page].
 
 [project-tags-page]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/tags
 
+###### v2.8 Include listings package and uncomment Finnish code example
+
+- Allows the inclusion of code snippets via the command `\lstinputlisting`.
+  This command is absolutely required, if the code or its comments contain
+  special Unicode characters.
+
+- The package is loaded in `preamble.tex`.
+
+- The Finnish listing example was uncommented in `tex/esitystyyli.tex`, made
+  possible by instructing `listings` to convert special characters to
+  equivalent LaTeΧ commands in the preamble.
+
 ###### v2.7 Uncomment inclusion of siunitx and add \norm command
 
 - There is no point in commenting out the inclusion of the package `siunitx`,
