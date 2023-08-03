@@ -113,18 +113,24 @@ Tekstissä tulee ensisijaisesti käyttää yleisesti tunnettuja ja hyvin määri
 
 Matemaattiset merkit ja kreikkalaiset kirjaimet löytyvät \LaTeX{}in makroista ja kaavamoodeista, kuten \(\Theta(n^2)\). Yksinkertaiset kaavat voivat olla osa virkettä (siis tekstiä) ja ilman numeroa. Esimerkkinä tekstistä erotetusta kaavasta Newtonin 2. peruslaki voidaan ilmaista muodossa
 \begin{equation}\label{eq:newton2}
-    m\mathbf{a} = \mathbf{F},
+    m\mathbf{a} = \mathbf{F} \,,
 \end{equation}
 missä \(m\) on kappaleen massa, \(\mathbf{a}\) sen kiihtyvyys ja \(\mathbf{F}\) siihen kohdistuva nettovoima. Huomaa, että symbolien merkitys selitetään aina heti kaavan yhteydessä sillä tavalla kuin on luontevinta. Kaavat esitetään tarkoituksella eri fontilla ja matemaattiset symbolit pääosin kursivoidaan. Vektorit voidaan esittää lihavoituna, kuten edellä (tavallisinta painetussa tekstissä) tai nuolella varustettuna, kuten \(\vec{v}\). Dimensiollisia lukuja voidaan esittää \verbcommand{SI}-komennon avulla:
-%\begin{equation*}
-%    \Vert\mathbf{F}\Vert = m\Vert\mathbf{a}\Vert = \SI{10}{\kilogram} \cdot \SI{9.81}{\metre\per\second\squared} = \SI{98.1}{\newton}.
-%\end{equation*}
+\begin{equation*}
+    \norm{\mathbf{F}}
+    =
+    m\norm{\mathbf{a}}
+    =
+    \SI{10}{\kilogram} \cdot \SI{9.81}{\metre\per\second\squared}
+    =
+    \SI{98.1}{\newton} \,.
+\end{equation*}
 
-Matemaattinen kaava numeroidaan, jos se on omalla rivillään ja siihen viitataan muualla teks-tissä, katso esimerkiksi kaava \eqref{eq:newton2}. Usein numero on tavallisten sulkujen sisällä ja tasattu oikeaan laitaan, kuten tässä ohjeessa. Matematiikan kirjoitusohjeiden ja englatilaisen kulttuuripiirin tavan mukaisesti kaavoihin sisällytetään välimerkit, kuten yhtälössä \eqref{eq:newton2} lopun pilkku. Toisinaan matemaattisen rakenteen edessä on tunniste, kuten Määritelmä 1 tai Lause 1 \parencite{matohje2009}. Nämä luodaan omilla \texttt{amsthm}-pakettiin pohjautuvilla ympäristöillään. Kaavojen ja muiden rakenteiden numerointi voi olla juokseva läpi koko tekstin ((1), (2), \ldots) tai aina yhden luvun sisällä ((1.1), (1.2), \ldots, (2.1), \ldots).
+Matemaattinen kaava numeroidaan, jos se on omalla rivillään ja siihen viitataan muualla tekstissä, katso esimerkiksi kaava \eqref{eq:newton2}. Usein numero on tavallisten sulkujen sisällä ja tasattu oikeaan laitaan, kuten tässä ohjeessa. Matematiikan kirjoitusohjeiden ja englatilaisen kulttuuripiirin tavan mukaisesti kaavoihin sisällytetään välimerkit, kuten yhtälössä \eqref{eq:newton2} lopun pilkku. Toisinaan matemaattisen rakenteen edessä on tunniste, kuten Määritelmä 1 tai Lause 1 \parencite{matohje2009}. Nämä luodaan omilla \texttt{amsthm}-pakettiin pohjautuvilla ympäristöillään. Kaavojen ja muiden rakenteiden numerointi voi olla juokseva läpi koko tekstin ((1), (2), \ldots) tai aina yhden luvun sisällä ((1.1), (1.2), \ldots, (2.1), \ldots).
 
 Älä aloita uutta virkettä matemaattisella symbolilla. Yleensä teknis-fysikaalisessa tekstissä kursivoidaan muuttujat, kuten \(x\) ja \(y\). Kursivoinneissa kannattaa luottaa \LaTeX{}in automatiikkaan \parencite{notsoshort}. Sen sijaan alkeisfunktioita, erikoisfunktioita ja operaattoreita merkitään tavallisella kirjasimella: \(\sin(2x + y)\) tai
 \begin{equation*}
-    \lim_{x \rightarrow -1}\frac{x^2 - 1}{x + 1} = -2.
+    \lim_{x \rightarrow -1}\frac{x^2 - 1}{x + 1} = -2 \,.
 \end{equation*}
 Kappaletta, tai varsinkaan lukua ei ole hyvä myöskään lopettaa kaavaan, kuvaan tai taulukkoon.
 

@@ -56,14 +56,14 @@
 % \hypersetup{hidelinks}
 
 % (SI) unit handling
-% \usepackage{siunitx}
+\usepackage{siunitx}
 
-%\sisetup{
-%    detect-all,
-%    math-sf=\mathrm,
-%    exponent-product=\cdot,
-%    output-decimal-marker={,} % for theses in FINNISH!
-%}
+\sisetup{
+    detect-all,
+    math-sf=\mathrm,
+    exponent-product=\cdot,
+    output-decimal-marker={,} % for theses in FINNISH!
+}
 
 %%%%% Your commands.
 
@@ -73,6 +73,10 @@
 % Command for formatting code.
 
 \newcommand\code[1]{\texttt{#1}}
+
+% A delimiter command for the norm of a vector with mathtools.
+
+\DeclarePairedDelimiter\norm{\lVert}{\rVert}
 
 % Basic theorems in Finnish and in English.
 % Remove [chapter] if you wish a simply
