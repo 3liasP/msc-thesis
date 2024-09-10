@@ -115,6 +115,8 @@
 \RequirePackage[explicit]{titlesec}
 \RequirePackage{setspace}
 \RequirePackage{parskip}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
 
 \setstretch{1.213}
 \setlength{\headheight}{14.5pt}
@@ -491,6 +493,8 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \newcommand{\@originalitytext}{\@engoriginalitytext}
     \newcommand{\@otheroriginalitytext}{\@finoriginalitytext}
     \newcommand{\@logofile}{figures/tau-logo-eng.eps}
+    \newcommand\@aidisclaimertitle{Use of artificial intelligence in this work}
+    \newcommand\@aidisclaimerfile{tex/use-of-ai.tex}
 \else
     \newcommand{\@abstractname}{Tiivistelmä}
     \newcommand{\@otherabstractname}{Abstract}
@@ -502,7 +506,16 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \newcommand{\@originalitytext}{\@finoriginalitytext}
     \newcommand{\@otheroriginalitytext}{\@engoriginalitytext}
     \newcommand{\@logofile}{figures/tau-logo-fin.eps}
+    \newcommand\@aidisclaimertitle{Tekoälyn käyttö tässä työssä}
+    \newcommand\@aidisclaimerfile{tex/tekoalyn-kaytto.tex}
 \fi
+
+\newcommand\aidisclaimer{%
+    \clearpage
+    \chapter*{\@aidisclaimertitle}
+    \input{\@aidisclaimerfile}\par
+    \clearpage
+}
 
 % Make the title
 \renewcommand\maketitle{
@@ -621,6 +634,12 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
         \myfisubtitle%
     \fi%
 }
+
+% Other commands.
+
+\NewDocumentCommand\yesbox{}{\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\(\times\)}}
+
+\NewDocumentCommand\nobox{}{$\square$}
 
 % Place PDF metadata into an external main.xmpdata file.
 
