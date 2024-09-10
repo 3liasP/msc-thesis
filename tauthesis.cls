@@ -495,6 +495,8 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \newcommand{\@logofile}{figures/tau-logo-eng.eps}
     \newcommand\@aidisclaimertitle{Use of artificial intelligence in this work}
     \newcommand\@aidisclaimerfile{tex/use-of-ai.tex}
+    \newcommand\@yestextcmd{Yes}
+    \newcommand\@notextcmd{No}
 \else
     \newcommand{\@abstractname}{Tiivistelmä}
     \newcommand{\@otherabstractname}{Abstract}
@@ -508,6 +510,8 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \newcommand{\@logofile}{figures/tau-logo-fin.eps}
     \newcommand\@aidisclaimertitle{Tekoälyn käyttö tässä työssä}
     \newcommand\@aidisclaimerfile{tex/tekoalyn-kaytto.tex}
+    \newcommand\@yestextcmd{Kyllä}
+    \newcommand\@notextcmd{Ei}
 \fi
 
 \newcommand\aidisclaimer{%
@@ -640,6 +644,22 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
 \NewDocumentCommand\yesbox{}{\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\(\times\)}}
 
 \NewDocumentCommand\nobox{}{$\square$}
+
+\NewDocumentCommand\yestoai{s}{
+    \IfBooleanTF{#1}{
+        \begin{quote}
+            \indent\nobox\hspace{1ex}\@notextcmd
+            \linebreak
+            \indent\yesbox\hspace{1ex}\@yestextcmd
+        \end{quote}
+    }{
+        \begin{quote}
+            \indent\yesbox\hspace{1ex}\@notextcmd
+            \linebreak
+            \indent\nobox\hspace{1ex}\@yestextcmd
+        \end{quote}
+    }
+}
 
 % Place PDF metadata into an external main.xmpdata file.
 
