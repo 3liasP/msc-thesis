@@ -195,7 +195,6 @@
 % Smart bibliography handling
 \RequirePackage
     [backend=biber,
-    autolang=other,
     citestyle=\mycitationstyle,
     bibstyle=\mycitationstyle,
     sorting=\mycitationsorting,]{biblatex}
