@@ -508,7 +508,7 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     {\raggedleft%
         \@thesistype\\%
         \@facultyname\\%
-        \@examiner{\@finalexaminername}{\@givenexaminer}\\%
+        %\@examiner{\@finalexaminername}{\@givenexaminer}\\%
         \DTMDisplaydate%
             {\@finishyear}%
             {\@finishmonth}%
