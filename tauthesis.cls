@@ -356,13 +356,13 @@
 
 % Adjust style of content listings' titles.
 
-\renewcommand{\cfttoctitlefont}{\scshape\LARGE}
+\renewcommand{\cfttoctitlefont}{\scshape\bf\LARGE}
 
-\renewcommand{\cftloftitlefont}{\scshape\LARGE}
+\renewcommand{\cftloftitlefont}{\scshape\bf\LARGE}
 
-\renewcommand{\cftlottitlefont}{\scshape\LARGE}
+\renewcommand{\cftlottitlefont}{\scshape\bf\LARGE}
 
-\renewcommand{\cftloltitlefont}{\scshape\LARGE}
+\renewcommand{\cftloltitlefont}{\scshape\bf\LARGE}
 
 % Adjust spacing before and after ToC titles.
 
@@ -431,7 +431,7 @@
 \renewcommand{\thechapter}{\Alph{chapter}}
 \renewcommand{\theHchapter}{\Alph{chapter}}
 \titleformat
-    {\chapter}{\raggedright\LARGE\scshape%
+    {\chapter}{\raggedright\LARGE\scshape\bf%
     \parshape %
     2 %
     0pt \linewidth %
