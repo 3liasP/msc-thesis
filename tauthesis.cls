@@ -299,6 +299,7 @@
 }
 
 % Table of contents formatting
+
 \RequirePackage{titletoc}
 
 \def\myChapterFontSize{12pt}
@@ -430,16 +431,24 @@
 \setcounter{chapter}{0}
 \renewcommand{\thechapter}{\Alph{chapter}}
 \renewcommand{\theHchapter}{\Alph{chapter}}
+
 \titleformat
-    {\chapter}{\raggedright\LARGE\scshape\bf%
+    {\chapter}
+    {\raggedright\LARGE\scshape\bf%
     \parshape %
     2 %
     0pt \linewidth %
     \chapterindent \dimexpr\linewidth-\chapterindent}
-    {{\appendixname~\thechapter:}}{\chapterspace}
-    {\fancyhf{}\cfoot{\thepage}{##1}}
-    \titlecontents{chapter}[0pt]{\vspace{8.5pt}}%
-    {\scshape\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:\hspace{\chapterspace}}{}%
+    {{\scshape\appendixname~\thechapter:}}
+    {\chapterspace}
+    {\fancyhf{}\cfoot{\thepage}{\scshape##1}}
+
+\titlecontents%
+    {chapter}%
+    [0pt]%
+    {\vspace{8.5pt}}%
+    {\scshape\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:\hspace{\chapterspace}}%
+    {}%
     {\titlerule*[0.7pc]{.}\fontsize{\myToCPageNumberSize}{14pt}\selectfont\contentspage}
 }{}
 
