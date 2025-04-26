@@ -112,9 +112,6 @@
 
 %%%%% PACKAGES AND RELATED DEFINITIONS %%%%%
 
-% UTF-8 input
-\RequirePackage[utf8]{inputenc}
-
 % Arial-like font selection
 \RequirePackage[scaled=0.91]{helvet}
 \RequirePackage[T1]{fontenc}
