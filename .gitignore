@@ -63,6 +63,17 @@
 !figures/**/*.pdf
 !figures/**/*.png
 
+!fonts/
+!fonts/NotoSansSymbols2/
+!fonts/NotoSansSymbols2/NotoSansSymbols2*.ttf
+!fonts/NotoSansSymbols2/OFL.txt
+!fonts/Roboto/
+!fonts/Roboto/Roboto*.ttf
+!fonts/Roboto/OFL.txt
+!fonts/STIXTwo/
+!fonts/STIXTwo/STIXTwo*.ttf
+!fonts/STIXTwo/OFL.txt
+
 # Disallow PDF figures automatically generated from EPS via epstopdf. Only the
 # original EPS figures should be in the repository to avoid repetition.
 
