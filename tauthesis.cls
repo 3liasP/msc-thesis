@@ -28,6 +28,43 @@
 % to make maths closer to actual font size.
 \LoadClass[12pt, a4paper]{report}
 
+% Font selection
+
+\RequirePackage{fontspec}
+
+\setmainfont[
+  Path = fonts/Roboto/,
+  Extension = .ttf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic
+]{Roboto}
+
+\usepackage{unicode-math}
+
+\setmathfont{STIXTwoMath-Regular.ttf}[
+  Path = fonts/STIXTwo/
+]
+
+\usepackage{newunicodechar}
+
+% Check to see if this font is installed system-wide
+\IfFontExistsTF{NotoSansSymbols2}{%
+% One person has this installed system-wide
+    \newfontfamily\fallbackfont{NotoSansSymbols2}
+}{
+    % If not, load it from the file
+    \newfontfamily\fallbackfont{NotoSansSymbols2}[
+        Path = ./fonts/NotoSansSymbols2/, % Specify the path to the font file
+        Extension = .ttf,  % Specify the file extension if needed
+        UprightFont = *-Regular,
+    ]
+}
+
+\newunicodechar{☒}{{\fallbackfont ☒}}
+\newunicodechar{☐}{{\fallbackfont ☐}}
+
 % Gain access to internal macros.
 \makeatletter
 
@@ -92,10 +129,13 @@
 \special{papersize={210mm,297mm}}
 \RequirePackage{fancyhdr}
 \RequirePackage[explicit]{titlesec}
+\RequirePackage{titletoc}
+\RequirePackage{tocloft}
 \RequirePackage{setspace}
 \RequirePackage{parskip}
 \RequirePackage{tabularx}
 \RequirePackage{booktabs}
+\RequirePackage{listings}
 
 \setstretch{1.213}
 \setlength{\headheight}{14.5pt}
@@ -134,11 +174,11 @@
     0pt \linewidth %
     \chapterindent \dimexpr\linewidth-\chapterindent}
     {\makebox[\chapterindent][l]{\thechapter.}}{0em}
-    {\fancyhf{}\rhead{\thepage}\MakeUppercase{#1}}
+    {\fancyhf{}\rhead{\thepage}\textsc{#1}}
 \titleformat
     {name=\chapter, numberless}
     {\raggedright\bf\Large}{}{0em}
-    {\fancyhf{}\rhead{\thepage}\MakeUppercase{#1}}
+    {\fancyhf{}\rhead{\thepage}\textsc{#1}}
 \titlespacing{\chapter}{0em}{42pt}{42pt}
 \titlespacing{name=\chapter, numberless}{0em}{18pt}{18pt}
 
@@ -149,10 +189,10 @@
     2 %
     0pt \linewidth %
     \chapterindent \dimexpr\linewidth-\chapterindent}
-    {\makebox[\chapterindent][l]{\thesection}}{0em}{#1}
+    {\makebox[\chapterindent][l]{\thesection}}{0em}{\textsc{#1}}
 \titleformat
     {name=\section, numberless}
-    {\raggedright\bf\large}{}{0em}{#1}
+    {\raggedright\bf\large}{}{0em}{\textsc{#1}}
 \titlespacing{\section}{0em}{18pt}{12pt}
 \titlespacing{name=\section, numberless}{0em}{18pt}{12pt}
 
@@ -163,20 +203,20 @@
     2 %
     0pt \linewidth %
     \chapterindent \dimexpr\linewidth-\chapterindent}
-    {\makebox[\chapterindent][l]{\thesubsection}}{0em}{#1}
+    {\makebox[\chapterindent][l]{\thesubsection}}{0em}{\textsc{#1}}
 \titleformat
     {name=\subsection, numberless}
-    {\raggedright\bf\large}{}{0em}{#1}
+    {\raggedright\bf\large}{}{0em}{\textsc{#1}}
 \titlespacing{\subsection}{0em}{18pt}{12pt}
 \titlespacing{name=\subsection, numberless}{0em}{18pt}{12pt}
 
 % Subsubsection
 %\titleformat
 %    {\subsubsection}{\raggedright\bf\normalsize}
-%    {\thesubsubsection}{\chapterspace}{#1}
+%    {\thesubsubsection}{\chapterspace}{\textsc{#1}}
 \titleformat
     {name=\subsubsection, numberless}
-    {\raggedright\bf\normalsize}{}{0em}{#1}
+    {\raggedright\bf\normalsize}{}{0em}{\textsc{#1}}
 \titlespacing{\subsubsection}{0em}{18pt}{12pt}
 \titlespacing{name=\subsubsection, numberless}{0em}{18pt}{12pt}
 
@@ -261,26 +301,106 @@
 % Table of contents formatting
 \RequirePackage{titletoc}
 
-\titlecontents{chapter}[0pt]{}%
-    {\parbox[t]{2em}{\thecontentslabel.}}{}{\titlerule*[1pc]{.}\contentspage}
-\dottedcontents{section}[4em]{}{2em}{1pc}
-\dottedcontents{subsection}[7em]{}{3em}{1pc}
+\def\myChapterFontSize{12pt}
+\def\mySectionFontSize{12pt}
+\def\mySubSectionFontSize{12pt}
+\def\mySubSubSectionFontSize{12pt}
 
-\newenvironment{appendices}{%
-\setcounter{chapter}{0}
-\renewcommand{\thechapter}{\Alph{chapter}}
-\renewcommand{\theHchapter}{\Alph{chapter}}
-\titleformat
-    {\chapter}{\raggedright\bf\Large%
-    \parshape %
-    2 %
-    0pt \linewidth %
-    \chapterindent \dimexpr\linewidth-\chapterindent}
-    {\MakeUppercase{\appendixname~\thechapter:}}{\chapterspace}
-    {\fancyhf{}\rhead{\thepage}\MakeUppercase{##1}}
-\titlecontents{chapter}[0pt]{}%
-    {\@appendixname~\thecontentslabel:~}{}{\titlerule*[1pc]{.}\contentspage}
-}{}
+\def\myChapterIndent{0em}
+\def\mySectionIndent{1em}
+\def\mySubSectionIndent{2em}
+\def\mySubSubSectionIndent{3em}
+
+\def\myChapterNumberWidth{2em}
+\def\mySectionNumberWidth{2em}
+\def\mySubSectionNumberWidth{3.2em}
+\def\mySubSubSectionNumberWidth{3.7em}
+
+\def\mySectionNumberWidth{3em}
+
+\def\myToCPageNumberSize{10pt}
+
+\cftsetindents{chapter}{\myChapterIndent}{\myChapterNumberWidth}
+\cftsetindents{section}{\mySectionIndent}{\mySectionNumberWidth}
+\cftsetindents{subsection}{\mySubSectionIndent}{\mySubSectionNumberWidth}
+\cftsetindents{subsubsection}{\mySubSubSectionIndent}{\mySubSubSectionNumberWidth}
+
+\lstset{texcl=true, captionpos=b, commentstyle=\tt}
+
+\if@langenglish
+    \addto\captionsenglish{%
+        \renewcommand{\contentsname}{Contents}%
+        \renewcommand{\listfigurename}{List of Figures}%
+        \renewcommand{\listtablename}{List of Tables}%
+    }
+    \renewcommand{\lstlistlistingname}{List of Programs and Algorithms}
+\else
+    \addto\captionsfinnish{%
+        \renewcommand{\contentsname}{Sisällys}%
+        \renewcommand{\listfigurename}{Kuvaluettelo}%
+        \renewcommand{\listtablename}{Taulukkoluettelo}%
+        \renewcommand{\figurename}{Kuvio}%
+    }
+    \renewcommand{\lstlistlistingname}{Ohjelma- ja algoritmiluettelo}
+\fi
+
+\titlecontents
+    {part}
+    [0pt]
+    {\bf}%
+    {\thecontentslabel}{}{\hfill\contentspage}
+
+\newlistof[section]{listing}{lol}{\lstlistlistingname}
+
+\contentsuse{lstlisting}{lol}
+
+% Adjust style of content listings' titles.
+
+\renewcommand{\cfttoctitlefont}{\scshape\LARGE}
+
+\renewcommand{\cftloftitlefont}{\scshape\LARGE}
+
+\renewcommand{\cftlottitlefont}{\scshape\LARGE}
+
+\renewcommand{\cftloltitlefont}{\scshape\LARGE}
+
+% Adjust spacing before and after ToC titles.
+
+\NewDocumentCommand\tocspacing{}{8pt}
+
+\setlength{\cftaftertoctitleskip}{\tocspacing}
+
+\setlength{\cftafterloftitleskip}{\tocspacing}
+
+\setlength{\cftafterlottitleskip}{\tocspacing}
+
+\setlength{\cftafterloltitleskip}{\tocspacing}
+
+% Adjust spacing between ToC items.
+
+\setlength{\cftbeforesecskip}{\tocspacing}
+
+\setlength{\cftbeforesubsecskip}{\tocspacing}
+
+\setlength{\cftbeforesubsubsecskip}{\tocspacing}
+
+% Redefine ToC entries to use small caps, just like the titles themselves, with specific font sizes.
+
+\renewcommand{\cftchapfont}{\fontsize{\myChapterFontSize}{14pt}\selectfont\scshape}
+\renewcommand{\cftchappagefont}{\fontsize{\myToCPageNumberSize}{14pt}\selectfont\scshape}
+
+\renewcommand{\cftsecfont}{\fontsize{\mySectionFontSize}{12pt}\selectfont\scshape}
+\renewcommand{\cftsecpagefont}{\fontsize{\myToCPageNumberSize}{12pt}\selectfont\scshape}
+
+\renewcommand{\cftsubsecfont}{\fontsize{\mySubSectionFontSize}{11pt}\selectfont\scshape}
+\renewcommand{\cftsubsecpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont\scshape}
+
+\renewcommand{\cftsubsubsecfont}{\fontsize{\mySubSubSectionFontSize}{\myToCPageNumberSize}\selectfont\scshape}
+\renewcommand{\cftsubsubsecpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont\scshape}
+
+% Add dots also at the chapter level.
+
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 
 \if@langenglish
     \addto\captionsenglish{%
@@ -288,7 +408,7 @@
         \renewcommand\listfigurename{List of Figures}%
         \renewcommand{\listtablename}{List of Tables}%
     }
-    \renewcommand{\appendixname}{\MakeUppercase{Appendix}}
+    \renewcommand{\appendixname}{\textsc{Appendix}}
     \if@programs
         \renewcommand{\lstlistlistingname}{List of Programs and Algorithms}
     \fi
@@ -298,11 +418,62 @@
         \renewcommand\listfigurename{Kuvaluettelo}%
         \renewcommand{\listtablename}{Taulukkoluettelo}%
     }
-    \renewcommand{\appendixname}{\MakeUppercase{Liite}}
+    \renewcommand{\appendixname}{\textsc{Liite}}
     \if@programs
         \renewcommand{\lstlistlistingname}{Ohjelma- ja algoritmiluettelo}
     \fi
 \fi
+
+% Define appendix title style inside of the appendices environment.
+
+\newenvironment{appendices}{%
+\setcounter{chapter}{0}
+\renewcommand{\thechapter}{\Alph{chapter}}
+\renewcommand{\theHchapter}{\Alph{chapter}}
+\titleformat
+    {\chapter}{\raggedright\LARGE\scshape%
+    \parshape %
+    2 %
+    0pt \linewidth %
+    \chapterindent \dimexpr\linewidth-\chapterindent}
+    {{\appendixname~\thechapter:}}{\chapterspace}
+    {\fancyhf{}\cfoot{\thepage}{##1}}
+    \titlecontents{chapter}[0pt]{\vspace{8.5pt}}%
+    {\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:\hspace{\chapterspace}}{}%
+    {\titlerule*[0.7pc]{.}\fontsize{\myToCPageNumberSize}{14pt}\selectfont\contentspage}
+}{}
+
+% Also adjust lists of figures and tables and listings.
+
+\renewcommand{\cftfigfont}{\fontsize{\mySectionFontSize}{12pt}\selectfont}
+
+\renewcommand{\cftfigpagefont}{\fontsize{\myToCPageNumberSize}{12pt}\selectfont}
+
+\renewcommand{\cfttabfont}{\fontsize{\mySectionFontSize}{12pt}\selectfont}
+
+\renewcommand{\cfttabpagefont}{\fontsize{\myToCPageNumberSize}{12pt}\selectfont}
+
+% Renew the list if listings command such that we can modify how the listing entries appear.
+
+\let\origlstlistoflistings\lstlistoflistings
+
+\renewcommand{\lstlistoflistings}{%
+  \begingroup
+    \renewcommand{\l@lstlisting}[2]{%
+        \@dottedtocline
+            {1}
+            {\mySectionIndent}
+            {\mySectionNumberWidth}
+            {\fontsize{\mySectionFontSize}{12pt}\selectfont##1}
+            {\fontsize{\myToCPageNumberSize}{12pt}\selectfont##2}
+    }
+    \origlstlistoflistings
+    \endgroup
+}
+
+\renewcommand{\cftlistingfont}{\fontsize{24pt}{12pt}\selectfont}
+
+\renewcommand{\cftlistingpagefont}{\fontsize{10pt}{12pt}\selectfont}
 
 % Flexible list modifications
 \RequirePackage{enumitem}
@@ -501,7 +672,7 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     {\raggedleft\Large\@author\par}
     \vspace{42pt}
     {\raggedleft\bf\LARGE\color{taupurple}%
-        \MakeUppercase{\@title}\par}
+        \textsc{\@title}\par}
     {\raggedleft\Large\color{taupurple}%
         \@subtitle\par}
     \vfill
@@ -612,9 +783,9 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
 
 % Other commands.
 
-\NewDocumentCommand\yesbox{}{\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\(\times\)}}
+\NewDocumentCommand\yesbox{}{☒}
 
-\NewDocumentCommand\nobox{}{$\square$}
+\NewDocumentCommand\nobox{}{☐}
 
 \NewDocumentCommand\aitickbox{s}{
     \IfBooleanTF{#1}{
