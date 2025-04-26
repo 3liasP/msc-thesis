@@ -439,7 +439,7 @@
     {{\appendixname~\thechapter:}}{\chapterspace}
     {\fancyhf{}\cfoot{\thepage}{##1}}
     \titlecontents{chapter}[0pt]{\vspace{8.5pt}}%
-    {\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:\hspace{\chapterspace}}{}%
+    {\scshape\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:\hspace{\chapterspace}}{}%
     {\titlerule*[0.7pc]{.}\fontsize{\myToCPageNumberSize}{14pt}\selectfont\contentspage}
 }{}
 
