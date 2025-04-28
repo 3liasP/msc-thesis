@@ -701,7 +701,7 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \chapter*{\abstractname}
     \begin{spacing}{1.000}
     {\small
-        \setlength{\parindent}{15pt}
+        \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
         \noindent\@author: \@title\par
         \noindent\@thesistype\par
@@ -728,7 +728,7 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \chapter*{\@otherabstractname}
     \begin{spacing}{1.000}
     {\small
-        \setlength{\parindent}{15pt}
+        \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
         \noindent\@author: \@othertitle\par
         \noindent\@otherthesistype\par
