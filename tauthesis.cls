@@ -711,11 +711,11 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
             {\@finishyear}%
             {\@finishmonth}%
             {\@finishday}{-1}\par
-        \noindent\hrulefill\par
+        \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}\par
         \vspace{0.5\baselineskip}
         \input{#1}\par
         \bigskip
-        \noindent\@keywordname: \@keywords\par
+        \noindent\textbf{\@keywordname:} \@keywords\par
         \bigskip
         \noindent\@originalitytext
     \par}
@@ -738,11 +738,11 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
             {\@finishyear}%
             {\@finishmonth}%
             {\@finishday}{-1}\par
-        \noindent\hrulefill\par
+        \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}\par
         \vspace{0.5\baselineskip}
         \input{#1}\par
         \bigskip
-        \noindent\@otherkeywordname: \@otherkeywords\par
+        \noindent\textbf{\@otherkeywordname:} \@otherkeywords\par
         \bigskip
         \noindent\@otheroriginalitytext
     \par}
