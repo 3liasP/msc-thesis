@@ -274,9 +274,8 @@
 
 % Caption formatting
 \RequirePackage
-    [labelfont={bf,it},
-    font=it,
-    labelsep=period]{caption}
+    [labelfont={bf,color=taupurple},
+    labelsep=colon]{caption}
 \renewcommand{\arraystretch}{1.25}
 
 % Code listing handling
