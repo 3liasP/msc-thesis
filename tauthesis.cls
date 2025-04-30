@@ -269,6 +269,15 @@
     \DeclareLanguageMapping{english}{english-apa}
 \fi
 
+\let\bibLaTeXPrintBibliography\printbibliography
+
+\RenewDocumentCommand\emph{m}{\textit{\color{taupurple}#1}}
+
+\RenewDocumentCommand\printbibliography{O{}}{%
+    \RenewDocumentCommand\emph{m}{\textit{\color{black}##1}}%
+    \bibLaTeXPrintBibliography[#1]%
+}
+
 % Graphics inclusion and drawing
 \RequirePackage{graphicx}
 
@@ -876,8 +885,6 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \NewDocumentCommand\aidisclaimerinclusioncmd{}{
     \input{\@aidisclaimerfile}
 }
-
-\RenewDocumentCommand\emph{m}{\textit{\color{taupurple}#1}}
 
 % Place PDF metadata into an external main.xmpdata file.
 
