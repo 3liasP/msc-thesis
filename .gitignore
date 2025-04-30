@@ -64,6 +64,9 @@
 !figures/**/*.png
 
 !fonts/
+!fonts/FiraMono/
+!fonts/FiraMono/FiraMono-*.ttf
+!fonts/FiraMono/OFL.txt
 !fonts/NotoSansSymbols2/
 !fonts/NotoSansSymbols2/NotoSansSymbols2*.ttf
 !fonts/NotoSansSymbols2/OFL.txt
