@@ -274,6 +274,7 @@
 \RenewDocumentCommand\emph{m}{\textit{\color{taupurple}#1}}
 
 \RenewDocumentCommand\printbibliography{O{}}{%
+    % This is needed or titles will be colored taupurple in the bibliography.
     \RenewDocumentCommand\emph{m}{\textit{\color{black}##1}}%
     \bibLaTeXPrintBibliography[#1]%
 }
