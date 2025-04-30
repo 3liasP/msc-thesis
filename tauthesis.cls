@@ -511,6 +511,15 @@
 
 % Text hyperlinking
 \RequirePackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=taupurple,
+    citecolor=taupurple,
+    urlcolor=blue,
+    filecolor=magenta
+}
+
 %\RequirePackage{url}
 \urlstyle{same}
 
