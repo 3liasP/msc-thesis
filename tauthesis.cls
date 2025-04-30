@@ -872,6 +872,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \input{\@aidisclaimerfile}
 }
 
+\RenewDocumentCommand\emph{m}{\textit{\color{taupurple}#1}}
+
 % Place PDF metadata into an external main.xmpdata file.
 
 \begin{filecontents*}[overwrite]{\jobname.xmpdata}
