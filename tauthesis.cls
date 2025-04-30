@@ -184,7 +184,7 @@
 
 % Chapter
 \titleformat
-    {\chapter}[block]{\raggedright\bf\Large%
+    {\chapter}[block]{\raggedright\bf\fontsize{21pt}{12pt}\selectfont%
     \parshape %
     2 %
     0pt \linewidth %
@@ -193,14 +193,14 @@
     {\fancyhf{}\rhead{\thepage}\textsc{#1}}
 \titleformat
     {name=\chapter, numberless}
-    {\raggedright\bf\Large}{}{0em}
+    {\raggedright\bf\fontsize{21pt}{12pt}\selectfont}{}{0em}
     {\fancyhf{}\rhead{\thepage}\textsc{#1}}
 \titlespacing{\chapter}{0em}{42pt}{42pt}
 \titlespacing{name=\chapter, numberless}{0em}{18pt}{18pt}
 
 % Section
 \titleformat
-    {\section}[block]{\raggedright\bf\large%
+    {\section}[block]{\raggedright\bf\fontsize{17pt}{12pt}\selectfont%
     \parshape %
     2 %
     0pt \linewidth %
@@ -208,13 +208,13 @@
     {\makebox[\chapterindent][l]{\thesection}}{0em}{\textsc{#1}}
 \titleformat
     {name=\section, numberless}
-    {\raggedright\bf\large}{}{0em}{\textsc{#1}}
+    {\raggedright\bf\fontsize{17pt}{12pt}\selectfont}{}{0em}{\textsc{#1}}
 \titlespacing{\section}{0em}{18pt}{12pt}
 \titlespacing{name=\section, numberless}{0em}{18pt}{12pt}
 
 % Subsection
 \titleformat
-    {\subsection}[block]{\raggedright\bf\large%
+    {\subsection}[block]{\raggedright\bf\fontsize{13pt}{12pt}\selectfont%
     \parshape %
     2 %
     0pt \linewidth %
@@ -222,7 +222,7 @@
     {\makebox[\chapterindent][l]{\thesubsection}}{0em}{\textsc{#1}}
 \titleformat
     {name=\subsection, numberless}
-    {\raggedright\bf\large}{}{0em}{\textsc{#1}}
+    {\raggedright\bf\fontsize{13pt}{12pt}\selectfont}{}{0em}{\textsc{#1}}
 \titlespacing{\subsection}{0em}{18pt}{12pt}
 \titlespacing{name=\subsection, numberless}{0em}{18pt}{12pt}
 
