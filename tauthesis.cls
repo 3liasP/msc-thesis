@@ -52,7 +52,13 @@
   BoldItalicFont = *-BoldItalic
 ]{Roboto}
 
-\setmonofont{Fira Mono}
+\setmonofont[
+    Path = fonts/FiraMono/,
+    Extension = .ttf,
+    BoldFont = *-Bold,
+    MediumFont = *-Medium,
+    UprightFont = *-Regular,
+]{FiraMono}
 
 \usepackage{unicode-math}
 
