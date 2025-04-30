@@ -667,7 +667,7 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \newcommand{\@prefacename}{Preface}
     \newcommand{\@originalitytext}{\@engoriginalitytext}
     \newcommand{\@otheroriginalitytext}{\@finoriginalitytext}
-    \newcommand{\@logofile}{figures/tau-logo-eng.eps}
+    \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
     \newcommand\@aidisclaimertitle{Use of artificial intelligence in this work}
     \newcommand\@aidisclaimerfile{tex/use-of-ai.tex}
     \newcommand\@yestextcmd{Yes}
@@ -682,7 +682,7 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
     \newcommand{\@prefacename}{Alkusanat}
     \newcommand{\@originalitytext}{\@finoriginalitytext}
     \newcommand{\@otheroriginalitytext}{\@engoriginalitytext}
-    \newcommand{\@logofile}{figures/tau-logo-fin.eps}
+    \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
     \newcommand\@aidisclaimertitle{Tekoälyn käyttö tässä työssä}
     \newcommand\@aidisclaimerfile{tex/tekoalyn-kaytto.tex}
     \newcommand\@yestextcmd{Kyllä}
@@ -692,7 +692,7 @@ The originality of this thesis has been checked using the Turnitin OriginalityCh
 % Make the title
 \renewcommand\maketitle{
     \thispagestyle{empty}
-    \vspace*{-1.88cm}\hspace*{-2.7cm}\includegraphics[height=2.07cm]{\@logofile}
+    \vspace*{-1.88cm}\hspace*{-2.7cm}\includegraphics[height=2.57cm]{\@logofile}
     \par\medskip
     \vspace{102pt}
     {\raggedleft\Large\@author\par}
