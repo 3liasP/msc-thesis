@@ -52,6 +52,8 @@
   BoldItalicFont = *-BoldItalic
 ]{Roboto}
 
+\setmonofont{Fira Mono}
+
 \usepackage{unicode-math}
 
 \setmathfont{STIXTwoMath-Regular.ttf}[
@@ -650,10 +652,10 @@
 
 % Originality texts
 \newcommand{\@finoriginalitytext}{%
-Tämän julkaisun alkuperäisyys on tarkastettu Turnitin OriginalityCheck -ohjelmalla.
+Tämän julkaisun alkuperäisyys on tarkastettu Turnitin Originality -ohjelmalla.
 }
 \newcommand{\@engoriginalitytext}{%
-The originality of this thesis has been checked using the Turnitin OriginalityCheck service.
+The originality of this thesis has been checked using the Turnitin Originality service.
 }
 
 % Terminology settings
