@@ -818,15 +818,15 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \NewDocumentCommand\aitickbox{s}{
     \IfBooleanTF{#1}{
         \begin{quote}
-            \indent\nobox\hspace{1ex}\@notextcmd
-            \linebreak
             \indent\yesbox\hspace{1ex}\@yestextcmd
+            \linebreak
+            \indent\nobox\hspace{1ex}\@notextcmd
         \end{quote}
     }{
         \begin{quote}
-            \indent\yesbox\hspace{1ex}\@notextcmd
-            \linebreak
             \indent\nobox\hspace{1ex}\@yestextcmd
+            \linebreak
+            \indent\yesbox\hspace{1ex}\@notextcmd
         \end{quote}
     }
 }
