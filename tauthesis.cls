@@ -21,7 +21,18 @@
 
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{tauthesis}
-[2023/06/05 v2.5.2 Thesis styles used in Tampere University]
+[Thesis styles used in Tampere University]
+
+% Enforce the use of LuaLaTeX.
+
+\RequirePackage{ifluatex}
+
+\ifluatex
+  % Everything is fine and dandy.
+\else
+  \PackageError{tauthesis}{This class requires LuaLaTeX to compile}{Please compile your document with LuaLaTeX.}
+  \expandafter\stop
+\fi
 
 % Inherit from the report document class.
 % Use 12pt nonetheless and scale fonts back
