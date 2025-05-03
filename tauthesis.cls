@@ -855,7 +855,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
     {\small
         \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
-        \noindent\@author: \@title\par
+        \noindent\@author\par
+        \@title: \@subtitle\par
         \noindent\@thesistype\par
         \noindent\@university\par
         \noindent\@programmename\par
@@ -882,7 +883,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
     {\small
         \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
-        \noindent\@author: \@othertitle\par
+        \noindent\@author\par
+        \@othertitle: \@othersubtitle\par
         \noindent\@otherthesistype\par
         \noindent\@otheruniversity\par
         \noindent\@otherprogrammename\par
