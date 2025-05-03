@@ -516,23 +516,6 @@
 
 \lstset{texcl=true, captionpos=b, commentstyle=\tt}
 
-\if@langenglish
-    \addto\captionsenglish{%
-        \renewcommand{\contentsname}{Contents}%
-        \renewcommand{\listfigurename}{List of Figures}%
-        \renewcommand{\listtablename}{List of Tables}%
-    }
-    \renewcommand{\lstlistlistingname}{List of Programs and Algorithms}
-\else
-    \addto\captionsfinnish{%
-        \renewcommand{\contentsname}{Sisällys}%
-        \renewcommand{\listfigurename}{Kuvaluettelo}%
-        \renewcommand{\listtablename}{Taulukkoluettelo}%
-        \renewcommand{\figurename}{Kuvio}%
-    }
-    \renewcommand{\lstlistlistingname}{Ohjelma- ja algoritmiluettelo}
-\fi
-
 \titlecontents
     {part}
     [0pt]
@@ -593,23 +576,23 @@
 
 \if@langenglish
     \addto\captionsenglish{%
-        \renewcommand{\contentsname}{Contents}%
-        \renewcommand\listfigurename{List of Figures}%
-        \renewcommand{\listtablename}{List of Tables}%
+        \renewcommand{\contentsname}{\scshape Contents}%
+        \renewcommand\listfigurename{\scshape List of Figures}%
+        \renewcommand{\listtablename}{\scshape List of Tables}%
     }
     \renewcommand{\appendixname}{\textsc{Appendix}}
     \if@programs
-        \renewcommand{\lstlistlistingname}{List of Programs and Algorithms}
+        \renewcommand{\lstlistlistingname}{\scshape List of Programs and Algorithms}
     \fi
 \else
     \addto\captionsfinnish{%
-        \renewcommand{\contentsname}{Sisällysluettelo}%
-        \renewcommand\listfigurename{Kuvaluettelo}%
-        \renewcommand{\listtablename}{Taulukkoluettelo}%
+        \renewcommand{\contentsname}{\scshape Sisällys}%
+        \renewcommand\listfigurename{\scshape Kuvaluettelo}%
+        \renewcommand{\listtablename}{\scshape Taulukkoluettelo}%
     }
     \renewcommand{\appendixname}{\textsc{Liite}}
     \if@programs
-        \renewcommand{\lstlistlistingname}{Ohjelma- ja algoritmiluettelo}
+        \renewcommand{\lstlistlistingname}{\scshape Ohjelma- ja algoritmiluettelo}
     \fi
 \fi
 
