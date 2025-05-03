@@ -793,7 +793,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
     {\small
         \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
-        \noindent\@author\par
+        \noindent\@tauthesis@author\par
         \@tauthesis@othertitle: \@tauthesis@othersubtitle\par
         \noindent\@tauthesis@otherthesistype\par
         \noindent\@tauthesis@otheruniversity\par
