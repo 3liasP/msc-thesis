@@ -23,8 +23,6 @@
 \ProvidesClass{tauthesis}
 [Thesis styles used in Tampere University]
 
-% Enforce the use of LuaLaTeX.
-
 \RequirePackage{ifluatex}
 
 \ifluatex
@@ -33,6 +31,172 @@
   \PackageError{tauthesis}{This class requires LuaLaTeX to compile}{Please compile your document with LuaLaTeX.}
   \expandafter\stop
 \fi
+
+% Load the expl3 package and l3keys2e module
+
+\RequirePackage{expl3}
+
+% Turn : and _ to normal letters that can be used in creating variables.
+% Also makes whitespace insignificant.
+
+\ExplSyntaxOn
+
+% Turn @ into an acceptable variable name letter.
+
+\makeatletter
+
+% Define error message for use below.
+
+\msg_new:nnnn
+    { tauthesis }
+    { unknown-mainlanguage }
+    { Unknown~value~for~keyword~argument~mainlanguage. }
+    { Valid~values~are~~'finnish'~and~'english'. }
+
+\msg_new:nnnn
+    { tauthesis }
+    { unknown-fithesistype }
+    { Unknown~value~for~keyword~argument~fithesistype. }
+    { Valid~values~are~'kandidaatti',~'maisteri'~and~'diplomi'. }
+
+\msg_new:nnnn
+    { tauthesis }
+    { unknown-enthesistype }
+    { Unknown~value~for~keyword~argument~fithesistype. }
+    { Valid~values~are~'bachelor'~and~'master'. }
+
+% Settings based on language.
+
+\newif\if@customcitation\@customcitationtrue
+\newif\if@apacitation\@apacitationfalse
+
+\newif\if@langenglish\@langenglishfalse
+\newif\if@taunotdraftmode\@taunotdraftmodetrue
+\newif\if@programs\@programsfalse
+
+% Define keyword arguments for this class file using LaTeX3 syntax.
+
+\tl_new:N \@tauthesis@enthesistype
+
+\tl_new:N \@tauthesis@fithesistype
+
+\tl_new:N \@tauthesis@thesistype
+
+\tl_new:N \@tauthesis@school
+
+\DeclareKeys[tauthesis]
+{
+    author.store = \@tauthesis@author,
+
+    citationsorting.store = \@tauthesis@citationsorting,
+
+    citationstyle.store = \@tauthesis@citationstyle,
+
+    day.store = \@tauthesis@day,
+
+    enfacultyname.store = \@tauthesis@enfacultyname,
+
+    enkeywords.store = \@tauthesis@enkeywords,
+
+    enprogrammename.store = \@tauthesis@enprogrammename,
+
+    ensubtitle.store = \@tauthesis@ensubtitle,
+
+    enthesistype .choice:,
+
+    enthesistype / bachelor .code:n =
+        \tl_set:Nn \@tauthesis@enthesistype {Bachelor's~thesis}
+    ,
+
+    enthesistype / master .code:n =
+        \tl_set:Nn \@tauthesis@enthesistype {Master's~thesis}
+    ,
+
+    enthesistype / unknown .code:n =
+        \msg_error:nneee
+            { tauthesis }
+            { unknown-enthesistype }
+            { enthesistype }     % Name of key.
+            { bachelor, master } % Valid choices
+            { \exp_not:n {#1} }  % Invalid choice given
+    ,
+
+    entitle.store = \@tauthesis@entitle,
+
+    examiners.store = \@tauthesis@examiners,
+
+    fifacultyname.store = \@tauthesis@fifacultyname,
+
+    fikeywords.store = \@tauthesis@fikeywords,
+
+    fiprogrammename.store = \@tauthesis@fiprogrammename,
+
+    fisubtitle.store = \@tauthesis@fisubtitle,
+
+    fithesistype .choice:,
+
+    fithesistype / kandidaatti .code:n =
+        \tl_set:Nn \@tauthesis@fithesistype {Kandidaatintyö}
+    ,
+
+    fithesistype / maisteri .code:n =
+        \tl_set:Nn \@tauthesis@fithesistype {Pro~gradu~-tutkielma}
+    ,
+
+    fithesistype / diplomi .code:n =
+        \tl_set:Nn \@tauthesis@fithesistype {Diplomityö}
+    ,
+
+    fithesistype / unknown .code:n =
+        \msg_error:nneee
+            { tauthesis }
+            { unknown-fithesistype }
+            { fithesistype }                   % Name of key.
+            { kandidaatti, maisteri, diplomi } % Valid choices
+            { \exp_not:n {#1} }                % Invalid choice given
+    ,
+
+    fititle.store = \@tauthesis@fititle,
+
+    mainlanguage .choice:,
+
+    mainlanguage / finnish .code:n = {
+        \newcommand{\@mainlanguage}{finnish}
+        \newcommand{\@otherlanguage}{english}
+        \newcommand{\@tauthesis@mainlanguage}{finnish}
+        \tl_set:Nn \@tauthesis@school {Tampereen~yliopisto}
+        \tl_set:Nn \@tauthesis@thesistype {\tl_use:N\@tauthesis@fithesistype}
+    },
+
+    mainlanguage / english .code:n = {
+        \newcommand{\@mainlanguage}{english}
+        \newcommand{\@otherlanguage}{finnish}
+        \newcommand{\@tauthesis@mainlanguage}{english}
+        \tl_set:Nn \@tauthesis@school {Tampere~University}
+        \tl_set:Nn \@tauthesis@thesistype {\tl_use:N\@tauthesis@enthesistype}
+    },
+
+    mainlanguage / unknown .code:n =
+        \msg_error:nneee
+            { tauthesis }
+            { unknown-mainlanguage }
+            { mainlanguage }     % Name of key.
+            { finnish, english } % Valid choices
+            { \exp_not:n {#1} }  % Invalid choice given
+    ,
+
+    month.store = \@tauthesis@month,
+
+    subject.store = \@tauthesis@subject,
+
+    year.store = \@tauthesis@year,
+}
+
+% Process the key--value arguments.
+
+\ExplSyntaxOff
+
+\ProcessKeyOptions[tauthesis]
 
 % Inherit from the report document class.
 % Use 12pt nonetheless and scale fonts back
@@ -75,7 +239,7 @@
 }{
     % If not, load it from the file
     \newfontfamily\fallbackfont{NotoSansSymbols2}[
-        Path = ./fonts/NotoSansSymbols2/, % Specify the path to the font file
+        Path = fonts/NotoSansSymbols2/, % Specify the path to the font file
         Extension = .ttf,  % Specify the file extension if needed
         UprightFont = *-Regular,
     ]
@@ -84,64 +248,15 @@
 \newunicodechar{☒}{{\fallbackfont ☒}}
 \newunicodechar{☐}{{\fallbackfont ☐}}
 
-% Gain access to internal macros.
-\makeatletter
-
-%%%%% CLASS OPTIONS %%%%%
-
-\newcommand{\@mainlanguage}{finnish}
-\newcommand{\@otherlanguage}{english}
-\newif\if@customcitation\@customcitationtrue
-\newif\if@apacitation\@apacitationfalse
-
-\newif\if@langenglish\@langenglishfalse
-\newif\if@taunotdraftmode\@taunotdraftmodetrue
-\newif\if@programs\@programsfalse
-
-% Language selection.
-\DeclareOption{english}{%
-    \@langenglishtrue
-    \renewcommand{\@mainlanguage}{english}
-    \renewcommand{\@otherlanguage}{finnish}
-}
-\DeclareOption{finnish}{%
-    \@langenglishfalse
-    \renewcommand{\@mainlanguage}{finnish}
-    \renewcommand{\@otherlanguage}{english}
-}
-
-% Draft setting
-\DeclareOption{draft}{%
-    \@taunotdraftmodefalse
-}
-
-% Programs to list?
-\DeclareOption{programs}{%
-    \@programstrue
-}
-
-\DeclareOption*{
-  \ClassWarning{tauthesis}{Unknown option '\CurrentOption'}
-}
-
-% Default options.
-\ExecuteOptions{finnish,numeric}
-
-\ProcessOptions\relax
-
 %%%%% PACKAGES AND RELATED DEFINITIONS %%%%%
 
-% Arial-like font selection
-\RequirePackage[scaled=0.91]{helvet}
-\RequirePackage[T1]{fontenc}
-\renewcommand*\familydefault{\sfdefault}
-
 % Page geometry and heading handling
-\RequirePackage
-    [top=2.5cm,
+\RequirePackage[
+    top=2.5cm,
     bottom=2.5cm,
     left=4cm,
-    right=2cm]{geometry}
+    right=2cm
+]{geometry}
 \special{papersize={210mm,297mm}}
 \RequirePackage{fancyhdr}
 \RequirePackage[explicit]{titlesec}
@@ -242,6 +357,7 @@
 
 % Powerful color package
 \RequirePackage{xcolor}
+\RequirePackage{colortbl}
 \definecolor{taupurple}{RGB}{78,0,148}
 
 % Date and time handling
@@ -251,9 +367,9 @@
 % Smart bibliography handling
 \RequirePackage
     [backend=biber,
-    citestyle=\mycitationstyle,
-    bibstyle=\mycitationstyle,
-    sorting=\mycitationsorting,]{biblatex}
+    citestyle=\@tauthesis@citationstyle,
+    bibstyle=\@tauthesis@citationstyle,
+    sorting=\@tauthesis@citationsorting,]{biblatex}
 
 \DefineBibliographyStrings{finnish}{%
     bibliography = {Lähteet},
@@ -286,6 +402,7 @@
 \RequirePackage
     [labelfont={bf,color=taupurple},
     labelsep=colon]{caption}
+
 \renewcommand{\arraystretch}{1.25}
 
 % Code listing handling
@@ -493,7 +610,7 @@
 
 \renewcommand{\lstlistoflistings}{%
   \begingroup
-    \renewcommand{\l@lstlisting}[2]{%
+    \renewcommand{\lstlisting}[2]{%
         \@dottedtocline
             {1}
             {\mySectionIndent}
@@ -685,10 +802,10 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \newcommand{\@originalitytext}{\@engoriginalitytext}
     \newcommand{\@otheroriginalitytext}{\@finoriginalitytext}
     \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
-    \newcommand\@aidisclaimertitle{Use of artificial intelligence in this work}
-    \newcommand\@aidisclaimerfile{tex/use-of-ai.tex}
-    \newcommand\@yestextcmd{Yes}
-    \newcommand\@notextcmd{No}
+    \newcommand{\@aidisclaimertitle}{Use of artificial intelligence in this work}
+    \newcommand{\@aidisclaimerfile}{tex/use-of-ai.tex}
+    \newcommand{\@yestextcmd}{Yes}
+    \newcommand{\@notextcmd}{No}
 \else
     \newcommand{\@abstractname}{Tiivistelmä}
     \newcommand{\@otherabstractname}{Abstract}
@@ -700,10 +817,10 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \newcommand{\@originalitytext}{\@finoriginalitytext}
     \newcommand{\@otheroriginalitytext}{\@engoriginalitytext}
     \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
-    \newcommand\@aidisclaimertitle{Tekoälyn käyttö tässä työssä}
-    \newcommand\@aidisclaimerfile{tex/tekoalyn-kaytto.tex}
-    \newcommand\@yestextcmd{Kyllä}
-    \newcommand\@notextcmd{Ei}
+    \newcommand{\@aidisclaimertitle}{Tekoälyn käyttö tässä työssä}
+    \newcommand{\@aidisclaimerfile}{tex/tekoalyn-kaytto.tex}
+    \newcommand{\@yestextcmd}{Kyllä}
+    \newcommand{\@notextcmd}{Ei}
 \fi
 
 % Make the title
@@ -720,7 +837,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \@subtitle\par}
     \vfill
     {\raggedleft%
-        \@thesistype\\%
+        \@tauthesis@thesistype\\%
+        \@tauthesis@school\\%
         \@facultyname\\%
         %\@examiner{\@finalexaminername}{\@givenexaminer}\\%
         \DTMDisplaydate%
@@ -808,19 +926,19 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 %% Choose title langauge in the metadata that is written to the PDF.
 
-\def\mymetatitle{%
+\def\@tauthesis@title{%
     \if@langenglish%
-        \myentitle%
+        \@tauthesis@entitle%
     \else%
-        \myfititle%
+        \@tauthesis@fititle%
     \fi%
 }
 
-\def\mymetasubtitle{%
+\def\@tauthesis@subtitle{%
     \if@langenglish%
-        \myensubtitle%
+        \@tauthesis@ensubtitle%
     \else%
-        \myfisubtitle%
+        \@tauthesis@fisubtitle%
     \fi%
 }
 
@@ -890,11 +1008,11 @@ The originality of this thesis has been checked using the Turnitin Originality s
 % Place PDF metadata into an external main.xmpdata file.
 
 \begin{filecontents*}[overwrite]{\jobname.xmpdata}
-\Title{\mymetatitle: \mymetasubtitle}
-\Author{\myauthor}
-\Language{\mylanguagecode}
-\Keywords{\myfikeywords, \myenkeywords}
-\Subject{\mysubject}
+\Title{\@tauthesis@title: \@tauthesis@subtitle}
+\Author{\@tauthesis@author}
+\Language{\@tauthesis@mainlanguage}
+\Keywords{\@tauthesis@fikeywords, \@tauthesis@enkeywords}
+\Subject{\@tauthesis@subject}
 \end{filecontents*}
 
 %% Load the data from the metadata file with pdfx.

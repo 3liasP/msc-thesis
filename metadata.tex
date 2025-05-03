@@ -6,29 +6,53 @@
 %
 
 
-\def\myfititle{Kuvaava otsikko}
-\def\myentitle{A Descriptive title}
-\def\myauthor{Firstname Lastname}
-\def\myfisubtitle{Tarkentava alaotsikko}
-\def\myensubtitle{A Specifying Subtitle}
-\def\myfithesistype{Opinnäytetyön taso}
-\def\myenthesistype{Thesis type}
-\def\myexaminers{Title1 Firstname1 Lastname1 \\ Title2 Firstname2 Lastname2 \\ ...}
-\def\myfifacultyname{Tiedekunnan nimi}
-\def\myenfacultyname{The name of the faculty}
-\def\myfiprogrammename{Tutkinto-ohjelman nimi}
-\def\myenprogrammename{The name of the study programme}
-\def\myfikeywords{avainsana1, avainsana2, ...}
-\def\myenkeywords{keyword1, keyword2, ...}
-\def\mylanguagecode{en-US}
-\def\mysubject{A short description of the thesis subject.}
-\def\myyear{2023}
-\def\mymonth{06}
-\def\myday{03}
+%\edef\myfititle{Kuvaava otsikko}
+%\edef\myentitle{A Descriptive title}
+%\edef\myauthor{Firstname Lastname}
+%\edef\myfisubtitle{Tarkentava alaotsikko}
+%\edef\myensubtitle{A Specifying Subtitle}
+%\edef\myfithesistype{Opinnäytetyön taso}
+%\edef\myenthesistype{Thesis type}
+%\edef\myexaminers{Title1 Firstname1 Lastname1 \\ Title2 Firstname2 Lastname2 \\ ...}
+%\edef\myfifacultyname{Tiedekunnan nimi}
+%\edef\myenfacultyname{The name of the faculty}
+%\edef\myfiprogrammename{Tutkinto-ohjelman nimi}
+%\edef\myenprogrammename{The name of the study programme}
+%\edef\myfikeywords{avainsana1, avainsana2, ...}
+%\edef\myenkeywords{keyword1, keyword2, ...}
+%\edef\mymainlanguage{english} % or english
+%\edef\mysubject{A short description of the thesis subject.}
+%\edef\myyear{2023}
+%\edef\mymonth{06}
+%\edef\myday{03}
+%
+%% Define your citation options here.
+%% Valid values for style and sorting options
+%% can be found in the BibLaTeX manual: https://ctan.org/pkg/biblatex.
+%
+%\def\mycitationstyle{numeric}
+%\def\mycitationsorting{nyt}
 
-% Define your citation options here.
-% Valid values for style and sorting options
-% can be found in the BibLaTeX manual: https://ctan.org/pkg/biblatex.
-
-\def\mycitationstyle{numeric}
-\def\mycitationsorting{nyt}
+\documentclass[
+  author=Firstname Lastname,
+  citationsorting=nyt,
+  citationstyle=ieee,
+  day=02,
+  enfacultyname=Faculty,
+  enkeywords={keyword1, keyword2, ...},
+  enprogrammename=Thesis programme,
+  ensubtitle=Descriptive subtitle,
+  enthesistype=master,
+  entitle=Thesis title,
+  examiners={},
+  fifacultyname=Tiedekunta,
+  fikeywords={avainsana1, avainsana2, ...},
+  fiprogrammename=Tutkinto-ohjelman nimi,
+  fisubtitle=Alaotsikko,
+  fithesistype=diplomi,
+  fititle=Työn otsikko,
+  mainlanguage=english,
+  month=05,
+  subject=Metatietoihin tuleva työn lyhyt kuvaus,
+  year=2025,
+]{tauthesis}
