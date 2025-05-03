@@ -153,6 +153,7 @@
     mainlanguage / finnish .code:n = {
         \newcommand{\@tauthesis@mainlanguage}{finnish}
         \newcommand{\@tauthesis@tauthesis@mainlanguage}{finnish}
+        \newcommand{\@tauthesis@abstractfile}{tex/tiivistelma.tex}
         \newcommand{\@tauthesis@abstractname}{Tiivistelmä}
         \newcommand{\@tauthesis@university}{Tampereen~yliopisto}
         \newcommand{\@tauthesis@keywordname}{Avainsanat}
@@ -171,6 +172,7 @@
         \newcommand{\@tauthesis@programmename}{\@tauthesis@fiprogrammename}
         \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
 
+        \newcommand{\@tauthesis@otherabstractfile}{tex/abstract.tex}
         \newcommand{\@tauthesis@otherabstractname}{Abstract}
         \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@enfacultyname}
         \newcommand{\@tauthesis@otherkeywordname}{Keywords}
@@ -189,6 +191,7 @@
     mainlanguage / english .code:n = {
         \newcommand{\@tauthesis@mainlanguage}{english}
         \newcommand{\@tauthesis@tauthesis@mainlanguage}{english}
+        \newcommand{\@tauthesis@abstractfile}{tex/abstract.tex}
         \newcommand{\@tauthesis@abstractname}{Abstract}
         \newcommand{\@tauthesis@university}{Tampere~University}
         \newcommand{\@tauthesis@keywordname}{Keywords}
@@ -207,6 +210,7 @@
         \newcommand{\@tauthesis@programmename}{\@tauthesis@enprogrammename}
         \newcommand{\@tauthesis@keywords}{\@tauthesis@enkeywords}
 
+        \newcommand{\@tauthesis@otherabstractfile}{tex/tiivistelma.tex}
         \newcommand{\@tauthesis@otherabstractname}{Tiivistelmä}
         \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@fifacultyname}
         \newcommand{\@tauthesis@otherkeywordname}{Avainsanat}
@@ -758,7 +762,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
 }
 
 % Make the abstracts
-\renewcommand{\abstract}[1]{
+\renewcommand{\abstract}{
     \clearpage
     \chapter*{\@tauthesis@abstractname}
     \begin{spacing}{1.000}
@@ -776,7 +780,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
             {\the\day}{-1}\par
         \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}\par
         \vspace{0.5\baselineskip}
-        \input{#1}\par
+        \input{\@tauthesis@abstractfile}\par
         \bigskip
         \noindent\textbf{\@tauthesis@keywordname:} \@tauthesis@keywords\par
         \bigskip
@@ -785,7 +789,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \end{spacing}
     \clearpage
 }
-\newcommand{\otherabstract}[1]{
+\newcommand{\otherabstract}{
     \clearpage
     \xselectlanguage{\@tauthesis@otherlanguage}
     \chapter*{\@tauthesis@otherabstractname}
@@ -804,7 +808,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
             {\the\day}{-1}\par
         \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}\par
         \vspace{0.5\baselineskip}
-        \input{#1}\par
+        \input{\@tauthesis@otherabstractfile}\par
         \bigskip
         \noindent\textbf{\@tauthesis@otherkeywordname:} \@tauthesis@otherkeywords\par
         \bigskip
