@@ -164,16 +164,46 @@
         \newcommand{\@mainlanguage}{finnish}
         \newcommand{\@otherlanguage}{english}
         \newcommand{\@tauthesis@mainlanguage}{finnish}
+        \newcommand{\@abstractname}{Tiivistelmä}
+        \newcommand{\@otherabstractname}{Abstract}
+        \newcommand{\@university}{Tampereen yliopisto}
+        \newcommand{\@otheruniversity}{Tampere University}
+        \newcommand{\@keywordname}{Avainsanat}
+        \newcommand{\@otherkeywordname}{Keywords}
+        \newcommand{\@prefacename}{Alkusanat}
+        \newcommand{\@originalitytext}{\@finoriginalitytext}
+        \newcommand{\@otheroriginalitytext}{\@engoriginalitytext}
+        \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
+        \newcommand{\@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
+        \newcommand{\@aidisclaimerfile}{tex/tekoalyn-kaytto.tex}
+        \newcommand{\@yestextcmd}{Kyllä}
+        \newcommand{\@notextcmd}{Ei}
         \tl_set:Nn \@tauthesis@school {Tampereen~yliopisto}
         \tl_set:Nn \@tauthesis@thesistype {\tl_use:N\@tauthesis@fithesistype}
+        \@langenglishfalse
     },
 
     mainlanguage / english .code:n = {
         \newcommand{\@mainlanguage}{english}
         \newcommand{\@otherlanguage}{finnish}
         \newcommand{\@tauthesis@mainlanguage}{english}
+        \newcommand{\@abstractname}{Abstract}
+        \newcommand{\@otherabstractname}{Tiivistelmä}
+        \newcommand{\@university}{Tampere~University}
+        \newcommand{\@otheruniversity}{Tampereen~yliopisto}
+        \newcommand{\@keywordname}{Keywords}
+        \newcommand{\@otherkeywordname}{Avainsanat}
+        \newcommand{\@prefacename}{Preface}
+        \newcommand{\@originalitytext}{\@engoriginalitytext}
+        \newcommand{\@otheroriginalitytext}{\@finoriginalitytext}
+        \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
+        \newcommand{\@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
+        \newcommand{\@aidisclaimerfile}{tex/use-of-ai.tex}
+        \newcommand{\@yestextcmd}{Yes}
+        \newcommand{\@notextcmd}{No}
         \tl_set:Nn \@tauthesis@school {Tampere~University}
         \tl_set:Nn \@tauthesis@thesistype {\tl_use:N\@tauthesis@enthesistype}
+        \@langenglishtrue
     },
 
     mainlanguage / unknown .code:n =
@@ -789,39 +819,6 @@ Tämän julkaisun alkuperäisyys on tarkastettu Turnitin Originality -ohjelmalla
 \newcommand{\@engoriginalitytext}{%
 The originality of this thesis has been checked using the Turnitin Originality service.
 }
-
-% Terminology settings
-\if@langenglish
-    \newcommand{\@abstractname}{Abstract}
-    \newcommand{\@otherabstractname}{Tiivistelmä}
-    \newcommand{\@university}{Tampere University}
-    \newcommand{\@otheruniversity}{Tampereen yliopisto}
-    \newcommand{\@keywordname}{Keywords}
-    \newcommand{\@otherkeywordname}{Avainsanat}
-    \newcommand{\@prefacename}{Preface}
-    \newcommand{\@originalitytext}{\@engoriginalitytext}
-    \newcommand{\@otheroriginalitytext}{\@finoriginalitytext}
-    \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
-    \newcommand{\@aidisclaimertitle}{Use of artificial intelligence in this work}
-    \newcommand{\@aidisclaimerfile}{tex/use-of-ai.tex}
-    \newcommand{\@yestextcmd}{Yes}
-    \newcommand{\@notextcmd}{No}
-\else
-    \newcommand{\@abstractname}{Tiivistelmä}
-    \newcommand{\@otherabstractname}{Abstract}
-    \newcommand{\@university}{Tampereen yliopisto}
-    \newcommand{\@otheruniversity}{Tampere University}
-    \newcommand{\@keywordname}{Avainsanat}
-    \newcommand{\@otherkeywordname}{Keywords}
-    \newcommand{\@prefacename}{Alkusanat}
-    \newcommand{\@originalitytext}{\@finoriginalitytext}
-    \newcommand{\@otheroriginalitytext}{\@engoriginalitytext}
-    \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
-    \newcommand{\@aidisclaimertitle}{Tekoälyn käyttö tässä työssä}
-    \newcommand{\@aidisclaimerfile}{tex/tekoalyn-kaytto.tex}
-    \newcommand{\@yestextcmd}{Kyllä}
-    \newcommand{\@notextcmd}{Ei}
-\fi
 
 % Make the title
 \renewcommand\maketitle{
