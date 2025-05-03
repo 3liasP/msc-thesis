@@ -36,6 +36,8 @@
 
 !metadata.tex
 
+!index.tex
+
 ## Allow file types in subdirectories.
 
 !tex/

@@ -148,37 +148,8 @@
 	linkcolor=taupurple,
 }
 
-% Write each of the chapters of the thesis into a separate file for the sake
-% of clarity. They can be \input as shown below. Give both the chapters and
-% their files as descriptive names as possible.
+% Actually include your chapters in the file specified by this input statement.
 
-\input{tex/johdanto.tex}
-
-\input{tex/esitystyyli.tex}
-
-\input{tex/viittaustekniikat.tex}
-
-% Add chapters similarly.
-
-\input{tex/yhteenveto.tex}
-
-%%%%% Bibliography/references.
-
-% Print the bibliography according to the information in ./tex/references.bib
-% and the in-line citations used in the body of the thesis.
-
-% \emergencystretch=2em
-\printbibliography[heading=bibintoc]
-
-%%%%% Appendices.
-
-% Use only if it clarifies the structure of the document. Remember to
-% introduce each appendix and its content.
-
-\begin{appendices}
-
-\input{./tex/liite.tex}
-
-\end{appendices}
+\input{index.tex}
 
 \end{document}
