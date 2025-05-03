@@ -76,14 +76,6 @@
 
 % Define keyword arguments for this class file using LaTeX3 syntax.
 
-\tl_new:N \@tauthesis@enthesistype
-
-\tl_new:N \@tauthesis@fithesistype
-
-\tl_new:N \@tauthesis@thesistype
-
-\tl_new:N \@tauthesis@school
-
 \DeclareKeys[tauthesis]
 {
     author.store = \@tauthesis@author,
@@ -159,48 +151,74 @@
     mainlanguage .choice:,
 
     mainlanguage / finnish .code:n = {
-        \newcommand{\@mainlanguage}{finnish}
-        \newcommand{\@otherlanguage}{english}
         \newcommand{\@tauthesis@mainlanguage}{finnish}
-        \newcommand{\@abstractname}{Tiivistelmä}
-        \newcommand{\@otherabstractname}{Abstract}
-        \newcommand{\@university}{Tampereen~yliopisto}
-        \newcommand{\@otheruniversity}{Tampere~University}
-        \newcommand{\@keywordname}{Avainsanat}
-        \newcommand{\@otherkeywordname}{Keywords}
-        \newcommand{\@prefacename}{Alkusanat}
-        \newcommand{\@originalitytext}{\@finoriginalitytext}
-        \newcommand{\@otheroriginalitytext}{\@engoriginalitytext}
-        \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
-        \newcommand{\@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
-        \newcommand{\@aidisclaimerfile}{tex/tekoalyn-kaytto.tex}
-        \newcommand{\@yestextcmd}{Kyllä}
-        \newcommand{\@notextcmd}{Ei}
-        \tl_set:Nn \@tauthesis@school {Tampereen~yliopisto}
-        \tl_set:Nn \@tauthesis@thesistype {\tl_use:N\@tauthesis@fithesistype}
+        \newcommand{\@tauthesis@tauthesis@mainlanguage}{finnish}
+        \newcommand{\@tauthesis@abstractname}{Tiivistelmä}
+        \newcommand{\@tauthesis@university}{Tampereen~yliopisto}
+        \newcommand{\@tauthesis@keywordname}{Avainsanat}
+        \newcommand{\@tauthesis@prefacename}{Alkusanat}
+        \newcommand{\@tauthesis@originalitytext}{\@finoriginalitytext}
+        \newcommand{\@tauthesis@logofile}{figures/tau-logo-fin-eng.eps}
+        \newcommand{\@tauthesis@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
+        \newcommand{\@tauthesis@aidisclaimerfile}{tex/tekoalyn-kaytto.tex}
+        \newcommand{\@tauthesis@yestextcmd}{Kyllä}
+        \newcommand{\@tauthesis@notextcmd}{Ei}
+
+        \newcommand{\@tauthesis@title}{\@tauthesis@fititle}
+        \newcommand{\@tauthesis@subtitle}{\@tauthesis@fisubtitle}
+        \newcommand{\@tauthesis@thesistype}{\@tauthesis@fithesistype}
+        \newcommand{\@tauthesis@facultyname}{\@tauthesis@fifacultyname}
+        \newcommand{\@tauthesis@programmename}{\@tauthesis@fiprogrammename}
+        \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
+
+        \newcommand{\@tauthesis@otherabstractname}{Abstract}
+        \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@enfacultyname}
+        \newcommand{\@tauthesis@otherkeywordname}{Keywords}
+        \newcommand{\@tauthesis@otherkeywords}{\@tauthesis@enkeywords}
+        \newcommand{\@tauthesis@otherlanguage}{english}
+        \newcommand{\@tauthesis@otheroriginalitytext}{\@engoriginalitytext}
+        \newcommand{\@tauthesis@otherprogrammename}{\@tauthesis@enprogrammename}
+        \newcommand{\@tauthesis@othersubtitle}{\@tauthesis@ensubtitle}
+        \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@enthesistype}
+        \newcommand{\@tauthesis@othertitle}{\@tauthesis@entitle}
+        \newcommand{\@tauthesis@otheruniversity}{Tampere~University}
+
         \@langenglishfalse
     },
 
     mainlanguage / english .code:n = {
-        \newcommand{\@mainlanguage}{english}
-        \newcommand{\@otherlanguage}{finnish}
         \newcommand{\@tauthesis@mainlanguage}{english}
-        \newcommand{\@abstractname}{Abstract}
-        \newcommand{\@otherabstractname}{Tiivistelmä}
-        \newcommand{\@university}{Tampere~University}
-        \newcommand{\@otheruniversity}{Tampereen~yliopisto}
-        \newcommand{\@keywordname}{Keywords}
-        \newcommand{\@otherkeywordname}{Avainsanat}
-        \newcommand{\@prefacename}{Preface}
-        \newcommand{\@originalitytext}{\@engoriginalitytext}
-        \newcommand{\@otheroriginalitytext}{\@finoriginalitytext}
-        \newcommand{\@logofile}{figures/tau-logo-fin-eng.eps}
-        \newcommand{\@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
-        \newcommand{\@aidisclaimerfile}{tex/use-of-ai.tex}
-        \newcommand{\@yestextcmd}{Yes}
-        \newcommand{\@notextcmd}{No}
-        \tl_set:Nn \@tauthesis@school {Tampere~University}
-        \tl_set:Nn \@tauthesis@thesistype {\tl_use:N\@tauthesis@enthesistype}
+        \newcommand{\@tauthesis@tauthesis@mainlanguage}{english}
+        \newcommand{\@tauthesis@abstractname}{Abstract}
+        \newcommand{\@tauthesis@university}{Tampere~University}
+        \newcommand{\@tauthesis@keywordname}{Keywords}
+        \newcommand{\@tauthesis@prefacename}{Preface}
+        \newcommand{\@tauthesis@originalitytext}{\@engoriginalitytext}
+        \newcommand{\@tauthesis@logofile}{figures/tau-logo-fin-eng.eps}
+        \newcommand{\@tauthesis@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
+        \newcommand{\@tauthesis@aidisclaimerfile}{tex/use-of-ai.tex}
+        \newcommand{\@tauthesis@yestextcmd}{Yes}
+        \newcommand{\@tauthesis@notextcmd}{No}
+
+        \newcommand{\@tauthesis@title}{\@tauthesis@entitle}
+        \newcommand{\@tauthesis@subtitle}{\@tauthesis@ensubtitle}
+        \newcommand{\@tauthesis@thesistype}{\@tauthesis@enthesistype}
+        \newcommand{\@tauthesis@facultyname}{\@tauthesis@enfacultyname}
+        \newcommand{\@tauthesis@programmename}{\@tauthesis@enprogrammename}
+        \newcommand{\@tauthesis@keywords}{\@tauthesis@enkeywords}
+
+        \newcommand{\@tauthesis@otherabstractname}{Tiivistelmä}
+        \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@fifacultyname}
+        \newcommand{\@tauthesis@otherkeywordname}{Avainsanat}
+        \newcommand{\@tauthesis@otherkeywords}{\@tauthesis@fikeywords}
+        \newcommand{\@tauthesis@otherlanguage}{finnish}
+        \newcommand{\@tauthesis@otheroriginalitytext}{\@finoriginalitytext}
+        \newcommand{\@tauthesis@otherprogrammename}{\@tauthesis@fiprogrammename}
+        \newcommand{\@tauthesis@othersubtitle}{\@tauthesis@fisubtitle}
+        \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@fithesistype}
+        \newcommand{\@tauthesis@othertitle}{\@tauthesis@fititle}
+        \newcommand{\@tauthesis@otheruniversity}{Tampereen~yliopisto}
+
         \@langenglishtrue
     },
 
@@ -376,7 +394,7 @@
 \titlespacing{name=\subsubsection, numberless}{0em}{18pt}{12pt}
 
 % Language support for Finnish and English
-\RequirePackage[\@otherlanguage, main=\@mainlanguage]{babel}
+\RequirePackage[\@tauthesis@otherlanguage, main=\@tauthesis@mainlanguage]{babel}
 \RequirePackage{csquotes}
 
 % Powerful color package
@@ -689,109 +707,6 @@
     \noexpand\selectlanguage{#1}}\x
 }
 
-% \title command
-\renewcommand{\title}[2]{%
-    \gdef\@title{#1}
-    \gdef\@othertitle{#2}
-}
-\renewcommand{\@title}[1]{
-    \@latex@warning@no@line{No \noexpand\title given.}
-}
-\newcommand{\@othertitle}[1]{
-    \@latex@warning@no@line{No \noexpand\othertitle given.}
-}
-
-% \subtitle command
-\newcommand{\subtitle}[2]{%
-    \gdef\@subtitle{#1}
-    \gdef\@othersubtitle{#2}
-}
-\newcommand{\@subtitle}[1]{
-    \@latex@warning@no@line{No \noexpand\subtitle given.}
-}
-\newcommand{\@othersubtitle}[1]{
-    \@latex@warning@no@line{No \noexpand\othersubtitle given.}
-}
-
-% \thesistype command
-\newcommand{\thesistype}[2]{
-    \gdef\@thesistype{#1}
-    \gdef\@otherthesistype{#2}
-}
-\newcommand{\@thesistype}[1]{%
-    \@latex@warning@no@line{No \noexpand\thesistype given.}
-}
-\newcommand{\@otherthesistype}[1]{%
-    \@latex@warning@no@line{No \noexpand\otherthesistype given.}
-}
-
-% \facultyname command
-\newcommand{\facultyname}[2]{
-    \gdef\@facultyname{#1}
-    \gdef\@otherfacultyname{#2}
-}
-\newcommand{\@facultyname}[1]{
-    \@latex@warning@no@line{No \noexpand\facultyname given.}
-}
-\newcommand{\@otherfacultyname}[1]{
-    \@latex@warning@no@line{No \noexpand\otherfacultyname given.}
-}
-
-% \examiner command
-\if@langenglish
-    \newcommand{\@examinername}{Examiners}
-\else
-    \newcommand{\@examinername}{Tarkastajat}
-\fi
-
-\newcommand{\examiner}[2][\@examinername]{
-    \gdef\@finalexaminername{#1}
-    \gdef\@givenexaminer{#2}
-}
-\newcommand{\@examiner}[2]{
-    #1: #2
-}
-
-% \finishdate command
-\newcommand{\finishdate}[3]{
-    \gdef\@finishyear{#1}
-    \gdef\@finishmonth{#2}
-    \gdef\@finishday{#3}
-}
-\newcommand{\@finishyear}[1]{
-    \@latex@warning@no@line{No \noexpand\finishyear given.}
-}
-\newcommand{\@finishmonth}[1]{
-    \@latex@warning@no@line{No \noexpand\finishmonth given.}
-}
-\newcommand{\@finishday}[1]{
-    \@latex@warning@no@line{No \noexpand\finishday given.}
-}
-
-% \programmename command
-\newcommand{\programmename}[2]{
-    \gdef\@programmename{#1}
-    \gdef\@otherprogrammename{#2}
-}
-\newcommand{\@programmename}[1]{
-    \@latex@warning@no@line{No \noexpand\programmename given.}
-}
-\newcommand{\@otherprogrammename}[1]{
-    \@latex@warning@no@line{No \noexpand\otherprogrammename given.}
-}
-
-% \keywords command
-\newcommand{\keywords}[2]{
-    \gdef\@keywords{#1}
-    \gdef\@otherkeywords{#2}
-}
-\newcommand{\@keywords}[1]{
-    \@latex@warning@no@line{No \noexpand\keywords given.}
-}
-\newcommand{\@otherkeywords}[1]{
-    \@latex@warning@no@line{No \noexpand\otherkeywords given.}
-}
-
 % \frontmatter command
 \newcommand{\frontmatter}{
     \clearpage
@@ -817,21 +732,22 @@ The originality of this thesis has been checked using the Turnitin Originality s
 % Make the title
 \renewcommand\maketitle{
     \thispagestyle{empty}
-    \vspace*{-1.88cm}\hspace*{-2.7cm}\includegraphics[height=2.57cm]{\@logofile}
+    \vspace*{-1.88cm}
+    \hspace*{-2.7cm}
+    \includegraphics[height=2.57cm]{\@tauthesis@logofile}
     \par\medskip
     \vspace{102pt}
-    {\raggedleft\Large\@author\par}
+    {\raggedleft\Large\@tauthesis@author\par}
     \vspace{42pt}
     {\raggedleft\bf\LARGE\color{taupurple}%
-        \textsc{\@title}\par}
+        \textsc{\@tauthesis@title}\par}
     {\raggedleft\Large\color{taupurple}%
-        \@subtitle\par}
+        \@tauthesis@subtitle\par}
     \vfill
     {\raggedleft%
         \@tauthesis@thesistype\\%
-        \@tauthesis@school\\%
-        \@facultyname\\%
-        %\@examiner{\@finalexaminername}{\@givenexaminer}\\%
+        \@tauthesis@university\\%
+        \@tauthesis@facultyname\\%
         \DTMDisplaydate%
             {\the\year}%
             {\the\month}%
@@ -844,16 +760,16 @@ The originality of this thesis has been checked using the Turnitin Originality s
 % Make the abstracts
 \renewcommand{\abstract}[1]{
     \clearpage
-    \chapter*{\abstractname}
+    \chapter*{\@tauthesis@abstractname}
     \begin{spacing}{1.000}
     {\small
         \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
-        \noindent\@author\par
-        \@title: \@subtitle\par
-        \noindent\@thesistype\par
-        \noindent\@university\par
-        \noindent\@programmename\par
+        \noindent\@tauthesis@author\par
+        \@tauthesis@title: \@tauthesis@subtitle\par
+        \noindent\@tauthesis@thesistype\par
+        \noindent\@tauthesis@university\par
+        \noindent\@tauthesis@programmename\par
         \noindent\DTMDisplaydate%
             {\the\year}%
             {\the\month}%
@@ -862,26 +778,26 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \vspace{0.5\baselineskip}
         \input{#1}\par
         \bigskip
-        \noindent\textbf{\@keywordname:} \@keywords\par
+        \noindent\textbf{\@tauthesis@keywordname:} \@tauthesis@keywords\par
         \bigskip
-        \noindent\@originalitytext
+        \noindent\@tauthesis@originalitytext
     \par}
     \end{spacing}
     \clearpage
 }
 \newcommand{\otherabstract}[1]{
     \clearpage
-    \xselectlanguage{\@otherlanguage}
-    \chapter*{\@otherabstractname}
+    \xselectlanguage{\@tauthesis@otherlanguage}
+    \chapter*{\@tauthesis@otherabstractname}
     \begin{spacing}{1.000}
     {\small
         \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
         \noindent\@author\par
-        \@othertitle: \@othersubtitle\par
-        \noindent\@otherthesistype\par
-        \noindent\@otheruniversity\par
-        \noindent\@otherprogrammename\par
+        \@tauthesis@othertitle: \@tauthesis@othersubtitle\par
+        \noindent\@tauthesis@otherthesistype\par
+        \noindent\@tauthesis@otheruniversity\par
+        \noindent\@tauthesis@otherprogrammename\par
         \noindent\DTMDisplaydate%
             {\the\year}%
             {\the\month}%
@@ -890,18 +806,18 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \vspace{0.5\baselineskip}
         \input{#1}\par
         \bigskip
-        \noindent\textbf{\@otherkeywordname:} \@otherkeywords\par
+        \noindent\textbf{\@tauthesis@otherkeywordname:} \@tauthesis@otherkeywords\par
         \bigskip
-        \noindent\@otheroriginalitytext
+        \noindent\@tauthesis@otheroriginalitytext
     \par}
     \end{spacing}
-    \xselectlanguage{\@mainlanguage}
+    \xselectlanguage{\@tauthesis@mainlanguage}
 }
 
 % Make the preface
 \newcommand{\preface}[2]{
     \clearpage
-    \chapter*{\@prefacename}
+    \chapter*{\@tauthesis@prefacename}
     \noindent\input{#1}\par
     \bigskip
     \DTMlangsetup[en-GB,finnish]{showdayofmonth=true}
@@ -911,7 +827,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
         {\the\month}%
         {\the\day}{-1}\par
     \bigskip
-    \noindent\@author
+    \noindent\@tauthesis@author
     \clearpage
 }
 
@@ -944,22 +860,22 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \NewDocumentCommand\aitickbox{s}{
     \IfBooleanTF{#1}{
         \begin{quote}
-            \indent\yesbox\hspace{1ex}\@yestextcmd
+            \indent\yesbox\hspace{1ex}\@tauthesis@yestextcmd
             \linebreak
-            \indent\nobox\hspace{1ex}\@notextcmd
+            \indent\nobox\hspace{1ex}\@tauthesis@notextcmd
         \end{quote}
     }{
         \begin{quote}
-            \indent\nobox\hspace{1ex}\@yestextcmd
+            \indent\nobox\hspace{1ex}\@tauthesis@yestextcmd
             \linebreak
-            \indent\yesbox\hspace{1ex}\@notextcmd
+            \indent\yesbox\hspace{1ex}\@tauthesis@notextcmd
         \end{quote}
     }
 }
 
 \NewDocumentEnvironment{aidisclaimer}{s+b}{
     \clearpage
-    \chapter*{\@aidisclaimertitle}
+    \chapter*{\@tauthesis@aidisclaimertitle}
     \if@langenglish
         Artificial intelligence (AI) has been used in generating this work:
     \else
@@ -995,7 +911,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
 }
 
 \NewDocumentCommand\aidisclaimerinclusioncmd{}{
-    \input{\@aidisclaimerfile}
+    \input{\@tauthesis@aidisclaimerfile}
 }
 
 % Place PDF metadata into an external main.xmpdata file.
