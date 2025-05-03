@@ -166,8 +166,8 @@
         \newcommand{\@tauthesis@mainlanguage}{finnish}
         \newcommand{\@abstractname}{Tiivistelmä}
         \newcommand{\@otherabstractname}{Abstract}
-        \newcommand{\@university}{Tampereen yliopisto}
-        \newcommand{\@otheruniversity}{Tampere University}
+        \newcommand{\@university}{Tampereen~yliopisto}
+        \newcommand{\@otheruniversity}{Tampere~University}
         \newcommand{\@keywordname}{Avainsanat}
         \newcommand{\@otherkeywordname}{Keywords}
         \newcommand{\@prefacename}{Alkusanat}
