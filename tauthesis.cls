@@ -92,8 +92,6 @@
 
     citationstyle.store = \@tauthesis@citationstyle,
 
-    day.store = \@tauthesis@day,
-
     enfacultyname.store = \@tauthesis@enfacultyname,
 
     enkeywords.store = \@tauthesis@enkeywords,
@@ -215,11 +213,7 @@
             { \exp_not:n {#1} }  % Invalid choice given
     ,
 
-    month.store = \@tauthesis@month,
-
     subject.store = \@tauthesis@subject,
-
-    year.store = \@tauthesis@year,
 }
 
 % Process the key--value arguments.
@@ -839,9 +833,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \@facultyname\\%
         %\@examiner{\@finalexaminername}{\@givenexaminer}\\%
         \DTMDisplaydate%
-            {\@finishyear}%
-            {\@finishmonth}%
-            {\@finishday}{-1}%
+            {\the\year}%
+            {\the\month}%
+            {\the\day}{-1}%
     \par}
     \vspace{42pt}
     \clearpage
@@ -861,9 +855,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \noindent\@university\par
         \noindent\@programmename\par
         \noindent\DTMDisplaydate%
-            {\@finishyear}%
-            {\@finishmonth}%
-            {\@finishday}{-1}\par
+            {\the\year}%
+            {\the\month}%
+            {\the\day}{-1}\par
         \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}\par
         \vspace{0.5\baselineskip}
         \input{#1}\par
@@ -889,9 +883,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \noindent\@otheruniversity\par
         \noindent\@otherprogrammename\par
         \noindent\DTMDisplaydate%
-            {\@finishyear}%
-            {\@finishmonth}%
-            {\@finishday}{-1}\par
+            {\the\year}%
+            {\the\month}%
+            {\the\day}{-1}\par
         \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}\par
         \vspace{0.5\baselineskip}
         \input{#1}\par
@@ -913,9 +907,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \DTMlangsetup[en-GB,finnish]{showdayofmonth=true}
     \noindent#2,
     \DTMdisplaydate%
-        {\@finishyear}%
-        {\@finishmonth}%
-        {\@finishday}{-1}\par
+        {\the\year}%
+        {\the\month}%
+        {\the\day}{-1}\par
     \bigskip
     \noindent\@author
     \clearpage
