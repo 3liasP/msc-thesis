@@ -740,11 +740,11 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \includegraphics[height=2.57cm]{\@tauthesis@logofile}
     \par\medskip
     \vspace{102pt}
-    {\raggedleft\Large\@tauthesis@author\par}
+    {\raggedleft\fontsize{20pt}{12pt}\selectfont\@tauthesis@author\par}
     \vspace{42pt}
-    {\raggedleft\bf\LARGE\color{taupurple}%
+    {\raggedleft\bf\fontsize{25pt}{25pt}\selectfont\color{taupurple}%
         \textsc{\@tauthesis@title}\par}
-    {\raggedleft\Large\color{taupurple}%
+    {\raggedleft\fontsize{20pt}{25pt}\selectfont\color{taupurple}%
         \@tauthesis@subtitle\par}
     \vfill
     {\raggedleft%
