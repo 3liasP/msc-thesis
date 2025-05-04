@@ -91,7 +91,7 @@
     enprogrammename.store = \@tauthesis@enprogrammename,
 
     ensubtitle .code:n = {
-        \tl_if_empty:nTF
+        \tl_if_blank:nTF
             {#1}
             {\newcommand{\@tauthesis@ensubtitle@joiner}{}}
             {\newcommand{\@tauthesis@ensubtitle@joiner}{:~}}
@@ -128,7 +128,7 @@
     fiprogrammename.store = \@tauthesis@fiprogrammename,
 
     fisubtitle .code:n = {
-        \tl_if_empty:nTF
+        \tl_if_blank:nTF
             {#1}
             {\newcommand{\@tauthesis@fisubtitle@joiner}{}}
             {\newcommand{\@tauthesis@fisubtitle@joiner}{:~}}
