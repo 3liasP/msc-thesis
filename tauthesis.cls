@@ -90,7 +90,13 @@
 
     enprogrammename.store = \@tauthesis@enprogrammename,
 
-    ensubtitle.store = \@tauthesis@ensubtitle,
+    ensubtitle .code:n = {
+        \tl_if_empty:nTF
+            {#1}
+            {\newcommand{\@tauthesis@ensubtitle@joiner}{}}
+            {\newcommand{\@tauthesis@ensubtitle@joiner}{:~}}
+        \newcommand{\@tauthesis@ensubtitle}{#1}
+    },
 
     enthesistype .choice:,
 
@@ -121,7 +127,13 @@
 
     fiprogrammename.store = \@tauthesis@fiprogrammename,
 
-    fisubtitle.store = \@tauthesis@fisubtitle,
+    fisubtitle .code:n = {
+        \tl_if_empty:nTF
+            {#1}
+            {\newcommand{\@tauthesis@fisubtitle@joiner}{}}
+            {\newcommand{\@tauthesis@fisubtitle@joiner}{:~}}
+        \newcommand{\@tauthesis@fisubtitle}{#1}
+    },
 
     fithesistype .choice:,
 
@@ -171,6 +183,7 @@
         \newcommand{\@tauthesis@facultyname}{\@tauthesis@fifacultyname}
         \newcommand{\@tauthesis@programmename}{\@tauthesis@fiprogrammename}
         \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
+        \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@fisubtitle@joiner}
 
         \newcommand{\@tauthesis@otherabstractfile}{tex/abstract.tex}
         \newcommand{\@tauthesis@otherabstractname}{Abstract}
@@ -181,6 +194,7 @@
         \newcommand{\@tauthesis@otheroriginalitytext}{\@engoriginalitytext}
         \newcommand{\@tauthesis@otherprogrammename}{\@tauthesis@enprogrammename}
         \newcommand{\@tauthesis@othersubtitle}{\@tauthesis@ensubtitle}
+        \newcommand{\@tauthesis@othersubtitle@joiner}{\@tauthesis@ensubtitle@joiner}
         \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@enthesistype}
         \newcommand{\@tauthesis@othertitle}{\@tauthesis@entitle}
         \newcommand{\@tauthesis@otheruniversity}{Tampere~University}
@@ -205,6 +219,7 @@
 
         \newcommand{\@tauthesis@title}{\@tauthesis@entitle}
         \newcommand{\@tauthesis@subtitle}{\@tauthesis@ensubtitle}
+        \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@ensubtitle@joiner}
         \newcommand{\@tauthesis@thesistype}{\@tauthesis@enthesistype}
         \newcommand{\@tauthesis@facultyname}{\@tauthesis@enfacultyname}
         \newcommand{\@tauthesis@programmename}{\@tauthesis@enprogrammename}
@@ -219,6 +234,7 @@
         \newcommand{\@tauthesis@otheroriginalitytext}{\@finoriginalitytext}
         \newcommand{\@tauthesis@otherprogrammename}{\@tauthesis@fiprogrammename}
         \newcommand{\@tauthesis@othersubtitle}{\@tauthesis@fisubtitle}
+        \newcommand{\@tauthesis@othersubtitle@joiner}{\@tauthesis@fisubtitle@joiner}
         \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@fithesistype}
         \newcommand{\@tauthesis@othertitle}{\@tauthesis@fititle}
         \newcommand{\@tauthesis@otheruniversity}{Tampereen~yliopisto}
@@ -753,7 +769,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
         \noindent\@tauthesis@author\par
-        \@tauthesis@title: \@tauthesis@subtitle\par
+        \@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle\par
         \noindent\@tauthesis@thesistype\par
         \noindent\@tauthesis@university\par
         \noindent\@tauthesis@programmename\par
@@ -781,7 +797,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \setlength{\parindent}{0pt}
         \setlength{\parskip}{0pt}
         \noindent\@tauthesis@author\par
-        \@tauthesis@othertitle: \@tauthesis@othersubtitle\par
+        \@tauthesis@othertitle\@tauthesis@othersubtitle@joiner\@tauthesis@othersubtitle\par
         \noindent\@tauthesis@otherthesistype\par
         \noindent\@tauthesis@otheruniversity\par
         \noindent\@tauthesis@otherprogrammename\par
@@ -904,7 +920,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
 % Place PDF metadata into an external main.xmpdata file.
 
 \begin{filecontents*}[overwrite]{\jobname.xmpdata}
-\Title{\@tauthesis@title: \@tauthesis@subtitle}
+\Title{\@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle}
 \Author{\@tauthesis@author}
 \Language{\@tauthesis@mainlanguage}
 \Keywords{\@tauthesis@fikeywords, \@tauthesis@enkeywords}
