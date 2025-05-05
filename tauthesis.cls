@@ -736,8 +736,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \renewcommand\maketitle{
     \thispagestyle{empty}
     \vspace*{-1.88cm}
-    \hspace*{-2.7cm}
-    \includegraphics[height=2.57cm]{\@tauthesis@logofile}
+    \hspace*{-3.5cm}
+    \includegraphics[width=8cm]{\@tauthesis@logofile}
     \par\medskip
     \vspace{102pt}
     {\raggedleft\fontsize{20pt}{0pt}\selectfont\@tauthesis@author\par}
