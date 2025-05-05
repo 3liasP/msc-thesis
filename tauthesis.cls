@@ -286,13 +286,15 @@
     UprightFont = *-Regular,
 ]{FiraMono}
 
-\usepackage{unicode-math}
+\RequirePackage{mathtools} % This should be loaded before unicode-math.
+
+\RequirePackage{unicode-math}
 
 \setmathfont{STIXTwoMath-Regular.ttf}[
   Path = fonts/STIXTwo/
 ]
 
-\usepackage{newunicodechar}
+\RequirePackage{newunicodechar}
 
 % Check to see if this font is installed system-wide
 \IfFontExistsTF{NotoSansSymbols2}{%
@@ -368,11 +370,14 @@
     \chapterindent \dimexpr\linewidth-\chapterindent}
     {\makebox[\chapterindent][l]{\thechapter.}}{0em}
     {\fancyhf{}\rhead{\thepage}\textsc{#1}}
+
 \titleformat
     {name=\chapter, numberless}
     {\raggedright\bf\fontsize{21pt}{12pt}\selectfont}{}{0em}
     {\fancyhf{}\rhead{\thepage}\textsc{#1}}
+
 \titlespacing{\chapter}{0em}{42pt}{42pt}
+
 \titlespacing{name=\chapter, numberless}{0em}{18pt}{18pt}
 
 % Section
@@ -383,10 +388,13 @@
     0pt \linewidth %
     \chapterindent \dimexpr\linewidth-\chapterindent}
     {\makebox[\chapterindent][l]{\thesection}}{0em}{\textsc{#1}}
+
 \titleformat
     {name=\section, numberless}
     {\raggedright\bf\fontsize{17pt}{12pt}\selectfont}{}{0em}{\textsc{#1}}
+
 \titlespacing{\section}{0em}{18pt}{12pt}
+
 \titlespacing{name=\section, numberless}{0em}{18pt}{12pt}
 
 % Subsection
@@ -397,10 +405,13 @@
     0pt \linewidth %
     \chapterindent \dimexpr\linewidth-\chapterindent}
     {\makebox[\chapterindent][l]{\thesubsection}}{0em}{\textsc{#1}}
+
 \titleformat
     {name=\subsection, numberless}
     {\raggedright\bf\fontsize{13pt}{12pt}\selectfont}{}{0em}{\textsc{#1}}
+
 \titlespacing{\subsection}{0em}{18pt}{12pt}
+
 \titlespacing{name=\subsection, numberless}{0em}{18pt}{12pt}
 
 % Subsubsection
@@ -410,7 +421,9 @@
 \titleformat
     {name=\subsubsection, numberless}
     {\raggedright\bf\normalsize}{}{0em}{\textsc{#1}}
+
 \titlespacing{\subsubsection}{0em}{18pt}{12pt}
+
 \titlespacing{name=\subsubsection, numberless}{0em}{18pt}{12pt}
 
 % Language support for Finnish and English
@@ -544,13 +557,13 @@
 
 % Adjust style of content listings' titles.
 
-\renewcommand{\cfttoctitlefont}{\scshape\bf\LARGE}
+\renewcommand{\cfttoctitlefont}{\scshape\bf\fontsize{21pt}{0pt}\selectfont}
 
-\renewcommand{\cftloftitlefont}{\scshape\bf\LARGE}
+\renewcommand{\cftloftitlefont}{\scshape\bf\fontsize{21pt}{0pt}\selectfont}
 
-\renewcommand{\cftlottitlefont}{\scshape\bf\LARGE}
+\renewcommand{\cftlottitlefont}{\scshape\bf\fontsize{21pt}{0pt}\selectfont}
 
-\renewcommand{\cftloltitlefont}{\scshape\bf\LARGE}
+\renewcommand{\cftloltitlefont}{\scshape\bf\fontsize{21pt}{0pt}\selectfont}
 
 % Adjust spacing before and after ToC titles.
 
