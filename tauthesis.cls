@@ -101,11 +101,30 @@
     enthesistype .choice:,
 
     enthesistype / bachelor .code:n =
-        \tl_set:Nn \@tauthesis@enthesistype {Bachelor's~thesis}
+        \tl_set:Nn\@tauthesis@enthesistype {Bachelor's~thesis}
+        \tl_set:Nn\@tauthesis@innermargin {4cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+        \tl_set:Nn\@tauthesis@papersize {a4paper}
     ,
 
     enthesistype / master .code:n =
-        \tl_set:Nn \@tauthesis@enthesistype {Master's~thesis}
+        \tl_set:Nn\@tauthesis@enthesistype {Master's~thesis}
+        \tl_set:Nn\@tauthesis@innermargin {4cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+        \tl_set:Nn\@tauthesis@papersize {a4paper}
+    ,
+
+    enthesistype / doctor .code:n =
+        \tl_set:Nn\@tauthesis@enthesistype {Doctoral~dissertation}
+        \tl_set:Nn\@tauthesis@innermargin {2cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2cm}
+        \tl_set:Nn\@tauthesis@bottommargin {3cm}
+        \tl_set:Nn\@tauthesis@papersize {b5paper}
     ,
 
     enthesistype / unknown .code:n =
@@ -138,15 +157,39 @@
     fithesistype .choice:,
 
     fithesistype / kandidaatti .code:n =
-        \tl_set:Nn \@tauthesis@fithesistype {Kandidaatintyö}
+        \tl_set:Nn\@tauthesis@fithesistype {Kandidaatintyö}
+        \tl_set:Nn\@tauthesis@innermargin {4cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+        \tl_set:Nn\@tauthesis@papersize {a4paper}
     ,
 
     fithesistype / maisteri .code:n =
-        \tl_set:Nn \@tauthesis@fithesistype {Pro~gradu~-tutkielma}
+        \tl_set:Nn\@tauthesis@fithesistype {Pro~gradu~-tutkielma}
+        \tl_set:Nn\@tauthesis@innermargin {4cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+        \tl_set:Nn\@tauthesis@papersize {a4paper}
     ,
 
     fithesistype / diplomi .code:n =
-        \tl_set:Nn \@tauthesis@fithesistype {Diplomityö}
+        \tl_set:Nn\@tauthesis@fithesistype {Diplomityö}
+        \tl_set:Nn\@tauthesis@innermargin {4cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+        \tl_set:Nn\@tauthesis@papersize {a4paper}
+    ,
+
+    fithesistype / tohtori .code:n =
+        \tl_set:Nn\@tauthesis@fithesistype {Väitöskirja}
+        \tl_set:Nn\@tauthesis@innermargin {2cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2cm}
+        \tl_set:Nn\@tauthesis@bottommargin {3cm}
+        \tl_set:Nn\@tauthesis@papersize {b5paper}
     ,
 
     fithesistype / unknown .code:n =
@@ -316,10 +359,10 @@
 
 % Page geometry and heading handling
 \RequirePackage[
-    top=2.5cm,
-    bottom=2.5cm,
-    left=4cm,
-    right=2cm
+    top=\@tauthesis@topmargin,
+    bottom=\@tauthesis@bottommargin,
+    left=\@tauthesis@innermargin,
+    right=\@tauthesis@outermargin,
 ]{geometry}
 \special{papersize={210mm,297mm}}
 \RequirePackage{fancyhdr}
