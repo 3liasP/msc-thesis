@@ -378,13 +378,6 @@
     { \msg_info:nn { tauthesis } { thesis_types_match } }
     { \msg_error:nn { tauthesis } { thesis_types_dont_match } }
 
-% \newcommand{\mainmatter}{
-%     \clearpage
-%     \pagenumbering{arabic}
-%     \setcounter{page}{1}
-% }
-
-% The \mainmatter command
 \newcommand{\mainmatter}{
     \int_compare:nTF
         {\@tauthesis@fithesistypeint < \@tauthesis@phdthesistypeint}
