@@ -107,6 +107,8 @@
         \tl_set:Nn\@tauthesis@topmargin {2.5cm}
         \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
         \tl_set:Nn\@tauthesis@papersize {a4paper}
+        \tl_set:Nn\@tauthesis@paperwidth {210mm}
+        \tl_set:Nn\@tauthesis@paperheight {297mm}
     ,
 
     enthesistype / master .code:n =
@@ -116,6 +118,8 @@
         \tl_set:Nn\@tauthesis@topmargin {2.5cm}
         \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
         \tl_set:Nn\@tauthesis@papersize {a4paper}
+        \tl_set:Nn\@tauthesis@paperwidth {210mm}
+        \tl_set:Nn\@tauthesis@paperheight {297mm}
     ,
 
     enthesistype / doctor .code:n =
@@ -125,6 +129,8 @@
         \tl_set:Nn\@tauthesis@topmargin {2cm}
         \tl_set:Nn\@tauthesis@bottommargin {3cm}
         \tl_set:Nn\@tauthesis@papersize {b5paper}
+        \tl_set:Nn\@tauthesis@paperwidth {176mm}
+        \tl_set:Nn\@tauthesis@paperheight {250mm}
     ,
 
     enthesistype / unknown .code:n =
@@ -163,6 +169,8 @@
         \tl_set:Nn\@tauthesis@topmargin {2.5cm}
         \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
         \tl_set:Nn\@tauthesis@papersize {a4paper}
+        \tl_set:Nn\@tauthesis@paperwidth {210mm}
+        \tl_set:Nn\@tauthesis@paperheight {297mm}
     ,
 
     fithesistype / maisteri .code:n =
@@ -172,6 +180,8 @@
         \tl_set:Nn\@tauthesis@topmargin {2.5cm}
         \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
         \tl_set:Nn\@tauthesis@papersize {a4paper}
+        \tl_set:Nn\@tauthesis@paperwidth {210mm}
+        \tl_set:Nn\@tauthesis@paperheight {297mm}
     ,
 
     fithesistype / diplomi .code:n =
@@ -181,6 +191,8 @@
         \tl_set:Nn\@tauthesis@topmargin {2.5cm}
         \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
         \tl_set:Nn\@tauthesis@papersize {a4paper}
+        \tl_set:Nn\@tauthesis@paperwidth {210mm}
+        \tl_set:Nn\@tauthesis@paperheight {297mm}
     ,
 
     fithesistype / tohtori .code:n =
@@ -190,6 +202,8 @@
         \tl_set:Nn\@tauthesis@topmargin {2cm}
         \tl_set:Nn\@tauthesis@bottommargin {3cm}
         \tl_set:Nn\@tauthesis@papersize {b5paper}
+        \tl_set:Nn\@tauthesis@paperwidth {176mm}
+        \tl_set:Nn\@tauthesis@paperheight {250mm}
     ,
 
     fithesistype / unknown .code:n =
@@ -359,12 +373,13 @@
 
 % Page geometry and heading handling
 \RequirePackage[
+    \@tauthesis@papersize,
     top=\@tauthesis@topmargin,
     bottom=\@tauthesis@bottommargin,
     left=\@tauthesis@innermargin,
     right=\@tauthesis@outermargin,
 ]{geometry}
-\special{papersize={210mm,297mm}}
+\special{papersize={\@tauthesis@paperwidth,\@tauthesis@paperheight}}
 \RequirePackage{fancyhdr}
 \RequirePackage[explicit]{titlesec}
 \RequirePackage{titletoc}
