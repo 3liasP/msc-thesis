@@ -271,6 +271,15 @@
         \newcommand{\@tauthesis@othertitle}{\@tauthesis@entitle}
         \newcommand{\@tauthesis@otheruniversity}{Tampere~University}
 
+        \newcommand{\@tauthesis@publicationname}{Julkaisu}
+        \newcommand{\@tauthesis@publicationplural}{Julkaisut}
+        \newcommand{\@tauthesis@listpublicationname}{Alkuperäisjulkaisut}
+        \newcommand{\@tauthesis@copyrighttext}{%
+            Artikkeleiden käyttöön väitöskirjan osana on saatu kustantajan lupa.%
+        }
+        \newcommand{\@tauthesis@authorcontributionname}{Kirjoittajan osuus}
+
+
         \@langenglishfalse
     },
 
@@ -310,6 +319,14 @@
         \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@fithesistype}
         \newcommand{\@tauthesis@othertitle}{\@tauthesis@fititle}
         \newcommand{\@tauthesis@otheruniversity}{Tampereen~yliopisto}
+
+        \newcommand{\@tauthesis@publicationname}{Publication}
+        \newcommand{\@tauthesis@publicationplural}{Publications}
+        \newcommand{\@tauthesis@listpublicationname}{Original publications}
+        \newcommand{\@tauthesis@copyrighttext}{%
+            Publication reprinted with the permission of the copyright holders.%
+        }
+        \newcommand{\@tauthesis@authorcontributionname}{Author's contribution}
 
         \@langenglishtrue
     },
