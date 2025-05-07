@@ -109,6 +109,8 @@
         \tl_set:Nn\@tauthesis@papersize {a4paper}
         \tl_set:Nn\@tauthesis@paperwidth {210mm}
         \tl_set:Nn\@tauthesis@paperheight {297mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
     ,
 
     enthesistype / master .code:n =
@@ -120,6 +122,8 @@
         \tl_set:Nn\@tauthesis@papersize {a4paper}
         \tl_set:Nn\@tauthesis@paperwidth {210mm}
         \tl_set:Nn\@tauthesis@paperheight {297mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
     ,
 
     enthesistype / doctor .code:n =
@@ -131,6 +135,8 @@
         \tl_set:Nn\@tauthesis@papersize {b5paper}
         \tl_set:Nn\@tauthesis@paperwidth {176mm}
         \tl_set:Nn\@tauthesis@paperheight {250mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
     ,
 
     enthesistype / unknown .code:n =
@@ -171,6 +177,8 @@
         \tl_set:Nn\@tauthesis@papersize {a4paper}
         \tl_set:Nn\@tauthesis@paperwidth {210mm}
         \tl_set:Nn\@tauthesis@paperheight {297mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
     ,
 
     fithesistype / maisteri .code:n =
@@ -182,6 +190,8 @@
         \tl_set:Nn\@tauthesis@papersize {a4paper}
         \tl_set:Nn\@tauthesis@paperwidth {210mm}
         \tl_set:Nn\@tauthesis@paperheight {297mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
     ,
 
     fithesistype / diplomi .code:n =
@@ -193,6 +203,8 @@
         \tl_set:Nn\@tauthesis@papersize {a4paper}
         \tl_set:Nn\@tauthesis@paperwidth {210mm}
         \tl_set:Nn\@tauthesis@paperheight {297mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
     ,
 
     fithesistype / tohtori .code:n =
@@ -204,6 +216,9 @@
         \tl_set:Nn\@tauthesis@papersize {b5paper}
         \tl_set:Nn\@tauthesis@paperwidth {176mm}
         \tl_set:Nn\@tauthesis@paperheight {250mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
+
     ,
 
     fithesistype / unknown .code:n =
@@ -806,8 +821,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
 % Make the title
 \renewcommand\maketitle{
     \thispagestyle{empty}
-    \vspace*{-1.88cm}
-    \hspace*{-3.5cm}
+    \vspace*{\@tauthesis@logoyoffset}
+    \hspace*{\@tauthesis@logoxoffset}
     \includegraphics[width=8cm]{\@tauthesis@logofile}
     \par\medskip
     \vspace{102pt}
