@@ -74,6 +74,20 @@
 \newif\if@taunotdraftmode\@taunotdraftmodetrue
 \newif\if@programs\@programsfalse
 
+\int_new:N\@tauthesis@fithesistypeint
+\int_new:N\@tauthesis@enthesistypeint
+
+\int_new:N\@tauthesis@bachelorsthesistypeint
+\int_new:N\@tauthesis@mastersthesistypeint
+\int_new:N\@tauthesis@phdthesistypeint
+
+\int_set:Nn\@tauthesis@bachelorsthesistypeint{1}
+\int_set:Nn\@tauthesis@mastersthesistypeint{2}
+\int_set:Nn\@tauthesis@phdthesistypeint{3}
+
+
+\tl_set:Nn\@tauthesis@bindingoffsetwidth {0.5cm}
+
 % Define keyword arguments for this class file using LaTeX3 syntax.
 
 \DeclareKeys[tauthesis]
@@ -111,6 +125,7 @@
         \tl_set:Nn\@tauthesis@paperheight {297mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@bachelorsthesistypeint}
     ,
 
     enthesistype / master .code:n =
@@ -124,6 +139,7 @@
         \tl_set:Nn\@tauthesis@paperheight {297mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
     ,
 
     enthesistype / doctor .code:n =
@@ -137,6 +153,7 @@
         \tl_set:Nn\@tauthesis@paperheight {250mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
+        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@phdthesistypeint}
     ,
 
     enthesistype / unknown .code:n =
@@ -179,6 +196,7 @@
         \tl_set:Nn\@tauthesis@paperheight {297mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@bachelorsthesistypeint}
     ,
 
     fithesistype / maisteri .code:n =
@@ -192,6 +210,7 @@
         \tl_set:Nn\@tauthesis@paperheight {297mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
     ,
 
     fithesistype / diplomi .code:n =
@@ -205,6 +224,7 @@
         \tl_set:Nn\@tauthesis@paperheight {297mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
     ,
 
     fithesistype / tohtori .code:n =
@@ -218,7 +238,7 @@
         \tl_set:Nn\@tauthesis@paperheight {250mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
-
+        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@phdthesistypeint}
     ,
 
     fithesistype / unknown .code:n =
@@ -343,11 +363,55 @@
     subject.store = \@tauthesis@subject,
 }
 
+% Check that thesis types match.
+
+\msg_new:nnn { tauthesis } { thesis_types_match } { Thesis~types~match. }
+
+\msg_new:nnn { tauthesis } { thesis_types_dont_match } { Finnish~and~English~thesis~types~do~not~match! }
+
 % Process the key--value arguments.
 
-\ExplSyntaxOff
-
 \ProcessKeyOptions[tauthesis]
+
+\int_compare:nTF
+    { \@tauthesis@fithesistypeint == \@tauthesis@enthesistypeint }
+    { \msg_info:nn { tauthesis } { thesis_types_match } }
+    { \msg_error:nn { tauthesis } { thesis_types_dont_match } }
+
+% \newcommand{\mainmatter}{
+%     \clearpage
+%     \pagenumbering{arabic}
+%     \setcounter{page}{1}
+% }
+
+% The \mainmatter command
+\newcommand{\mainmatter}{
+    \int_compare:nTF
+        {\@tauthesis@fithesistypeint < \@tauthesis@phdthesistypeint}
+        {\clearpage}
+        {\cleardoublepage}
+
+    \int_compare:nTF
+        {\@tauthesis@fithesistypeint = \@tauthesis@phdthesistypeint}
+        {
+            \newcounter{temp}
+            \setcounter{temp}{\value{page}}
+        }
+        {
+            % Do nothing.
+        }
+    \pagenumbering{arabic}
+    \int_compare:nTF
+        {\@tauthesis@fithesistypeint = \@tauthesis@phdthesistypeint}
+        {
+            \setcounter{page}{\value{temp}}
+        }
+        {
+            % Do nothing.
+        }
+}
+
+\ExplSyntaxOff
 
 % Inherit from the report document class.
 % Use 12pt nonetheless and scale fonts back
@@ -624,8 +688,6 @@
 \def\mySubSectionNumberWidth{3.2em}
 \def\mySubSubSectionNumberWidth{3.7em}
 
-\def\mySectionNumberWidth{3em}
-
 \def\myToCPageNumberSize{10pt}
 
 \cftsetindents{chapter}{\myChapterIndent}{\myChapterNumberWidth}
@@ -820,12 +882,6 @@
     \setcounter{page}{0}
 }
 
-% \mainmatter command
-\newcommand{\mainmatter}{
-    \clearpage
-    \pagenumbering{arabic}
-    \setcounter{page}{1}
-}
 
 % Originality texts
 \newcommand{\@finoriginalitytext}{%
@@ -1019,6 +1075,223 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 \NewDocumentCommand\aidisclaimerinclusioncmd{}{
     \input{\@tauthesis@aidisclaimerfile}
+}
+
+\newlength\publistlabelwidth
+\settowidth{\publistlabelwidth}{\@tauthesis@publicationname8888}
+\addtolength{\publistlabelwidth}{\parindent}
+
+\defbibenvironment{thisdissertationstyle}
+    {\list
+        {\printtext[labelnumberwidth]{%
+            \printfield{labelprefix}%
+            \printfield{labelnumber}}}
+        {\settowidth{\labelnumberwidth}{\@tauthesi@publicationname8888}%
+            \setlength{\labelwidth}{\labelnumberwidth}%
+            \setlength{\leftmargin}{\labelwidth}%
+            \setlength{\labelsep}{\biblabelsep}%
+            \addtolength{\leftmargin}{\labelsep}%
+            \setlength{\itemsep}{\bibitemsep}%
+            \setlength{\parsep}{\bibparsep}}%
+        \renewcommand*{\makelabel}[1]{##1\hss}}
+    {\endlist}
+    {\item}
+
+\newlist{publikeenumerate}{enumerate}{1}
+\setlist[publikeenumerate,1]{label={\@tauthesis@publicationname{} \Roman*}, wide=0pt, widest=99, leftmargin=\publistlabelwidth, labelsep=*, itemsep=\bibitemsep}
+
+% Make the list of publications
+\newcommand{\listofpublications}{
+    \begin{refsection}
+    \begin{refcontext}[labelprefix=\@publicationname\addspace, sorting=none]
+    \nocite{*}
+    \emergencystretch=2em
+    \setlength{\bibitemsep}{8.5pt}
+    \DeclareFieldFormat{labelnumber}{\ifinteger{##1}{\RN{##1}}{##1}}
+    \DeclareFieldFormat{labelnumberwidth}{##1}
+    \printbibliography[%
+        title=\@listpublicationname,%
+        keyword=thisdissertation,%
+        env=thisdissertationstyle]
+    \end{refcontext}
+    \end{refsection}
+    \settowidth{\labelnumberwidth}{888}
+}
+
+% Make the author's contribution
+\newcommand{\authorcontribution}[1]{
+    \section*{\large\emph{\@tauthesis@authorcontributionname}}
+    \input{#1}
+    \cleardoublepage
+}
+
+
+% The \publicationmatter command
+\newcommand{\publicationmatter}{
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
+\part*{\@tauthesis@publicationplural}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+% APA related fixes
+\if@apacitation
+\newcommand*{\apablx@ifnotfinalname}{%
+  \ifboolexpr{
+    test {\ifnumless{\value{listcount}}{\value{liststop}}}
+    or
+    test \ifmorenames
+    }}
+\newcommand*{\apablx@ifrevnameappcomma}[2]{%
+  \ifdefvoid{##1}
+    {\ifdefvoid{##2}}
+    {\@secondoftwo}
+  {\@secondoftwo}
+  {\apablx@ifnotfinalname}%
+}
+\renewbibmacro*{name:apa:family-given}[5]{%
+  \ifuseprefix
+    {\usebibmacro{name:delim}{##4##1}%
+     \usebibmacro{name:hook}{##4##1}%
+     \ifdefvoid{##4}{}{%
+       \mkbibnameprefix{##4}\isdot%
+       \ifprefchar{}{\bibnamedelimc}}%
+     \mkbibnamefamily{##1}\isdot%
+     \ifdefvoid{##2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{##3}\isdot%
+                      \ifthenelse{\value{uniquename}>1}
+                        {\bibnamedelimd\mkbibbrackets{##2}}
+                        {}}%
+     \ifdefvoid{##5}{}{\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
+     \apablx@ifrevnameappcomma{##2}{##5}
+       {\addcomma}
+       {}}
+    {\usebibmacro{name:delim}{##1}%
+     \usebibmacro{name:hook}{##1}%
+     \mkbibnamefamily{##1}\isdot
+     \ifboolexpe{%
+       test {\ifdefvoid{##2}}
+       and
+       test {\ifdefvoid{##4}}}
+       {}
+       {\revsdnamepunct}%
+     \ifdefvoid{##2}{}{\bibnamedelimd\mkbibnamegiven{##3}%
+                      \ifthenelse{\value{uniquename}>1}
+                        {\bibnamedelimd\mkbibbrackets{##2}}
+                        {}}%
+     \ifdefvoid{##4}{}{%
+       \bibnamedelimc\mkbibnameprefix{##4}%
+       \ifprefchar{}{\bibnamedelimc}}%
+     \ifdefvoid{##5}{}{\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
+     \apablx@ifrevnameappcomma{##2}{##5}
+       {\addcomma}
+       {}}}
+\renewcommand*{\intitlepunct}{\space}
+\fi
+\if@ieeecitation
+\DeclareFieldFormat[article,periodical]{volume}{\bibstring{jourvol}\addnbspace##1}
+\fi
+\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{##1\isdot}
+}
+
+% Make the publication title pages.
+\newcounter{publication}
+\setcounter{publication}{0}
+
+\DeclareCiteCommand{\thisdissertation}{
+%    \cleardoublepage
+    \thispagestyle{empty}
+    \refstepcounter{publication}
+    \addcontentsline{toc}{chapter}{\fontsize{\myChapterFontSize}{12pt}\selectfont\@tauthesis@publicationname{} \Roman{publication}}
+    \hspace*{0pt}\vfill
+    {\centering\LARGE\scshape
+        \MakeUppercase{\@tauthesis@publicationname}\\
+        \Roman{publication}
+    \par}
+    \vspace{42pt}
+    \label{publication-\thepublication}
+}{%
+  {\centering\textbf{\usebibmacro{title}}\par}%
+  \medskip
+  {\centering\nopunct%
+  \printnames[][-\value{listtotal}]{author}\par}%
+  \bigskip
+  {\centering\small%
+  \ifentrytype{article}{%
+  \usebibmacro{journal+issuetitle}%
+  \usebibmacro{byeditor+others}%
+  \usebibmacro{note+pages}%
+  }{}%
+  \if@apacitation
+  \ifentrytype{inbook}{%
+  \usebibmacro{in:}%
+  \usebibmacro{editor+trans}%
+  \usebibmacro{maintitle+booktitle}%
+  \printlist{publisher}%
+  }{}
+  \else
+  \ifentrytype{incollection}{%
+  \usebibmacro{in:}%
+  \usebibmacro{maintitle+booktitle}%
+  \usebibmacro{byeditor+others}%
+  \printfield{edition}%
+  \iffieldundef{maintitle}
+    {\printfield{volume}%
+     \printfield{part}}{}%
+  \printfield{volumes}%
+  \usebibmacro{series+number}%
+  \printfield{note}%
+  \usebibmacro{publisher+location+date}%
+  \usebibmacro{chapter+pages}%
+  }{}%
+  \fi
+  \usebibmacro{addendum+pubstate}\par}%
+  {\centering\small\nopunct%
+  \usebibmacro{doi+eprint+url}\par}%
+}{}{
+    \bigskip
+    {\centering\textbf{\@tauthesis@copyrighttext}\par}
+    \vfill\hspace*{0pt}
+    \clearpage
+    \thispagestyle{empty}
+    \cleardoublepage
+}
+
+\newlength{\@includewidth}
+\newlength{\@includeheight}
+\newlength{\@onept}
+\setlength{\@onept}{1pt}
+
+\newlength{\@widthratio}
+\newlength{\@heightratio}
+
+\newlength{\@truepaperwidth}
+\setlength{\@truepaperwidth}{%
+    \@tauthesis@paperwidth-\@tauthesis@bindingoffsetwidth%
+}
+
+\NewDocumentCommand{\nonFreePublication}{mm}{
+    \thisdissertation{#1}
+    \includepdf[%
+        pages=-,
+        width=\@truepaperwidth,
+        height=\paperheight,
+        keepaspectratio]{#2}
+    \cleardoublepage
+}
+
+
+\if@langenglish
+    \NewDocumentCommand\@licensedUnder{m}{This work is licensed under #1}
+\else
+    \NewDocumentCommand\@licensedUnder{m}{Tämä työ on lisensoitu lisenssin #1 mukaisesti}
+\fi
+
+\NewDocumentCommand\licensedPublication{mmm}{
+    \renewcommand{\@copyrighttext}{\@licensedUnder{#3}}
+    \thisdissertation{#1}
+    \includepdf[%
+        pages=-,
+        width=\@truepaperwidth,
+        height=\paperheight,
+        keepaspectratio]{#2}
+    \cleardoublepage
 }
 
 % Place PDF metadata into an external main.xmpdata file.
