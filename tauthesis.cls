@@ -897,7 +897,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
     {\raggedleft\bf\fontsize{25pt}{0pt}\selectfont\color{taupurple}%
         \textsc{\@tauthesis@title}\par}
     \vspace{1cm}
-    {\raggedleft\fontsize{20pt}{0pt}\selectfont\color{taupurple}%
+    {\raggedleft\scshape\fontsize{20pt}{0pt}\selectfont\color{taupurple}%
         \@tauthesis@subtitle\par}
     \vfill
     {\raggedleft%
