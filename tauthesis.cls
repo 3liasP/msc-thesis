@@ -1150,66 +1150,66 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 % The \publicationmatter command
 \newcommand{\publicationmatter}{
-\addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
-\part*{\@tauthesis@publicationplural}
-\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
-% APA related fixes
-\if@apacitation
-\newcommand*{\apablx@ifnotfinalname}{%
-  \ifboolexpr{
-    test {\ifnumless{\value{listcount}}{\value{liststop}}}
-    or
-    test \ifmorenames
-    }}
-\newcommand*{\apablx@ifrevnameappcomma}[2]{%
-  \ifdefvoid{##1}
-    {\ifdefvoid{##2}}
-    {\@secondoftwo}
-  {\@secondoftwo}
-  {\apablx@ifnotfinalname}%
-}
-\renewbibmacro*{name:apa:family-given}[5]{%
-  \ifuseprefix
-    {\usebibmacro{name:delim}{##4##1}%
-     \usebibmacro{name:hook}{##4##1}%
-     \ifdefvoid{##4}{}{%
-       \mkbibnameprefix{##4}\isdot%
-       \ifprefchar{}{\bibnamedelimc}}%
-     \mkbibnamefamily{##1}\isdot%
-     \ifdefvoid{##2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{##3}\isdot%
-                      \ifthenelse{\value{uniquename}>1}
-                        {\bibnamedelimd\mkbibbrackets{##2}}
-                        {}}%
-     \ifdefvoid{##5}{}{\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
-     \apablx@ifrevnameappcomma{##2}{##5}
-       {\addcomma}
-       {}}
-    {\usebibmacro{name:delim}{##1}%
-     \usebibmacro{name:hook}{##1}%
-     \mkbibnamefamily{##1}\isdot
-     \ifboolexpe{%
-       test {\ifdefvoid{##2}}
-       and
-       test {\ifdefvoid{##4}}}
-       {}
-       {\revsdnamepunct}%
-     \ifdefvoid{##2}{}{\bibnamedelimd\mkbibnamegiven{##3}%
-                      \ifthenelse{\value{uniquename}>1}
-                        {\bibnamedelimd\mkbibbrackets{##2}}
-                        {}}%
-     \ifdefvoid{##4}{}{%
-       \bibnamedelimc\mkbibnameprefix{##4}%
-       \ifprefchar{}{\bibnamedelimc}}%
-     \ifdefvoid{##5}{}{\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
-     \apablx@ifrevnameappcomma{##2}{##5}
-       {\addcomma}
-       {}}}
-\renewcommand*{\intitlepunct}{\space}
-\fi
-\if@ieeecitation
-\DeclareFieldFormat[article,periodical]{volume}{\bibstring{jourvol}\addnbspace##1}
-\fi
-\DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{##1\isdot}
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
+    \part*{\@tauthesis@publicationplural}
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+    % APA related fixes
+    \if@apacitation
+    \newcommand*{\apablx@ifnotfinalname}{%
+      \ifboolexpr{
+        test {\ifnumless{\value{listcount}}{\value{liststop}}}
+        or
+        test \ifmorenames
+        }}
+    \newcommand*{\apablx@ifrevnameappcomma}[2]{%
+      \ifdefvoid{##1}
+        {\ifdefvoid{##2}}
+        {\@secondoftwo}
+      {\@secondoftwo}
+      {\apablx@ifnotfinalname}%
+    }
+    \renewbibmacro*{name:apa:family-given}[5]{%
+      \ifuseprefix
+        {\usebibmacro{name:delim}{##4##1}%
+         \usebibmacro{name:hook}{##4##1}%
+         \ifdefvoid{##4}{}{%
+           \mkbibnameprefix{##4}\isdot%
+           \ifprefchar{}{\bibnamedelimc}}%
+         \mkbibnamefamily{##1}\isdot%
+         \ifdefvoid{##2}{}{\revsdnamepunct\bibnamedelimd\mkbibnamegiven{##3}\isdot%
+                          \ifthenelse{\value{uniquename}>1}
+                            {\bibnamedelimd\mkbibbrackets{##2}}
+                            {}}%
+         \ifdefvoid{##5}{}{\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
+         \apablx@ifrevnameappcomma{##2}{##5}
+           {\addcomma}
+           {}}
+        {\usebibmacro{name:delim}{##1}%
+         \usebibmacro{name:hook}{##1}%
+         \mkbibnamefamily{##1}\isdot
+         \ifboolexpe{%
+           test {\ifdefvoid{##2}}
+           and
+           test {\ifdefvoid{##4}}}
+           {}
+           {\revsdnamepunct}%
+         \ifdefvoid{##2}{}{\bibnamedelimd\mkbibnamegiven{##3}%
+                          \ifthenelse{\value{uniquename}>1}
+                            {\bibnamedelimd\mkbibbrackets{##2}}
+                            {}}%
+         \ifdefvoid{##4}{}{%
+           \bibnamedelimc\mkbibnameprefix{##4}%
+           \ifprefchar{}{\bibnamedelimc}}%
+         \ifdefvoid{##5}{}{\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
+         \apablx@ifrevnameappcomma{##2}{##5}
+           {\addcomma}
+           {}}}
+    \renewcommand*{\intitlepunct}{\space}
+    \fi
+    \if@ieeecitation
+    \DeclareFieldFormat[article,periodical]{volume}{\bibstring{jourvol}\addnbspace##1}
+    \fi
+    \DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{##1\isdot}
 }
 
 % Make the publication title pages.
