@@ -99,7 +99,7 @@
 
 \aidisclaimerinclusioncmd
 
-\preface{tex/alkusanat.tex}{Tampereella}
+\preface{frontmatter/alkusanat.tex}{Tampereella}
 
 %%%%% Table of contents.
 
@@ -140,6 +140,10 @@
 % \printglossary[type=label]
 % ...
 
+\listofpublications
+
+\authorcontribution
+
 %%%%% MAIN MATTER %%%%%
 
 \mainmatter
@@ -150,6 +154,25 @@
 
 % Actually include your chapters in the file specified by this input statement.
 
-\input{index.tex}
+\input{mainmatter/index.tex}
+
+%%%%% Bibliography/references.
+
+\printbibliography[heading=bibintoc]
+
+%%%%% Appendices.
+
+\begin{appendices}
+
+\input{appendices/index.tex}
+
+\end{appendices}
+
+
+%%%%% PhD Publications
+
+\publicationmatter
+
+\input{publications/index.tex}
 
 \end{document}

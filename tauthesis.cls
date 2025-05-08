@@ -69,10 +69,12 @@
 
 \newif\if@customcitation\@customcitationtrue
 \newif\if@apacitation\@apacitationfalse
+\newif\if@ieeecitation\@ieeecitationfalse
 
 \newif\if@langenglish\@langenglishfalse
 \newif\if@taunotdraftmode\@taunotdraftmodetrue
 \newif\if@programs\@programsfalse
+
 
 \int_new:N\@tauthesis@fithesistypeint
 \int_new:N\@tauthesis@enthesistypeint
@@ -257,7 +259,7 @@
     mainlanguage / finnish .code:n = {
         \newcommand{\@tauthesis@mainlanguage}{finnish}
         \newcommand{\@tauthesis@tauthesis@mainlanguage}{finnish}
-        \newcommand{\@tauthesis@abstractfile}{tex/tiivistelma.tex}
+        \newcommand{\@tauthesis@abstractfile}{frontmatter/tiivistelma.tex}
         \newcommand{\@tauthesis@abstractname}{Tiivistelmä}
         \newcommand{\@tauthesis@university}{Tampereen~yliopisto}
         \newcommand{\@tauthesis@keywordname}{Avainsanat}
@@ -265,7 +267,7 @@
         \newcommand{\@tauthesis@originalitytext}{\@finoriginalitytext}
         \newcommand{\@tauthesis@logofile}{figures/tau-logo-fin-eng.eps}
         \newcommand{\@tauthesis@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
-        \newcommand{\@tauthesis@aidisclaimerfile}{tex/tekoalyn-kaytto.tex}
+        \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/tekoalyn-kaytto.tex}
         \newcommand{\@tauthesis@yestextcmd}{Kyllä}
         \newcommand{\@tauthesis@notextcmd}{Ei}
 
@@ -277,7 +279,7 @@
         \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
         \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@fisubtitle@joiner}
 
-        \newcommand{\@tauthesis@otherabstractfile}{tex/abstract.tex}
+        \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract.tex}
         \newcommand{\@tauthesis@otherabstractname}{Abstract}
         \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@enfacultyname}
         \newcommand{\@tauthesis@otherkeywordname}{Keywords}
@@ -295,9 +297,22 @@
         \newcommand{\@tauthesis@publicationplural}{Julkaisut}
         \newcommand{\@tauthesis@listpublicationname}{Alkuperäisjulkaisut}
         \newcommand{\@tauthesis@copyrighttext}{%
-            Artikkeleiden käyttöön väitöskirjan osana on saatu kustantajan lupa.%
+            Artikkeleiden~käyttöön~väitöskirjan~osana~on~saatu~kustantajan~lupa.%
         }
-        \newcommand{\@tauthesis@authorcontributionname}{Kirjoittajan osuus}
+        \newcommand{\@tauthesis@authorcontributionname}{Kirjoittajan~osuus}
+
+        \newcommand{\@tauthesis@firstprinttext}{%
+            Tämä~ja~seuraava~sivu
+            korvataan~painossa~nimiösivuilla.
+        }
+        \newcommand{\@tauthesis@lastprinttext}{%
+            Tämä~ja~edellinen~sivu
+            korvataan~painossa~nimiösivuilla.
+        }
+        \newcommand{\@tauthesis@librarytext}{%
+            Tälle~sivulle~lisätään~kirjastossa
+            sarjan~numero,~ISBN-~ja~ISSN-numerot.
+        }
 
 
         \@langenglishfalse
@@ -306,7 +321,7 @@
     mainlanguage / english .code:n = {
         \newcommand{\@tauthesis@mainlanguage}{english}
         \newcommand{\@tauthesis@tauthesis@mainlanguage}{english}
-        \newcommand{\@tauthesis@abstractfile}{tex/abstract.tex}
+        \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract.tex}
         \newcommand{\@tauthesis@abstractname}{Abstract}
         \newcommand{\@tauthesis@university}{Tampere~University}
         \newcommand{\@tauthesis@keywordname}{Keywords}
@@ -314,7 +329,7 @@
         \newcommand{\@tauthesis@originalitytext}{\@engoriginalitytext}
         \newcommand{\@tauthesis@logofile}{figures/tau-logo-fin-eng.eps}
         \newcommand{\@tauthesis@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
-        \newcommand{\@tauthesis@aidisclaimerfile}{tex/use-of-ai.tex}
+        \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai.tex}
         \newcommand{\@tauthesis@yestextcmd}{Yes}
         \newcommand{\@tauthesis@notextcmd}{No}
 
@@ -326,7 +341,7 @@
         \newcommand{\@tauthesis@programmename}{\@tauthesis@enprogrammename}
         \newcommand{\@tauthesis@keywords}{\@tauthesis@enkeywords}
 
-        \newcommand{\@tauthesis@otherabstractfile}{tex/tiivistelma.tex}
+        \newcommand{\@tauthesis@otherabstractfile}{frontmatter/tiivistelma.tex}
         \newcommand{\@tauthesis@otherabstractname}{Tiivistelmä}
         \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@fifacultyname}
         \newcommand{\@tauthesis@otherkeywordname}{Avainsanat}
@@ -344,9 +359,23 @@
         \newcommand{\@tauthesis@publicationplural}{Publications}
         \newcommand{\@tauthesis@listpublicationname}{Original publications}
         \newcommand{\@tauthesis@copyrighttext}{%
-            Publication reprinted with the permission of the copyright holders.%
+            Publication~reprinted~with~the~permission~of~the~copyright~holders.%
         }
-        \newcommand{\@tauthesis@authorcontributionname}{Author's contribution}
+        \newcommand{\@tauthesis@authorcontributionname}{Author's~contribution}
+
+        \newcommand{\@tauthesis@firstprinttext}{%
+            This~and~the~following~page
+            will~be~replaced~in~the~printing~house.
+        }
+        \newcommand{\@tauthesis@lastprinttext}{%
+            This~and~the~preceding~page
+            will~be~replaced~in~the~printing~house.
+        }
+        \newcommand{\@tauthesis@librarytext}{%
+            The~series,~ISBN~and~ISSN~numbers
+            are~added~on~this~page~in~the~library.
+        }
+
 
         \@langenglishtrue
     },
@@ -1079,7 +1108,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
         {\printtext[labelnumberwidth]{%
             \printfield{labelprefix}%
             \printfield{labelnumber}}}
-        {\settowidth{\labelnumberwidth}{\@tauthesi@publicationname8888}%
+        {\settowidth{\labelnumberwidth}{\@tauthesis@publicationname8888}%
             \setlength{\labelwidth}{\labelnumberwidth}%
             \setlength{\leftmargin}{\labelwidth}%
             \setlength{\labelsep}{\biblabelsep}%
@@ -1096,14 +1125,14 @@ The originality of this thesis has been checked using the Turnitin Originality s
 % Make the list of publications
 \newcommand{\listofpublications}{
     \begin{refsection}
-    \begin{refcontext}[labelprefix=\@publicationname\addspace, sorting=none]
+    \begin{refcontext}[labelprefix=\@tauthesis@publicationname\addspace, sorting=none]
     \nocite{*}
     \emergencystretch=2em
     \setlength{\bibitemsep}{8.5pt}
     \DeclareFieldFormat{labelnumber}{\ifinteger{##1}{\RN{##1}}{##1}}
     \DeclareFieldFormat{labelnumberwidth}{##1}
     \printbibliography[%
-        title=\@listpublicationname,%
+        title=\@tauthesis@listpublicationname,%
         keyword=thisdissertation,%
         env=thisdissertationstyle]
     \end{refcontext}
@@ -1112,9 +1141,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
 }
 
 % Make the author's contribution
-\newcommand{\authorcontribution}[1]{
-    \section*{\large\emph{\@tauthesis@authorcontributionname}}
-    \input{#1}
+\newcommand{\authorcontribution}{
+    \section*{\large\@tauthesis@authorcontributionname}
+    \input{frontmatter/authorcontribution.tex}
     \cleardoublepage
 }
 
@@ -1259,6 +1288,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \@tauthesis@paperwidth-\@tauthesis@bindingoffsetwidth%
 }
 
+\RequirePackage{pdfpages}
+
 \NewDocumentCommand{\nonFreePublication}{mm}{
     \thisdissertation{#1}
     \includepdf[%
@@ -1271,13 +1302,13 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 
 \if@langenglish
-    \NewDocumentCommand\@licensedUnder{m}{This work is licensed under #1}
+    \NewDocumentCommand\@tauthesis@licensedUnder{m}{This work is licensed under #1}
 \else
-    \NewDocumentCommand\@licensedUnder{m}{Tämä työ on lisensoitu lisenssin #1 mukaisesti}
+    \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä työ on lisensoitu lisenssin #1 mukaisesti}
 \fi
 
 \NewDocumentCommand\licensedPublication{mmm}{
-    \renewcommand{\@copyrighttext}{\@licensedUnder{#3}}
+    \renewcommand{\@tauthesis@copyrighttext}{\@tauthesis@licensedUnder{#3}}
     \thisdissertation{#1}
     \includepdf[%
         pages=-,

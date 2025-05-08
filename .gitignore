@@ -40,8 +40,19 @@
 
 ## Allow file types in subdirectories.
 
-!tex/
-!tex/*.tex
+!frontmatter/
+!frontmatter/*.tex
+
+!mainmatter/
+!mainmatter/*.tex
+
+!appendices/
+!appendices/*.tex
+
+!publications/
+!publications/index.tex
+!publications/article*.pdf
+!publications/publications.bib
 
 !code/
 !code/*.c
