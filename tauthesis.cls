@@ -620,7 +620,9 @@
     [backend=biber,
     citestyle=\@tauthesis@citationstyle,
     bibstyle=\@tauthesis@citationstyle,
-    sorting=\@tauthesis@citationsorting,]{biblatex}
+    sorting=\@tauthesis@citationsorting,
+    defernumbers,
+]{biblatex}
 
 \DefineBibliographyStrings{finnish}{%
     bibliography = {Lähteet},
