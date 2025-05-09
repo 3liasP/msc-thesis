@@ -75,8 +75,6 @@
 \newif\if@taunotdraftmode\@taunotdraftmodetrue
 \newif\if@programs\@programsfalse
 
-\newif\if@tauthesis@includepublications
-
 \int_new:N\@tauthesis@fithesistypeint
 \int_new:N\@tauthesis@enthesistypeint
 
@@ -88,6 +86,7 @@
 \int_set:Nn\@tauthesis@mastersthesistypeint{2}
 \int_set:Nn\@tauthesis@phdthesistypeint{3}
 
+\bool_new:N\@tauthesis@includePublications
 
 \tl_set:Nn\@tauthesis@bindingoffsetwidth {0.5cm}
 
@@ -255,7 +254,7 @@
 
     fititle.store = \@tauthesis@fititle,
 
-    includePublications .bool_set:N = \@tauthesis@includepublications,
+    includePublications .bool_set:N = \@tauthesis@includePublications,
 
     includePublications .default:n = true,
 
@@ -451,12 +450,6 @@
             % Do nothing.
         }
 }
-
-\if_bool:N\@tauthesis@includepublications
-    \@tauthesis@includepublicationstrue
-\else
-    \@tauthesis@includepublicationsfalse
-\fi
 
 % Turn off LaTeX3 syntax, so packages relying on LaTeX2e do not break when they are loaded.
 
@@ -1179,139 +1172,129 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 % Make the list of publications
 \newcommand{\listofpublications}{
-    \if@tauthesis@includepublications{%
-        \begin{refsection}
-        \begin{refcontext}[labelprefix=\@tauthesis@publicationname\addspace, sorting=none]
-        \nocite{*}
-        \emergencystretch=2em
-        \setlength{\bibitemsep}{8.5pt}
-        \DeclareFieldFormat{labelnumber}{\ifinteger{##1}{\RN{##1}}{##1}}
-        \DeclareFieldFormat{labelnumberwidth}{##1}
-        \printbibliography[%
-            title=\@tauthesis@listpublicationname,%
-            keyword=thisdissertation,%
-            env=thisdissertationstyle]
-        \end{refcontext}
-        \end{refsection}
-        \settowidth{\labelnumberwidth}{888}
-    }
+    \begin{refsection}
+    \begin{refcontext}[labelprefix=\@tauthesis@publicationname\addspace, sorting=none]
+    \nocite{*}
+    \emergencystretch=2em
+    \setlength{\bibitemsep}{8.5pt}
+    \DeclareFieldFormat{labelnumber}{\ifinteger{##1}{\RN{##1}}{##1}}
+    \DeclareFieldFormat{labelnumberwidth}{##1}
+    \printbibliography[%
+        title=\@tauthesis@listpublicationname,%
+        keyword=thisdissertation,%
+        env=thisdissertationstyle]
+    \end{refcontext}
+    \end{refsection}
+    \settowidth{\labelnumberwidth}{888}
     \authorcontribution
-    \else
-        % Leave out list of publications.
-    \fi
-    \ExplSyntaxOff
 }
 
 
 % The \publicationmatter command
 \newcommand{\publicationmatter}{
-    \if@tauthesis@includepublications%
-        \pagebreak
-        \fancyhf{}
-        \addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
-        \part*{\MakeUppercase\@tauthesis@publicationplural}
-        \thispagestyle{empty}
-        \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
-        % APA related fixes
-        \if@apacitation
-            \newcommand*{\apablx@ifnotfinalname}{%
-                \ifboolexpr{
-                    test {\ifnumless{\value{listcount}}{\value{liststop}}}
-                    or
-                    test \ifmorenames
-                }
+    \pagebreak
+    \fancyhf{}
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
+    \part*{\MakeUppercase\@tauthesis@publicationplural}
+    \thispagestyle{empty}
+    \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+    % APA related fixes
+    \if@apacitation
+        \newcommand*{\apablx@ifnotfinalname}{%
+            \ifboolexpr{
+                test {\ifnumless{\value{listcount}}{\value{liststop}}}
+                or
+                test \ifmorenames
             }
-            \newcommand*{\apablx@ifrevnameappcomma}[2]{%
-                \ifdefvoid{##1}
-                {\ifdefvoid{##2}}
-                {\@secondoftwo}
-                {\@secondoftwo}
-                {\apablx@ifnotfinalname}%
-            }
-            \renewbibmacro*{name:apa:family-given}[5]{%
-                \ifuseprefix{
-                    \usebibmacro
-                        {name:delim}
-                        {##4##1}%
-                    \usebibmacro
-                        {name:hook}
-                        {##4##1}%
-                    \ifdefvoid
-                        {##4}
-                        {}
-                        {%
-                            \mkbibnameprefix{##4}\isdot%
-                            \ifprefchar{}{\bibnamedelimc}
-                        }%
-                     \mkbibnamefamily{##1}\isdot%
-                     \ifdefvoid{##2}
-                        {}
-                        {
-                            \revsdnamepunct\bibnamedelimd\mkbibnamegiven{##3}\isdot%
-                            \ifthenelse
-                                {\value{uniquename}>1}
-                                {\bibnamedelimd\mkbibbrackets{##2}}
-                                {}
-                        }%
-                    \ifdefvoid
-                        {##5}
-                        {}
-                        {\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
-                        \apablx@ifrevnameappcomma
-                            {##2}
-                            {##5}
-                            {\addcomma}
+        }
+        \newcommand*{\apablx@ifrevnameappcomma}[2]{%
+            \ifdefvoid{##1}
+            {\ifdefvoid{##2}}
+            {\@secondoftwo}
+            {\@secondoftwo}
+            {\apablx@ifnotfinalname}%
+        }
+        \renewbibmacro*{name:apa:family-given}[5]{%
+            \ifuseprefix{
+                \usebibmacro
+                    {name:delim}
+                    {##4##1}%
+                \usebibmacro
+                    {name:hook}
+                    {##4##1}%
+                \ifdefvoid
+                    {##4}
+                    {}
+                    {%
+                        \mkbibnameprefix{##4}\isdot%
+                        \ifprefchar{}{\bibnamedelimc}
+                    }%
+                 \mkbibnamefamily{##1}\isdot%
+                 \ifdefvoid{##2}
+                    {}
+                    {
+                        \revsdnamepunct\bibnamedelimd\mkbibnamegiven{##3}\isdot%
+                        \ifthenelse
+                            {\value{uniquename}>1}
+                            {\bibnamedelimd\mkbibbrackets{##2}}
                             {}
-                }
-                {
-                    \usebibmacro{name:delim}{##1}%
-                    \usebibmacro{name:hook}{##1}%
-                    \mkbibnamefamily{##1}\isdot
-                    \ifboolexpe
-                        {%
-                            test {\ifdefvoid{##2}}
-                            and
-                            test {\ifdefvoid{##4}}
-                        }
-                        {}
-                        {\revsdnamepunct}%
-                    \ifdefvoid
-                        {##2}
-                        {}
-                        {
-                            \bibnamedelimd\mkbibnamegiven{##3}%
-                            \ifthenelse
-                                {\value{uniquename}>1}
-                                {\bibnamedelimd\mkbibbrackets{##2}}
-                                {}
-                        }%
-                    \ifdefvoid
-                        {##4}
-                        {}
-                        {%
-                            \bibnamedelimc\mkbibnameprefix{##4}%
-                            \ifprefchar{}{\bibnamedelimc}
-                        }%
-                    \ifdefvoid
-                        {##5}
-                        {}
-                        {\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
+                    }%
+                \ifdefvoid
+                    {##5}
+                    {}
+                    {\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
                     \apablx@ifrevnameappcomma
                         {##2}
                         {##5}
                         {\addcomma}
                         {}
-                    }
             }
-            \renewcommand*{\intitlepunct}{\space}
-        \fi
-        \if@ieeecitation
-            \DeclareFieldFormat[article,periodical]{volume}{\bibstring{jourvol}\addnbspace##1}
-        \fi
-        \DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{##1\isdot}
-    \else
-        % Leave out publication matter.
+            {
+                \usebibmacro{name:delim}{##1}%
+                \usebibmacro{name:hook}{##1}%
+                \mkbibnamefamily{##1}\isdot
+                \ifboolexpe
+                    {%
+                        test {\ifdefvoid{##2}}
+                        and
+                        test {\ifdefvoid{##4}}
+                    }
+                    {}
+                    {\revsdnamepunct}%
+                \ifdefvoid
+                    {##2}
+                    {}
+                    {
+                        \bibnamedelimd\mkbibnamegiven{##3}%
+                        \ifthenelse
+                            {\value{uniquename}>1}
+                            {\bibnamedelimd\mkbibbrackets{##2}}
+                            {}
+                    }%
+                \ifdefvoid
+                    {##4}
+                    {}
+                    {%
+                        \bibnamedelimc\mkbibnameprefix{##4}%
+                        \ifprefchar{}{\bibnamedelimc}
+                    }%
+                \ifdefvoid
+                    {##5}
+                    {}
+                    {\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
+                \apablx@ifrevnameappcomma
+                    {##2}
+                    {##5}
+                    {\addcomma}
+                    {}
+                }
+        }
+        \renewcommand*{\intitlepunct}{\space}
     \fi
+    \if@ieeecitation
+        \DeclareFieldFormat[article,periodical]{volume}{\bibstring{jourvol}\addnbspace##1}
+    \fi
+    \DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{##1\isdot}
 }
 
 % Make the publication title pages.
@@ -1385,29 +1368,56 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \RequirePackage{pdfpages}
 
 \NewDocumentCommand{\nonFreePublication}{mm}{
-    \if@tauthesis@includepublications%
-        \thisdissertation{#1}
-        \includepdf[%
-            pages=-,
-            width=\@truepaperwidth,
-            height=\paperheight,
-            keepaspectratio]{#2}
-        \cleardoublepage
-    \fi
+    \thisdissertation{#1}
+    \includepdf[%
+        pages=-,
+        width=\@truepaperwidth,
+        height=\paperheight,
+        keepaspectratio]{#2}
+    \cleardoublepage
 }
 
 \NewDocumentCommand\licensedPublication{mmm}{
-    \if@tauthesis@includepublications%
-        \renewcommand{\@tauthesis@copyrighttext}{\@tauthesis@licensedUnder{#3}}
-        \thisdissertation{#1}
-        \includepdf[%
-            pages=-,
-            width=\@truepaperwidth,
-            height=\paperheight,
-            keepaspectratio]{#2}
-        \cleardoublepage
-    \fi
+    \renewcommand{\@tauthesis@copyrighttext}{\@tauthesis@licensedUnder{#3}}
+    \thisdissertation{#1}
+    \includepdf[%
+        pages=-,
+        width=\@truepaperwidth,
+        height=\paperheight,
+        keepaspectratio]{#2}
+    \cleardoublepage
 }
+
+% Disable publication-related commands if thesis type below
+% doctoral thesis or publications manually disables via
+% disabled via class input argument.
+
+\ExplSyntaxOn
+
+\bool_if:nTF{
+    \@tauthesis@includePublications
+}{
+    \int_compare:nTF {
+        \@tauthesis@fithesistypeint
+        >=
+        \@tauthesis@phdthesistypeint
+    } {
+        \relax
+    } {
+        \RenewDocumentCommand\publicationmatter{}{\relax}
+        \RenewDocumentCommand\listofpublications{}{\relax}
+        \RenewDocumentCommand\nonFreePublication{mm}{\relax}
+        \RenewDocumentCommand\licensedPublication{mmm}{\relax}
+    }
+}{
+    \RenewDocumentCommand\publicationmatter{}{\relax}
+    \RenewDocumentCommand\listofpublications{}{\relax}
+    \RenewDocumentCommand\nonFreePublication{mm}{\relax}
+    \RenewDocumentCommand\licensedPublication{mmm}{\relax}
+}
+
+\ExplSyntaxOff
+
 
 % Place PDF metadata into an external main.xmpdata file.
 
