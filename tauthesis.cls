@@ -449,13 +449,13 @@
         }
 }
 
-% Turn off LaTeX3 syntax, so packages relying on LaTeX2e do not break when they are loaded.
-
 \if_bool:N\@tauthesis@includepublications
     \@tauthesis@includepublicationstrue
 \else
     \@tauthesis@includepublicationsfalse
 \fi
+
+% Turn off LaTeX3 syntax, so packages relying on LaTeX2e do not break when they are loaded.
 
 \ExplSyntaxOff
 
@@ -1368,9 +1368,6 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \newlength{\@includeheight}
 \newlength{\@onept}
 \setlength{\@onept}{1pt}
-
-\newlength{\@widthratio}
-\newlength{\@heightratio}
 
 \newlength{\@truepaperwidth}
 \setlength{\@truepaperwidth}{%
