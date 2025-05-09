@@ -418,10 +418,13 @@
 
 % Now that the settings are known, we make a few more conditional decisions.
 
-\int_compare:nTF
-    { \@tauthesis@fithesistypeint == \@tauthesis@enthesistypeint }
-    { \msg_info:nn { tauthesis } { thesis_types_match } }
-    { \msg_error:nn { tauthesis } { thesis_types_dont_match } }
+\int_compare:nTF {
+    \@tauthesis@fithesistypeint == \@tauthesis@enthesistypeint
+} {
+    \msg_info:nn { tauthesis } { thesis_types_match }
+} {
+    \msg_error:nn { tauthesis } { thesis_types_dont_match }
+}
 
 \newcommand{\mainmatter}{
     \int_compare:nTF
@@ -535,6 +538,22 @@
 \RequirePackage{tabularx}
 \RequirePackage{booktabs}
 \RequirePackage{listings}
+
+% Disable lists of figures and such with bachelor's theses.
+
+\ExplSyntaxOn
+
+\int_compare:nTF {
+    \@tauthesis@fithesistypeint < \@tauthesis@mastersthesistypeint
+} {
+    \renewcommand{\listoffigures}{}
+    \renewcommand{\listoftables}{}
+    \renewcommand{\lstlistoflistings}{}
+} {
+    % Else proceed as usual.
+}
+
+\ExplSyntaxOff
 
 \setstretch{1.213}
 \setlength{\headheight}{14.5pt}
