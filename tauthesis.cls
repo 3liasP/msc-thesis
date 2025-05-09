@@ -482,6 +482,8 @@
 
 \RequirePackage{newunicodechar}
 
+% Create fallback symbols for the AI discpaimer page checkboxes.
+
 % Check to see if this font is installed system-wide
 \IfFontExistsTF{NotoSansSymbols2}{%
 % One person has this installed system-wide
