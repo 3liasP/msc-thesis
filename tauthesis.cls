@@ -905,15 +905,7 @@
 \setlist{itemsep=-3pt, labelindent=1.27cm}
 
 % Text hyperlinking
-\RequirePackage{hyperref}
-
-\hypersetup{
-    colorlinks=true,
-    linkcolor=taupurple,
-    citecolor=taupurple,
-    urlcolor=blue,
-    filecolor=magenta
-}
+%\RequirePackage[pdfa]{hyperref}
 
 %\RequirePackage{url}
 \urlstyle{same}
@@ -1419,10 +1411,18 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 %% Load the data from the metadata file with pdfx.
 
-\if@taunotdraftmode
-    \RequirePackage[a-2b,mathxmp]{pdfx}
-    \catcode30=12
-\fi
+\PassOptionsToPackage{hyperref}{pdfa}
+
+\RequirePackage[a-2b,mathxmp]{pdfx}
+\catcode30=12
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=taupurple,
+    citecolor=taupurple,
+    urlcolor=blue,
+    filecolor=magenta
+}
 
 \makeatother
 
