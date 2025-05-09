@@ -442,6 +442,8 @@
         }
 }
 
+% Turn off LaTeX3 syntax, so packages relying on LaTeX2e do not break when they are loaded.
+
 \ExplSyntaxOff
 
 % Inherit from the report document class.
