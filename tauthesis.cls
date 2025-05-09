@@ -405,9 +405,11 @@
 
 \msg_new:nnn { tauthesis } { thesis_types_dont_match } { Finnish~and~English~thesis~types~do~not~match! }
 
-% Process the key--value arguments.
+% The above settings will not actually exist until this is called.
 
 \ProcessKeyOptions[tauthesis]
+
+% Now that the settings are known, we make a few more conditional decisions.
 
 \int_compare:nTF
     { \@tauthesis@fithesistypeint == \@tauthesis@enthesistypeint }
@@ -504,7 +506,9 @@
     left=\@tauthesis@innermargin,
     right=\@tauthesis@outermargin,
 ]{geometry}
+
 \special{papersize={\@tauthesis@paperwidth,\@tauthesis@paperheight}}
+
 \RequirePackage{fancyhdr}
 \RequirePackage[explicit]{titlesec}
 \RequirePackage{titletoc}
