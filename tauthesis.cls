@@ -538,19 +538,20 @@
 \RequirePackage{tabularx}
 \RequirePackage{booktabs}
 \RequirePackage{listings}
+\lstset{texcl=true, captionpos=b, commentstyle=\tt}
 
 % Disable lists of figures and such with bachelor's theses.
 
 \ExplSyntaxOn
 
 \int_compare:nTF {
-    \@tauthesis@fithesistypeint < \@tauthesis@mastersthesistypeint
+    \@tauthesis@fithesistypeint >= \@tauthesis@mastersthesistypeint
 } {
-    \renewcommand{\listoffigures}{}
-    \renewcommand{\listoftables}{}
-    \renewcommand{\lstlistoflistings}{}
+    \relax
 } {
-    % Else proceed as usual.
+    \renewcommand\listoffigures{\relax}
+    \renewcommand\listoftables{\relax}
+    \renewcommand\lstlistoflistings{\relax}
 }
 
 \ExplSyntaxOff
@@ -717,13 +718,6 @@
     labelsep=colon]{caption}
 
 \renewcommand{\arraystretch}{1.25}
-
-% Code listing handling
-\if@programs
-    \RequirePackage{listings}
-    % textcl=true courtesy of Mika Kuitula
-    \lstset{texcl=true, captionpos=b, commentstyle=\tt}
-\fi
 
 % List of symbols and abbreviations
 \RequirePackage[automake, nonumberlist, nopostdot]{glossaries}
