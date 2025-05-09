@@ -528,7 +528,16 @@
 
 \pagestyle{fancyplain}
 \fancyhf{}
-\rhead{\thepage}
+\ExplSyntaxOn
+    \int_compare:nTF
+        {\@tauthesis@fithesistypeint = \@tauthesis@phdthesistypeint}
+        {
+            \cfoot{\thepage}
+        }
+        {
+            \rhead{\thepage}
+        }
+\ExplSyntaxOff
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
