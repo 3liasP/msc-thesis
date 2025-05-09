@@ -313,7 +313,10 @@
             Tälle~sivulle~lisätään~kirjastossa
             sarjan~numero,~ISBN-~ja~ISSN-numerot.
         }
+        \newcommand{\@glossaryname}{Lyhenteet ja merkinnät}
+        \newcommand{\@appendixname}{Liite}
 
+        \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä työ on lisensoitu lisenssin #1 mukaisesti}
 
         \@langenglishfalse
     },
@@ -376,6 +379,10 @@
             are~added~on~this~page~in~the~library.
         }
 
+        \newcommand{\@glossaryname}{List of Symbols and Abbreviations}
+        \newcommand{\@appendixname}{Appendix}
+
+        \NewDocumentCommand\@tauthesis@licensedUnder{m}{This work is licensed under #1}
 
         \@langenglishtrue
     },
@@ -680,14 +687,6 @@
 
 % List of symbols and abbreviations
 \RequirePackage[automake, nonumberlist, nopostdot]{glossaries}
-
-\if@langenglish
-    \newcommand{\@glossaryname}{List of Symbols and Abbreviations}
-    \newcommand{\@appendixname}{Appendix}
-\else
-    \newcommand{\@glossaryname}{Lyhenteet ja merkinnät}
-    \newcommand{\@appendixname}{Liite}
-\fi
 
 \newlength\glsnamewidth
 \newglossarystyle{taulong}{%
@@ -1357,13 +1356,6 @@ The originality of this thesis has been checked using the Turnitin Originality s
         keepaspectratio]{#2}
     \cleardoublepage
 }
-
-
-\if@langenglish
-    \NewDocumentCommand\@tauthesis@licensedUnder{m}{This work is licensed under #1}
-\else
-    \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä työ on lisensoitu lisenssin #1 mukaisesti}
-\fi
 
 \NewDocumentCommand\licensedPublication{mmm}{
     \renewcommand{\@tauthesis@copyrighttext}{\@tauthesis@licensedUnder{#3}}
