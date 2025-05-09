@@ -530,7 +530,11 @@
 \fancyhf{}
 \ExplSyntaxOn
     \int_compare:nTF
-        {\@tauthesis@fithesistypeint = \@tauthesis@phdthesistypeint}
+        {
+            \@tauthesis@fithesistypeint
+            =
+            \@tauthesis@phdthesistypeint
+        }
         {
             \cfoot{\thepage}
         }
