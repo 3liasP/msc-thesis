@@ -1196,7 +1196,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \pagebreak
         \fancyhf{}
         \addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
-        \part*{\@tauthesis@publicationplural}
+        \part*{\MakeUppercase\@tauthesis@publicationplural}
         \thispagestyle{empty}
         \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
         % APA related fixes
@@ -1296,7 +1296,6 @@ The originality of this thesis has been checked using the Turnitin Originality s
             \DeclareFieldFormat[article,periodical]{volume}{\bibstring{jourvol}\addnbspace##1}
         \fi
         \DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{##1\isdot}
-        \authorcontribution
     \else
         % Leave out publication matter.
     \fi
