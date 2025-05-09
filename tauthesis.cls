@@ -904,18 +904,6 @@
 
 \setlist{itemsep=-3pt, labelindent=1.27cm}
 
-% Image alt texts
-\RequirePackage{pdfcomment}
-
-% Automated math alt texts.
-\ifluatex
-    % Do nothing for now, as the axessibility package does not support lualatex.
-    % See pull request https://github.com/integr-abile/axessibility/pull/23
-    % for details.
-\else
-    \RequirePackage[accsupp]{axessibility}
-\fi
-
 % Text hyperlinking
 \RequirePackage{hyperref}
 
