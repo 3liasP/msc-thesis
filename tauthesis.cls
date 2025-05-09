@@ -1165,8 +1165,11 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 % The \publicationmatter command
 \newcommand{\publicationmatter}{
+    \pagebreak
+    \fancyhf{}
     \addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
     \part*{\@tauthesis@publicationplural}
+    \thispagestyle{empty}
     \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
     % APA related fixes
     \if@apacitation
@@ -1272,7 +1275,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \setcounter{publication}{0}
 
 \DeclareCiteCommand{\thisdissertation}{
-%    \cleardoublepage
+    %\cleardoublepage
     \thispagestyle{empty}
     \refstepcounter{publication}
     \addcontentsline{toc}{chapter}{\fontsize{\myChapterFontSize}{12pt}\selectfont\@tauthesis@publicationname{} \Roman{publication}}
