@@ -1364,11 +1364,6 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \cleardoublepage
 }
 
-\newlength{\@includewidth}
-\newlength{\@includeheight}
-\newlength{\@onept}
-\setlength{\@onept}{1pt}
-
 \newlength{\@truepaperwidth}
 \setlength{\@truepaperwidth}{%
     \@tauthesis@paperwidth-\@tauthesis@bindingoffsetwidth%
