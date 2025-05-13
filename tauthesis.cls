@@ -80,11 +80,13 @@
 
 \int_new:N\@tauthesis@bachelorsthesistypeint
 \int_new:N\@tauthesis@mastersthesistypeint
-\int_new:N\@tauthesis@phdthesistypeint
+\int_new:N\@tauthesis@licentiatethesistypeint
+\int_new:N\@tauthesis@doctoralthesistypeint
 
 \int_set:Nn\@tauthesis@bachelorsthesistypeint{1}
 \int_set:Nn\@tauthesis@mastersthesistypeint{2}
-\int_set:Nn\@tauthesis@phdthesistypeint{3}
+\int_set:Nn\@tauthesis@licentiatethesistypeint{3}
+\int_set:Nn\@tauthesis@doctoralthesistypeint{4}
 
 \bool_new:N\@tauthesis@includePublications
 
@@ -144,8 +146,8 @@
         \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
     ,
 
-    enthesistype / doctor .code:n =
-        \tl_set:Nn\@tauthesis@enthesistype {Doctoral~dissertation}
+    enthesistype / licentiate .code:n =
+        \tl_set:Nn\@tauthesis@enthesistype {Licentiate~Thesis}
         \tl_set:Nn\@tauthesis@innermargin {2cm}
         \tl_set:Nn\@tauthesis@outermargin {2cm}
         \tl_set:Nn\@tauthesis@topmargin {2cm}
@@ -155,7 +157,21 @@
         \tl_set:Nn\@tauthesis@paperheight {250mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
-        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@phdthesistypeint}
+        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@licentiatethesistypeint}
+    ,
+
+    enthesistype / doctor .code:n =
+        \tl_set:Nn\@tauthesis@enthesistype {Doctoral~Dissertation}
+        \tl_set:Nn\@tauthesis@innermargin {2cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2cm}
+        \tl_set:Nn\@tauthesis@bottommargin {3cm}
+        \tl_set:Nn\@tauthesis@papersize {b5paper}
+        \tl_set:Nn\@tauthesis@paperwidth {176mm}
+        \tl_set:Nn\@tauthesis@paperheight {250mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
+        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@doctoralthesistypeint}
     ,
 
     enthesistype / unknown .code:n =
@@ -229,6 +245,20 @@
         \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
     ,
 
+    fithesistype / lisensiaatti .code =
+        \tl_set:Nn\@tauthesis@fithesistype {Lisensiaatintyö}
+        \tl_set:Nn\@tauthesis@innermargin {2cm}
+        \tl_set:Nn\@tauthesis@outermargin {2cm}
+        \tl_set:Nn\@tauthesis@topmargin {2cm}
+        \tl_set:Nn\@tauthesis@bottommargin {3cm}
+        \tl_set:Nn\@tauthesis@papersize {b5paper}
+        \tl_set:Nn\@tauthesis@paperwidth {176mm}
+        \tl_set:Nn\@tauthesis@paperheight {250mm}
+        \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
+        \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
+        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@licentiatethesistypeint}
+    ,
+
     fithesistype / tohtori .code:n =
         \tl_set:Nn\@tauthesis@fithesistype {Väitöskirja}
         \tl_set:Nn\@tauthesis@innermargin {2cm}
@@ -240,7 +270,7 @@
         \tl_set:Nn\@tauthesis@paperheight {250mm}
         \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
         \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
-        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@phdthesistypeint}
+        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@doctoralthesistypeint}
     ,
 
     fithesistype / unknown .code:n =
@@ -427,12 +457,20 @@
 
 \newcommand{\mainmatter}{
     \int_compare:nTF
-        {\@tauthesis@fithesistypeint < \@tauthesis@phdthesistypeint}
+        {
+            \@tauthesis@fithesistypeint
+            <
+            \@tauthesis@licentiatethesistypeint
+        }
         {\clearpage}
         {\cleardoublepage}
 
     \int_compare:nTF
-        {\@tauthesis@fithesistypeint = \@tauthesis@phdthesistypeint}
+        {
+            \@tauthesis@fithesistypeint
+            >=
+            \@tauthesis@licentiatethesistypeint
+        }
         {
             \newcounter{temp}
             \setcounter{temp}{\value{page}}
@@ -442,7 +480,10 @@
         }
     \pagenumbering{arabic}
     \int_compare:nTF
-        {\@tauthesis@fithesistypeint = \@tauthesis@phdthesistypeint}
+        {
+            \@tauthesis@fithesistypeint
+            >=
+            \@tauthesis@licentiatethesistypeint}
         {
             \setcounter{page}{\value{temp}}
         }
@@ -573,8 +614,8 @@
     \int_compare:nTF
         {
             \@tauthesis@fithesistypeint
-            =
-            \@tauthesis@phdthesistypeint
+            >=
+            \@tauthesis@licentiatethesistypeint
         }
         {
             \cfoot{\thepage}
@@ -904,10 +945,6 @@
 
 \setlist{itemsep=-3pt, labelindent=1.27cm}
 
-% Text hyperlinking
-%\RequirePackage[pdfa]{hyperref}
-
-%\RequirePackage{url}
 \urlstyle{same}
 
 %%%%% COMMAND DEFINITIONS %%%%%
@@ -1380,7 +1417,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \int_compare:nTF {
         \@tauthesis@fithesistypeint
         >=
-        \@tauthesis@phdthesistypeint
+        \@tauthesis@licentiatethesistypeint
     } {
         \relax
     } {
