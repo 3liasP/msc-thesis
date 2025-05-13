@@ -460,6 +460,60 @@
 
 % Print serial number page for doctoral theses.
 
+
+\DeclareDocumentCommand\@tauthesis@maketitle{}{
+    \thispagestyle{empty}
+    \vspace*{\@tauthesis@logoyoffset}
+    \hspace*{\@tauthesis@logoxoffset}
+    \includegraphics[width=8cm]{\@tauthesis@logofile}
+    \par\medskip
+    \vspace{102pt}
+    {\raggedleft\fontsize{20pt}{0pt}\selectfont\@tauthesis@author\par}
+    \vspace{2cm}
+    {\raggedleft\bf\fontsize{25pt}{0pt}\selectfont\color{taupurple}%
+        \textsc{\@tauthesis@title}\par}
+    \vspace{1cm}
+    {\raggedleft\scshape\fontsize{20pt}{0pt}\selectfont\color{taupurple}%
+        \@tauthesis@subtitle\par}
+    \vfill
+    \begin{center}
+    \color{red}
+        \ExplSyntaxOn
+        \int_compare:nTF{
+            \@tauthesis@fithesistypeint
+            >=
+            \@tauthesis@doctoralthesistypeint
+        }{
+            \textbf{
+                \tl_if_eq:NnTF{
+                    \@tauthesis@mainlanguage
+                }{
+                    finnish
+                }{
+                    Tämä~ja~seuraava~sivu~korvataan~painotalossa.
+                }{
+                    This~and~the~following~page~will~be~replaced~at~the~printing~house.
+                }
+            }
+        }{
+            % Do not show printing house text for thesis types lower than doctoral thesis.
+        }
+        \ExplSyntaxOff
+    \end{center}
+    \vfill
+    {\raggedleft%
+        \@tauthesis@thesistype\\%
+        \@tauthesis@university\\%
+        \@tauthesis@facultyname\\%
+        \DTMDisplaydate%
+            {\the\year}%
+            {\the\month}%
+            {\the\day}{-1}%
+    \par}
+    \vspace{42pt}
+    \clearpage
+}
+
 \NewDocumentCommand\serialNumberPage{}{
     \clearpage
         \begingroup
@@ -549,6 +603,8 @@
 % Use 12pt nonetheless and scale fonts back
 % to make maths closer to actual font size.
 \LoadClass[12pt, a4paper]{report}
+
+\RenewDocumentCommand\maketitle{}{\@tauthesis@maketitle}
 
 % Font selection
 
@@ -1023,59 +1079,6 @@ Tämän julkaisun alkuperäisyys on tarkastettu Turnitin Originality -ohjelmalla
 }
 \newcommand{\@engoriginalitytext}{%
 The originality of this thesis has been checked using the Turnitin Originality service.
-}
-
-% Make the title
-\renewcommand\maketitle{
-    \thispagestyle{empty}
-    \vspace*{\@tauthesis@logoyoffset}
-    \hspace*{\@tauthesis@logoxoffset}
-    \includegraphics[width=8cm]{\@tauthesis@logofile}
-    \par\medskip
-    \vspace{102pt}
-    {\raggedleft\fontsize{20pt}{0pt}\selectfont\@tauthesis@author\par}
-    \vspace{2cm}
-    {\raggedleft\bf\fontsize{25pt}{0pt}\selectfont\color{taupurple}%
-        \textsc{\@tauthesis@title}\par}
-    \vspace{1cm}
-    {\raggedleft\scshape\fontsize{20pt}{0pt}\selectfont\color{taupurple}%
-        \@tauthesis@subtitle\par}
-%     \vfill
-%     \begingroup\color{red}
-%     \ExplSyntaxOn
-%     \int_compare:nTF{
-%         \@tauthesis@fithesistypeint
-%         >=
-%         \@tauthesis@doctoralthesistypeint
-%     }{
-%         \textbf{
-%             \tl_if_eq:NnTF{
-%                 \@tauthesis@mainlanguage
-%             }{
-%                 finnish
-%             }{
-%                 Tämä~ja~seuraava~sivu~korvataan~painotalossa.
-%             }{
-%                 This~and~the~following~page~will~be~replaced~at~the~printing~house.
-%             }
-%         }
-%     }{
-%         % Do not show printing house text for thesis types lower than doctoral thesis.
-%     }
-%     \ExplSyntaxOff
-%     \endgroup
-    \vfill
-    {\raggedleft%
-        \@tauthesis@thesistype\\%
-        \@tauthesis@university\\%
-        \@tauthesis@facultyname\\%
-        \DTMDisplaydate%
-            {\the\year}%
-            {\the\month}%
-            {\the\day}{-1}%
-    \par}
-    \vspace{42pt}
-    \clearpage
 }
 
 % Make the abstracts
