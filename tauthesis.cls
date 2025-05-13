@@ -32,7 +32,9 @@
   \expandafter\stop
 \fi
 
+\pdfvariable minorversion=5
 % Load the expl3 package and l3keys2e module
+%
 
 \RequirePackage{expl3}
 
@@ -87,6 +89,8 @@
 \int_set:Nn\@tauthesis@mastersthesistypeint{2}
 \int_set:Nn\@tauthesis@licentiatethesistypeint{3}
 \int_set:Nn\@tauthesis@doctoralthesistypeint{4}
+
+\tl_new:N\@tauthesis@mainlanguage
 
 \bool_new:N\@tauthesis@includePublications
 
@@ -293,8 +297,7 @@
     mainlanguage .choice:,
 
     mainlanguage / finnish .code:n = {
-        \newcommand{\@tauthesis@mainlanguage}{finnish}
-        \newcommand{\@tauthesis@tauthesis@mainlanguage}{finnish}
+        \tl_set:Nn\@tauthesis@mainlanguage{finnish}
         \newcommand{\@tauthesis@abstractfile}{frontmatter/tiivistelma.tex}
         \newcommand{\@tauthesis@abstractname}{Tiivistelmä}
         \newcommand{\@tauthesis@university}{Tampereen~yliopisto}
@@ -306,13 +309,12 @@
         \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/tekoalyn-kaytto.tex}
         \newcommand{\@tauthesis@yestextcmd}{Kyllä}
         \newcommand{\@tauthesis@notextcmd}{Ei}
-
+        \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
         \newcommand{\@tauthesis@title}{\@tauthesis@fititle}
         \newcommand{\@tauthesis@subtitle}{\@tauthesis@fisubtitle}
         \newcommand{\@tauthesis@thesistype}{\@tauthesis@fithesistype}
         \newcommand{\@tauthesis@facultyname}{\@tauthesis@fifacultyname}
         \newcommand{\@tauthesis@programmename}{\@tauthesis@fiprogrammename}
-        \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
         \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@fisubtitle@joiner}
 
         \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract.tex}
@@ -358,8 +360,7 @@
     },
 
     mainlanguage / english .code:n = {
-        \newcommand{\@tauthesis@mainlanguage}{english}
-        \newcommand{\@tauthesis@tauthesis@mainlanguage}{english}
+        \tl_set:Nn\@tauthesis@mainlanguage{english}
         \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract.tex}
         \newcommand{\@tauthesis@abstractname}{Abstract}
         \newcommand{\@tauthesis@university}{Tampere~University}
@@ -448,11 +449,59 @@
 % Now that the settings are known, we make a few more conditional decisions.
 
 \int_compare:nTF {
-    \@tauthesis@fithesistypeint == \@tauthesis@enthesistypeint
+    \@tauthesis@fithesistypeint
+    ==
+    \@tauthesis@enthesistypeint
 } {
     \msg_info:nn { tauthesis } { thesis_types_match }
 } {
     \msg_error:nn { tauthesis } { thesis_types_dont_match }
+}
+
+% Print serial number page for doctoral theses.
+
+\NewDocumentCommand\serialNumberPage{}{
+    \clearpage
+        \begingroup
+        \begin{center}
+        \null\vfill
+        \tl_if_eq:NnTF{
+            \@tauthesis@mainlanguage
+        }{
+            finnish
+        }{
+            Kirjasto~lisää~tälle~sivulle~työn~sarja-,~ISSN-~ja~ISBN-numerot.
+        }{
+            Library~will~add~the~thesis~series-,~ISSN-~and~ISBN~numbers~onto~this~page.
+        }
+        \vfill
+        \begingroup\color{red}
+        \textbf{
+            \tl_if_eq:NnTF{
+                \@tauthesis@mainlanguage
+            }{
+                finnish
+            }{
+                Tämä~ja~edellinen~sivu~korvataan~painotalossa.
+            }{
+                This~and~the~preceding~page~will~be~replaced~at~the~printing~house.
+            }
+        }
+        \endgroup
+    \end{center}
+    \vfill
+}
+
+% Only include the serial number page if we are actually writing a doctoral thesis.
+
+\int_compare:nTF{
+    \@tauthesis@fithesistypeint
+    <
+    \@tauthesis@doctoralthesistypeint
+}{
+    \RenewDocumentCommand\serialNumberPage{}{}
+}{
+    % Keep the command as-is.
 }
 
 \newcommand{\mainmatter}{
@@ -986,6 +1035,30 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \vspace{1cm}
     {\raggedleft\scshape\fontsize{20pt}{0pt}\selectfont\color{taupurple}%
         \@tauthesis@subtitle\par}
+%     \vfill
+%     \begingroup\color{red}
+%     \ExplSyntaxOn
+%     \int_compare:nTF{
+%         \@tauthesis@fithesistypeint
+%         >=
+%         \@tauthesis@doctoralthesistypeint
+%     }{
+%         \textbf{
+%             \tl_if_eq:NnTF{
+%                 \@tauthesis@mainlanguage
+%             }{
+%                 finnish
+%             }{
+%                 Tämä~ja~seuraava~sivu~korvataan~painotalossa.
+%             }{
+%                 This~and~the~following~page~will~be~replaced~at~the~printing~house.
+%             }
+%         }
+%     }{
+%         % Do not show printing house text for thesis types lower than doctoral thesis.
+%     }
+%     \ExplSyntaxOff
+%     \endgroup
     \vfill
     {\raggedleft%
         \@tauthesis@thesistype\\%
@@ -1438,28 +1511,54 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 % Place PDF metadata into an external main.xmpdata file.
 
-\begin{filecontents*}[overwrite]{\jobname.xmpdata}
-\Title{\@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle}
-\Author{\@tauthesis@author}
-\Language{\@tauthesis@mainlanguage}
-\Keywords{\@tauthesis@fikeywords, \@tauthesis@enkeywords}
-\Subject{\@tauthesis@subject}
-\end{filecontents*}
+% \begin{filecontents*}[overwrite]{\jobname.xmpdata}
+% \Title{\@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle}
+% \Author{\@tauthesis@author}
+% \Language{\@tauthesis@mainlanguage}
+% \Keywords{\@tauthesis@fikeywords, \@tauthesis@enkeywords}
+% \Subject{\@tauthesis@subject}
+% \end{filecontents*}
 
 %% Load the data from the metadata file with pdfx.
 
 \PassOptionsToPackage{hyperref}{pdfa}
 
-\RequirePackage[a-2b,mathxmp]{pdfx}
-\catcode30=12
+% \RequirePackage[a-2b,mathxmp]{pdfx}
+% \catcode30=12
 
-\hypersetup{
-    colorlinks=true,
-    linkcolor=taupurple,
-    citecolor=taupurple,
-    urlcolor=blue,
-    filecolor=magenta
+\RequirePackage{hyperref}
+
+\ExplSyntaxOn
+\tl_if_eq:NnTF{
+    \@tauthesis@mainlanguage
+}{
+    finnish
+}{
+    \hypersetup{
+        colorlinks=true,
+        linkcolor=taupurple,
+        citecolor=taupurple,
+        urlcolor=blue,
+        filecolor=magenta,
+        pdftitle = {\@tauthesis@fititle},
+        pdfauthor={\@tauthesis@author},
+        pdfsubject={\@tauthesis@subject},
+        pdfkeywords={\@tauthesis@fikeywords},
+    }
+}{
+    \hypersetup{
+        colorlinks=true,
+        linkcolor=taupurple,
+        citecolor=taupurple,
+        urlcolor=blue,
+        filecolor=magenta,
+        pdftitle = {\@tauthesis@entitle},
+        pdfauthor={\@tauthesis@author},
+        pdfsubject={\@tauthesis@subject},
+        pdfkeywords={\@tauthesis@enkeywords\@tauthesis@fikeywords},
+    }
 }
+\ExplSyntaxOff
 
 \makeatother
 
