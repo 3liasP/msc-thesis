@@ -1198,7 +1198,6 @@ The originality of this thesis has been checked using the Turnitin Originality s
 }
 
 \NewDocumentEnvironment{aidisclaimer}{s+b}{
-    \clearpage
     \chapter*{\@tauthesis@aidisclaimertitle}
     \if@langenglish
         Artificial intelligence (AI) has been used in generating this work:
@@ -1231,7 +1230,6 @@ The originality of this thesis has been checked using the Turnitin Originality s
         tekoälyä, ja hyväksyn vastuun mahdollisista tästä seuranneista
         eettisten ohjeiden rikkomuksista.
     \fi
-    \clearpage
 }
 
 \NewDocumentCommand\aidisclaimerinclusioncmd{}{

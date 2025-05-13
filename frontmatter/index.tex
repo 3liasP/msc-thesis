@@ -1,0 +1,66 @@
+
+
+\serialNumberPage
+
+%%%%% Abstracts and preface.
+%
+% Write the abstract(s) and the preface into a separate file for the sake of
+% clarity. Pass the appropriate file name as the first argument to these
+% commands. Put the \abstract in the primary language first and the
+% \otherabstract in the secondary language second. Those who do not speak
+% Finnish only need the first abstract. The second argument of the \preface
+% command takes the place where the thesis was signed in.
+%
+% Edit the files tex/{use-of-ai,tekoalyn-kaytto}.tex to match your use of AI in
+% generating this thesis.
+%
+
+\abstract
+
+\otherabstract
+
+\preface{frontmatter/alkusanat.tex}{Tampereella}
+
+%%%%% Table of contents.
+
+
+\hypersetup{
+	linkcolor=black,
+}
+
+\tableofcontents
+
+%%%%% Lists of figures, tables, listings and terms.
+%
+% Print the lists of figures and/or tables. Uncomment either of these commands
+% as required. Both are optional, but if there are many important
+% figures/tables, listing them may be a good idea.
+
+\listoffigures
+\listoftables
+\lstlistoflistings
+
+% Misc stuff related to how the glossary is displayed.
+
+\glsaddall
+\setglossarystyle{taulong}
+\setlength{\glsnamewidth}{0.25\textwidth}
+\setlength{\glsdescwidth}{0.75\textwidth}
+\renewcommand*{\glsgroupskip}{}
+
+% Print the default glossary of abbreviations, if necessary. Otherwise comment
+% out. The appropriate Finnish variant is 'Lyhenteet'
+
+\printglossary[title={Lyhenteet ja merkinnät}]
+
+% Print more than one glossary with these lines. Otherwise comment out.
+
+% \printglossary[type=symbs]
+% \printglossary[type=label]
+% ...
+
+\listofpublications
+
+% AI disclaimer page.
+
+\aidisclaimerinclusioncmd
