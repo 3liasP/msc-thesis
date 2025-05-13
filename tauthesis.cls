@@ -1004,6 +1004,11 @@
     \noexpand\selectlanguage{#1}}\x
 }
 
+\NewDocumentCommand\titlepagematter{}{
+    \clearpage
+    \pagenumbering{gobble}
+}
+
 % \frontmatter command
 \newcommand{\frontmatter}{
     \clearpage
