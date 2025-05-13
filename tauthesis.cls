@@ -499,7 +499,7 @@
     <
     \@tauthesis@doctoralthesistypeint
 }{
-    \RenewDocumentCommand\serialNumberPage{}{}
+    \RenewDocumentCommand\serialNumberPage{}{\clearpage\pagenumbering{roman}}
 }{
     % Keep the command as-is.
 }
