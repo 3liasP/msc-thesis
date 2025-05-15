@@ -356,7 +356,7 @@
 
         \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{Ohjelma-~ja~lagoritmiluettelo}}
 
-        \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä~työ~on~lisensoitu~lisenssin~#1~mukaisesti}
+        \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä~työ~on~lisensoitu~lisenssin~##1~mukaisesti}
 
         \@langenglishfalse
     },
@@ -423,7 +423,7 @@
 
         \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{List~of~Programs~and~Algorithms}}
 
-        \NewDocumentCommand\@tauthesis@licensedUnder{m}{This~work~is~licensed~under~#1}
+        \NewDocumentCommand\@tauthesis@licensedUnder{m}{This~work~is~licensed~under~##1}
 
         \@langenglishtrue
     },
