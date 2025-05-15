@@ -94,6 +94,12 @@
 
 \bool_new:N\@tauthesis@includePublications
 
+\bool_new:N\@tauthesis@includeListOfFigures
+
+\bool_new:N\@tauthesis@includeListOfTables
+
+\bool_new:N\@tauthesis@includeListOfListings
+
 \tl_set:Nn\@tauthesis@bindingoffsetwidth {0.5cm}
 
 % Define keyword arguments for this class file using LaTeX3 syntax.
@@ -287,6 +293,24 @@
     ,
 
     fititle.store = \@tauthesis@fititle,
+
+    includeListOfFigures .bool_set:N = \@tauthesis@includeListOfFigures,
+
+    includeListOfFigures .default:n = true,
+
+    includeListOfFigures .initial:n = false,
+
+    includeListOfTables .bool_set:N = \@tauthesis@includeListOfTables,
+
+    includeListOfTables .default:n = true,
+
+    includeListOfTables .initial:n = false,
+
+    includeListOfListings .bool_set:N = \@tauthesis@includeListOfListings,
+
+    includeListOfListings .default:n = true,
+
+    includeListOfListings .initial:n = false,
 
     includePublications .bool_set:N = \@tauthesis@includePublications,
 
@@ -683,22 +707,6 @@
 \RequirePackage{listings}
 \lstset{texcl=true, captionpos=b, commentstyle=\tt}
 
-% Disable lists of figures and such with bachelor's theses.
-
-\ExplSyntaxOn
-
-\int_compare:nTF {
-    \@tauthesis@fithesistypeint >= \@tauthesis@mastersthesistypeint
-} {
-    \relax
-} {
-    \renewcommand\listoffigures{\relax}
-    \renewcommand\listoftables{\relax}
-    \renewcommand\lstlistoflistings{\relax}
-}
-
-\ExplSyntaxOff
-
 \setstretch{1.213}
 \setlength{\headheight}{14.5pt}
 
@@ -1077,7 +1085,6 @@
     \pagenumbering{roman}
     \setcounter{page}{0}
 }
-
 
 % Originality texts
 \newcommand{\@finoriginalitytext}{%
@@ -1516,6 +1523,59 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \RenewDocumentCommand\listofpublications{}{\relax}
     \RenewDocumentCommand\nonFreePublication{mm}{\relax}
     \RenewDocumentCommand\licensedPublication{mmm}{\relax}
+}
+
+\ExplSyntaxOff
+
+% Disable lists of figures and such with bachelor's theses.
+
+\ExplSyntaxOn
+
+\NewDocumentCommand\listOfFigures{}\listoffigures
+\NewDocumentCommand\listOfTables{}\listoftables
+\NewDocumentCommand\listOfListings{}\lstlistoflistings
+
+
+\bool_if:nTF{
+    \@tauthesis@includeListOfFigures
+}{
+    \int_compare:nTF {
+        \@tauthesis@fithesistypeint >= \@tauthesis@mastersthesistypeint
+    } {
+        \relax
+    } {
+        \RenewDocumentCommand\listOfFigures{}\relax
+    }
+}{
+    \RenewDocumentCommand\listOfFigures{}\relax
+}
+
+\bool_if:nTF{
+    \@tauthesis@includeListOfTables
+}{
+    \int_compare:nTF {
+        \@tauthesis@fithesistypeint >= \@tauthesis@mastersthesistypeint
+    } {
+        \relax
+    } {
+        \RenewDocumentCommand\listOfTables{}\relax
+    }
+}{
+    \RenewDocumentCommand\listOfTables{}\relax
+}
+
+\bool_if:nTF{
+    \@tauthesis@includeListOfListings
+}{
+    \int_compare:nTF {
+        \@tauthesis@fithesistypeint >= \@tauthesis@mastersthesistypeint
+    } {
+        \relax
+    } {
+        \RenewDocumentCommand\listOfListings{}\relax
+    }
+}{
+    \RenewDocumentCommand\listOfListings{}\relax
 }
 
 \ExplSyntaxOff
