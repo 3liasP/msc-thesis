@@ -1528,6 +1528,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \ExplSyntaxOff
 
 % Disable lists of figures and such with bachelor's theses.
+% Ideally this would have been done by saving custom counter
+% values to LaTeX aux files and reading them, but this is an initial solution for now.
 
 \ExplSyntaxOn
 
@@ -1536,45 +1538,35 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \NewDocumentCommand\listOfListings{}\lstlistoflistings
 
 
-\bool_if:nTF{
-    \@tauthesis@includeListOfFigures
-}{
-    \int_compare:nTF {
-        \@tauthesis@fithesistypeint >= \@tauthesis@mastersthesistypeint
-    } {
+\int_compare:nTF {
+    \@tauthesis@fithesistypeint
+    >=
+    \@tauthesis@mastersthesistypeint
+} {
+    \bool_if:nTF{
+        \@tauthesis@includeListOfFigures
+    }{
         \relax
-    } {
+    }{
         \RenewDocumentCommand\listOfFigures{}\relax
     }
-}{
-    \RenewDocumentCommand\listOfFigures{}\relax
-}
-
-\bool_if:nTF{
-    \@tauthesis@includeListOfTables
-}{
-    \int_compare:nTF {
-        \@tauthesis@fithesistypeint >= \@tauthesis@mastersthesistypeint
-    } {
+    \bool_if:nTF{
+        \@tauthesis@includeListOfTables
+    }{
         \relax
-    } {
+    }{
         \RenewDocumentCommand\listOfTables{}\relax
     }
-}{
-    \RenewDocumentCommand\listOfTables{}\relax
-}
-
-\bool_if:nTF{
-    \@tauthesis@includeListOfListings
-}{
-    \int_compare:nTF {
-        \@tauthesis@fithesistypeint >= \@tauthesis@mastersthesistypeint
-    } {
+    \bool_if:nTF{
+        \@tauthesis@includeListOfListings
+    }{
         \relax
-    } {
+    }{
         \RenewDocumentCommand\listOfListings{}\relax
     }
-}{
+} {
+    \RenewDocumentCommand\listOfFigures{}\relax
+    \RenewDocumentCommand\listOfTables{}\relax
     \RenewDocumentCommand\listOfListings{}\relax
 }
 
