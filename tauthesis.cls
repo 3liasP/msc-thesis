@@ -354,7 +354,9 @@
         \newcommand{\@glossaryname}{Lyhenteet ja merkinnät}
         \newcommand{\@appendixname}{Liite}
 
-        \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä työ on lisensoitu lisenssin #1 mukaisesti}
+        \NewDocumentCommand\@tauthesis@listoflistingstitle{}{Ohjelma-~ja~lagoritmiluettelo}
+
+        \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä~työ~on~lisensoitu~lisenssin~#1~mukaisesti}
 
         \@langenglishfalse
     },
@@ -419,7 +421,9 @@
         \newcommand{\@glossaryname}{List of Symbols and Abbreviations}
         \newcommand{\@appendixname}{Appendix}
 
-        \NewDocumentCommand\@tauthesis@licensedUnder{m}{This work is licensed under #1}
+        \NewDocumentCommand\@tauthesis@listoflistingstitle{}{List~of~Programs~and~Algorithms}
+
+        \NewDocumentCommand\@tauthesis@licensedUnder{m}{This~work~is~licensed~under~#1}
 
         \@langenglishtrue
     },
@@ -912,9 +916,11 @@
     {\bf}%
     {\thecontentslabel}{}{\hfill\contentspage}
 
-\newlistof[section]{listing}{lol}{\lstlistlistingname}
+\RenewDocumentCommand\lstlistlistingname{}{\@tauthesis@listoflistingstitle}
 
-\contentsuse{lstlisting}{lol}
+\newlistof[section]{listing}{lol}{\@tauthesis@listoflistingstitle}
+
+\contentsuse{listing}{lol}
 
 % Adjust style of content listings' titles.
 
