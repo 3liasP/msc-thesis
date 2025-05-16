@@ -970,23 +970,25 @@
 
 % Adjust spacing before and after ToC titles.
 
-\NewDocumentCommand\tocspacing{}{8pt}
+\NewDocumentCommand\tocTitleSpacing{}{1cm}
 
-\setlength{\cftaftertoctitleskip}{\tocspacing}
+\setlength{\cftaftertoctitleskip}{\tocTitleSpacing}
 
-\setlength{\cftafterloftitleskip}{\tocspacing}
+\setlength{\cftafterloftitleskip}{\tocTitleSpacing}
 
-\setlength{\cftafterlottitleskip}{\tocspacing}
+\setlength{\cftafterlottitleskip}{\tocTitleSpacing}
 
-\setlength{\cftafterloltitleskip}{\tocspacing}
+\setlength{\cftafterloltitleskip}{\tocTitleSpacing}
 
 % Adjust spacing between ToC items.
 
-\setlength{\cftbeforesecskip}{\tocspacing}
+\NewDocumentCommand\tocItemSpacing{}{8pt}
 
-\setlength{\cftbeforesubsecskip}{\tocspacing}
+\setlength{\cftbeforesecskip}{\tocItemSpacing}
 
-\setlength{\cftbeforesubsubsecskip}{\tocspacing}
+\setlength{\cftbeforesubsecskip}{\tocItemSpacing}
+
+\setlength{\cftbeforesubsubsecskip}{\tocItemSpacing}
 
 % Redefine ToC entries to use small caps, just like the titles themselves, with specific font sizes.
 
