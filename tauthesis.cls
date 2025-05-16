@@ -1533,9 +1533,18 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 \ExplSyntaxOn
 
-\NewDocumentCommand\listOfFigures{}\listoffigures
-\NewDocumentCommand\listOfTables{}\listoftables
-\NewDocumentCommand\listOfListings{}\lstlistoflistings
+\NewDocumentCommand\listOfFigures{}{
+    \clearpage
+    \listoffigures
+}
+\NewDocumentCommand\listOfTables{}{
+    \clearpage
+    \listoftables
+}
+\NewDocumentCommand\listOfListings{}{
+    \clearpage
+    \lstlistoflistings
+}
 
 
 \int_compare:nTF {
