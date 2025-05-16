@@ -1561,16 +1561,31 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 \ExplSyntaxOn
 
+\newlength\tableOfContentsTitleRaise
+\setlength\tableOfContentsTitleRaise{-2cm}
+
+\NewDocumentCommand\tableOfContents{}{
+    \clearpage
+    \vspace*{\tableOfContentsTitleRaise}
+    \tableofcontents
+}
+
+
 \NewDocumentCommand\listOfFigures{}{
     \clearpage
+    \vspace*{\tableOfContentsTitleRaise}
     \listoffigures
 }
+
 \NewDocumentCommand\listOfTables{}{
     \clearpage
+    \vspace*{\tableOfContentsTitleRaise}
     \listoftables
 }
+
 \NewDocumentCommand\listOfListings{}{
     \clearpage
+    \vspace*{\tableOfContentsTitleRaise}
     \lstlistoflistings
 }
 
