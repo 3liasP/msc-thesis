@@ -1673,7 +1673,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
         pdftitle = {\@tauthesis@entitle},
         pdfauthor={\@tauthesis@author},
         pdfsubject={\@tauthesis@subject},
-        pdfkeywords={\@tauthesis@enkeywords\@tauthesis@fikeywords},
+        pdfkeywords={\@tauthesis@enkeywords\@tauthesis@enkeywords},
     }
 }
 \ExplSyntaxOff
