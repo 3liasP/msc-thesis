@@ -751,17 +751,24 @@
 
 % Chapter
 \titleformat
-    {\chapter}[block]{\raggedright\bf\fontsize{21pt}{21pt}\selectfont%
-    \parshape %
-    2 %
-    0pt \linewidth %
-    \chapterindent \dimexpr\linewidth-\chapterindent}
-    {\makebox[\chapterindent][l]{\thechapter.}}{0em}
+    {\chapter}
+    [block]
+    {
+        \raggedright\bf\fontsize{21pt}{21pt}\selectfont%
+        \parshape %
+        2 %
+        0pt \linewidth %
+        \chapterindent \dimexpr\linewidth-\chapterindent
+    }
+    {\makebox[\chapterindent][l]{\thechapter.}}
+    {0em}
     {\fancyhf{}\rhead{\thepage}\textsc{#1}}
 
 \titleformat
     {name=\chapter, numberless}
-    {\raggedright\bf\fontsize{21pt}{12pt}\selectfont}{}{0em}
+    {\raggedright\bf\fontsize{21pt}{12pt}\selectfont}
+    {}
+    {0em}
     {\fancyhf{}\rhead{\thepage}\textsc{#1}}
 
 \titlespacing{\chapter}{0em}{42pt}{42pt}
@@ -770,16 +777,25 @@
 
 % Section
 \titleformat
-    {\section}[block]{\raggedright\bf\fontsize{17pt}{17pt}\selectfont%
-    \parshape %
-    2 %
-    0pt \linewidth %
-    \chapterindent \dimexpr\linewidth-\chapterindent}
-    {\makebox[\chapterindent][l]{\thesection}}{0em}{\textsc{#1}}
+    {\section}
+    [block]
+    {
+        \raggedright\bf\fontsize{17pt}{17pt}\selectfont%
+        \parshape %
+        2 %
+        0pt \linewidth %
+        \chapterindent \dimexpr\linewidth-\chapterindent
+    }
+    {\makebox[\chapterindent][l]{\thesection}}
+    {0em}
+    {\textsc{#1}}
 
 \titleformat
     {name=\section, numberless}
-    {\raggedright\bf\fontsize{17pt}{12pt}\selectfont}{}{0em}{\textsc{#1}}
+    {\raggedright\bf\fontsize{17pt}{12pt}\selectfont}
+    {}
+    {0em}
+    {\textsc{#1}}
 
 \titlespacing{\section}{0em}{18pt}{12pt}
 
@@ -787,16 +803,25 @@
 
 % Subsection
 \titleformat
-    {\subsection}[block]{\raggedright\bf\fontsize{13pt}{13pt}\selectfont%
-    \parshape %
-    2 %
-    0pt \linewidth %
-    \chapterindent \dimexpr\linewidth-\chapterindent}
-    {\makebox[\chapterindent][l]{\thesubsection}}{0em}{\textsc{#1}}
+    {\subsection}
+    [block]
+    {
+        \raggedright\bf\fontsize{13pt}{13pt}\selectfont%
+        \parshape %
+        2 %
+        0pt \linewidth %
+        \chapterindent \dimexpr\linewidth-\chapterindent
+    }
+    {\makebox[\chapterindent][l]{\thesubsection}}
+    {0em}
+    {\textsc{#1}}
 
 \titleformat
     {name=\subsection, numberless}
-    {\raggedright\bf\fontsize{13pt}{12pt}\selectfont}{}{0em}{\textsc{#1}}
+    {\raggedright\bf\fontsize{13pt}{12pt}\selectfont}
+    {}
+    {0em}
+    {\textsc{#1}}
 
 \titlespacing{\subsection}{0em}{18pt}{18pt}
 
@@ -808,7 +833,10 @@
 %    {\thesubsubsection}{\chapterspace}{\textsc{#1}}
 \titleformat
     {name=\subsubsection, numberless}
-    {\raggedright\bf\normalsize}{}{0em}{\textsc{#1}}
+    {\raggedright\bf\normalsize}
+    {}
+    {0em}
+    {\textsc{#1}}
 
 \titlespacing{\subsubsection}{0em}{18pt}{18pt}
 
