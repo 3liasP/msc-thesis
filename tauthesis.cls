@@ -771,9 +771,9 @@
     {0em}
     {\fancyhf{}\rhead{\thepage}\textsc{#1}}
 
-\titlespacing{\chapter}{0em}{42pt}{42pt}
+\titlespacing{\chapter}{0em}{-0.5cm}{42pt}
 
-\titlespacing{name=\chapter, numberless}{0em}{18pt}{18pt}
+\titlespacing{name=\chapter, numberless}{0em}{-0.5cm}{18pt}
 
 % Section
 \titleformat
