@@ -328,7 +328,7 @@
         \newcommand{\@tauthesis@keywordname}{Avainsanat}
         \newcommand{\@tauthesis@prefacename}{Alkusanat}
         \newcommand{\@tauthesis@originalitytext}{\@finoriginalitytext}
-        \newcommand{\@tauthesis@logofile}{figures/tau-logo-fin-eng.eps}
+        \newcommand{\@tauthesis@logofile}{images/tau-logo-fin-eng.eps}
         \newcommand{\@tauthesis@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
         \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/tekoalyn-kaytto.tex}
         \newcommand{\@tauthesis@yestextcmd}{Kyllä}
@@ -393,7 +393,7 @@
         \newcommand{\@tauthesis@keywordname}{Keywords}
         \newcommand{\@tauthesis@prefacename}{Preface}
         \newcommand{\@tauthesis@originalitytext}{\@engoriginalitytext}
-        \newcommand{\@tauthesis@logofile}{figures/tau-logo-fin-eng.eps}
+        \newcommand{\@tauthesis@logofile}{images/tau-logo-fin-eng.eps}
         \newcommand{\@tauthesis@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
         \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai.tex}
         \newcommand{\@tauthesis@yestextcmd}{Yes}
