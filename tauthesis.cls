@@ -1152,13 +1152,13 @@ The originality of this thesis has been checked using the Turnitin Originality s
 }
 
 % Make the preface
-\newcommand{\preface}[2]{
+\newcommand{\preface}[1]{
     \clearpage
     \chapter*{\@tauthesis@prefacename}
-    \noindent\input{#1}\par
+    \noindent\input{frontmatter/preface.tex}\par
     \bigskip
     \DTMlangsetup[en-GB,finnish]{showdayofmonth=true}
-    \noindent#2,
+    \noindent#1,
     \DTMdisplaydate%
         {\the\year}%
         {\the\month}%
