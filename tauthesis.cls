@@ -751,7 +751,7 @@
 
 % Chapter
 \titleformat
-    {\chapter}[block]{\raggedright\bf\fontsize{21pt}{12pt}\selectfont%
+    {\chapter}[block]{\raggedright\bf\fontsize{21pt}{21pt}\selectfont%
     \parshape %
     2 %
     0pt \linewidth %
@@ -770,7 +770,7 @@
 
 % Section
 \titleformat
-    {\section}[block]{\raggedright\bf\fontsize{17pt}{12pt}\selectfont%
+    {\section}[block]{\raggedright\bf\fontsize{17pt}{17pt}\selectfont%
     \parshape %
     2 %
     0pt \linewidth %
@@ -783,11 +783,11 @@
 
 \titlespacing{\section}{0em}{18pt}{12pt}
 
-\titlespacing{name=\section, numberless}{0em}{18pt}{12pt}
+\titlespacing{name=\section, numberless}{0em}{18pt}{18pt}
 
 % Subsection
 \titleformat
-    {\subsection}[block]{\raggedright\bf\fontsize{13pt}{12pt}\selectfont%
+    {\subsection}[block]{\raggedright\bf\fontsize{13pt}{13pt}\selectfont%
     \parshape %
     2 %
     0pt \linewidth %
@@ -798,9 +798,9 @@
     {name=\subsection, numberless}
     {\raggedright\bf\fontsize{13pt}{12pt}\selectfont}{}{0em}{\textsc{#1}}
 
-\titlespacing{\subsection}{0em}{18pt}{12pt}
+\titlespacing{\subsection}{0em}{18pt}{18pt}
 
-\titlespacing{name=\subsection, numberless}{0em}{18pt}{12pt}
+\titlespacing{name=\subsection, numberless}{0em}{18pt}{18pt}
 
 % Subsubsection
 %\titleformat
@@ -810,9 +810,9 @@
     {name=\subsubsection, numberless}
     {\raggedright\bf\normalsize}{}{0em}{\textsc{#1}}
 
-\titlespacing{\subsubsection}{0em}{18pt}{12pt}
+\titlespacing{\subsubsection}{0em}{18pt}{18pt}
 
-\titlespacing{name=\subsubsection, numberless}{0em}{18pt}{12pt}
+\titlespacing{name=\subsubsection, numberless}{0em}{18pt}{18pt}
 
 % Language support for Finnish and English
 \RequirePackage[\@tauthesis@otherlanguage, main=\@tauthesis@mainlanguage]{babel}
@@ -932,13 +932,13 @@
 
 % Adjust style of content listings' titles.
 
-\renewcommand{\cfttoctitlefont}{\scshape\bf\fontsize{21pt}{0pt}\selectfont}
+\renewcommand{\cfttoctitlefont}{\scshape\bf\fontsize{21pt}{21pt}\selectfont}
 
-\renewcommand{\cftloftitlefont}{\scshape\bf\fontsize{21pt}{0pt}\selectfont}
+\renewcommand{\cftloftitlefont}{\scshape\bf\fontsize{21pt}{21pt}\selectfont}
 
-\renewcommand{\cftlottitlefont}{\scshape\bf\fontsize{21pt}{0pt}\selectfont}
+\renewcommand{\cftlottitlefont}{\scshape\bf\fontsize{21pt}{21pt}\selectfont}
 
-\renewcommand{\cftloltitlefont}{\scshape\bf\fontsize{21pt}{0pt}\selectfont}
+\renewcommand{\cftloltitlefont}{\scshape\bf\fontsize{21pt}{21pt}\selectfont}
 
 % Adjust spacing before and after ToC titles.
 
@@ -1029,13 +1029,13 @@
 
 % Also adjust lists of figures and tables and listings.
 
-\renewcommand{\cftfigfont}{\fontsize{\mySectionFontSize}{12pt}\selectfont}
+\renewcommand{\cftfigfont}{\fontsize{\mySectionFontSize}{\mySectionFontSize}\selectfont}
 
-\renewcommand{\cftfigpagefont}{\fontsize{\myToCPageNumberSize}{12pt}\selectfont}
+\renewcommand{\cftfigpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont}
 
-\renewcommand{\cfttabfont}{\fontsize{\mySectionFontSize}{12pt}\selectfont}
+\renewcommand{\cfttabfont}{\fontsize{\mySectionFontSize}{\mySectionFontSize}\selectfont}
 
-\renewcommand{\cfttabpagefont}{\fontsize{\myToCPageNumberSize}{12pt}\selectfont}
+\renewcommand{\cfttabpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont}
 
 % Renew the list if listings command such that we can modify how the listing entries appear.
 
@@ -1048,14 +1048,14 @@
             {1}
             {\mySectionIndent}
             {\mySectionNumberWidth}
-            {\fontsize{\mySectionFontSize}{12pt}\selectfont##1}
-            {\fontsize{\myToCPageNumberSize}{12pt}\selectfont##2}
+            {\fontsize{\mySectionFontSize}{\mySectionFontSize}\selectfont##1}
+            {\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont##2}
     }
     \origlstlistoflistings
     \endgroup
 }
 
-\renewcommand{\cftlistingfont}{\fontsize{24pt}{12pt}\selectfont}
+\renewcommand{\cftlistingfont}{\fontsize{24pt}{24pt}\selectfont}
 
 \renewcommand{\cftlistingpagefont}{\fontsize{10pt}{12pt}\selectfont}
 
