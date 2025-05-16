@@ -498,10 +498,10 @@
     \vspace{102pt}
     {\raggedleft\fontsize{20pt}{0pt}\selectfont\@tauthesis@author\par}
     \vspace{2cm}
-    {\raggedleft\bf\fontsize{25pt}{0pt}\selectfont\color{taupurple}%
+    {\raggedleft\bf\fontsize{25pt}{25pt}\selectfont\color{taupurple}%
         \textsc{\@tauthesis@title}\par}
     \vspace{1cm}
-    {\raggedleft\scshape\fontsize{20pt}{0pt}\selectfont\color{taupurple}%
+    {\raggedleft\scshape\fontsize{20pt}{20pt}\selectfont\color{taupurple}%
         \@tauthesis@subtitle\par}
     \vfill
     \begin{center}
