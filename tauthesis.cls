@@ -1050,7 +1050,7 @@
     {chapter}%
     [0pt]%
     {\vspace{8.5pt}}%
-    {\scshape\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:\hspace{\chapterspace}}%
+    {\scshape\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:~}%
     {}%
     {\titlerule*[0.7pc]{.}\fontsize{\myToCPageNumberSize}{14pt}\selectfont\contentspage}
 }{}
