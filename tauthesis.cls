@@ -749,98 +749,73 @@
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 
-% Chapter
-\titleformat
-    {\chapter}
-    [block]
-    {
-        \raggedright\bf\fontsize{21pt}{21pt}\selectfont%
-        \parshape %
-        2 %
-        0pt \linewidth %
-        \chapterindent \dimexpr\linewidth-\chapterindent
-    }
-    {\makebox[\chapterindent][l]{\thechapter.}}
-    {0em}
-    {\fancyhf{}\rhead{\thepage}\textsc{#1}}
+% Customize chapter titles
+\titleformat{\chapter}[hang]
+    {\raggedright\normalfont\scshape\bfseries\fontsize{18}{22}\selectfont}
+    {\thechapter}
+    {1em}
+    {#1} % Include the chapter title text
 
-\titleformat
-    {name=\chapter, numberless}
-    {\raggedright\bf\fontsize{21pt}{12pt}\selectfont}
+% Adjust spacing around chapter titles
+\titlespacing*{\chapter}
+    {0pt} % Left margin
+    {0pt} % Space above
+    {20pt} % Space below
+
+% Customize unnumbered chapter titles
+\titleformat{name=\chapter,numberless}[hang]
+    {\raggedright\normalfont\scshape\bfseries\fontsize{18}{22}\selectfont}
     {}
     {0em}
-    {\fancyhf{}\rhead{\thepage}\textsc{#1}}
+    {#1} % Include the unnumbered chapter title text
 
-\titlespacing{\chapter}{0em}{-0.5cm}{42pt}
+% Adjust spacing around unnumbered chapter titles
+\titlespacing*{name=\chapter,numberless}
+    {0pt} % Left margin
+    {0pt} % Space above
+    {20pt} % Space below
 
-\titlespacing{name=\chapter, numberless}{0em}{-0.5cm}{18pt}
+% Customize section titles
+\titleformat{\section}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{14}{17}\selectfont}
+    {\thesection}
+    {1em}
+    {#1} % Include the section title text
 
-% Section
-\titleformat
-    {\section}
-    [block]
-    {
-        \raggedright\bf\fontsize{17pt}{17pt}\selectfont%
-        \parshape %
-        2 %
-        0pt \linewidth %
-        \chapterindent \dimexpr\linewidth-\chapterindent
-    }
-    {\makebox[\chapterindent][l]{\thesection}}
-    {0em}
-    {\textsc{#1}}
-
-\titleformat
-    {name=\section, numberless}
-    {\raggedright\bf\fontsize{17pt}{12pt}\selectfont}
+% Customize unnumbered section titles
+\titleformat{name=\section,numberless}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{14}{17}\selectfont}
     {}
     {0em}
-    {\textsc{#1}}
+    {#1} % Include the unnumbered section title text
 
-\titlespacing{\section}{0em}{18pt}{12pt}
+% Customize subsection titles
+\titleformat{\subsection}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{13}{15}\selectfont}
+    {\thesubsection}
+    {1em}
+    {#1} % Include the subsection title text
 
-\titlespacing{name=\section, numberless}{0em}{18pt}{18pt}
-
-% Subsection
-\titleformat
-    {\subsection}
-    [block]
-    {
-        \raggedright\bf\fontsize{13pt}{13pt}\selectfont%
-        \parshape %
-        2 %
-        0pt \linewidth %
-        \chapterindent \dimexpr\linewidth-\chapterindent
-    }
-    {\makebox[\chapterindent][l]{\thesubsection}}
-    {0em}
-    {\textsc{#1}}
-
-\titleformat
-    {name=\subsection, numberless}
-    {\raggedright\bf\fontsize{13pt}{12pt}\selectfont}
+% Customize unnumbered subsection titles
+\titleformat{name=\subsection,numberless}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{13}{15}\selectfont}
     {}
     {0em}
-    {\textsc{#1}}
+    {#1} % Include the unnumbered subsection title text
 
-\titlespacing{\subsection}{0em}{18pt}{18pt}
+% Customize subsubsection titles
+\titleformat{\subsubsection}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{11}{13}\selectfont}
+    {\thesubsubsection}
+    {1em}
+    {#1} % Include the subsubsection title text
 
-\titlespacing{name=\subsection, numberless}{0em}{18pt}{18pt}
-
-% Subsubsection
-%\titleformat
-%    {\subsubsection}{\raggedright\bf\normalsize}
-%    {\thesubsubsection}{\chapterspace}{\textsc{#1}}
-\titleformat
-    {name=\subsubsection, numberless}
-    {\raggedright\bf\normalsize}
+% Customize unnumbered subsubsection titles
+\titleformat{name=\subsubsection,numberless}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{11}{13}\selectfont}
     {}
     {0em}
-    {\textsc{#1}}
-
-\titlespacing{\subsubsection}{0em}{18pt}{18pt}
-
-\titlespacing{name=\subsubsection, numberless}{0em}{18pt}{18pt}
+    {#1} % Include the unnumbered subsubsection title text
 
 % Language support for Finnish and English
 \RequirePackage[\@tauthesis@otherlanguage, main=\@tauthesis@mainlanguage]{babel}
@@ -960,13 +935,13 @@
 
 % Adjust style of content listings' titles.
 
-\renewcommand{\cfttoctitlefont}{\scshape\bf\fontsize{21pt}{21pt}\selectfont}
+\renewcommand{\cfttoctitlefont}{\scshape\bf\fontsize{18pt}{21pt}\selectfont}
 
-\renewcommand{\cftloftitlefont}{\scshape\bf\fontsize{21pt}{21pt}\selectfont}
+\renewcommand{\cftloftitlefont}{\scshape\bf\fontsize{18pt}{21pt}\selectfont}
 
-\renewcommand{\cftlottitlefont}{\scshape\bf\fontsize{21pt}{21pt}\selectfont}
+\renewcommand{\cftlottitlefont}{\scshape\bf\fontsize{18pt}{21pt}\selectfont}
 
-\renewcommand{\cftloltitlefont}{\scshape\bf\fontsize{21pt}{21pt}\selectfont}
+\renewcommand{\cftloltitlefont}{\scshape\bf\fontsize{18pt}{21pt}\selectfont}
 
 % Adjust spacing before and after ToC titles.
 
@@ -1032,29 +1007,26 @@
 
 % Define appendix title style inside of the appendices environment.
 
-\newenvironment{appendices}{%
-\setcounter{chapter}{0}
-\renewcommand{\thechapter}{\Alph{chapter}}
-\renewcommand{\theHchapter}{\Alph{chapter}}
+\newenvironment{appendices}{
+    \setcounter{chapter}{0}
+    \renewcommand{\thechapter}{\Alph{chapter}}
+    \renewcommand{\theHchapter}{\Alph{chapter}}
 
-\titleformat
-    {\chapter}
-    {\raggedright\LARGE\scshape\bf%
-    \parshape %
-    2 %
-    0pt \linewidth %
-    \chapterindent \dimexpr\linewidth-\chapterindent}
-    {{\scshape\appendixname~\thechapter:}}
-    {\chapterspace}
-    {\fancyhf{}\cfoot{\thepage}{\scshape##1}}
+    % Customize chapter titles
+    \titleformat{\chapter}[hang]
+        {\raggedright\normalfont\scshape\bfseries\fontsize{18}{22}\selectfont}
+        {\scshape\appendixname~\thechapter:}
+        {1ex}
+        {##1} % Include the chapter title text
 
-\titlecontents%
-    {chapter}%
-    [0pt]%
-    {\vspace{8.5pt}}%
-    {\scshape\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:~}%
-    {}%
-    {\titlerule*[0.7pc]{.}\fontsize{\myToCPageNumberSize}{14pt}\selectfont\contentspage}
+    \titlecontents%
+        {chapter}%
+        [0pt]%
+        {\vspace{8.5pt}}%
+        {\raggedright\scshape\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:~}%
+        {}%
+        {\titlerule*[0.7pc]{.}\fontsize{\myToCPageNumberSize}{14pt}\selectfont\contentspage}
+
 }{}
 
 % Also adjust lists of figures and tables and listings.
