@@ -761,12 +761,14 @@
 
 \ExplSyntaxOff
 
+\def\@tauthesis@spaceBetweenNumberAndTitle{0em}
+
 % Customize chapter titles
 \titleformat{\chapter}[hang]
     {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
     {\thechapter}
-    {1em}
-    {#1} % Include the chapter title text
+    {\@tauthesis@spaceBetweenNumberAndTitle}
+    {~#1} % Include the chapter title text
 
 % Adjust spacing around chapter titles
 \titlespacing*{\chapter}
@@ -778,7 +780,7 @@
 \titleformat{name=\chapter,numberless}[hang]
     {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
     {}
-    {0em}
+    {\@tauthesis@spaceBetweenNumberAndTitle}
     {#1} % Include the unnumbered chapter title text
 
 % Adjust spacing around unnumbered chapter titles
@@ -791,42 +793,42 @@
 \titleformat{\section}
     {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@sectionFontSize}{\@tauthesis@sectionFontSize}\selectfont}
     {\thesection}
-    {1em}
-    {#1} % Include the section title text
+    {\@tauthesis@spaceBetweenNumberAndTitle}
+    {~#1} % Include the section title text
 
 % Customize unnumbered section titles
 \titleformat{name=\section,numberless}
     {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@sectionFontSize}{\@tauthesis@sectionFontSize}\selectfont}
     {}
-    {0em}
+    {\@tauthesis@spaceBetweenNumberAndTitle}
     {#1} % Include the unnumbered section title text
 
 % Customize subsection titles
 \titleformat{\subsection}
     {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSectionFontSize}{\@tauthesis@subSectionFontSize}\selectfont}
     {\thesubsection}
-    {1em}
-    {#1} % Include the subsection title text
+    {\@tauthesis@spaceBetweenNumberAndTitle}
+    {~#1} % Include the subsection title text
 
 % Customize unnumbered subsection titles
 \titleformat{name=\subsection,numberless}
     {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSectionFontSize}{\@tauthesis@subSectionFontSize}\selectfont}
     {}
-    {0em}
+    {\@tauthesis@spaceBetweenNumberAndTitle}
     {#1} % Include the unnumbered subsection title text
 
 % Customize subsubsection titles
 \titleformat{\subsubsection}
     {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSubSectionFontSize}{\@tauthesis@subSubSectionFontSize}\selectfont}
     {\thesubsubsection}
-    {1em}
-    {#1} % Include the subsubsection title text
+    {\@tauthesis@spaceBetweenNumberAndTitle}
+    {~#1} % Include the subsubsection title text
 
 % Customize unnumbered subsubsection titles
 \titleformat{name=\subsubsection,numberless}
     {\raggedright\normalfont\scshape\bfseries\fontsize{11}{\@tauthesis@subSubSectionFontSize}\selectfont}
     {}
-    {0em}
+    {\@tauthesis@spaceBetweenNumberAndTitle}
     {#1} % Include the unnumbered subsubsection title text
 
 % Language support for Finnish and English
