@@ -707,14 +707,6 @@
 \RequirePackage{listings}
 \lstset{texcl=true, captionpos=b, commentstyle=\tt}
 
-\setstretch{1.213}
-\setlength{\headheight}{14.5pt}
-
-\newlength\chapterspace
-\setlength\chapterspace{0.4cm}
-\newlength\chapterindent
-\setlength\chapterindent{0.5in}
-
 % Try to prevent large figures appearing
 % by themselves without any text. Be
 % careful not to make \floatpagefraction
