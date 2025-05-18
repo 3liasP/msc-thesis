@@ -763,7 +763,7 @@
 
 % Customize chapter titles
 \titleformat{\chapter}[hang]
-    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{22}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
     {\thechapter}
     {1em}
     {#1} % Include the chapter title text
