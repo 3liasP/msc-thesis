@@ -915,7 +915,7 @@
 \def\@tauthesis@tocSubSubSectionFontSize{13pt}
 
 \def\@tauthesis@tocChapterIndent@{0em}
-\def\@tauthesis@tocSectionIndent@{1em}
+\def\@tauthesis@tocSectionIndent{1em}
 \def\@tauthesis@tocSubSectionIndent{2em}
 \def\@tauthesis@tocSubSubSectionIndent{3em}
 
@@ -927,7 +927,7 @@
 \def\@tauthesis@tocPageNumberSize{13pt}
 
 \cftsetindents{chapter}{\@tauthesis@tocChapterIndent@}{\myChapterNumberWidth}
-\cftsetindents{section}{\@tauthesis@tocSectionIndent@}{\mySectionNumberWidth}
+\cftsetindents{section}{\@tauthesis@tocSectionIndent}{\mySectionNumberWidth}
 \cftsetindents{subsection}{\@tauthesis@tocSubSectionIndent}{\mySubSectionNumberWidth}
 \cftsetindents{subsubsection}{\@tauthesis@tocSubSubSectionIndent}{\mySubSubSectionNumberWidth}
 
@@ -1068,7 +1068,7 @@
     \renewcommand{\l@lstlisting}[2]{%
         \@dottedtocline
             {1}
-            {\@tauthesis@tocSectionIndent@}
+            {\@tauthesis@tocSectionIndent}
             {\mySectionNumberWidth}
             {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
             {\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont##2}
