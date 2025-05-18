@@ -917,10 +917,10 @@
 
 \RequirePackage{titletoc}
 
-\def\@tauthesis@tocChapterFontSize{12pt}
-\def\@tauthesis@tocSectionFontSize{12pt}
-\def\@tauthesis@tocSubSectionFontSize{12pt}
-\def\@tauthesis@tocSubSubSectionFontSize{12pt}
+\def\@tauthesis@tocChapterFontSize{13pt}
+\def\@tauthesis@tocSectionFontSize{13pt}
+\def\@tauthesis@tocSubSectionFontSize{13pt}
+\def\@tauthesis@tocSubSubSectionFontSize{13pt}
 
 \def\@tauthesis@tocChapterIndent@{0em}
 \def\@tauthesis@tocSectionIndent@{1em}
@@ -932,7 +932,7 @@
 \def\mySubSectionNumberWidth{3.2em}
 \def\mySubSubSectionNumberWidth{3.7em}
 
-\def\@tauthesis@tocPageNumberSize{10pt}
+\def\@tauthesis@tocPageNumberSize{13pt}
 
 \cftsetindents{chapter}{\@tauthesis@tocChapterIndent@}{\myChapterNumberWidth}
 \cftsetindents{section}{\@tauthesis@tocSectionIndent@}{\mySectionNumberWidth}
