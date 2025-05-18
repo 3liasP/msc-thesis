@@ -749,9 +749,29 @@
 \setcounter{secnumdepth}{2}
 \setcounter{tocdepth}{2}
 
+\ExplSyntaxOn
+
+\int_compare:nTF {
+    \@tauthesis@fithesistypeint
+    >
+    \@tauthesis@mastersthesistypeint
+}{
+    \def\@tauthesis@chapterFontSize{18pt}
+    \def\@tauthesis@sectionFontSize{15pt}
+    \def\@tauthesis@subSectionFontSize{13pt}
+    \def\@tauthesis@subSubSectionFontSize{12pt}
+}{
+    \def\@tauthesis@chapterFontSize{21pt}
+    \def\@tauthesis@sectionFontSize{18pt}
+    \def\@tauthesis@subSectionFontSize{15pt}
+    \def\@tauthesis@subSubSectionFontSize{13pt}
+}
+
+\ExplSyntaxOff
+
 % Customize chapter titles
 \titleformat{\chapter}[hang]
-    {\raggedright\normalfont\scshape\bfseries\fontsize{18}{22}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{22}\selectfont}
     {\thechapter}
     {1em}
     {#1} % Include the chapter title text
@@ -764,7 +784,7 @@
 
 % Customize unnumbered chapter titles
 \titleformat{name=\chapter,numberless}[hang]
-    {\raggedright\normalfont\scshape\bfseries\fontsize{18}{22}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
     {}
     {0em}
     {#1} % Include the unnumbered chapter title text
@@ -777,42 +797,42 @@
 
 % Customize section titles
 \titleformat{\section}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{14}{17}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@sectionFontSize}{\@tauthesis@sectionFontSize}\selectfont}
     {\thesection}
     {1em}
     {#1} % Include the section title text
 
 % Customize unnumbered section titles
 \titleformat{name=\section,numberless}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{14}{17}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@sectionFontSize}{\@tauthesis@sectionFontSize}\selectfont}
     {}
     {0em}
     {#1} % Include the unnumbered section title text
 
 % Customize subsection titles
 \titleformat{\subsection}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{13}{15}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSectionFontSize}{\@tauthesis@subSectionFontSize}\selectfont}
     {\thesubsection}
     {1em}
     {#1} % Include the subsection title text
 
 % Customize unnumbered subsection titles
 \titleformat{name=\subsection,numberless}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{13}{15}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSectionFontSize}{\@tauthesis@subSectionFontSize}\selectfont}
     {}
     {0em}
     {#1} % Include the unnumbered subsection title text
 
 % Customize subsubsection titles
 \titleformat{\subsubsection}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{11}{13}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSubSectionFontSize}{\@tauthesis@subSubSectionFontSize}\selectfont}
     {\thesubsubsection}
     {1em}
     {#1} % Include the subsubsection title text
 
 % Customize unnumbered subsubsection titles
 \titleformat{name=\subsubsection,numberless}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{11}{13}\selectfont}
+    {\raggedright\normalfont\scshape\bfseries\fontsize{11}{\@tauthesis@subSubSectionFontSize}\selectfont}
     {}
     {0em}
     {#1} % Include the unnumbered subsubsection title text
@@ -899,7 +919,7 @@
 
 \def\@tauthesis@tocChapterFontSize{12pt}
 \def\@tauthesis@tocSectionFontSize{12pt}
-\def\@tauthesis@tocsubsectionfontsize@{12pt}
+\def\@tauthesis@tocSubSectionFontSize{12pt}
 \def\@tauthesis@tocSubSubSectionFontSize{12pt}
 
 \def\@tauthesis@tocChapterIndent@{0em}
@@ -912,7 +932,7 @@
 \def\mySubSectionNumberWidth{3.2em}
 \def\mySubSubSectionNumberWidth{3.7em}
 
-\def\myToCPageNumberSize{10pt}
+\def\@tauthesis@tocPageNumberSize{10pt}
 
 \cftsetindents{chapter}{\@tauthesis@tocChapterIndent@}{\myChapterNumberWidth}
 \cftsetindents{section}{\@tauthesis@tocSectionIndent@}{\mySectionNumberWidth}
@@ -935,13 +955,13 @@
 
 % Adjust style of content listings' titles.
 
-\renewcommand{\cfttoctitlefont}{\scshape\bf\fontsize{18pt}{21pt}\selectfont}
+\renewcommand{\cfttoctitlefont}{\scshape\bf\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
 
-\renewcommand{\cftloftitlefont}{\scshape\bf\fontsize{18pt}{21pt}\selectfont}
+\renewcommand{\cftloftitlefont}{\scshape\bf\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
 
-\renewcommand{\cftlottitlefont}{\scshape\bf\fontsize{18pt}{21pt}\selectfont}
+\renewcommand{\cftlottitlefont}{\scshape\bf\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
 
-\renewcommand{\cftloltitlefont}{\scshape\bf\fontsize{18pt}{21pt}\selectfont}
+\renewcommand{\cftloltitlefont}{\scshape\bf\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
 
 % Adjust spacing before and after ToC titles.
 
@@ -967,17 +987,17 @@
 
 % Redefine ToC entries to use small caps, just like the titles themselves, with specific font sizes.
 
-\renewcommand{\cftchapfont}{\fontsize{\@tauthesis@tocChapterFontSize}{14pt}\selectfont\scshape}
-\renewcommand{\cftchappagefont}{\fontsize{\myToCPageNumberSize}{14pt}\selectfont\scshape}
+\renewcommand{\cftchapfont}{\fontsize{\@tauthesis@tocChapterFontSize}{\@tauthesis@sectionFontSize}\selectfont\scshape}
+\renewcommand{\cftchappagefont}{\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@sectionFontSize}\selectfont\scshape}
 
-\renewcommand{\cftsecfont}{\fontsize{\@tauthesis@tocSectionFontSize}{12pt}\selectfont\scshape}
-\renewcommand{\cftsecpagefont}{\fontsize{\myToCPageNumberSize}{12pt}\selectfont\scshape}
+\renewcommand{\cftsecfont}{\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont\scshape}
+\renewcommand{\cftsecpagefont}{\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont\scshape}
 
-\renewcommand{\cftsubsecfont}{\fontsize{\@tauthesis@tocsubsectionfontsize@}{11pt}\selectfont\scshape}
-\renewcommand{\cftsubsecpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont\scshape}
+\renewcommand{\cftsubsecfont}{\fontsize{\@tauthesis@tocSubSectionFontSize}{\@tauthesis@tocSubSubSectionFontSize}\selectfont\scshape}
+\renewcommand{\cftsubsecpagefont}{\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont\scshape}
 
-\renewcommand{\cftsubsubsecfont}{\fontsize{\@tauthesis@tocSubSubSectionFontSize}{\myToCPageNumberSize}\selectfont\scshape}
-\renewcommand{\cftsubsubsecpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont\scshape}
+\renewcommand{\cftsubsubsecfont}{\fontsize{\@tauthesis@tocSubSubSectionFontSize}{\@tauthesis@tocPageNumberSize}\selectfont\scshape}
+\renewcommand{\cftsubsubsecpagefont}{\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont\scshape}
 
 % Add dots also at the chapter level.
 
@@ -1014,7 +1034,7 @@
 
     % Customize chapter titles
     \titleformat{\chapter}[hang]
-        {\raggedright\normalfont\scshape\bfseries\fontsize{18}{22}\selectfont}
+        {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{22}\selectfont}
         {\scshape\appendixname~\thechapter:}
         {1ex}
         {##1} % Include the chapter title text
@@ -1023,9 +1043,9 @@
         {chapter}%
         [0pt]%
         {\vspace{8.5pt}}%
-        {\raggedright\scshape\fontsize{\@tauthesis@tocChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:~}%
+        {\raggedright\scshape\fontsize{\@tauthesis@tocChapterFontSize}{\@tauthesis@sectionFontSize}\selectfont\appendixname~\thecontentslabel:~}%
         {}%
-        {\titlerule*[0.7pc]{.}\fontsize{\myToCPageNumberSize}{14pt}\selectfont\contentspage}
+        {\titlerule*[0.7pc]{.}\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont\contentspage}
 
 }{}
 
@@ -1033,11 +1053,11 @@
 
 \renewcommand{\cftfigfont}{\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont}
 
-\renewcommand{\cftfigpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont}
+\renewcommand{\cftfigpagefont}{\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont}
 
 \renewcommand{\cfttabfont}{\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont}
 
-\renewcommand{\cfttabpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont}
+\renewcommand{\cfttabpagefont}{\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont}
 
 % Renew the list if listings command such that we can modify how the listing entries appear.
 
@@ -1051,15 +1071,15 @@
             {\@tauthesis@tocSectionIndent@}
             {\mySectionNumberWidth}
             {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
-            {\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont##2}
+            {\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont##2}
     }
     \origlstlistoflistings
     \endgroup
 }
 
-\renewcommand{\cftlistingfont}{\fontsize{24pt}{24pt}\selectfont}
+\renewcommand{\cftlistingfont}{\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
 
-\renewcommand{\cftlistingpagefont}{\fontsize{10pt}{12pt}\selectfont}
+\renewcommand{\cftlistingpagefont}{\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont}
 
 % Flexible list modifications
 \RequirePackage{enumitem}
@@ -1426,7 +1446,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
     %\cleardoublepage
     \thispagestyle{empty}
     \refstepcounter{publication}
-    \addcontentsline{toc}{chapter}{\fontsize{\@tauthesis@tocChapterFontSize}{12pt}\selectfont\@tauthesis@publicationname{} \Roman{publication}}
+    \addcontentsline{toc}{chapter}{\fontsize{\@tauthesis@tocChapterFontSize}{\@tauthesis@tocChapterFontSize}\selectfont\@tauthesis@publicationname{} \Roman{publication}}
     \hspace*{0pt}\vfill
     {\centering\LARGE\scshape
         \MakeUppercase{\@tauthesis@publicationname}\\
