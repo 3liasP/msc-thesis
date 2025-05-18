@@ -969,13 +969,21 @@
 
 % Adjust spacing between ToC items.
 
-\NewDocumentCommand\tocItemSpacing{}{8pt}
+\NewDocumentCommand\tocItemSpacing{}{10pt}
 
 \setlength{\cftbeforesecskip}{\tocItemSpacing}
 
 \setlength{\cftbeforesubsecskip}{\tocItemSpacing}
 
 \setlength{\cftbeforesubsubsecskip}{\tocItemSpacing}
+
+% Add space between items in the list of figures, tables and listings.
+
+\setlength{\cftbeforefigskip}{\tocItemSpacing}
+
+\setlength{\cftbeforetabskip}{\tocItemSpacing}
+
+\setlength{\cftbeforelistingskip}{\tocItemSpacing}
 
 % Redefine ToC entries to use small caps, just like the titles themselves, with specific font sizes.
 
