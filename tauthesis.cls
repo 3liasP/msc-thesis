@@ -897,15 +897,15 @@
 
 \RequirePackage{titletoc}
 
-\def\myChapterFontSize{12pt}
-\def\mySectionFontSize{12pt}
-\def\mySubSectionFontSize{12pt}
-\def\mySubSubSectionFontSize{12pt}
+\def\@tauthesis@tocChapterFontSize{12pt}
+\def\@tauthesis@tocSectionFontSize{12pt}
+\def\@tauthesis@tocsubsectionfontsize@{12pt}
+\def\@tauthesis@tocSubSubSectionFontSize{12pt}
 
-\def\myChapterIndent{0em}
-\def\mySectionIndent{1em}
-\def\mySubSectionIndent{2em}
-\def\mySubSubSectionIndent{3em}
+\def\@tauthesis@tocChapterIndent@{0em}
+\def\@tauthesis@tocSectionIndent@{1em}
+\def\@tauthesis@tocSubSectionIndent{2em}
+\def\@tauthesis@tocSubSubSectionIndent{3em}
 
 \def\myChapterNumberWidth{2em}
 \def\mySectionNumberWidth{2em}
@@ -914,10 +914,10 @@
 
 \def\myToCPageNumberSize{10pt}
 
-\cftsetindents{chapter}{\myChapterIndent}{\myChapterNumberWidth}
-\cftsetindents{section}{\mySectionIndent}{\mySectionNumberWidth}
-\cftsetindents{subsection}{\mySubSectionIndent}{\mySubSectionNumberWidth}
-\cftsetindents{subsubsection}{\mySubSubSectionIndent}{\mySubSubSectionNumberWidth}
+\cftsetindents{chapter}{\@tauthesis@tocChapterIndent@}{\myChapterNumberWidth}
+\cftsetindents{section}{\@tauthesis@tocSectionIndent@}{\mySectionNumberWidth}
+\cftsetindents{subsection}{\@tauthesis@tocSubSectionIndent}{\mySubSectionNumberWidth}
+\cftsetindents{subsubsection}{\@tauthesis@tocSubSubSectionIndent}{\mySubSubSectionNumberWidth}
 
 \lstset{texcl=true, captionpos=b, commentstyle=\tt}
 
@@ -967,16 +967,16 @@
 
 % Redefine ToC entries to use small caps, just like the titles themselves, with specific font sizes.
 
-\renewcommand{\cftchapfont}{\fontsize{\myChapterFontSize}{14pt}\selectfont\scshape}
+\renewcommand{\cftchapfont}{\fontsize{\@tauthesis@tocChapterFontSize}{14pt}\selectfont\scshape}
 \renewcommand{\cftchappagefont}{\fontsize{\myToCPageNumberSize}{14pt}\selectfont\scshape}
 
-\renewcommand{\cftsecfont}{\fontsize{\mySectionFontSize}{12pt}\selectfont\scshape}
+\renewcommand{\cftsecfont}{\fontsize{\@tauthesis@tocSectionFontSize}{12pt}\selectfont\scshape}
 \renewcommand{\cftsecpagefont}{\fontsize{\myToCPageNumberSize}{12pt}\selectfont\scshape}
 
-\renewcommand{\cftsubsecfont}{\fontsize{\mySubSectionFontSize}{11pt}\selectfont\scshape}
+\renewcommand{\cftsubsecfont}{\fontsize{\@tauthesis@tocsubsectionfontsize@}{11pt}\selectfont\scshape}
 \renewcommand{\cftsubsecpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont\scshape}
 
-\renewcommand{\cftsubsubsecfont}{\fontsize{\mySubSubSectionFontSize}{\myToCPageNumberSize}\selectfont\scshape}
+\renewcommand{\cftsubsubsecfont}{\fontsize{\@tauthesis@tocSubSubSectionFontSize}{\myToCPageNumberSize}\selectfont\scshape}
 \renewcommand{\cftsubsubsecpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont\scshape}
 
 % Add dots also at the chapter level.
@@ -1023,7 +1023,7 @@
         {chapter}%
         [0pt]%
         {\vspace{8.5pt}}%
-        {\raggedright\scshape\fontsize{\myChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:~}%
+        {\raggedright\scshape\fontsize{\@tauthesis@tocChapterFontSize}{14pt}\selectfont\appendixname~\thecontentslabel:~}%
         {}%
         {\titlerule*[0.7pc]{.}\fontsize{\myToCPageNumberSize}{14pt}\selectfont\contentspage}
 
@@ -1031,11 +1031,11 @@
 
 % Also adjust lists of figures and tables and listings.
 
-\renewcommand{\cftfigfont}{\fontsize{\mySectionFontSize}{\mySectionFontSize}\selectfont}
+\renewcommand{\cftfigfont}{\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont}
 
 \renewcommand{\cftfigpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont}
 
-\renewcommand{\cfttabfont}{\fontsize{\mySectionFontSize}{\mySectionFontSize}\selectfont}
+\renewcommand{\cfttabfont}{\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont}
 
 \renewcommand{\cfttabpagefont}{\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont}
 
@@ -1048,9 +1048,9 @@
     \renewcommand{\lstlisting}[2]{%
         \@dottedtocline
             {1}
-            {\mySectionIndent}
+            {\@tauthesis@tocSectionIndent@}
             {\mySectionNumberWidth}
-            {\fontsize{\mySectionFontSize}{\mySectionFontSize}\selectfont##1}
+            {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
             {\fontsize{\myToCPageNumberSize}{\myToCPageNumberSize}\selectfont##2}
     }
     \origlstlistoflistings
@@ -1426,7 +1426,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
     %\cleardoublepage
     \thispagestyle{empty}
     \refstepcounter{publication}
-    \addcontentsline{toc}{chapter}{\fontsize{\myChapterFontSize}{12pt}\selectfont\@tauthesis@publicationname{} \Roman{publication}}
+    \addcontentsline{toc}{chapter}{\fontsize{\@tauthesis@tocChapterFontSize}{12pt}\selectfont\@tauthesis@publicationname{} \Roman{publication}}
     \hspace*{0pt}\vfill
     {\centering\LARGE\scshape
         \MakeUppercase{\@tauthesis@publicationname}\\
