@@ -1065,7 +1065,7 @@
 
 \renewcommand{\lstlistoflistings}{%
   \begingroup
-    \renewcommand{\lstlisting}[2]{%
+    \renewcommand{\l@lstlisting}[2]{%
         \@dottedtocline
             {1}
             {\@tauthesis@tocSectionIndent@}
