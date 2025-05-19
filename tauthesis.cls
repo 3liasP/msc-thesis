@@ -1123,9 +1123,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \clearpage
     \chapter*{\@tauthesis@abstractname}
         \begingroup
-            \small
             \setlength{\parindent}{0pt}
             \setlength{\parskip}{3pt}
+            \fontsize{11pt}{13pt}\selectfont
             \def\metaSep{2pt}
             \noindent\@tauthesis@author\\[\metaSep]
             \@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle\\[\metaSep]
@@ -1140,9 +1140,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
             \makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
             \par
             \vspace*{\parskip}
-            \begin{spacing}{1.000}
-                \input{\@tauthesis@abstractfile}
-            \end{spacing}
+            \input{\@tauthesis@abstractfile}
             \medskip
             \begin{minipage}{\linewidth}
                 \textbf{\@tauthesis@keywordname:}
@@ -1162,9 +1160,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \begin{minipage}{\linewidth}
         \chapter*{\@tauthesis@otherabstractname}
         \begingroup
-            \small
             \setlength{\parindent}{0pt}
             \setlength{\parskip}{3pt}
+            \fontsize{11pt}{13pt}\selectfont
             \def\metaSep{2pt}
             \noindent\@tauthesis@author\\[\metaSep]
             \@tauthesis@othertitle\@tauthesis@othersubtitle@joiner\@tauthesis@othersubtitle\\[\metaSep]
@@ -1179,9 +1177,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
             \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
             \par
             \vspace*{\parskip}
-            \begin{spacing}{1.000}
-                \input{\@tauthesis@otherabstractfile}\par
-            \end{spacing}
+            \input{\@tauthesis@otherabstractfile}\par
             \medskip
             \begin{minipage}{\linewidth}
             \textbf{\@tauthesis@otherkeywordname:}
