@@ -31,12 +31,8 @@
   \PackageError{tauthesis}{This class requires LuaLaTeX to compile}{Please compile your document with LuaLaTeX.}
   \expandafter\stop
 \fi
-
-\pdfvariable minorversion=5
-% Load the expl3 package and l3keys2e module
 %
-
-\RequirePackage{tagpdf}
+% Load the expl3 package and l3keys2e module
 
 \RequirePackage{expl3}
 
