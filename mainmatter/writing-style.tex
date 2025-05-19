@@ -23,20 +23,13 @@ All figures must be explained in the text body, so that the readers know what th
 \begin{figure}
 \centering
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{images/bad-example.jpg}
+\includegraphics[alt={An example of a badly formatted image, that does not take the current presentation into account.},width=\textwidth]{images/bad-example.jpg}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{images/good-example.png}
+\includegraphics[alt={An example of a well-formed image, that has been edited for maximal explanatory power.},width=\textwidth]{images/good-example.png}
 \end{subfigure}
 \caption[This is a short caption.]{Diagrams should be edited before publication. The diagram on the right is an edited version of the one on the left.}
 \label{fig:huolittelu}
-\end{figure}
-
-\begin{figure}
-\centering
-\input{images/pgf-example.tex}
-\caption{An example of a graph along the lines of Figure \ref{fig:huolittelu} drawn using \texttt{pgfplots}.}
-\label{fig:pgf-esimerkki}
 \end{figure}
 
 \section{Tables}
