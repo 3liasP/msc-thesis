@@ -1140,7 +1140,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
             \makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
             \par
             \vspace*{\parskip}
-            \input{\@tauthesis@abstractfile}
+            \input{\@tauthesis@abstractfile}\par
             \medskip
             \begin{minipage}{\linewidth}
                 \textbf{\@tauthesis@keywordname:}
