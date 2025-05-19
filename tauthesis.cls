@@ -36,6 +36,8 @@
 % Load the expl3 package and l3keys2e module
 %
 
+\RequirePackage{tagpdf}
+
 \RequirePackage{expl3}
 
 % Turn : and _ to normal letters that can be used in creating variables.

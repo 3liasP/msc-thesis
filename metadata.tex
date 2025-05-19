@@ -21,7 +21,14 @@
 \DocumentMetadata{
   pdfversion=1.7,
   pdfstandard=A-2b,
-  lang=fi, % Make sure this matches the main language below.
+  % Make sure this matches the main document language below.
+  % One of fi-FI or en-{US,UK,EN}
+  lang=fi-FI,
+  % This is related to well-tagged PDFs. If you change this to phase-III or higher (please don't),
+  % you will be required to manually tag most of your document according to the tagpdf package documentation.
+  % Note that it has not been confirmed whether Trepo will actually accept well-tagged PDF files as of spring 2025,
+  % so you might not want to do this yet until that is confirmed.
+  testphase=phase-II,
   %uncompress,
 }
 
