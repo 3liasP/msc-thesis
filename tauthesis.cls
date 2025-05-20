@@ -542,8 +542,7 @@
 
 \NewDocumentCommand\serialNumberPage{}{
     \clearpage
-        \begingroup
-        \begin{center}
+    \begin{center}
         \null\vfill
         \tl_if_eq:NnTF{
             \@tauthesis@mainlanguage
@@ -556,17 +555,17 @@
         }
         \vfill
         \begingroup\color{red}
-        \textbf{
-            \tl_if_eq:NnTF{
-                \@tauthesis@mainlanguage
-            }{
-                finnish
-            }{
-                Tämä~ja~edellinen~sivu~korvataan~painotalossa.
-            }{
-                This~and~the~preceding~page~will~be~replaced~at~the~printing~house.
+            \textbf{
+                \tl_if_eq:NnTF{
+                    \@tauthesis@mainlanguage
+                }{
+                    finnish
+                }{
+                    Tämä~ja~edellinen~sivu~korvataan~painotalossa.
+                }{
+                    This~and~the~preceding~page~will~be~replaced~at~the~printing~house.
+                }
             }
-        }
         \endgroup
     \end{center}
     \vfill
