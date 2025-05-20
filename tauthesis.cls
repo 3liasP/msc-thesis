@@ -649,7 +649,6 @@
     Path = fonts/FiraMono/,
     Extension = .ttf,
     BoldFont = *-Bold,
-    MediumFont = *-Medium,
     UprightFont = *-Regular,
 ]{FiraMono}
 
