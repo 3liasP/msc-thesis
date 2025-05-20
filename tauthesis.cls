@@ -1062,16 +1062,16 @@
 \let\origlstlistoflistings\lstlistoflistings
 
 \renewcommand{\lstlistoflistings}{%
-  \begingroup
-    \renewcommand{\l@lstlisting}[2]{%
-        \@dottedtocline
-            {1}
-            {\@tauthesis@tocSectionIndent}
-            {\mySectionNumberWidth}
-            {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
-            {\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont##2}
-    }
-    \origlstlistoflistings
+    \begingroup
+        \renewcommand{\l@lstlisting}[2]{%
+            \@dottedtocline
+                {1}
+                {\@tauthesis@tocSectionIndent}
+                {\mySectionNumberWidth}
+                {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
+                {\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont##2}
+        }
+        \origlstlistoflistings
     \endgroup
 }
 
