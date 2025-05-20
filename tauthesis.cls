@@ -1155,39 +1155,37 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \newcommand{\otherabstract}{
     \clearpage
     \xselectlanguage{\@tauthesis@otherlanguage}
-    \begin{minipage}{\linewidth}
-        \chapter*{\@tauthesis@otherabstractname}
-        \begingroup
-            \setlength{\parindent}{0pt}
-            \setlength{\parskip}{3pt}
-            \fontsize{11pt}{13pt}\selectfont
-            \def\metaSep{2pt}
-            \noindent\@tauthesis@author\\[\metaSep]
-            \@tauthesis@othertitle\@tauthesis@othersubtitle@joiner\@tauthesis@othersubtitle\\[\metaSep]
-            \noindent\@tauthesis@otherthesistype\\[\metaSep]
-            \noindent\@tauthesis@otheruniversity\\[\metaSep]
-            \noindent\@tauthesis@otherprogrammename\\[\metaSep]
-            \noindent\DTMDisplaydate%
-                {\the\year}%
-                {\the\month}%
-                {\the\day}{-1}
-            \par
-            \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
-            \par
-            \vspace*{\parskip}
-            \input{\@tauthesis@otherabstractfile}\par
-            \medskip
-            \begin{minipage}{\linewidth}
-            \textbf{\@tauthesis@otherkeywordname:}
-            \@tauthesis@otherkeywords
-            \end{minipage}
-            \par
-            \medskip
-            \begin{minipage}{\linewidth}
-            \@tauthesis@otheroriginalitytext
-            \end{minipage}
-        \endgroup
-    \end{minipage}
+    \chapter*{\@tauthesis@otherabstractname}
+    \begingroup
+        \setlength{\parindent}{0pt}
+        \setlength{\parskip}{3pt}
+        \fontsize{11pt}{13pt}\selectfont
+        \def\metaSep{2pt}
+        \noindent\@tauthesis@author\\[\metaSep]
+        \@tauthesis@othertitle\@tauthesis@othersubtitle@joiner\@tauthesis@othersubtitle\\[\metaSep]
+        \noindent\@tauthesis@otherthesistype\\[\metaSep]
+        \noindent\@tauthesis@otheruniversity\\[\metaSep]
+        \noindent\@tauthesis@otherprogrammename\\[\metaSep]
+        \noindent\DTMDisplaydate%
+            {\the\year}%
+            {\the\month}%
+            {\the\day}{-1}
+        \par
+        \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
+        \par
+        \vspace*{\parskip}
+        \input{\@tauthesis@otherabstractfile}\par
+        \medskip
+        \begin{minipage}{\linewidth}
+        \textbf{\@tauthesis@otherkeywordname:}
+        \@tauthesis@otherkeywords
+        \end{minipage}
+        \par
+        \medskip
+        \begin{minipage}{\linewidth}
+        \@tauthesis@otheroriginalitytext
+        \end{minipage}
+    \endgroup
     \xselectlanguage{\@tauthesis@mainlanguage}
 }
 
