@@ -43,10 +43,6 @@
 \newtheorem{seurauslause}[definition]{Seurauslause}
 \newtheorem{esimerkki}[definition]{Esimerkki}
 
-% Mathematics packages
-\usepackage{mathtools, amssymb}
-%\usepackage{bm}
-
 % Chemistry packages
 % \usepackage{chemfig}
 % \usepackage[version=4]{mhchem}
@@ -64,10 +60,6 @@
     exponent-product=\cdot,
     output-decimal-marker={,} % for theses in FINNISH!
 }
-
-%% For code listings.
-
-\usepackage{listings}
 
 % This global code listing configuration is required for automatically
 % replacing special characters with corresponding LaTeX commands, in code files
@@ -159,11 +151,11 @@
 % Use this line if using the default glossary.
 % Otherwise comment out.
 
-\loadglsentries[main]{tex/sanasto.tex}
+\loadglsentries[main]{mainmatter/sanasto.tex}
 
 % Use this line if using more than one glossary.
 % Otherwise comment out.
-% \loadglsentries[symbs]{tex/sanasto2.tex}
+% \loadglsentries[symbs]{mainmatter/sanasto2.tex}
 
 %%%%% Citation information.
 
@@ -194,4 +186,5 @@
 
 %\DefineBibliographyExtras{english}{\let\finalandcomma=\empty}
 
-\addbibresource{tex/references.bib}
+\addbibresource{mainmatter/references.bib}
+\addbibresource{publications/publications.bib}

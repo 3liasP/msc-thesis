@@ -56,57 +56,13 @@
 %% in LaTeX specific editors.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%% Set PDF version before doing anything else.
-
-\input{set-pdf-version.tex}
-
 %%%%% METADATA %%%%%
 %
 % Always keep the following metadata up to date! This is important for your
 % PDF file to comply to accessibility standards. (And yes, this information
 % must remain here, before \documentclass[...]{...}.)
 
-\def\myfititle{Kuvaava otsikko}
-\def\myentitle{A Descriptive title}
-\def\myauthor{Firstname Lastname}
-\def\myfisubtitle{Tarkentava alaotsikko}
-\def\myensubtitle{A Specifying Subtitle}
-\def\myfithesistype{Opinnäytetyön taso}
-\def\myenthesistype{Thesis type}
-\def\myexaminers{Title1 Firstname1 Lastname1 \\ Title2 Firstname2 Lastname2 \\ ...}
-\def\myfifacultyname{Tiedekunnan nimi}
-\def\myenfacultyname{The name of the faculty}
-\def\myfiprogrammename{Tutkinto-ohjelman nimi}
-\def\myenprogrammename{The name of the study programme}
-\def\myfikeywords{avainsana1, avainsana2, ...}
-\def\myenkeywords{keyword1, keyword2, ...}
-\def\mylanguagecode{en-US}
-\def\mysubject{A short description of the thesis subject.}
-\def\myyear{2023}
-\def\mymonth{06}
-\def\myday{03}
-
-% Define your citation options here. Valid values for style and sorting options
-% can be found in the BibLaTeX manual: https://ctan.org/pkg/biblatex.
-
-\def\mycitationstyle{numeric}
-\def\mycitationsorting{nyt}
-
-%%%%% PREAMBLE %%%%%
-
-%%%%% Document class declaration.
-%
-% The possible optional arguments are
-%
-%   finnish - thesis in Finnish (default)
-%   english - thesis in English
-%   draft - for faster non-final works, also skips images
-%           (recommended, remove in final version)
-%   programs - if you wish to display code snippets
-% Example: \documentclass[english, authoryear]{tauthesis}
-%          thesis in English with author-year citations
-
-\documentclass[finnish]{tauthesis}
+\input{metadata.tex}
 
 \input{preamble.tex} % You can add packages and define new commands in this file.
 
@@ -114,102 +70,44 @@
 
 %%%%% FRONT MATTER %%%%%
 
-\frontmatter
-
 %%%%% Thesis information and title page.
 
-\input{titlepage.tex}
+\titlepagematter
 
-%%%%% Abstracts and preface.
-%
-% Write the abstract(s) and the preface into a separate file for the sake of
-% clarity. Pass the appropriate file name as the first argument to these
-% commands. Put the \abstract in the primary language first and the
-% \otherabstract in the secondary language second. Those who do not speak
-% Finnish only need the first abstract. The second argument of the \preface
-% command takes the place where the thesis was signed in.
-%
-% Edit the files tex/{use-of-ai,tekoalyn-kaytto}.tex to match your use of AI in
-% generating this thesis.
-%
+\maketitle
 
-\abstract{tex/tiivistelma.tex}
+\frontmatter
 
-\otherabstract{tex/abstract.tex}
-
-\aidisclaimerinclusioncmd
-
-\preface{tex/alkusanat.tex}{Tampereella}
-
-%%%%% Table of contents.
-
-\tableofcontents
-
-%%%%% Lists of figures, tables, listings and terms.
-%
-% Print the lists of figures and/or tables. Uncomment either of these commands
-% as required. Both are optional, but if there are many important
-% figures/tables, listing them may be a good idea.
-
-% \listoffigures
-% \listoftables
-% \lstlistoflistings
-
-% Misc stuff related to how the glossary is displayed. You can especially
-% tweak the lengths to suit you!
-
-\glsaddall
-\setglossarystyle{taulong}
-\setlength{\glsnamewidth}{0.25\textwidth}
-\setlength{\glsdescwidth}{0.75\textwidth}
-\renewcommand*{\glsgroupskip}{}
-
-% Print the default glossary of abbreviations, if necessary. Otherwise comment
-% out. The appropriate Finnish variant is 'Lyhenteet'
-
-\printglossary[title={Lyhenteet ja merkinnät}]
-
-% Print more than one glossary with these lines. Otherwise comment out.
-
-% \printglossary[type=symbs]
-% \printglossary[type=label]
-% ...
+\input{frontmatter/index.tex}
 
 %%%%% MAIN MATTER %%%%%
 
 \mainmatter
 
-% Write each of the chapters of the thesis into a separate file for the sake
-% of clarity. They can be \input as shown below. Give both the chapters and
-% their files as descriptive names as possible.
+\hypersetup{
+	linkcolor=taupurple,
+}
 
-\input{tex/johdanto.tex}
+% Actually include your chapters in the file specified by this input statement.
 
-\input{tex/esitystyyli.tex}
-
-\input{tex/viittaustekniikat.tex}
-
-% Add chapters similarly.
-
-\input{tex/yhteenveto.tex}
+\input{mainmatter/index.tex}
 
 %%%%% Bibliography/references.
 
-% Print the bibliography according to the information in ./tex/references.bib
-% and the in-line citations used in the body of the thesis.
-
-% \emergencystretch=2em
 \printbibliography[heading=bibintoc]
 
 %%%%% Appendices.
 
-% Use only if it clarifies the structure of the document. Remember to
-% introduce each appendix and its content.
-
 \begin{appendices}
 
-\input{./tex/liite.tex}
+\input{appendices/index.tex}
 
 \end{appendices}
+
+%%%%% PhD Publications
+
+\publicationmatter
+
+\input{publications/index.tex}
 
 \end{document}

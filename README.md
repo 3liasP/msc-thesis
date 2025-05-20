@@ -6,14 +6,14 @@ This repository contains a template for writing BSc and MSc (Tech) theses in Tam
 
 This template makes use of both `biblatex` and `glossaries` packages, and therefore needs a non-standard compilation sequence. The following should do the trick, as long as your main project file is named `main.tex`:
 ```sh
-pdflatex main.tex &&
+lualatex main.tex &&
 makeindex -s main.ist -t main.glg -o main.gls main.glo &&
 biber main &&
-pdflatex main.tex &&
-pdflatex main.tex
+lualatex main.tex &&
+lualatex main.tex
 ```
 
-**Note:** the compiler `lualatex` can also be used instead of `pdflatex`, but the package `axessibility` will not be loaded in that case.
+**Note:** the compiler `lualatex` must be used, as the template fonts are loaded with `lualatex`-specific funtionality.
 
 ## Usage notes
 

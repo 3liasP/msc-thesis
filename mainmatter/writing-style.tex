@@ -5,11 +5,11 @@ Effective written communication requires both sound content and clear style. Kee
 Do not worry about the layout of the text, this template takes care of it already. Brief basics of writing style:
 \begin{itemize}
 \item Always think of your reader when you are writing and proceed logically from general to specific.
-\item Highlight your key points, for example, by discussing them in a separate \verbcommand{section} or \verbcommand{subsection}, or presenting them in a table or figure. Use italics (\verbcommand{emph}) for emphasis, but don’t overdo it. 
-\item Avoid long sentences and complicated statements. A full stop is the best way to end a sentence. 
-\item Use active verbs to make a dynamic impression but avoid the first person pronoun I, except in your preface. 
+\item Highlight your key points, for example, by discussing them in a separate \verbcommand{section} or \verbcommand{subsection}, or presenting them in a table or figure. Use italics (\verbcommand{emph}) for emphasis, but don’t overdo it.
+\item Avoid long sentences and complicated statements. A full stop is the best way to end a sentence.
+\item Use active verbs to make a dynamic impression but avoid the first person pronoun I, except in your preface.
 \item Avoid jargon and wordiness. Use established terminology and neutral language.
-\item The minimum length of sections and subsections is two paragraphs, and you need to consider the balance of chapters. Paragraphs must always consist of more than one sentence. 
+\item The minimum length of sections and subsections is two paragraphs, and you need to consider the balance of chapters. Paragraphs must always consist of more than one sentence.
 \item Do not use more than three levels of numbered headings, such as 4.4.2. This is covered already by the template.
 \item Do not use too many abbreviations. Use capital and small letters consistently.
 \end{itemize}
@@ -23,20 +23,13 @@ All figures must be explained in the text body, so that the readers know what th
 \begin{figure}
 \centering
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{figures/bad-example.jpg}
+\includegraphics[alt={An example of a badly formatted image, that does not take the current presentation into account.},width=\textwidth]{images/bad-example.jpg}
 \end{subfigure}
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{figures/good-example.png}
+\includegraphics[alt={An example of a well-formed image, that has been edited for maximal explanatory power.},width=\textwidth]{images/good-example.png}
 \end{subfigure}
 \caption[This is a short caption.]{Diagrams should be edited before publication. The diagram on the right is an edited version of the one on the left.}
 \label{fig:huolittelu}
-\end{figure}
-
-\begin{figure}
-\centering
-\input{figures/pgf-example.tex}
-\caption{An example of a graph along the lines of Figure \ref{fig:huolittelu} drawn using \texttt{pgfplots}.}
-\label{fig:pgf-esimerkki}
 \end{figure}
 
 \section{Tables}
@@ -142,17 +135,7 @@ As with the required styles in theses, this template tries to take care of many 
 The instructions for addressing these are as follows.
 \begin{enumerate}
 \item Do as was described. Use external services for assessing the easy-to-read nature of your text, if necessary.
-\item Use the command \texttt{\textbackslash pdftooltip\{\ldots\}\{\ldots\}} from the \texttt{pdfcomment} package (included automatically).
-\begin{verbatim}
-\begin{figure}
-\pdftooltip{\includegraphics[...]{...}}%
-{Figure. This alternative text describes
-what seeing users see in the image.}
-\caption{Figure caption}
-\label{fig:somelabel}
-\end{figure}
-\end{verbatim}
-Notice that the caption and the alternative text of an image serve entirely different purposes, and there for the alt text should never be just a copy of the caption! (Also screen readers will always read the caption in addition to the alt text.) Be verbose in the alt texts, but try to focus on the most essential meanings conveyed by the image.
+\item Notice that the caption and the alternative text of an image serve entirely different purposes, and there for the alt text should never be just a copy of the caption! (Also screen readers will always read the caption in addition to the alt text.) Be verbose in the alt texts, but try to focus on the most essential meanings conveyed by the image.
 \item Always keep the document metadata fields in the pre-preamble of \texttt{main.tex} up-to-date.
 \item Never use the old \TeX{} style \verb+$...$+ and \verb+$$...$$+ environments for math, and instead use the \LaTeX{} style \verb+\(...\)+ and \verb+\[...\]+. The double dollar display math should never be used anyway.
 

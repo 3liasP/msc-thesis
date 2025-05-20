@@ -60,20 +60,13 @@ Kuvan keskeinen sisältö on selitettävä tekstissä, jotta sen sanomasta ei j�
 \begin{figure}
 \centering
 %\begin{subfigure}{0.49\textwidth}
-\pdftooltip{\includegraphics[width=\textwidth]{figures/bad-example.jpg}}{Kuva. Neljä alaspäin aukeavaa kaarta alkaa origosta eri lähtökulmilla. Kuvaajan skaalaus on huono ja akseleita ei ole nimetty johdonmukaisesti.}
+\includegraphics[alt={Esimerkki huonosti tehdystä muokkaamattomasta kuvasta.},width=0.9\linewidth]{images/bad-example.jpg}
 %\end{subfigure}
 %\begin{subfigure}{0.49\textwidth}
-\pdftooltip{\includegraphics[width=\textwidth]{figures/good-example.png}}{Kuva. Neljä alaspäin aukeavaa kaarta alkaa origosta eri lähtökulmilla. Kuvaaja on skaalattu selkeäksi, akseleilla on täsmälliset nimet ja jokaiseen kuvaajaan liittyvä lähtökulmatieto on merkitty sen viereen.}
+\includegraphics[alt={Esimerkki hyvin tehdystä, nykyistä esitystä varten muokatusta kuvasta.},width=0.9\linewidth]{images/good-example.png}
 %\end{subfigure}
 \caption[Tämä on lyhyt kuvateksti.]{Kuvaaja on hyvä muokata julkaisukelpoiseksi. Vasemmalla on esitetty muokkaamaton kuvaaja ja oikealla muokattu.}
 \label{fig:huolittelu}
-\end{figure}
-
-\begin{figure}
-\centering
-%\input{figures/pgf-example.tex}
-\caption{Kuvan \ref{fig:huolittelu} tyylinen esimerkki \texttt{pgfplots}-paketilla piirrettynä.}
-\label{fig:pgf-esimerkki}
 \end{figure}
 
 \section{Taulukot}
@@ -184,17 +177,7 @@ Kuten opinnäytetyön ulkoasun kanssa, tämä pohja pyrkii automatisoimaan monet
 Noudata näissä kohdissa seuraavia ohjeita.
 \begin{enumerate}
 \item Tee kuten yllä kuvattiin. Käytä tarvittaessa ulkoisia palveluja tekstisi helppolukuisuuden arvioimisen tukena.
-\item Käytä komentoa \texttt{\textbackslash pdftooltip\{\ldots\}\{\ldots\}} paketista \texttt{pdfcomment} (sisältyy pohjaan).
-\begin{verbatim}
-\begin{figure}
-\pdftooltip{\includegraphics[...]{...}}%
-{Kuva. Tämä vaihtoehtoinen teksti kuvailee,
-mitä näkevä käyttäjä näkee kuvassa.}
-\caption{Kuvaotsikko}
-\label{fig:jokulabeli}
-\end{figure}
-\end{verbatim}
-Huomaa, että kuvaotsikko ja tekstivastine kirjoitetaan palvelemaan eri tarkoituksia ja että tekstivastine ei koskaan saa olla vain kuvaotsikon kopio! (Ruudunlukijat sitä paitsi lukevat kuvaotsikot tekstivastineen lisäksi.) Kuvaile tekstivastineessa kuvan visuaalista sisältöä runsaasti, mutta keskity myös vain olennaisimpiin merkityksiin, joita kuva välittää.
+\item Huomaa, että kuvaotsikko ja tekstivastine kirjoitetaan palvelemaan eri tarkoituksia ja että tekstivastine ei koskaan saa olla vain kuvaotsikon kopio! (Ruudunlukijat sitä paitsi lukevat kuvaotsikot tekstivastineen lisäksi.) Kuvaile tekstivastineessa kuvan visuaalista sisältöä runsaasti, mutta keskity myös vain olennaisimpiin merkityksiin, joita kuva välittää.
 \item Pidä dokumentin metadatakentät aivan \texttt{main.tex}-tiedoston alussa aina ajan tasalla.
 \item Älä käytä vanhoja \TeX{}-tyylisiä \verb+$...$+- ja \verb+$$...$$+-ympäristöjä matematiikkaa varten. Käytä niiden sijaan \LaTeX{}-tyylisiä \verb+\(...\)+- ja \verb+\[...\]+-ympäristöjä. Keskitetyn matematiikan tupladollareita ei muutenkaan pitäisi käyttää.
 

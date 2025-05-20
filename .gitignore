@@ -34,10 +34,25 @@
 
 !main.tex
 
+!metadata.tex
+
+!index.tex
+
 ## Allow file types in subdirectories.
 
-!tex/
-!tex/*.tex
+!frontmatter/
+!frontmatter/*.tex
+
+!mainmatter/
+!mainmatter/*.tex
+
+!appendices/
+!appendices/*.tex
+
+!publications/
+!publications/index.tex
+!publications/article*.pdf
+!publications/publications.bib
 
 !code/
 !code/*.c
@@ -62,6 +77,20 @@
 !figures/**/*.jpg
 !figures/**/*.pdf
 !figures/**/*.png
+
+!fonts/
+!fonts/FiraMono/
+!fonts/FiraMono/FiraMono-*.ttf
+!fonts/FiraMono/OFL.txt
+!fonts/NotoSansSymbols2/
+!fonts/NotoSansSymbols2/NotoSansSymbols2*.ttf
+!fonts/NotoSansSymbols2/OFL.txt
+!fonts/Roboto/
+!fonts/Roboto/Roboto*.ttf
+!fonts/Roboto/OFL.txt
+!fonts/STIXTwo/
+!fonts/STIXTwo/STIXTwo*.ttf
+!fonts/STIXTwo/OFL.txt
 
 # Disallow PDF figures automatically generated from EPS via epstopdf. Only the
 # original EPS figures should be in the repository to avoid repetition.

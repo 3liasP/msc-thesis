@@ -1,0 +1,58 @@
+%
+% metadata.tex
+%
+% Fill in your document metadata in this file.
+% This is included into the file main.tex for you.
+%
+% Define your citation options here.
+% Valid values for style and sorting options
+% can be found in the BibLaTeX manual: https://ctan.org/pkg/biblatex.
+%
+% Valid values for thesis types are bachelor, master, licentiate and doctor for enthesistype,
+% and kandidaatti, maisteri, diplomi, lisensiaatti and tohtori for fithesistype.
+% The Finnish end English thesis types need to match.
+%
+% The rest of the inputs should be rather self-explanatory.
+
+% This declares to LaTeX that it should use modern internal LaTeX
+% features not available in LaTeX2e. This is also responsible for
+% PDF/A generation.
+
+\DocumentMetadata{
+  pdfversion=1.7,
+  pdfstandard=A-2b,
+  % Make sure this matches the main document language below.
+  % One of fi-FI or en-{US,UK,EN}
+  lang=fi-FI,
+  % This is related to well-tagged PDFs. If you change this to phase-III or higher (please don't),
+  % you will be required to manually tag most of your document according to the tagpdf package documentation.
+  % Note that it has not been confirmed whether Trepo will actually accept well-tagged PDF files as of spring 2025,
+  % so you might not want to do this yet until that is confirmed. Also, even phase-II seems to break PDF/A compatibility.
+  % testphase={phase-III,math},
+  %uncompress,
+}
+
+\documentclass[
+  author={Firstname Lastname},
+  citationsorting={nyt},
+  citationstyle={ieee},
+  enfacultyname={Faculty},
+  enkeywords={keyword1, keyword2, ...},
+  enprogrammename={Thesis programme},
+  ensubtitle={Descriptive subtitle},
+  enthesistype={doctor},
+  entitle={Thesis template},
+  fifacultyname={Tiedekunta},
+  fikeywords={avainsana1, avainsana2, ...},
+  fiprogrammename={Tutkinto-ohjelman nimi},
+  fisubtitle={Kuvaava alaotsikko},
+  fithesistype={tohtori},
+  fititle={Opinnäytetyöpohja},
+  includeListOfFigures=true,
+  includeListOfTables=true,
+  includeListOfListings=true,
+  includePublications=true,
+% Make sure this matches the language given in \DocumentMetadata
+  mainlanguage={finnish},
+  subject={A short description of the work. This will end up in document metadata.},
+]{tauthesis}
