@@ -376,7 +376,7 @@
         \newcommand{\@glossaryname}{Lyhenteet ja merkinnät}
         \newcommand{\@appendixname}{Liite}
 
-        \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{Ohjelma-~ja~lagoritmiluettelo}}
+        \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{Ohjelma-~ja~algoritmiluettelo}}
 
         \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä~työ~on~lisensoitu~lisenssin~##1~mukaisesti}
 

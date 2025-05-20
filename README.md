@@ -1,6 +1,6 @@
 # Tampere University theses using LaTeΧ
 
-This repository contains a template for writing BSc and MSc (Tech) theses in Tampere University using the LaTeΧ system. The styles used try to match the official Word template as closely as possible (or is worth the while).
+This repository contains a template for writing Bachelor's, Master's, Licentiate's and Doctoral theses in Tampere University, using the LaTeΧ system. The styles used try to match the official Word template as closely as possible (or is worth the while).
 
 ## Compilation
 
