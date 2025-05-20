@@ -542,8 +542,7 @@
 
 \NewDocumentCommand\serialNumberPage{}{
     \clearpage
-        \begingroup
-        \begin{center}
+    \begin{center}
         \null\vfill
         \tl_if_eq:NnTF{
             \@tauthesis@mainlanguage
@@ -556,17 +555,17 @@
         }
         \vfill
         \begingroup\color{red}
-        \textbf{
-            \tl_if_eq:NnTF{
-                \@tauthesis@mainlanguage
-            }{
-                finnish
-            }{
-                Tämä~ja~edellinen~sivu~korvataan~painotalossa.
-            }{
-                This~and~the~preceding~page~will~be~replaced~at~the~printing~house.
+            \textbf{
+                \tl_if_eq:NnTF{
+                    \@tauthesis@mainlanguage
+                }{
+                    finnish
+                }{
+                    Tämä~ja~edellinen~sivu~korvataan~painotalossa.
+                }{
+                    This~and~the~preceding~page~will~be~replaced~at~the~printing~house.
+                }
             }
-        }
         \endgroup
     \end{center}
     \vfill
@@ -1063,16 +1062,16 @@
 \let\origlstlistoflistings\lstlistoflistings
 
 \renewcommand{\lstlistoflistings}{%
-  \begingroup
-    \renewcommand{\l@lstlisting}[2]{%
-        \@dottedtocline
-            {1}
-            {\@tauthesis@tocSectionIndent}
-            {\mySectionNumberWidth}
-            {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
-            {\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont##2}
-    }
-    \origlstlistoflistings
+    \begingroup
+        \renewcommand{\l@lstlisting}[2]{%
+            \@dottedtocline
+                {1}
+                {\@tauthesis@tocSectionIndent}
+                {\mySectionNumberWidth}
+                {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
+                {\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont##2}
+        }
+        \origlstlistoflistings
     \endgroup
 }
 
