@@ -47,6 +47,16 @@
 
 \input{preamble.tex} % You can add packages and define new commands in this file.
 
+%%%%%%%% % % % Joonas edits % % % %%%%%%%%%
+
+%\addbibresource{publications/publications.bib}
+\DeclareBibliographyCategory{ThesisPublications}
+\addtocategory{ThesisPublications}{article1}
+\addtocategory{ThesisPublications}{article2}
+\addtocategory{ThesisPublications}{article3}
+\defbibnote{pubs2thesis}{Publications}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \begin{document}
 
 %%%%% FRONT MATTER %%%%%
@@ -75,7 +85,18 @@
 
 %%%%% Bibliography/references.
 
-\printbibliography[heading=bibintoc]
+%%%%%%%% % % % Joonas edits % % % %%%%%%%%%
+\newrefcontext[labelprefix=P]
+\printbibliography[prenote=pubs2thesis,category={ThesisPublications}]
+
+%\begin{refcontext}[labelprefix=P]
+%\listofpublications
+%\end{refcontext}
+
+\endrefcontext 
+
+\newrefcontext[labelprefix=]
+\printbibliography[heading=bibintoc,notcategory={ThesisPublications}]
 
 %%%%% Appendices.
 
