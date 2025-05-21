@@ -83,6 +83,16 @@
 
 \input{mainmatter/index.tex}
 
+% Using cite to reference articles and publicationRef to link to attached papers.
+
+\cite{article1}
+\cite{article2}
+\cite{article3}
+
+\publicationRef{article1}
+
+\publicationRef[Other Supplement]{article1}
+
 %%%%% Bibliography/references.
 
 %%%%%%%% % % % Joonas edits % % % %%%%%%%%%
@@ -93,7 +103,7 @@
 %\listofpublications
 %\end{refcontext}
 
-\endrefcontext 
+\endrefcontext
 
 \newrefcontext[labelprefix=]
 \printbibliography[heading=bibintoc,notcategory={ThesisPublications}]

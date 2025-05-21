@@ -1443,6 +1443,11 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{##1\isdot}
 }
 
+
+\PassOptionsToPackage{hyperref}{pdfa}
+
+\RequirePackage{hyperref}
+
 % Make the publication title pages.
 \newcounter{publication}
 \setcounter{publication}{0}
@@ -1453,12 +1458,13 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \refstepcounter{publication}
     \addcontentsline{toc}{chapter}{\fontsize{\@tauthesis@tocChapterFontSize}{\@tauthesis@tocChapterFontSize}\selectfont\@tauthesis@publicationname{} \Roman{publication}}
     \hspace*{0pt}\vfill
-    {\centering\LARGE\scshape
+    \bibhyperref[\thefield{entrykey}]{
+        \centering\LARGE\scshape
         \MakeUppercase{\@tauthesis@publicationname}\\
         \Roman{publication}
     \par}
-    \vspace{42pt}
-    \label{publication-\thepublication}
+    \vspace*{42pt}
+    \label{publication-\thefield{entrykey}}
 }{%
   {\centering\textbf{\usebibmacro{title}}\par}%
   \medskip
@@ -1509,6 +1515,14 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \newlength{\@truepaperwidth}
 \setlength{\@truepaperwidth}{%
     \@tauthesis@paperwidth-\@tauthesis@bindingoffsetwidth%
+}
+
+% A command for generating a cross-refrence to an attached publication.
+% Argument #1 is an optional supplement and #2 is the citation key of
+% the attached publication in publications.bib.
+
+\NewDocumentCommand\publicationRef{O{Publication}m}{
+  \hyperref[publication-#2]{#1~\ref{publication-#2}}
 }
 
 \RequirePackage{pdfpages}
@@ -1632,26 +1646,6 @@ The originality of this thesis has been checked using the Turnitin Originality s
 }
 
 \ExplSyntaxOff
-
-
-% Place PDF metadata into an external main.xmpdata file.
-
-% \begin{filecontents*}[overwrite]{\jobname.xmpdata}
-% \Title{\@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle}
-% \Author{\@tauthesis@author}
-% \Language{\@tauthesis@mainlanguage}
-% \Keywords{\@tauthesis@fikeywords, \@tauthesis@enkeywords}
-% \Subject{\@tauthesis@subject}
-% \end{filecontents*}
-
-%% Load the data from the metadata file with pdfx.
-
-\PassOptionsToPackage{hyperref}{pdfa}
-
-% \RequirePackage[a-2b,mathxmp]{pdfx}
-% \catcode30=12
-
-\RequirePackage{hyperref}
 
 \ExplSyntaxOn
 \tl_if_eq:NnTF{
