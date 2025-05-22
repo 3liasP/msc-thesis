@@ -17,10 +17,14 @@ lualatex main.tex
 
 ## Usage notes
 
+### Installation
+
 The easiest way to use this template is to download this repository as a ZIP file, and upload the ZIP to Overleaf as a new project, on the page that lists your Overleaf projects ([link][overleaf-projects]). The ZIP file can be downloaded by navigating to the [Tags-page][project-tags-page] of this repository, and choosing the ZIP option of the latest tag. Then on Overleaf, press <kbd>New Project</kbd> → <kbd>Upload Project</kbd> → <kbd>Select a .zip file</kbd>. This will generate a new Overleaf project for you.
 
 [overleaf-projects]: https://www.overleaf.com/project
 [project-tags-page]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/tags
+
+**Note:** Make sure that `main.tex` is set up as the main file of the project in the Overleaf settings. Otherwise the project will not compile. Also change the compiler to LuaLaTeX.
 
 If you wish to write your thesis locally instead, you should install the latest version of the [TeX Live] LaTeΧ distribution onto your computer. This will provide access to the necessary LaTeΧ compilers and libraries, and will allow you to run the command sequence listed in the above section. Any plaintext editor can be used to write LaTeΧ code, but a recommended choice is [VS Code], with the [LaTeΧ Workshop] add-on.
 
@@ -45,6 +49,22 @@ If you ran into a compilation error and installed newer versions of the needed p
 
 Otherwise the LaTeΧ compiler might try to use the metadata from the failed compilation sequence, and not generate new auxiliary files where they are needed. You will not need to do this on Overleaf, as the service deletes the files for you.
 
+### Once the template project compiles successfully...
+
+... the idea is that you write your contents into the files found in the folders `frontmatter/`, `mainmatter/`, `appendices/` and `publications/`. All of the folders contain a file `index.tex`, that the `main.tex` file imports. In these index files, you should input your contents, which will then get automatically input to the main file. For example:
+```latex
+% In mainmatter/index.tex.
+% Invent your own chapter names and create files for them, as necessary.
+
+\input{mainmatter/introduction.tex}
+\input{mainmatter/background.tex}
+\input{mainmatter/methods.tex}
+...
+\input{mainmatter/conclusion.tex}
+````
+Note that the path of the input files needs to be in relation to the `main.tex` file.
+
+The point of this folder arrangement is that it should not be necessary to modify the files `tauthesis.cls` or `main.tex` at all. If you then need to update to a newer version of the main file, you can just copy the updated one on top of the old one without destroying your own work.
 
 ## Bugs and improvements
 
