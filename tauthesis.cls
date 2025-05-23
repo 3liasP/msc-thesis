@@ -529,7 +529,6 @@
     \vfill
     {\raggedleft%
         \@tauthesis@thesistype\\%
-        \@tauthesis@university\\%
         \@tauthesis@facultyname\\%
         \DTMDisplaydate%
             {\the\year}%
