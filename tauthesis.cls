@@ -326,7 +326,8 @@
         \newcommand{\@tauthesis@keywordname}{Avainsanat}
         \newcommand{\@tauthesis@prefacename}{Alkusanat}
         \newcommand{\@tauthesis@originalitytext}{\@finoriginalitytext}
-        \newcommand{\@tauthesis@logofile}{images/tau-logo-fin-eng.eps}
+        \newcommand{\@tauthesis@logofile}{images/tau-logo-fin.eps}
+        \newcommand{\@tauthesis@logofile@alttext}{Tampereen yliopiston logo.}
         \newcommand{\@tauthesis@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
         \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/tekoalyn-kaytto.tex}
         \newcommand{\@tauthesis@yestextcmd}{Kyllä}
@@ -391,7 +392,8 @@
         \newcommand{\@tauthesis@keywordname}{Keywords}
         \newcommand{\@tauthesis@prefacename}{Preface}
         \newcommand{\@tauthesis@originalitytext}{\@engoriginalitytext}
-        \newcommand{\@tauthesis@logofile}{images/tau-logo-fin-eng.eps}
+        \newcommand{\@tauthesis@logofile}{images/tau-logo-eng.eps}
+        \newcommand{\@tauthesis@logofile@alttext}{Tampere University logo.}
         \newcommand{\@tauthesis@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
         \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai.tex}
         \newcommand{\@tauthesis@yestextcmd}{Yes}
@@ -491,7 +493,7 @@
     \thispagestyle{empty}
     \vspace*{\@tauthesis@logoyoffset}
     \hspace*{\@tauthesis@logoxoffset}
-    \includegraphics[width=8cm]{\@tauthesis@logofile}
+    \includegraphics[width=8cm,alt={\@tauthesis@logofile@alttext}]{\@tauthesis@logofile}
     \par\medskip
     \vspace{102pt}
     {\raggedleft\fontsize{20pt}{0pt}\selectfont\@tauthesis@author\par}
@@ -529,7 +531,6 @@
     \vfill
     {\raggedleft%
         \@tauthesis@thesistype\\%
-        \@tauthesis@university\\%
         \@tauthesis@facultyname\\%
         \DTMDisplaydate%
             {\the\year}%
