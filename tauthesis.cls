@@ -1316,10 +1316,11 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \cleardoublepage
 }
 
+
 % Make the list of publications
 \newcommand{\listofpublications}{
-    \begin{refsection}
     \begin{refcontext}[labelprefix=\@tauthesis@publicationname\addspace, sorting=none]
+    \hypertarget{entrykey}{}
     \nocite{*}
     \emergencystretch=2em
     \setlength{\bibitemsep}{8.5pt}
@@ -1327,10 +1328,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \DeclareFieldFormat{labelnumberwidth}{##1}
     \printbibliography[%
         title=\@tauthesis@listpublicationname,%
-        keyword=thisdissertation,%
+        keyword={thisdissertation},%
         env=thisdissertationstyle]
     \end{refcontext}
-    \end{refsection}
     \settowidth{\labelnumberwidth}{888}
     \authorcontribution
 }
@@ -1443,14 +1443,13 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \DeclareFieldFormat[article,inbook,incollection,inproceedings,patent,thesis,unpublished]{title}{##1\isdot}
 }
 
+% Make the publication title pages.
+\newcounter{publication}
+\setcounter{publication}{0}
 
 \PassOptionsToPackage{hyperref}{pdfa}
 
 \RequirePackage{hyperref}
-
-% Make the publication title pages.
-\newcounter{publication}
-\setcounter{publication}{0}
 
 \DeclareCiteCommand{\thisdissertation}{
     %\cleardoublepage
@@ -1524,6 +1523,10 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \NewDocumentCommand\publicationRef{O{Publication}m}{
   \hyperref[publication-#2]{#1~\ref{publication-#2}}
 }
+
+\DeclareCiteCommand{\pubcite}{\usebibmacro{prenote}}{%
+\mkbibbrackets{\bibhyperref[\thefield{entrykey}]{P\thefield{labelnumber}}}%
+}{\multicitedelim}{\usebibmacro{postnote}}
 
 \RequirePackage{pdfpages}
 
