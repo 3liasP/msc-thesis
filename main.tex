@@ -83,30 +83,10 @@
 
 \input{mainmatter/index.tex}
 
-% Using cite to reference articles and publicationRef to link to attached papers.
-
-\cite{article1}
-\cite{article2}
-\cite{article3}
-
-\publicationRef{article1}
-
-\publicationRef[Other Supplement]{article1}
-
 %%%%% Bibliography/references.
 
-%%%%%%%% % % % Joonas edits % % % %%%%%%%%%
-\newrefcontext[labelprefix=P]
-\printbibliography[prenote=pubs2thesis,category={ThesisPublications}]
+\printbibliography[heading=bibintoc,notkeyword={thisdissertation}]
 
-%\begin{refcontext}[labelprefix=P]
-%\listofpublications
-%\end{refcontext}
-
-\endrefcontext
-
-\newrefcontext[labelprefix=]
-\printbibliography[heading=bibintoc,notcategory={ThesisPublications}]
 
 %%%%% Appendices.
 
