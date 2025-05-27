@@ -1692,13 +1692,12 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \par
     \begingroup%
         \textbf{%
-            \color{taupurple}
             #1~\the@tauthesis@theoremCounter
             \IfValueT{#2}{~(#2)}:
         }
     \endgroup
-    #3\\[0em]
-    \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
+    #3
+    \par
 }{\relax}
 
 \NewDocumentEnvironment{definition}{o+b}{
