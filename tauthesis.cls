@@ -679,6 +679,7 @@
 
 \newunicodechar{☒}{{\fallbackfont ☒}}
 \newunicodechar{☐}{{\fallbackfont ☐}}
+\newunicodechar{□}{{\fallbackfont □}}
 
 %%%%% PACKAGES AND RELATED DEFINITIONS %%%%%
 
@@ -1316,10 +1317,11 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \cleardoublepage
 }
 
+
 % Make the list of publications
 \newcommand{\listofpublications}{
-    \begin{refsection}
     \begin{refcontext}[labelprefix=\@tauthesis@publicationname\addspace, sorting=none]
+    \hypertarget{entrykey}{}
     \nocite{*}
     \emergencystretch=2em
     \setlength{\bibitemsep}{8.5pt}
@@ -1327,10 +1329,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \DeclareFieldFormat{labelnumberwidth}{##1}
     \printbibliography[%
         title=\@tauthesis@listpublicationname,%
-        keyword=thisdissertation,%
+        keyword={thisdissertation},%
         env=thisdissertationstyle]
     \end{refcontext}
-    \end{refsection}
     \settowidth{\labelnumberwidth}{888}
     \authorcontribution
 }
@@ -1447,18 +1448,25 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \newcounter{publication}
 \setcounter{publication}{0}
 
+\PassOptionsToPackage{hyperref}{pdfa}
+
+\RequirePackage{hyperref}
+
+\NewDocumentCommand\@tauthesis@publication@anchor@{}{@tauthesis@publication@anchor@}
+
 \DeclareCiteCommand{\thisdissertation}{
     %\cleardoublepage
     \thispagestyle{empty}
     \refstepcounter{publication}
     \addcontentsline{toc}{chapter}{\fontsize{\@tauthesis@tocChapterFontSize}{\@tauthesis@tocChapterFontSize}\selectfont\@tauthesis@publicationname{} \Roman{publication}}
     \hspace*{0pt}\vfill
-    {\centering\LARGE\scshape
+    \bibhyperref[\thefield{entrykey}]{
+        \centering\LARGE\scshape
         \MakeUppercase{\@tauthesis@publicationname}\\
         \Roman{publication}
     \par}
-    \vspace{42pt}
-    \label{publication-\thepublication}
+    \vspace*{42pt}
+    \label{\@tauthesis@publication@anchor@\thefield{entrykey}}
 }{%
   {\centering\textbf{\usebibmacro{title}}\par}%
   \medskip
@@ -1510,6 +1518,34 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \setlength{\@truepaperwidth}{%
     \@tauthesis@paperwidth-\@tauthesis@bindingoffsetwidth%
 }
+
+% A command for generating a cross-refrence to an attached publication.
+% Argument #1 is an optional supplement and #2 is the citation key of
+% the attached publication in publications.bib.
+
+\ExplSyntaxOn
+
+\tl_if_eq:NnTF{
+    \@tauthesis@mainlanguage
+}{
+    finnish
+}{
+    \NewDocumentCommand\@tauthesis@pubcitePrefix{}{J}
+    \NewDocumentCommand\@tauthesis@publicationRefPrefix{}{Julkaisu}
+}{
+    \NewDocumentCommand\@tauthesis@pubcitePrefix{}{P}
+    \NewDocumentCommand\@tauthesis@publicationRefPrefix{}{Publication}
+}
+
+\ExplSyntaxOff
+
+\NewDocumentCommand\publicationRef{O{\@tauthesis@publicationRefPrefix}m}{%
+  \hyperref[\@tauthesis@publication@anchor@#2]{#1~\ref{\@tauthesis@publication@anchor@#2}}%
+}
+
+\DeclareCiteCommand{\pubcite}{\usebibmacro{prenote}}{%
+\mkbibbrackets{\bibhyperref[\@tauthesis@pubcitePrefix\thefield{entrykey}]{\@tauthesis@pubcitePrefix\thefield{labelnumber}}}%
+}{\multicitedelim}{\usebibmacro{postnote}}
 
 \RequirePackage{pdfpages}
 
@@ -1633,25 +1669,180 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 \ExplSyntaxOff
 
+%% Theorem environments.
 
-% Place PDF metadata into an external main.xmpdata file.
+\newcounter{@tauthesis@theoremCounter}
 
-% \begin{filecontents*}[overwrite]{\jobname.xmpdata}
-% \Title{\@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle}
-% \Author{\@tauthesis@author}
-% \Language{\@tauthesis@mainlanguage}
-% \Keywords{\@tauthesis@fikeywords, \@tauthesis@enkeywords}
-% \Subject{\@tauthesis@subject}
-% \end{filecontents*}
+\numberwithin{@tauthesis@theoremCounter}{chapter}
 
-%% Load the data from the metadata file with pdfx.
+%
+% tauthesisTheoremBox
+%
+% Functions as a basis for Tampere University theorem box environemnts.
+%
+% Arguments:
+%
+% #1: a compulsory theorem type, defining the supplement, such as Definition, Theorem, etc.
+%
+% #2: an optional title for the theorem box.
+%
+% #3: the environment body with multiple allowed paragraphs.
+%
+\NewDocumentEnvironment{tauthesisTheoremBox}{mo+b}{
+    \refstepcounter{@tauthesis@theoremCounter}
+    \par
+    \begingroup%
+        \textbf{%
+            #1~\the@tauthesis@theoremCounter
+            \IfValueT{#2}{~(#2)}.
+        }
+    \endgroup
+    #3
+    \par
+    \bigskip
+}{\relax}
 
-\PassOptionsToPackage{hyperref}{pdfa}
+\NewDocumentEnvironment{definition}{o+b}{
+    \def\boxName{Definition}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
 
-% \RequirePackage[a-2b,mathxmp]{pdfx}
-% \catcode30=12
+\NewDocumentEnvironment{theorem}{o+b}{
+    \def\boxName{Theorem}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
 
-\RequirePackage{hyperref}
+\NewDocumentEnvironment{lemma}{o+b}{
+    \def\boxName{Lemma}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{corollary}{o+b}{
+    \def\boxName{Corollary}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{example}{o+b}{
+    \def\boxName{Example}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{määritelmä}{o+b}{
+    \def\boxName{Määritelmä}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{lause}{o+b}{
+    \def\boxName{Lause}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{apulause}{o+b}{
+    \def\boxName{Apulause}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{seurauslause}{o+b}{
+    \def\boxName{Seurauslause}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{esimerkki}{o+b}{
+    \def\boxName{Esimerkki}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{todistus}{+b}{
+    \textit{Todistus.}
+    #1\hfill□
+    \par
+}{\relax}
+
+\NewDocumentEnvironment{proof}{+b}{
+    \textit{Proof.}
+    #1\hfill□
+    \par
+}{\relax}
 
 \ExplSyntaxOn
 \tl_if_eq:NnTF{

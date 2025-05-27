@@ -20,29 +20,6 @@
 % Subfigures and wrapping text
 % \usepackage{subcaption}
 
-%% Theorem environments and their numbering.
-%
-% Define both English and Finnish theorem types. These all follow the same
-% counter. See the documentation of amsthm to see how these can be changed to
-% suit your needs, if necessary.
-%
-
-\usepackage{amsthm}
-
-\theoremstyle{definition}
-
-\newtheorem{definition}{Definition}[chapter]
-\newtheorem{theorem}[definition]{Theorem}
-\newtheorem{lemma}[definition]{Lemma}
-\newtheorem{corollary}[definition]{Corollary}
-\newtheorem{example}[definition]{Example}
-
-\newtheorem{maaritelma}[definition]{Määritelmä}
-\newtheorem{lause}[definition]{Lause}
-\newtheorem{apulause}[definition]{Apulause}
-\newtheorem{seurauslause}[definition]{Seurauslause}
-\newtheorem{esimerkki}[definition]{Esimerkki}
-
 % Chemistry packages
 % \usepackage{chemfig}
 % \usepackage[version=4]{mhchem}
@@ -114,26 +91,6 @@
 % A delimiter command for the norm of a vector with mathtools.
 
 \DeclarePairedDelimiter\norm{\lVert}{\rVert}
-
-% Basic theorems in Finnish and in English.
-% Remove [chapter] if you wish a simply
-% running enumeration.
-% \newtheorem{lause}{Lause}[chapter]
-% \newtheorem{theorem}[lause]{Theorem}
-
-% \newtheorem{apulause}[lause]{Apulause}
-% \newtheorem{lemma}[lause]{Lemma}
-
-% Use these versions for individually
-% enumerated lemmas
-% \newtheorem{apulause}{Apulause}[chapter]
-% \newtheorem{lemma}{Lemma}[chapter]
-
-% Definition style
-% \theoremstyle{definition}
-% \newtheorem{maaritelma}{Määritelmä}[chapter]
-% \newtheorem{definition}[maaritelma]{Definition}
-% examples in this style
 
 %%%%% Glossary information.
 
