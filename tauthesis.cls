@@ -1451,6 +1451,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 \RequirePackage{hyperref}
 
+\NewDocumentCommand\@tauthesis@publication@anchor@{}{@tauthesis@publication@anchor@}
+
 \DeclareCiteCommand{\thisdissertation}{
     %\cleardoublepage
     \thispagestyle{empty}
@@ -1463,7 +1465,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \Roman{publication}
     \par}
     \vspace*{42pt}
-    \label{publication-\thefield{entrykey}}
+    \label{\@tauthesis@publication@anchor@\thefield{entrykey}}
 }{%
   {\centering\textbf{\usebibmacro{title}}\par}%
   \medskip
@@ -1536,13 +1538,12 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 \ExplSyntaxOff
 
-
 \NewDocumentCommand\publicationRef{O{\@tauthesis@publicationRefPrefix}m}{%
-  \hyperref[publication-#2]{#1~\ref{publication-#2}}%
+  \hyperref[\@tauthesis@publication@anchor@#2]{#1~\ref{\@tauthesis@publication@anchor@#2}}%
 }
 
 \DeclareCiteCommand{\pubcite}{\usebibmacro{prenote}}{%
-\mkbibbrackets{\bibhyperref[\thefield{entrykey}]{\@tauthesis@pubcitePrefix\thefield{labelnumber}}}%
+\mkbibbrackets{\bibhyperref[\@tauthesis@pubcitePrefix\thefield{entrykey}]{\@tauthesis@pubcitePrefix\thefield{labelnumber}}}%
 }{\multicitedelim}{\usebibmacro{postnote}}
 
 \RequirePackage{pdfpages}
