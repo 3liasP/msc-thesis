@@ -1520,12 +1520,29 @@ The originality of this thesis has been checked using the Turnitin Originality s
 % Argument #1 is an optional supplement and #2 is the citation key of
 % the attached publication in publications.bib.
 
-\NewDocumentCommand\publicationRef{O{Publication}m}{
-  \hyperref[publication-#2]{#1~\ref{publication-#2}}
+\ExplSyntaxOn
+
+\tl_if_eq:NnTF{
+    \@tauthesis@mainlanguage
+}{
+    finnish
+}{
+    \NewDocumentCommand\@tauthesis@pubcitePrefix{}{J}
+    \NewDocumentCommand\@tauthesis@publicationRefPrefix{}{Julkaisu}
+}{
+    \NewDocumentCommand\@tauthesis@pubcitePrefix{}{P}
+    \NewDocumentCommand\@tauthesis@publicationRefPrefix{}{Publication}
+}
+
+\ExplSyntaxOff
+
+
+\NewDocumentCommand\publicationRef{O{\@tauthesis@publicationRefPrefix}m}{%
+  \hyperref[publication-#2]{#1~\ref{publication-#2}}%
 }
 
 \DeclareCiteCommand{\pubcite}{\usebibmacro{prenote}}{%
-\mkbibbrackets{\bibhyperref[\thefield{entrykey}]{P\thefield{labelnumber}}}%
+\mkbibbrackets{\bibhyperref[\thefield{entrykey}]{\@tauthesis@pubcitePrefix\thefield{labelnumber}}}%
 }{\multicitedelim}{\usebibmacro{postnote}}
 
 \RequirePackage{pdfpages}
