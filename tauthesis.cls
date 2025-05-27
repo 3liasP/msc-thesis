@@ -1671,12 +1671,13 @@ The originality of this thesis has been checked using the Turnitin Originality s
 %
 \NewDocumentEnvironment{tauthesisTheoremBox}{mo+b}{
     \refstepcounter{@tauthesis@theoremCounter}
-    \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}%
-    \\[0.5em]
+    \par
     \begingroup
-        \color{taupurple}
-        \textbf{#1}~\the@tauthesis@theoremCounter
-        \IfValueT{#2}{~\textbf{(#2)}}:
+        \textbf{
+            \color{taupurple}
+            #1~\the@tauthesis@theoremCounter
+            \IfValueT{#2}{~(#2)}:
+        }
     \endgroup
     #3\\[0em]
     \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
