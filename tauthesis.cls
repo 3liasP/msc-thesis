@@ -1650,6 +1650,168 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 \ExplSyntaxOff
 
+%% Theorem environments.
+
+\newcounter{@tauthesis@theoremCounter}
+
+\numberwithin{@tauthesis@theoremCounter}{chapter}
+
+%
+% tauthesisTheoremBox
+%
+% Functions as a basis for Tampere University theorem box environemnts.
+%
+% Arguments:
+%
+% #1: a compulsory theorem type, defining the supplement, such as Definition, Theorem, etc.
+%
+% #2: an optional title for the theorem box.
+%
+% #3: the environment body with multiple allowed paragraphs.
+%
+\NewDocumentEnvironment{tauthesisTheoremBox}{mo+b}{
+    \refstepcounter{@tauthesis@theoremCounter}
+    \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}%
+    \\[0.5em]
+    \begingroup
+        \color{taupurple}
+        \textbf{#1}~\the@tauthesis@theoremCounter
+        \IfValueT{#2}{~\textbf{(#2)}}:
+    \endgroup
+    #3\\[0em]
+    \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
+}{\relax}
+
+\NewDocumentEnvironment{definition}{o+b}{
+    \def\boxName{Definition}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{theorem}{o+b}{
+    \def\boxName{Theorem}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{lemma}{o+b}{
+    \def\boxName{Lemma}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{corollary}{o+b}{
+    \def\boxName{Corollary}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{example}{o+b}{
+    \def\boxName{Example}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{määritelmä}{o+b}{
+    \def\boxName{Määritelmä}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{lause}{o+b}{
+    \def\boxName{Lause}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{apulause}{o+b}{
+    \def\boxName{Apulause}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{seurauslause}{o+b}{
+    \def\boxName{Seurauslause}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
+\NewDocumentEnvironment{esimerkki}{o+b}{
+    \def\boxName{Esimerkki}
+    \IfValueTF{#1}{
+        \begin{tauthesisTheoremBox}{\boxName}[#1]
+            #2
+        \end{tauthesisTheoremBox}
+    }{
+        \begin{tauthesisTheoremBox}{\boxName}
+            #2
+        \end{tauthesisTheoremBox}
+    }
+}{\relax}
+
 \ExplSyntaxOn
 \tl_if_eq:NnTF{
     \@tauthesis@mainlanguage
