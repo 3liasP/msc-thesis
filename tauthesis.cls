@@ -1672,8 +1672,8 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \NewDocumentEnvironment{tauthesisTheoremBox}{mo+b}{
     \refstepcounter{@tauthesis@theoremCounter}
     \par
-    \begingroup
-        \textbf{
+    \begingroup%
+        \textbf{%
             \color{taupurple}
             #1~\the@tauthesis@theoremCounter
             \IfValueT{#2}{~(#2)}:
