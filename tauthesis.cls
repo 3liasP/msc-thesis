@@ -1693,7 +1693,7 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \begingroup%
         \textbf{%
             #1~\the@tauthesis@theoremCounter
-            \IfValueT{#2}{~(#2)}
+            \IfValueT{#2}{~(#2)}.
         }
     \endgroup
     #3
