@@ -679,7 +679,7 @@
 
 \newunicodechar{☒}{{\fallbackfont ☒}}
 \newunicodechar{☐}{{\fallbackfont ☐}}
-\newunicodechar{□}{{\fallbackfont □}}
+\newunicodechar{∎}{{\fallbackfont ∎}}
 
 %%%%% PACKAGES AND RELATED DEFINITIONS %%%%%
 
@@ -1834,13 +1834,13 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 \NewDocumentEnvironment{todistus}{+b}{
     \textit{Todistus.}
-    #1\hfill□
+    #1\hfill∎
     \par
 }{\relax}
 
 \NewDocumentEnvironment{proof}{+b}{
     \textit{Proof.}
-    #1\hfill□
+    #1\hfill∎
     \par
 }{\relax}
 
