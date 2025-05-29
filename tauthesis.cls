@@ -867,7 +867,7 @@
 
 \let\bibLaTeXPrintBibliography\printbibliography
 
-\RenewDocumentCommand\emph{m}{\textit{\color{taupurple}#1}}
+\RenewDocumentCommand\emph{m}{\textit{\color{black}#1}}
 
 \RenewDocumentCommand\printbibliography{O{}}{%
     % This is needed or titles will be colored taupurple in the bibliography.
@@ -880,7 +880,7 @@
 
 % Caption formatting
 \RequirePackage
-    [labelfont={bf,color=taupurple},
+    [labelfont={bf,color=black},
     labelsep=colon]{caption}
 
 \renewcommand{\arraystretch}{1.25}
@@ -1852,10 +1852,10 @@ The originality of this thesis has been checked using the Turnitin Originality s
 }{
     \hypersetup{
         colorlinks=true,
-        linkcolor=taupurple,
-        citecolor=taupurple,
+        linkcolor=black,
+        citecolor=black,
         urlcolor=blue,
-        filecolor=magenta,
+        filecolor=black,
         pdftitle = {\@tauthesis@fititle},
         pdfauthor={\@tauthesis@author},
         pdfsubject={\@tauthesis@subject},
@@ -1864,10 +1864,10 @@ The originality of this thesis has been checked using the Turnitin Originality s
 }{
     \hypersetup{
         colorlinks=true,
-        linkcolor=taupurple,
-        citecolor=taupurple,
+        linkcolor=black,
+        citecolor=black,
         urlcolor=blue,
-        filecolor=magenta,
+        filecolor=black,
         pdftitle = {\@tauthesis@entitle},
         pdfauthor={\@tauthesis@author},
         pdfsubject={\@tauthesis@subject},
