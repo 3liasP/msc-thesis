@@ -1,11 +1,28 @@
-# Tampere University theses using LaTeΧ
+# Master's Thesis: Integrating Resource-Augmented AI Chatbots into Custom-Deployed PLM Systems
 
-This repository contains a template for writing Bachelor's, Master's, Licentiate's and Doctoral theses in Tampere University, using the LaTeΧ system. The styles used try to match the official Word template as closely as possible (or is worth the while).
+**A Case Study on Sovelia Core**
 
-## Compilation
+This repository contains my Master's thesis project at Tampere University, Faculty of Information Technology and Communication Sciences. The thesis explores integrating a resource-augmented AI assistant (RAG chatbot) into Sovelia Core, a customizable PLM platform, to improve access to documentation and support by enabling the chatbot to answer questions using both vendor and customer materials.
 
-This template makes use of both `biblatex` and `glossaries` packages, and therefore needs a non-standard compilation sequence. The following should do the trick, as long as your main project file is named `main.tex`:
+This project is based on the official [Tampere University LaTeX thesis template](https://gitlab.com/tuni-official/thesis-templates/masters-thesis) and includes enhanced compilation automation for VS Code.
+
+## 🚀 Compilation Setup
+
+This project includes **automated compilation setup** for VS Code with LaTeX Workshop extension. Multiple compilation methods are available:
+
+### **Automated Compilation (Recommended)**
+- **VS Code + LaTeX Workshop**: Press `Ctrl+Alt+B` and select "Tampere Thesis (Full Build)"
+- **Auto-build on save**: Enabled by default
+- **Build tasks**: Use `Ctrl+Shift+B` to run build tasks
+
+### **Manual Compilation**
+The thesis uses both `biblatex` and `glossaries` packages, requiring this specific compilation sequence:
+
 ```sh
+# Using the included shell script (recommended)
+./compile.sh
+
+# Or manually step by step
 lualatex main.tex &&
 makeindex -s main.ist -t main.glg -o main.gls main.glo &&
 biber main &&
@@ -13,75 +30,118 @@ lualatex main.tex &&
 lualatex main.tex
 ```
 
-**Note:** the compiler `lualatex` must be used, as the template fonts are loaded with `lualatex`-specific funtionality.
+**Note:** The compiler `lualatex` must be used, as the template fonts are loaded with `lualatex`-specific functionality.
 
-## Usage notes
+📋 **See [`LATEX_SETUP.md`](./LATEX_SETUP.md) for detailed compilation setup documentation.**
 
-### Installation
+## 📖 About This Thesis
 
-The easiest way to use this template is to download this repository as a ZIP file, and upload the ZIP to Overleaf as a new project, on the page that lists your Overleaf projects ([link][overleaf-projects]). The ZIP file can be downloaded by navigating to the [Tags-page][project-tags-page] of this repository, and choosing the ZIP option of the latest tag. Then on Overleaf, press <kbd>New Project</kbd> → <kbd>Upload Project</kbd> → <kbd>Select a .zip file</kbd>. This will generate a new Overleaf project for you.
+**Topic**: Integrating Resource-Augmented AI Chatbots into Custom-Deployed PLM Systems  
+**Subtitle**: A Case Study on Sovelia Core  
+**Author**: Elias Peltonen  
+**Program**: Master's Programme in Information Technology, Software Engineering  
+**Faculty**: Faculty of Information Technology and Communication Sciences, Tampere University
 
-[overleaf-projects]: https://www.overleaf.com/project
-[project-tags-page]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/tags
+### Abstract
+This thesis explores integrating a resource-augmented AI assistant (RAG chatbot) into Sovelia Core, a customizable PLM platform. The goal is to improve access to documentation and support by enabling the chatbot to answer questions using both vendor and customer materials, helping users find information and onboard more efficiently.
 
-**Note:** Make sure that `main.tex` is set up as the main file of the project in the Overleaf settings. Otherwise the project will not compile. Also change the compiler to LuaLaTeX.
+## 🛠️ Development Environment
 
-If you wish to write your thesis locally instead, you should install the latest version of the [TeX Live] LaTeΧ distribution onto your computer. This will provide access to the necessary LaTeΧ compilers and libraries, and will allow you to run the command sequence listed in the above section. Any plaintext editor can be used to write LaTeΧ code, but a recommended choice is [VS Code], with the [LaTeΧ Workshop] add-on.
+This project is optimized for local development with VS Code:
+
+### Prerequisites
+- [TeX Live] LaTeX distribution (latest version)
+- [VS Code] with [LaTeX Workshop] extension
+- Git (for version control)
 
 [TeX Live]: https://www.tug.org/texlive/
 [VS Code]: https://code.visualstudio.com
-[LaTeΧ Workshop]: https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
+[LaTeX Workshop]: https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
 
-Whichever approach you choose, local or online, go ahead and try to compile the template as-is, before starting to modify it. The resulting PDF file `main.pdf` contains some directions for using the template. More helpful instructions can be found in the `.tex` files as comments.
+### Quick Start
+1. Clone this repository
+2. Open the project in VS Code
+3. Install the LaTeX Workshop extension (if not already installed)
+4. Open `main.tex` and press `Ctrl+Alt+B` to build
 
-If you run into compilation errors, please check your LaTeΧ distribution version and install the newest versions of the following packages.
+## 📁 Project Structure
 
-* `pdfx`, `ìnputenc`, `babel`, `csquotes`, `hyperref`
+The thesis content is organized in the following folders:
+- `frontmatter/` - Abstract, preface, table of contents
+- `mainmatter/` - Main thesis chapters 
+- `appendices/` - Additional supporting material
+- `publications/` - Related publications
+- `images/` - Figures and images
+- `code/` - Source code examples
+
+Each folder contains an `index.tex` file that includes the individual content files.
+
+## 🔧 Troubleshooting
+
+### Required LaTeX Packages
+If you encounter compilation errors, ensure you have the latest versions of:
+* `pdfx`, `inputenc`, `babel`, `csquotes`, `hyperref`
 * `fontenc`, `helvet`
 * `geometry`, `fancyhdr`, `setspace`, `parskip`, `xcolor`, `titlesec`, `titletoc`
 * `enumitem`, `graphicx`, `caption`, `listings`, `pdfpages`, `datetime2`
 * `biblatex`, `glossaries`
 * `accsupp`, `axessibility`, `pdfcomment`
 
-If you ran into a compilation error and installed newer versions of the needed packages, but the document still does not compile, you might also need to delete the auxiliary files generated by the compiler in the directory, where you attempted to compile the document:
+### Clean Build
+If compilation fails, try cleaning auxiliary files first:
+```sh
+# Use the VS Code task
+Ctrl+Shift+P → "Tasks: Run Task" → "Clean LaTeX Files"
 
-	rm main.aux main.xmpdata main.blg main.bbl main.bcf
+# Or manually
+rm main.aux main.xmpdata main.blg main.bbl main.bcf main.*.log
+```
 
-Otherwise the LaTeΧ compiler might try to use the metadata from the failed compilation sequence, and not generate new auxiliary files where they are needed. You will not need to do this on Overleaf, as the service deletes the files for you.
+## 📚 Template Information
 
-### Once the template project compiles successfully...
+This thesis is based on the official [Tampere University LaTeX thesis template](https://gitlab.com/tuni-official/thesis-templates/masters-thesis). The template structure allows for:
 
-... the idea is that you write your contents into the files found in the folders `frontmatter/`, `mainmatter/`, `appendices/` and `publications/`. All of the folders contain a file `index.tex`, that the `main.tex` file imports. In these index files, you should input your contents, which will then get automatically input to the main file. For example:
+- **Modular content organization**: Content is organized in separate folders and files
+- **Automatic formatting**: The `tauthesis.cls` class handles all formatting requirements
+- **Easy maintenance**: Template updates can be applied without affecting content
+
+### Content Organization Example:
 ```latex
-% In mainmatter/index.tex.
-% Invent your own chapter names and create files for them, as necessary.
-
+% In mainmatter/index.tex - include your chapter files
 \input{mainmatter/introduction.tex}
-\input{mainmatter/background.tex}
-\input{mainmatter/methods.tex}
-...
+\input{mainmatter/literature-review.tex}
+\input{mainmatter/methodology.tex}
+\input{mainmatter/implementation.tex}
+\input{mainmatter/results.tex}
 \input{mainmatter/conclusion.tex}
-````
-Note that the path of the input files needs to be in relation to the `main.tex` file.
+```
 
-The point of this folder arrangement is that it should not be necessary to modify the files `tauthesis.cls` or `main.tex` at all. If you then need to update to a newer version of the main file, you can just copy the updated one on top of the old one without destroying your own work.
+**Note**: File paths are relative to `main.tex`. The modular structure means you typically won't need to modify `main.tex` or `tauthesis.cls`.
 
-## Bugs and improvements
+## 📄 Files and Configuration
 
-Please use the [**Issues page**][gitlab-issues], if you have found something in the template that needs fixing, or if you have a suggestion for improvement. You might need to [create a GitLab account][gitlab-sign-up] to be able to post issues. All feedback (preferably in English, Finnish works too) is most welcome!
+### Key Files
+- `main.tex` - Main document file (compile this)
+- `metadata.tex` - Thesis metadata and configuration
+- `compile.sh` - Automated compilation script
+- `.vscode/settings.json` - VS Code LaTeX Workshop configuration
+- `.vscode/tasks.json` - Build and clean tasks
+- `LATEX_SETUP.md` - Detailed compilation setup guide
 
-**Note:** Please keep each issue concise and to the point. If you have a list of suggestions, please create a separate issue for each individual suggestion. This makes the issues easier to keep track of.
+### Original Template
+This thesis is based on the official [Tampere University LaTeX template](https://gitlab.com/tuni-official/thesis-templates/masters-thesis).
 
-[gitlab-issues]: https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/issues
-[gitlab-sign-up]: https://gitlab.com/users/sign_up
+For template-related issues or improvements, please visit the [original template repository](https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/issues).
 
-## Version history
+## 🏗️ Build Status and Tools
 
-See the [`CHANGELOG`](./CHANGELOG.md) file for what has been changed in the
-past. The first commit to this Git repository corresponds to the tag `v2.0`,
-so versions before that are not accessible.
+- ✅ **VS Code LaTeX Workshop**: Configured and ready
+- ✅ **Automated compilation**: Shell script and tasks available  
+- ✅ **Auto-build on save**: Enabled
+- ✅ **PDF/A compliance**: Configured in document metadata
+- ✅ **Bibliography**: BibLaTeX with IEEE style
+- ✅ **Glossaries**: Automatic generation configured
 
-## Contributing
+---
 
-To contribute to the project, read the guidelines in the file
-[`CONTRIBUTING.md`](./CONTRIBUTING.md).
+*This README has been customized for this specific thesis project. For the original template documentation, see the template repository.*
