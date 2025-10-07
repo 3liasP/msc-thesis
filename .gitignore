@@ -40,7 +40,7 @@
 
 !index.tex
 
-!latexmkrc
+!.latexmkrc
 
 !compile.sh
 
