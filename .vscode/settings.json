@@ -1,0 +1,174 @@
+{
+  "workbench.colorCustomizations": {
+    "activityBar.activeBackground": "#5ad015",
+    "activityBar.background": "#5ad015",
+    "activityBar.foreground": "#15202b",
+    "activityBar.inactiveForeground": "#15202b99",
+    "activityBarBadge.background": "#3478eb",
+    "activityBarBadge.foreground": "#e7e7e7",
+    "commandCenter.border": "#e7e7e799",
+    "sash.hoverBorder": "#5ad015",
+    "statusBar.background": "#46a210",
+    "statusBar.foreground": "#e7e7e7",
+    "statusBarItem.hoverBackground": "#5ad015",
+    "statusBarItem.remoteBackground": "#46a210",
+    "statusBarItem.remoteForeground": "#e7e7e7",
+    "titleBar.activeBackground": "#46a210",
+    "titleBar.activeForeground": "#e7e7e7",
+    "titleBar.inactiveBackground": "#46a21099",
+    "titleBar.inactiveForeground": "#e7e7e799"
+  },
+  "peacock.color": "#46a210",
+  "editor.fontFamily": "'JetBrains Mono'",
+  "terminal.integrated.fontFamily": "'JetBrainsMono Nerd Font'",
+  "editor.fontLigatures": false,
+  "editor.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "latex-workshop.latex.tools": [
+    {
+      "name": "lualatex-main",
+      "command": "lualatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "main.tex"
+      ]
+    },
+    {
+      "name": "makeindex-glossary-main",
+      "command": "makeindex",
+      "args": [
+        "-s",
+        "main.ist",
+        "-t",
+        "main.glg",
+        "-o",
+        "main.gls",
+        "main.glo"
+      ]
+    },
+    {
+      "name": "biber-main",
+      "command": "biber",
+      "args": [
+        "main"
+      ]
+    },
+    {
+      "name": "lualatex",
+      "command": "lualatex",
+      "args": [
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOCFILE%"
+      ]
+    },
+    {
+      "name": "makeindex-glossary",
+      "command": "makeindex",
+      "args": [
+        "-s",
+        "%DOCFILE%.ist",
+        "-t",
+        "%DOCFILE%.glg",
+        "-o",
+        "%DOCFILE%.gls",
+        "%DOCFILE%.glo"
+      ]
+    },
+    {
+      "name": "biber",
+      "command": "biber",
+      "args": [
+        "%DOCFILE%"
+      ]
+    },
+    {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "--shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-pdf",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "pdflatex",
+      "command": "pdflatex",
+      "args": [
+        "--shell-escape",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "bibtex",
+      "command": "bibtex",
+      "args": ["%DOCFILE%"]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "Tampere Thesis (Full Build)",
+      "tools": [
+        "lualatex-main",
+        "makeindex-glossary-main",
+        "biber-main",
+        "lualatex-main",
+        "lualatex-main"
+      ]
+    },
+    {
+      "name": "Quick Build (main.tex)",
+      "tools": [
+        "lualatex-main"
+      ]
+    },
+    {
+      "name": "Generic LaTeX Build",
+      "tools": [
+        "lualatex"
+      ]
+    }
+  ],
+  "latex-workshop.latex.autoClean.run": "onBuilt",
+  "latex-workshop.latex.clean.fileTypes": [
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.idx",
+    "*.ind",
+    "*.lof",
+    "*.lot",
+    "*.out",
+    "*.toc",
+    "*.acn",
+    "*.acr",
+    "*.alg",
+    "*.glg",
+    "*.glo",
+    "*.gls",
+    "*.ist",
+    "*.fls",
+    "*.log",
+    "*.fdb_latexmk",
+    "*.bcf",
+    "*.run.xml",
+    "*.xmpdata"
+  ],
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.message.error.show": true,
+  "latex-workshop.message.warning.show": true,
+  "latex-workshop.latex.rootFile.doNotPrompt": true,
+  "latex-workshop.latex.rootFile.useSubFile": false,
+  "latex-workshop.latex.recipe.default": "Tampere Thesis (Full Build)",
+  "latex-workshop.latex.build.forceRecipeUsage": true
+}

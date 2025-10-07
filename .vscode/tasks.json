@@ -1,0 +1,60 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile Thesis (Shell Script)",
+            "type": "shell",
+            "command": "./compile.sh",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared",
+                "showReuseMessage": true,
+                "clear": false
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "default"
+            },
+            "detail": "Compile the thesis using the custom shell script"
+        },
+        {
+            "label": "Clean LaTeX Files",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-f",
+                "main.aux",
+                "main.bbl",
+                "main.bcf",
+                "main.blg",
+                "main.fdb_latexmk",
+                "main.fls",
+                "main.glg",
+                "main.glo",
+                "main.gls",
+                "main.ist",
+                "main.lof",
+                "main.log",
+                "main.lot",
+                "main.out",
+                "main.run.xml",
+                "main.toc",
+                "main.xmpdata"
+            ],
+            "group": "build",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            },
+            "detail": "Clean all LaTeX auxiliary files"
+        }
+    ]
+}

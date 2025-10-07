@@ -1,3 +1,4 @@
+%!TEX root = main.tex
 %
 % metadata.tex
 %
@@ -23,7 +24,7 @@
   pdfstandard=A-3b,
   % Make sure this matches the main document language below.
   % One of fi-FI or en-{US,UK,EN}
-  lang=fi-FI,
+  lang=en-{US,UK,EN},
   % This is related to well-tagged PDFs. If you change this to phase-III or higher (please don't),
   % you will be required to manually tag most of your document according to the tagpdf package documentation.
   % Note that it has not been confirmed whether Trepo will actually accept well-tagged PDF files as of spring 2025,
@@ -33,26 +34,26 @@
 }
 
 \documentclass[
-  author={Firstname Lastname},
+  author={Elias Peltonen},
   citationsorting={nyt},
   citationstyle={ieee},
-  enfacultyname={Faculty},
-  enkeywords={keyword1, keyword2, ...},
-  enprogrammename={Thesis programme},
-  ensubtitle={Descriptive subtitle},
-  enthesistype={doctor},
-  entitle={Thesis template},
-  fifacultyname={Tiedekunta},
-  fikeywords={avainsana1, avainsana2, ...},
-  fiprogrammename={Tutkinto-ohjelman nimi},
-  fisubtitle={Kuvaava alaotsikko},
-  fithesistype={tohtori},
-  fititle={Opinnäytetyöpohja},
+  enfacultyname={Faculty of Information Technology and Communication Sciences},
+  enkeywords={AI, Chatbot, PLM, Sovelia Core, Resource-Augmented Generation, Master's Thesis},
+  enprogrammename={Master's Programme in Information Technology, Software Engineering},
+  ensubtitle={A Case Study on Sovelia Core},
+  enthesistype={master},
+  entitle={Integrating Resource-Augmented AI Chatbots into Custom-Deployed PLM Systems},
+  fifacultyname={Informaatioteknologian ja viestinnän tiedekunta},
+  fikeywords={tekoäly, keskustelurobotti, PLM, Sovelia Core, resurssivahvistettu generointi, diplomityö},
+  fiprogrammename={Tietotekniikan DI-ohjelma, Ohjelmistot},
+  fisubtitle={Tapaustutkimus Sovelia Core-järjestelmästä},
+  fithesistype={diplomi},
+  fititle={Resurssivahvistettujen tekoälykeskustelurobottien integrointi räätälöityihin PLM-järjestelmiin},
   includeListOfFigures=true,
   includeListOfTables=true,
   includeListOfListings=true,
   includePublications=true,
 % Make sure this matches the language given in \DocumentMetadata
-  mainlanguage={finnish},
-  subject={A short description of the work. This will end up in document metadata.},
+  mainlanguage={english},
+  subject={This thesis explores integrating a resource-augmented AI assistant (RAG chatbot) into Sovelia Core, a customizable PLM platform. The goal is to improve access to documentation and support by enabling the chatbot to answer questions using both vendor and customer materials, helping users find information and onboard more efficiently.},
 ]{tauthesis}
