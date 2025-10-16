@@ -1,142 +1,90 @@
-@book{lamport1994latex,
-  title={\LaTeX{}: a document preparation system: user's guide and reference manual},
-  author={Lamport, Leslie},
-  year={1994},
-  publisher={Addison-Wesley},
-  pagetotal={365},
-  langid={english}
+
+@misc{asai_self-rag_2023,
+	title = {Self-{RAG}: Learning to Retrieve, Generate, and Critique through Self-Reflection},
+	url = {http://arxiv.org/abs/2310.11511},
+	doi = {10.48550/arXiv.2310.11511},
+	shorttitle = {Self-{RAG}},
+	abstract = {Despite their remarkable capabilities, large language models ({LLMs}) often produce responses containing factual inaccuracies due to their sole reliance on the parametric knowledge they encapsulate. Retrieval-Augmented Generation ({RAG}), an ad hoc approach that augments {LMs} with retrieval of relevant knowledge, decreases such issues. However, indiscriminately retrieving and incorporating a fixed number of retrieved passages, regardless of whether retrieval is necessary, or passages are relevant, diminishes {LM} versatility or can lead to unhelpful response generation. We introduce a new framework called Self-Reflective Retrieval-Augmented Generation (Self-{RAG}) that enhances an {LM}'s quality and factuality through retrieval and self-reflection. Our framework trains a single arbitrary {LM} that adaptively retrieves passages on-demand, and generates and reflects on retrieved passages and its own generations using special tokens, called reflection tokens. Generating reflection tokens makes the {LM} controllable during the inference phase, enabling it to tailor its behavior to diverse task requirements. Experiments show that Self-{RAG} (7B and 13B parameters) significantly outperforms state-of-the-art {LLMs} and retrieval-augmented models on a diverse set of tasks. Specifically, Self-{RAG} outperforms {ChatGPT} and retrieval-augmented Llama2-chat on Open-domain {QA}, reasoning and fact verification tasks, and it shows significant gains in improving factuality and citation accuracy for long-form generations relative to these models.},
+	number = {{arXiv}:2310.11511},
+	publisher = {{arXiv}},
+	author = {Asai, Akari and Wu, Zeqiu and Wang, Yizhong and Sil, Avirup and Hajishirzi, Hannaneh},
+	urldate = {2025-10-16},
+	date = {2023-10-17},
+	eprinttype = {arxiv},
+	eprint = {2310.11511 [cs]},
+	keywords = {Computer Science - Artificial Intelligence, Computer Science - Computation and Language, Computer Science - Machine Learning},
+	file = {Preprint PDF:/home/elias/Zotero/storage/PH6DA7T9/Asai et al. - 2023 - Self-RAG Learning to Retrieve, Generate, and Critique through Self-Reflection.pdf:application/pdf;Snapshot:/home/elias/Zotero/storage/7CMMNSRK/2310.html:text/html},
 }
 
-@article{braams1991babel,
-  title={Babel, a multilingual style-option system for use with \LaTeX{}’s standard document styles},
-  author={Braams, Johannes L},
-  journal={TUGboat},
-  volume={12},
-  number={2},
-  pages={291--301},
-  year={1991},
-  langid={english}
+@article{lin_generative_2025,
+	title = {Generative {AI} for Intelligent Manufacturing Virtual Assistants in the Semiconductor Industry},
+	volume = {10},
+	issn = {2377-3766},
+	url = {https://ieeexplore.ieee.org/document/10897746},
+	doi = {10.1109/LRA.2025.3544506},
+	abstract = {As semiconductor manufacturing complexity escalates, the intricacy of corresponding manufacturing systems intensifies. These extensive systems necessitate diverse engineering expertise for effective operation and analysis. For instance, yield engineers analyze yield systems, process engineers interpret {FDC} parameters, and equipment engineers monitor device equipment health. Traditional manufacturing systems, reliant on manual data analysis and fixed algorithms, suffer from slow decision-making and limited adaptability. They are susceptible to human error, reactive maintenance, and restricted user interaction confined to technical interfaces and business hours. Additionally, scalability and integration pose significant challenges, inflating operational costs and hampering resource efficiency. This letter introduces an Intelligent Manufacturing Virtual Assistant ({IMVA}) specifically designed for the semiconductor industry. By harnessing the power of Large Language Models ({LLMs}) and {AI} Agents, {IMVA} enhances yield analysis and seamlessly integrates with existing systems and tools. It exhibits high accuracy in defect detection through advanced data analysis and report generation. Furthermore, {IMVA} facilitates natural language interaction, rendering it user-friendly and accessible to non-technical personnel. Consequently, {IMVA} markedly improve operational efficiency and cost-effectiveness compared to traditional manufacturing systems. The efficacy of {IMVA} is demonstrated through the Wide-bandgap ({WBG}) process, showcasing its capability to simplify root cause analysis and provide comprehensive yield reports.},
+	pages = {4132--4139},
+	number = {4},
+	journaltitle = {{IEEE} Robotics and Automation Letters},
+	author = {Lin, Chin-Yi and Tsai, Tsung-Han and Tseng, Tzu-Liang},
+	urldate = {2025-10-16},
+	date = {2025-04},
+	keywords = {{AI} agent, Artificial intelligence, Chatbots, Databases, Decision making, Large-language models ({LLM}), Manufacturing, Process control, Production facilities, retrieval-augmented generation ({RAG}), Schedules, Semiconductor device manufacture, Virtual assistants},
+	file = {Full Text PDF:/home/elias/Zotero/storage/9MJH4YY7/Lin et al. - 2025 - Generative AI for Intelligent Manufacturing Virtual Assistants in the Semiconductor Industry.pdf:application/pdf},
 }
 
-@manual{kirjoitusohje2018,
-title={Tampereen yliopiston tekniikan alan opinnäytteiden kirjoitusohje},
-organization={Tampereen yliopisto},
-location={Tampere},
-year={2018},
-note={Saatavissa: POP $>$ Opiskelu $>$ Diplomityö $>$ Diplomityöohje},
-label={Opinnäyteohje},
-langid={finnish}
+@inproceedings{shejuti_extended_2025,
+	title = {Extended Abstract: Enhancing Accessibility to {MODTRAN} Documentation: A Chatbot Framework Using Retrieval-Augmented Generation ({RAG})},
+	url = {https://ieeexplore.ieee.org/document/10971575},
+	doi = {10.1109/SoutheastCon56624.2025.10971575},
+	shorttitle = {Extended Abstract},
+	abstract = {This work presents the development of a chatbot using Retrieval-Augmented Generation ({RAG}) to streamline access to {MODerate} resolution atmospheric {TRANsmission} ({MODTRAN})'s extensive documentation. By combining document retrieval with a Large Language Model ({LLM}), the chatbot delivers accurate, context-aware answers to user queries. Key resources, including the {MODTRAN}6 User Manual, Algorithm Theoretic Basis Document ({ATBD}), and the frequently asked questions section from the {MODTRAN} website, were processed into a searchable vector database. The evaluation showed that the chatbot effectively provides satisfactory and accurate responses, though occasional extraneous information highlights the need for refinement.},
+	eventtitle = {{SoutheastCon} 2025},
+	pages = {1314--1315},
+	booktitle = {{SoutheastCon} 2025},
+	author = {Shejuti, Zarin T. and Deb, Debzani and Dunkel, Emily R.},
+	urldate = {2025-10-16},
+	date = {2025-03},
+	note = {{ISSN}: 1558-058X},
+	keywords = {Accuracy, Atmospheric modeling, Chatbot, Chatbots, Databases, Documentation, Langchain, Large language models, Manuals, {MODTRAN}, {OpenAI}, Refining, Retrieval augmented generation, Vectors},
+	file = {Full Text PDF:/home/elias/Zotero/storage/VVCJHWGA/Shejuti et al. - 2025 - Extended Abstract Enhancing Accessibility to MODTRAN Documentation A Chatbot Framework Using Retri.pdf:application/pdf},
 }
 
-@manual{thesisguide2018,
-title={Guide to Writing a Thesis in Technical Fields: Instructions for Master of Science and Bachelor of Science Theses},
-organization={Tampere University},
-location={Tampere},
-year={2018},
-note={Available: POP $>$ Study info $>$ Master's thesis $>$ MSc thesis guidelines},
-label={Thesis guide},
-langid={english}
+@article{nam_lora-tuned_2025,
+	title = {{LoRA}-Tuned Multimodal {RAG} System for Technical Manual {QA}: A Case Study on Hyundai Staria},
+	volume = {15},
+	rights = {http://creativecommons.org/licenses/by/3.0/},
+	issn = {2076-3417},
+	url = {https://www.mdpi.com/2076-3417/15/15/8387},
+	doi = {10.3390/app15158387},
+	shorttitle = {{LoRA}-Tuned Multimodal {RAG} System for Technical Manual {QA}},
+	abstract = {This study develops a domain-adaptive multimodal {RAG} (Retrieval-Augmented Generation) system to improve the accuracy and efficiency of technical question answering based on large-scale structured manuals. Using Hyundai Staria maintenance documents as a case study, we extracted text and images from {PDF} manuals and constructed {QA}, {RAG}, and Multi-Turn datasets to reflect realistic troubleshooting scenarios. To overcome limitations of baseline {RAG} models, we proposed an enhanced architecture that incorporates sentence-level similarity annotations and parameter-efficient fine-tuning via {LoRA} (Low-Rank Adaptation) using the {bLLossom}-8B language model and {BAAI}-bge-m3 embedding model. Experimental results show that the proposed system achieved improvements of 3.0\%p in {BERTScore}, 3.0\%p in cosine similarity, and 18.0\%p in {ROUGE}-L compared to existing {RAG} systems, with notable gains in image-guided response accuracy. A qualitative evaluation by 20 domain experts yielded an average satisfaction score of 4.4 out of 5. This study presents a practical and extensible {AI} framework for multimodal document understanding, with broad applicability across automotive, industrial, and defense-related technical documentation.},
+	pages = {8387},
+	number = {15},
+	journaltitle = {Applied Sciences},
+	author = {Nam, Yerin and Choi, Hansun and Choi, Jonggeun and Kwon, Hyukjin},
+	urldate = {2025-10-16},
+	date = {2025-01},
+	langid = {english},
+	note = {Publisher: Multidisciplinary Digital Publishing Institute},
+	keywords = {{AI} for structured manuals, domain adaptation, {LoRA}-based fine-tuning, multimodal {RAG}, question-answering system, technical documentation},
+	file = {Full Text PDF:/home/elias/Zotero/storage/J7UEGFFG/Nam et al. - 2025 - LoRA-Tuned Multimodal RAG System for Technical Manual QA A Case Study on Hyundai Staria.pdf:application/pdf},
 }
 
-@manual{pubadvice2009,
-title={Practical advice for writing publications},
-author={Salminen, E.},
-organization={Tampere University of Technology},
-location={Tampere},
-year={2012},
-url={http://www.cs.tut.fi/~ege/Misc/salminen_figures_styles_v14.pdf},
-note={Course material for TKT-9617 Scientific Publishing},
-langid={english}
-}
-
-@manual{matohje2009,
-title={Matemaattisen tekstin kirjoittaminen},
-author={Ruohonen, Keijo},
-organization={Tampereen teknillinen yliopisto},
-location={Tampere},
-year={2009},
-url={http://math.tut.fi/~ruohonen/D-tyo-ohje.pdf},
-langid={finnish}
-}
-
-@manual{notsoshort,
-title={The Not So Short Introduction to {\LaTeXe} -- Or {\LaTeXe} in 157 minutes},
-author={Oetiker, T. and Partl, H. and Hyna, I. and Schlegl, E.},
-year={2018},
-version={6.2},
-url={http://ctan.org/tex-archive/info/lshort/english},
-langid={english}
-}
-
-@manual{listings,
-title={Listings -- Typeset source code listings using \LaTeX},
-author={Heinz, C. and Moses, B. and Hoffmann, J.},
-year={2018},
-version={1.7},
-url={http://www.ctan.org/pkg/listings},
-langid={english}
-}
-
-@manual{tikz,
-title={The Ti\emph{k}Z and PGF Packages},
-author={Tantau, Till},
-year={2015},
-version={3.0.1a},
-url={http://ctan.org/pkg/pgf},
-langid={english}
-}
-
-@manual{pgfplots,
-title={Manual for Package pgfplots},
-author={Feuersänger, Christian},
-year={2018},
-version={1.16},
-url={http://ctan.org/pkg/pgfplots},
-langid={english}
-}
-
-@manual{siunitx,
-title={siunitx -- A comprehensive (SI) units package},
-author={Wright, Joseph},
-year={2018},
-version={2.7s},
-url={http://ctan.org/pkg/siunitx},
-langid={english}
-}
-
-@manual{mhchem,
-title={The mhchem Bundle},
-author={Hensel, Martin},
-year={2018},
-version={4.08},
-url={http://ctan.org/pkg/mhchem},
-langid={english}
-}
-
-@manual{chemfig,
-title={chemfig},
-author={Tellechea, Christian},
-year={2018},
-version={1.33},
-url={http://ctan.org/pkg/chemfig},
-langid={english}
-}
-
-@manual{biblatex,
-title={The biblatex Package},
-author={Lehman, Philipp and Kime, Philip and Wemheuer, Moritz and Boruvka, Audrey and Wright, Joseph},
-year={2018},
-version={3.12},
-url={https://ctan.org/pkg/biblatex},
-langid={english}
-}
-
-@online{bibmanagement,
-title={\LaTeX/Bibliography Management},
-subtitle={biblatex},
-date={2018-07-12},
-url={https://en.wikibooks.org/w/index.php?title=LaTeX/Bibliography_Management&stable=1},
-urldate={2018-12-27},
-label={\LaTeX{} WikiBook},
-langid={english}
+@book{auffarth_generative_2025,
+	location = {Birmingham},
+	edition = {2},
+	title = {Generative {AI} with {LangChain}: Build production-ready {LLM} applications and advanced agents using Python, {LangChain}, and {LangGraph}},
+	isbn = {978-1-83702-201-4},
+	url = {https://learning.oreilly.com/library/view/generative-ai-with/9781837022014/},
+	shorttitle = {Generative {AI} with {LangChain}},
+	abstract = {Dive deep into real-world {LangChain} applications with 'Generative {AI} with {LangChain}'. This comprehensive guide covers everything from multi-agent architectures, testing practices, to...},
+	publisher = {Packt Publishing Limited},
+	author = {Auffarth, Ben},
+	editora = {Kuligin, Leonid},
+	editoratype = {collaborator},
+	urldate = {2025-10-16},
+	date = {2025},
+	langid = {english},
+	file = {Snapshot:/home/elias/Zotero/storage/TJU8ZMSE/9781837022014.html:text/html},
 }

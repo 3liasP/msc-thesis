@@ -1,23 +1,20 @@
-This document template conforms to the Guide to Writing a Thesis in Tampere University \parencite{thesisguide2018}. A thesis typically includes the following parts:
+\chapter{Introduction}
+\label{ch:introduction}
 
-\begin{enumerate}
-    \item[] Title page
-    \item[] Abstract in English (and in Finnish)
-    \item[] Preface
-    \item[] Contents
-    \item[] (Lists of figures and tables)
-    \item[] List of abbreviations and symbols
-    \item Introduction
-    \item Theoretical background
-    \item Research methodology and material
-    \item Results and analysis (possibly in separate chapters)
-    \item Conclusions
-    \item[] References
-    \item[] (Appendices)
-\end{enumerate}
+This chapter introduces the research topic, providing background information and outlining the motivation behind the study. It also presents the research objectives and questions that guide the investigation.
 
-Each of these is written as a new \verbcommand{chapter} or using an appropriate command (e.g. \verbcommand{abstract}). Read this document template and its comments carefully. The titles of chapters from 1 to 5 are provided as examples only. You should use more descriptive ones. The title page is created by inserting the relevant information into the commands near the start of the template. The table of contents lists all the numbered headings after it, but not always the preceding headings.
+\section{Background and Motivation}
+\label{sec:background-and-motivation}
 
-Introduction outlines the purpose and objectives of the presented research. The background information, utilized methods and source material are presented next at a level that is necessary to understand the rest of the text. Then comes the discussion regarding the achieved results, their significance, error sources, deviations from the expected results, and the reliability of your research. The conclusions form the most important chapter. It does not repeat the details already presented, but summarizes them and analyzes their consequences. List of references enables your reader to find the cited sources.
+In recent years, the integration of Artificial Intelligence (AI) assistants into various software systems has gained significant attention. AI assistants have the potential to enhance user experience, streamline workflows, and improve decision-making processes. Product Lifecycle Management (PLM) systems, which manage the entire lifecycle of a product from inception to disposal, can particularly benefit from the integration of AI assistants. By leveraging AI technologies, PLM systems can provide users with intelligent support, automate routine tasks, and facilitate better collaboration among stakeholders.
 
-This document is structured as follows. Chapter \ref{ch:esitystyyli} discusses briefly the basics of writing and presentation style regarding the text, figures, tables and mathematical notations. Chapters \ref{ch:viittaustekniikat} and \ref{ch:yhteenveto} summarize the referencing basics and the whole document. Each part also features tips to solving some of the detailed issues that relate to writing in \LaTeX.
+\section{Research Objectives and Questions}
+\label{sec:research-objectives-and-questions}
+
+The primary objective of this research is to develop an AI assistant that is seamlessly integrated with a PLM system, enhancing the overall user experience and improving decision-making processes. To achieve this objective, we have formulated the following research questions:
+
+\begin{itemize}
+	\item \textbf{RQ1 (Design)}: What RAG system architecture best fits Sovelia Core's on-prem, PostgreSQL-based environment and data governance constraints?
+	\item \textbf{RQ2 (Process)}: How should customer documentation pipelines (parse $ \rightarrow $ chunk $ \rightarrow $ embed $ \rightarrow $ retire) be engineered for reliability and maintainability?
+	\item \textbf{RQ3 (Quality \& Risk)}: Which risks (hallucinations, stale context, access control) are most critical, and what mitigations work in practice?
+\end{itemize}
