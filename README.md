@@ -11,11 +11,13 @@ This project is based on the official [Tampere University LaTeX thesis template]
 This project includes **automated compilation setup** for VS Code with LaTeX Workshop extension. Multiple compilation methods are available:
 
 ### **Automated Compilation (Recommended)**
+
 - **VS Code + LaTeX Workshop**: Press `Ctrl+Alt+B` and select "Tampere Thesis (Full Build)"
 - **Auto-build on save**: Enabled by default
 - **Build tasks**: Use `Ctrl+Shift+B` to run build tasks
 
 ### **Manual Compilation**
+
 The thesis uses both `biblatex` and `glossaries` packages, requiring this specific compilation sequence:
 
 ```sh
@@ -43,6 +45,7 @@ lualatex main.tex
 **Faculty**: Faculty of Information Technology and Communication Sciences, Tampere University
 
 ### Abstract
+
 This thesis explores integrating a resource-augmented AI assistant (RAG chatbot) into Sovelia Core, a customizable PLM platform. The goal is to improve access to documentation and support by enabling the chatbot to answer questions using both vendor and customer materials, helping users find information and onboard more efficiently.
 
 ## 🛠️ Development Environment
@@ -50,6 +53,7 @@ This thesis explores integrating a resource-augmented AI assistant (RAG chatbot)
 This project is optimized for local development with VS Code:
 
 ### Prerequisites
+
 - [TeX Live] LaTeX distribution (latest version)
 - [VS Code] with [LaTeX Workshop] extension
 - Git (for version control)
@@ -59,6 +63,7 @@ This project is optimized for local development with VS Code:
 [LaTeX Workshop]: https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop
 
 ### Quick Start
+
 1. Clone this repository
 2. Open the project in VS Code
 3. Install the LaTeX Workshop extension (if not already installed)
@@ -67,8 +72,9 @@ This project is optimized for local development with VS Code:
 ## 📁 Project Structure
 
 The thesis content is organized in the following folders:
+
 - `frontmatter/` - Abstract, preface, table of contents
-- `mainmatter/` - Main thesis chapters 
+- `mainmatter/` - Main thesis chapters
 - `appendices/` - Additional supporting material
 - `publications/` - Related publications
 - `images/` - Figures and images
@@ -79,16 +85,20 @@ Each folder contains an `index.tex` file that includes the individual content fi
 ## 🔧 Troubleshooting
 
 ### Required LaTeX Packages
+
 If you encounter compilation errors, ensure you have the latest versions of:
-* `pdfx`, `inputenc`, `babel`, `csquotes`, `hyperref`
-* `fontenc`, `helvet`
-* `geometry`, `fancyhdr`, `setspace`, `parskip`, `xcolor`, `titlesec`, `titletoc`
-* `enumitem`, `graphicx`, `caption`, `listings`, `pdfpages`, `datetime2`
-* `biblatex`, `glossaries`
-* `accsupp`, `axessibility`, `pdfcomment`
+
+- `pdfx`, `inputenc`, `babel`, `csquotes`, `hyperref`
+- `fontenc`, `helvet`
+- `geometry`, `fancyhdr`, `setspace`, `parskip`, `xcolor`, `titlesec`, `titletoc`
+- `enumitem`, `graphicx`, `caption`, `listings`, `pdfpages`, `datetime2`
+- `biblatex`, `glossaries`
+- `accsupp`, `axessibility`, `pdfcomment`
 
 ### Clean Build
+
 If compilation fails, try cleaning auxiliary files first:
+
 ```sh
 # Use the VS Code task
 Ctrl+Shift+P → "Tasks: Run Task" → "Clean LaTeX Files"
@@ -106,6 +116,7 @@ This thesis is based on the official [Tampere University LaTeX thesis template](
 - **Easy maintenance**: Template updates can be applied without affecting content
 
 ### Content Organization Example:
+
 ```latex
 % In mainmatter/index.tex - include your chapter files
 \input{mainmatter/introduction.tex}
@@ -121,14 +132,18 @@ This thesis is based on the official [Tampere University LaTeX thesis template](
 ## 📄 Files and Configuration
 
 ### Key Files
+
 - `main.tex` - Main document file (compile this)
 - `metadata.tex` - Thesis metadata and configuration
 - `compile.sh` - Automated compilation script
 - `.vscode/settings.json` - VS Code LaTeX Workshop configuration
+  - Includes also personal settings, e.g., for fonts and themes.
+  - You can override these in your local VS Code settings.
 - `.vscode/tasks.json` - Build and clean tasks
 - `LATEX_SETUP.md` - Detailed compilation setup guide
 
 ### Original Template
+
 This thesis is based on the official [Tampere University LaTeX template](https://gitlab.com/tuni-official/thesis-templates/masters-thesis).
 
 For template-related issues or improvements, please visit the [original template repository](https://gitlab.com/tuni-official/thesis-templates/masters-thesis/-/issues).
@@ -136,7 +151,7 @@ For template-related issues or improvements, please visit the [original template
 ## 🏗️ Build Status and Tools
 
 - ✅ **VS Code LaTeX Workshop**: Configured and ready
-- ✅ **Automated compilation**: Shell script and tasks available  
+- ✅ **Automated compilation**: Shell script and tasks available
 - ✅ **Auto-build on save**: Enabled
 - ✅ **PDF/A compliance**: Configured in document metadata
 - ✅ **Bibliography**: BibLaTeX with IEEE style
@@ -144,4 +159,4 @@ For template-related issues or improvements, please visit the [original template
 
 ---
 
-*This README has been customized for this specific thesis project. For the original template documentation, see the template repository.*
+_This README has been customized for this specific thesis project. For the original template documentation, see the template repository._
