@@ -320,7 +320,7 @@
 
     mainlanguage / finnish .code:n = {
         \tl_set:Nn\@tauthesis@mainlanguage{finnish}
-        \newcommand{\@tauthesis@abstractfile}{frontmatter/tiivistelma.tex}
+        \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract-fi.tex}
         \newcommand{\@tauthesis@abstractname}{Tiivistelmä}
         \newcommand{\@tauthesis@university}{Tampereen~yliopisto}
         \newcommand{\@tauthesis@keywordname}{Avainsanat}
@@ -329,7 +329,7 @@
         \newcommand{\@tauthesis@logofile}{images/tau-logo-fin.eps}
         \newcommand{\@tauthesis@logofile@alttext}{Tampereen yliopiston logo.}
         \newcommand{\@tauthesis@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
-        \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/tekoalyn-kaytto.tex}
+        \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai-fi.tex}
         \newcommand{\@tauthesis@yestextcmd}{Kyllä}
         \newcommand{\@tauthesis@notextcmd}{Ei}
         \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
@@ -340,7 +340,7 @@
         \newcommand{\@tauthesis@programmename}{\@tauthesis@fiprogrammename}
         \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@fisubtitle@joiner}
 
-        \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract.tex}
+        \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract-en.tex}
         \newcommand{\@tauthesis@otherabstractname}{Abstract}
         \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@enfacultyname}
         \newcommand{\@tauthesis@otherkeywordname}{Keywords}
@@ -386,7 +386,7 @@
 
     mainlanguage / english .code:n = {
         \tl_set:Nn\@tauthesis@mainlanguage{english}
-        \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract.tex}
+        \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract-en.tex}
         \newcommand{\@tauthesis@abstractname}{Abstract}
         \newcommand{\@tauthesis@university}{Tampere~University}
         \newcommand{\@tauthesis@keywordname}{Keywords}
@@ -395,7 +395,7 @@
         \newcommand{\@tauthesis@logofile}{images/tau-logo-eng.eps}
         \newcommand{\@tauthesis@logofile@alttext}{Tampere University logo.}
         \newcommand{\@tauthesis@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
-        \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai.tex}
+        \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai-en.tex}
         \newcommand{\@tauthesis@yestextcmd}{Yes}
         \newcommand{\@tauthesis@notextcmd}{No}
 
@@ -407,7 +407,7 @@
         \newcommand{\@tauthesis@programmename}{\@tauthesis@enprogrammename}
         \newcommand{\@tauthesis@keywords}{\@tauthesis@enkeywords}
 
-        \newcommand{\@tauthesis@otherabstractfile}{frontmatter/tiivistelma.tex}
+        \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract-fi.tex}
         \newcommand{\@tauthesis@otherabstractname}{Tiivistelmä}
         \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@fifacultyname}
         \newcommand{\@tauthesis@otherkeywordname}{Avainsanat}
