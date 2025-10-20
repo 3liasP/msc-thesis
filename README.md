@@ -161,27 +161,29 @@ For template-related issues or improvements, please visit the [original template
 
 This repository includes automated PDF generation for releases via GitHub Actions.
 
+> **Note**: The workflow uses `thesis-v*` tag pattern (e.g., `thesis-v1.0.0`) to distinguish thesis releases from existing template version tags (`v*`).
+
 ### Creating a Release
 
 To create a versioned release with an automatically built PDF:
 
-1. **Tag your commit** with a version tag (e.g., `v1.0.0`, `v2.1.3`):
+1. **Tag your commit** with a thesis version tag (e.g., `thesis-v1.0.0`, `thesis-v2.1.3`):
 
    ```bash
-   git tag v1.0.0
-   git push origin v1.0.0
+   git tag thesis-v1.0.0
+   git push origin thesis-v1.0.0
    ```
 
 2. **GitHub Actions will automatically**:
 
    - Build the thesis PDF using the `compile.sh` script
-   - Upload the PDF as an artifact named `thesis-pdf-v1.0.0`
+   - Upload the PDF as an artifact named `thesis-pdf-thesis-v1.0.0`
 
 3. **Download the PDF** from the Actions tab in GitHub, or create a GitHub Release and attach the artifact
 
 ### Release Artifacts
 
-- **Artifact name**: `thesis-pdf-{tag-name}` (e.g., `thesis-pdf-v1.0.0`)
+- **Artifact name**: `thesis-pdf-{tag-name}` (e.g., `thesis-pdf-thesis-v1.0.0`)
 - **File**: `main.pdf` - The complete compiled thesis
 
 ---
