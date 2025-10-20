@@ -37,7 +37,7 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          name: Thesis ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
           body: |
             Automated release of thesis PDF.
 
