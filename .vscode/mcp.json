@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "zotero": {
+      "type": "stdio",
+      "command": "zotero-mcp",
+      "env": {
+        "ZOTERO_LOCAL": "true"
+      }
+    }
+  }
+}

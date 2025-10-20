@@ -47,6 +47,12 @@
 !.vscode/
 !.vscode/*.json
 
+!.github/
+!.github/*.yml
+!.github/*.md
+!.github/workflows/
+!.github/workflows/*.yml
+
 ## Allow file types in subdirectories.
 
 !frontmatter/
