@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Compile thesis
         uses: xu-cheng/texlive-action@v3
@@ -43,8 +46,16 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Update latest release info
+      - name: Commit and push latest release info
         run: |
+          # Switch to main branch
+          git checkout main
+          git pull origin main
+
+          # Configure git
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
           # Update LATEST_RELEASE.md with new version info
           cat > LATEST_RELEASE.md << EOF
           # Latest Thesis Release
@@ -58,14 +69,11 @@ jobs:
           *This file is automatically updated when new thesis versions are released.*
           EOF
 
-      - name: Commit and push latest release info
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
+          # Add, commit and push
           git add LATEST_RELEASE.md
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
             git commit -m "Update latest release info for ${{ github.ref_name }}"
-            git push
+            git push origin main
           fi
