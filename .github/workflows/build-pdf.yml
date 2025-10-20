@@ -25,3 +25,51 @@ jobs:
         with:
           name: thesis-pdf-${{ github.ref_name }}
           path: main.pdf
+
+      - name: Create GitHub Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref_name }}
+          release_name: Thesis ${{ github.ref_name }}
+          body: |
+            Automated release of thesis PDF.
+
+            **Download**: [PDF](${{ github.server_url }}/${{ github.repository }}/releases/download/${{ github.ref_name }}/main.pdf)
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: main.pdf
+          asset_name: main.pdf
+          asset_content_type: application/pdf
+
+      - name: Update latest release info
+        run: |
+          # Update LATEST_RELEASE.md with new version info
+          cat > LATEST_RELEASE.md << EOF
+          # Latest Thesis Release
+
+          [![Latest Release](https://img.shields.io/github/v/release/${{ github.repository }}?label=Latest%20Thesis&color=blue)](https://github.com/${{ github.repository }}/releases/latest)
+
+          **Latest Version**: [${{ github.ref_name }}](https://github.com/${{ github.repository }}/releases/tag/${{ github.ref_name }})
+
+          **Download PDF**: [main.pdf](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/main.pdf)
+
+          *This file is automatically updated when new thesis versions are released.*
+          EOF
+
+      - name: Commit and push latest release info
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add LATEST_RELEASE.md
+          git commit -m "Update latest release info for ${{ github.ref_name }}" || echo "No changes to commit"
+          git push

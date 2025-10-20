@@ -140,7 +140,7 @@ This thesis is based on the official [Tampere University LaTeX thesis template](
   - Includes also personal settings, e.g., for fonts and themes.
   - You can override these in your local VS Code settings.
 - `.vscode/tasks.json` - Build and clean tasks
-- `LATEX_SETUP.md` - Detailed compilation setup guide
+- `LATEST_RELEASE.md` - Automatically updated file with links to the latest thesis release
 
 ### Original Template
 
@@ -177,14 +177,16 @@ To create a versioned release with an automatically built PDF:
 2. **GitHub Actions will automatically**:
 
    - Build the thesis PDF using the `compile.sh` script
-   - Upload the PDF as an artifact named `thesis-pdf-thesis-v1.0.0`
+   - Create a GitHub release with the PDF attached
+   - Update the `LATEST_RELEASE.md` file with download links
 
-3. **Download the PDF** from the Actions tab in GitHub, or create a GitHub Release and attach the artifact
+3. **Download the PDF** from the [latest release](https://github.com/3liasP/msc-thesis/releases/latest) or check [`LATEST_RELEASE.md`](./LATEST_RELEASE.md) for direct links
 
 ### Release Artifacts
 
-- **Artifact name**: `thesis-pdf-{tag-name}` (e.g., `thesis-pdf-thesis-v1.0.0`)
-- **File**: `main.pdf` - The complete compiled thesis
+- **GitHub Release**: Automatically created with PDF attachment
+- **Artifact name**: `thesis-pdf-{tag-name}` (temporary, 30 days retention)
+- **Latest info**: See [`LATEST_RELEASE.md`](./LATEST_RELEASE.md) for current version links
 
 ---
 
