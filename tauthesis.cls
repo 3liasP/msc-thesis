@@ -442,7 +442,7 @@
             are~added~on~this~page~in~the~library.
         }
 
-        \newcommand{\@glossaryname}{List of Symbols and Abbreviations}
+        \newcommand{\@glossaryname}{List of symbols and abbreviations}
         \newcommand{\@appendixname}{Appendix}
 
         \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{List~of~Programs~and~Algorithms}}
@@ -1006,8 +1006,8 @@
 \if@langenglish
     \addto\captionsenglish{%
         \renewcommand{\contentsname}{\scshape Contents}%
-        \renewcommand\listfigurename{\scshape List of Figures}%
-        \renewcommand{\listtablename}{\scshape List of Tables}%
+        \renewcommand\listfigurename{\scshape List of figures}%
+        \renewcommand{\listtablename}{\scshape List of tables}%
     }
     \renewcommand{\appendixname}{\textsc{Appendix}}
     \if@programs

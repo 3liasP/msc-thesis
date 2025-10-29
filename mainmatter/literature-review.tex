@@ -1,4 +1,4 @@
-\chapter{Literature Review}
+\chapter{Literature review}
 \label{ch:literature-review}
 
 This chapter establishes the theoretical and empirical foundation and background for integrating a resource-augmented AI assistant into Sovelia Core PLM. The review begins by examining the fundamental characteristics of Product Lifecycle Management systems and the role of AI assistants in data-intensive workflows, establishing why a human-in-the-loop approach is essential for enterprise PLM environments (\autoref{sec:plm-systems-and-ai-assistants}). After this,the architecture and principles of Retrieval-Augmented Generation (RAG) systems is synthesized, focusing on how the combination of parametric and non-parametric memory addresses key limitations of purely parametric models in knowledge-intensive tasks (\autoref{sec:resource-augmented-ai-systems}).
@@ -56,7 +56,7 @@ Quantitative evaluation demonstrated substantial improvements over baseline mode
 
 The lessons for Sovelia Core PLM center on architectural considerations applicable to text-based RAG systems: the necessity of multi-turn dialogue capability for realistic troubleshooting scenarios (users rarely formulate complete, single-turn queries) and the importance of procedural accuracy metrics beyond standard NLP evaluation measures. While Nam et al.'s quantitative evaluation demonstrated substantial benefits from multimodal integration (0.92-point improvement in information clarity with image support), the significant manual annotation overhead (200 high-quality image-text pairs curated by five experts) and specialized fine-tuning requirements position multimodal capabilities as a future enhancement rather than an initial implementation target. For the scope of this thesis, the focus remains on establishing a robust text-based RAG foundation, with Nam et al.'s multimodal work serving as a reference architecture for subsequent iterations. The scalability bottlenecks they identified in manual image-text curation and the empirically unvalidated cross-domain generalization further reinforce the rationale for prioritizing a simpler, more maintainable text-only approach in the initial deployment.
 
-\subsection{AI in Product Lifecycle Management: Wang et al.'s comprehensive review}
+\subsection{AI in PLM: Wang et al.'s comprehensive review}
 
 Wang et al. (2021) provided a holistic framework for understanding AI applications across the entire product lifecycle, offering strategic insights for integrating intelligent systems into PLM stages: design, manufacturing, and service \parencite{wang_artificial_2021}. While not a RAG-specific implementation, their systematic review of AI technologies in PLM contexts establishes the broader landscape within which RAG-based assistants operate.
 
