@@ -74,6 +74,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "Update latest release info for ${{ github.ref_name }}"
+            git commit -m "actions: update latest release info for ${{ github.ref_name }}"
             git push origin main
           fi
