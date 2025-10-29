@@ -76,7 +76,6 @@ The thesis content is organized in the following folders:
 - `frontmatter/` - Abstract, preface, table of contents
 - `mainmatter/` - Main thesis chapters
 - `appendices/` - Additional supporting material
-- `publications/` - Related publications
 - `images/` - Figures and images
 - `code/` - Source code examples
 
