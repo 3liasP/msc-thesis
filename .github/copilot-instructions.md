@@ -20,7 +20,7 @@ LaTeX thesis on **integrating a RAG chatbot into Sovelia Core**, an on-premise P
 
 ## Writing Assistance Focus
 
-1. **Academic Writing**: Structure arguments logically, use precise terminology, maintain formal tone
+1. **Academic Writing**: Structure arguments logically, use precise terminology, maintain formal tone. However, the style should be simple enough to be understood by those that have English as a second language. So avoid overly complex sentence structures and jargon.
 2. **Technical Content**: RAG architectures, vector databases, embeddings, on-premise deployment, data governance, documentation pipelines, AI safety
 3. **Domain Knowledge**: PLM systems, CAD/ERP integration, enterprise software patterns, knowledge management
 4. **Research Methodology**: Design Science Research, case study approach, build-measure-learn cycles, evaluation strategies
