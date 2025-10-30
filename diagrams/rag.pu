@@ -1,0 +1,55 @@
+@startuml RAG Architecture
+!theme plain
+skinparam defaultTextAlignment center
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+
+title Retrieval-Augmented Generation (RAG) System Architecture
+
+actor User
+
+package "RAG System" {
+    component "Retriever" as retriever {
+        [Query Encoder]
+        [Similarity Search]
+    }
+    
+    component "Generator" as generator {
+        [Language Model]
+    }
+    
+    database "Knowledge Base\n(Non-parametric Memory)" as kb {
+        [Document 1]
+        [Document 2]
+        [Document 3]
+        [...]
+    }
+    
+    storage "Vector Store\n(Embeddings)" as vectors
+}
+
+User --> retriever : "User Query"
+retriever --> vectors : Search similar\nembeddings
+vectors --> kb : Retrieve top-k\ndocuments
+kb --> retriever : Retrieved\nDocuments
+retriever --> generator : Query +\nRetrieved Context
+generator --> User : Generated\nResponse
+
+note right of kb
+  External knowledge source
+  (e.g., PLM documentation,
+  technical manuals, SOPs)
+  
+  Easily updatable without
+  model retraining
+end note
+
+note right of generator
+  Parametric Memory
+  (Neural network weights)
+  
+  Conditions output on both
+  query and retrieved content
+end note
+
+@enduml

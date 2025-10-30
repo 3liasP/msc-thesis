@@ -95,6 +95,10 @@
 !figures/**/*.pdf
 !figures/**/*.png
 
+!diagrams/
+!diagrams/*.tex
+!diagrams/*.pu
+
 !fonts/
 !fonts/FiraMono/
 !fonts/FiraMono/FiraMono-*.ttf
