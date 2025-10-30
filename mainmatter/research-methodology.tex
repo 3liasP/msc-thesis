@@ -1,7 +1,7 @@
 \chapter{Research methodology}
 \label{ch:research-methodology}
 
-%@TODO: add introduction to this chapter
+In this chapter, we detail the research methodology employed in this study, focusing on the design science research (DSR) paradigm and the single case study approach. We describe the case context of Sovelia Core, an on-premise Product Lifecycle Management (PLM) system, and outline the data collection and evaluation strategies used to assess the developed Retrieval-Augmented Generation (RAG) system.
 
 \section{Design science methodology}
 \label{sec:design-science-methodology}
@@ -15,6 +15,53 @@ In this thesis, we employ design science methodology to develop an AI assistant 
 \section{Case study approach}
 \label{sec:case-study-approach}
 
-%TODO: write content for this section
+This research employs a single case study design \parencite{yin_case_2018} to investigate the integration of a RAG-based AI assistant within an on-premise PLM environment. The case study approach allows for in-depth exploration of the technical, organizational, and practical challenges inherent in deploying enterprise AI systems under strict data governance constraints.
 
-\textit{A case study approach is utilized to provide an in-depth understanding of the integration of the AI assistant with the PLM system. This approach allows for the exploration of real-world contexts and the examination of the interactions between the AI assistant and users within the PLM environment. Data is collected through observations, interviews, and system usage logs to assess the effectiveness and usability of the integrated solution.}
+\subsection{Case description: Sovelia Core PLM environment}
+\label{subsec:case-description}
+
+Sovelia Core is an on-premise Product Lifecycle Management (PLM) platform specifically beneficial for medium to large manufacturing organizations. It is developed and maintained by Symetri, a provider of technology solutions catering to design, engineering, construction, and manufacturing businesses \parencite{noauthor_symetri_nodate}. The main purpose of the system is to serve as a centralized hub for managing product data, engineering change processes, bill-of-materials structures, and document management workflows throughout the product lifecycle. The system has a history of more than two decades and is widely adopted among various manufacturing enterprises in the Nordic region \parencite{noauthor_about_nodate}.
+
+\subsubsection{Technical architecture and deployment model}
+
+Sovelia Core follows a traditional client-server architecture deployed entirely within customer premises. The system is built on a custom technology stack, with a PostgreSQL database serving as the primary data repository. Client applications connect to the server through proprietary APIs, and the system can be integrated with both CAD systems (e.g. Autodesk Inventor) and various ERP platforms.
+
+The on-premise deployment model is not just a technical preference but usually a fundamental requirement for Sovelia Core's customers. Manufacturing organizations in the mechanical engineering, industrial automation, and equipment manufacturing sectors typically handle sensitive intellectual property in the form of CAD models, proprietary designs, and confidential customer specifications. These organizations often operate under strict data sovereignty requirements, regulatory compliance mandates, or even contractual obligations that prohibit storing product data on external cloud infrastructure. Consequently, any AI-powered solution integrated with Sovelia Core must respect these constraints and operate entirely within the customer's controlled IT environment.
+
+\subsubsection{User base and knowledge requirements}
+
+The primary user base of Sovelia Core consists of mechanical engineers, product designers, production planners, and technical documentation specialists. These users interact with the system daily to access product information, manage engineering changes, release manufacturing documentation, and maintain synchronization between CAD designs and ERP data. User proficiency levels vary significantly, ranging from power users with deep system expertise to occasional users who require guidance for infrequent tasks.
+
+A central challenge in this environment is the fragmentation of knowledge across multiple documentation sources. Users must navigate three distinct categories of documentation. First, \textbf{vendor documentation} consists of official help files, user guides, and release notes provided by Sovelia, documenting system features, configuration options, and best practices. These include \textit{Sovelia Help} \parencite{noauthor_sovelia_nodate}, an extensive online manual covering all aspects of the system, and periodic release notes in \textit{Sovelia.com} \parencite{noauthor_digital_nodate} that detail new features. Second, \textbf{customer-specific documentation} consists of e.g., internal standard operating procedures (SOPs), workflow guidelines, and customization documentation created by each customer organization to reflect their specific business processes and system configurations. This knowledge fragmentation can create inefficiencies in user onboarding, increase support burden, and hinder user productivity. New users usually struggle to locate relevant information, while support staff face repetitive inquiries that could be answered through better knowledge accessibility.
+
+\subsubsection{Data governance and security context}
+
+Sovelia Core implements role-based access control (RBAC) to restrict data visibility based on user roles and organizational structure. Users should only access product data relevant to their functional responsibilities, and this principle must extend to any AI assistant that queries the system's knowledge base. However, in the initial implementation phase, the RAG system is designed to offer retrieval of documents accessible to all users, with plans to implement finer-grained access controls in future iterations.
+
+Additionally, customer organizations usually have strict policies regarding data processing and AI usage. Many customers express concerns about data privacy, algorithmic transparency, and the risk of AI hallucinations leading to incorrect guidance in engineering workflows. These concerns shape the requirements for any AI integration, needing explainability, source attribution, and mechanisms to mitigate the risk of fabricated information. The aim is to make the AI assistant cite sources clearly and provide verifiable references for all generated responses.
+
+\subsection{Case study boundaries and unit of analysis}
+\label{subsec:case-boundaries}
+
+The unit of analysis in this case study is the \emph{integrated RAG system} as implemented within a Sovelia Core customer environment. This includes the technical components (embedding models, vector database, retrieval logic, LLM interface), the documentation pipeline (ingestion, chunking, embedding generation), and the user-facing interface integrated into the PLM platform. Sovelia Core itself is an excellent environment for studying RAG integration due to its roots being in the Document Management System (DMS) domain, where effective knowledge management has been one of its core features from the start.
+
+The case study is bounded by the following scope constraints:
+
+\begin{itemize}
+    \item \textbf{Temporal scope}: The research covers the design, implementation, and initial evaluation phases within a defined timeframe. Long-term adoption patterns and organizational change impacts are outside the scope.
+    \item \textbf{Technical scope}: The study focuses on RAG architecture, on-premise deployment constraints, and documentation retrieval. General LLM capabilities, conversational AI design, and broader knowledge management systems are addressed only if they are related to the RAG implementation.
+    \item \textbf{Organizational scope}: While organizational context shapes requirements and evaluation, the study does not constitute a comprehensive organizational change management analysis.
+\end{itemize}
+
+\subsection{Data collection and evaluation approach}
+\label{subsec:data-collection}
+
+Data collection in this case study combines multiple sources to formulate the findings. The primary data sources include:
+
+\begin{itemize}
+    \item \textbf{System implementation artifacts}: Architecture documentation, source code, configuration files, etc. that document the technical design decisions and implementation approach.
+    \item \textbf{User feedback}: Qualitative feedback gathered through informal interviews, support channel discussions, and structured feedback sessions with pilot users.
+    \item \textbf{Technical performance metrics}: Quantitative measures of retrieval accuracy, response latency, embedding quality, and system resource utilization.
+\end{itemize}
+
+However, the source code itself will not be made publicly available due to intellectual property considerations. The evaluation strategy follows the design science framework's emphasis on both \emph{technical performance} (Does the artifact function as designed?) and \emph{utility} (Does the artifact solve the identified problem?). Technical performance is assessed through established RAG evaluation metrics, while utility is evaluated mainly through user feedback.
