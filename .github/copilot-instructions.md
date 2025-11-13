@@ -57,6 +57,8 @@ RAG (Retrieval-Augmented Generation), PLM (Product Lifecycle Management), ERP (E
 - **PLM domain context** must inform all AI/ML recommendations
 - **Data governance and access control** are essential
 - Focus on **implementable, practitioner-ready** solutions
+- Do not refer as "we" or "I" in the thesis. Use passive voice or third person constructions instead.
+- Avoid too complex language to ensure clarity for non-native English speakers.
 
 ### Goal
 
