@@ -1,0 +1,67 @@
+@startuml
+!theme plain
+
+skinparam component {
+    BackgroundColor #E3F2FD
+    BorderColor #1976D2
+}
+
+package "Provider Abstraction Layer" {
+    interface "AIChat" as chat
+    
+    interface "AIEmbeddings" as embeddings
+    
+    component "OpenAI" as openai
+    
+    component "Azure OpenAI" as azure
+    
+    component "Groq" as groq
+    
+    component "Ollama" as ollama
+}
+
+component "Application Logic" as app
+
+app --> chat : uses
+app --> embeddings : uses
+
+chat <|.. openai : implements
+chat <|.. azure : implements
+chat <|.. groq : implements
+chat <|.. ollama : implements
+
+embeddings <|.. openai : implements
+embeddings <|.. azure : implements
+embeddings <|.. ollama : implements
+
+note right of openai
+    Cloud deployment
+    Latest models
+    API key auth
+end note
+
+note right of azure
+    Microsoft infrastructure
+    Enterprise compliance
+    Managed deployment
+end note
+
+note right of groq
+    High-performance inference
+    Low latency
+    Cloud-based
+end note
+
+note right of ollama
+    On-premises deployment
+    Complete data residency
+    Local model serving
+end note
+
+note left of app
+    Configuration via
+    environment variables:
+    "provider:model-name"
+end note
+
+@enduml

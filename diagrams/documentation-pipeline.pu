@@ -1,0 +1,64 @@
+@startuml
+!theme plain
+skinparam ActivityBackgroundColor #E3F2FD
+skinparam ActivityBorderColor #1976D2
+skinparam ActivityDiamondBackgroundColor #FFF9C4
+skinparam ActivityDiamondBorderColor #F57F17
+
+start
+
+partition "Document Acquisition" {
+    :Check Source Type;
+    if (Internal PLM Document?) then (yes)
+        :Monitor Embedder Queue;
+        :Retrieve Document Files;
+    elseif (External Vendor Docs?) then (yes)
+        :Check Last Update Time;
+        if (Updated > 7 days?) then (yes)
+            :Fetch via REST API;
+        else (no)
+            :Skip (Up-to-date);
+            stop
+        endif
+    else (Web Articles)
+        :Query CMS API;
+        :Apply Blacklist Filter;
+    endif
+}
+
+partition "Document Chunking" {
+    :Determine File Format;
+    if (Format Type?) then (PDF)
+        :Extract Text\n(Preserve Structure);
+    elseif (HTML) then
+        :Convert to Markdown;
+        :Transform URLs to Absolute;
+    elseif (Markdown) then
+        :Language-Aware Splitting;
+    else (Plain Text)
+        :Basic Character Splitting;
+    endif
+    :Split into Chunks\n(2000 chars, 200 overlap);
+}
+
+partition "Embedding Generation" {
+    :Add Chunks to Queue;
+    repeat
+        :Dequeue Chunk;
+        :Generate 1536-dim Vector;
+        :Log Progress;
+    repeat while (More chunks?) is (yes)
+    ->no;
+}
+
+partition "Storage and Indexing" {
+    :Delete Existing Document Chunks;
+    :Insert/Update Source Record;
+    :Insert New Chunks;
+    :Update Vector Index;
+    :Log Completion;
+}
+
+stop
+
+@enduml

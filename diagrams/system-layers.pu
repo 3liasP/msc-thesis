@@ -1,0 +1,65 @@
+@startuml
+!define RECTANGLE class
+
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment center
+skinparam component {
+    BackgroundColor<<layer>> #E3F2FD
+    BorderColor<<layer>> #1976D2
+    FontSize 12
+}
+
+package "RAG System Architecture" {
+    component "Presentation Layer" as presentation <<layer>> {
+        [Chat Interface]
+        [Feedback Controls]
+        [Source References]
+    }
+    
+    component "API Layer" as api <<layer>> {
+        [Authentication Middleware]
+        [Query Endpoint]
+        [History Endpoint]
+        [Feedback Endpoint]
+    }
+    
+    component "Business Logic Layer" as business <<layer>> {
+        [Prompt Engineering]
+        [Conversation Manager]
+        [LLM Orchestration]
+        [Provider Abstraction]
+    }
+    
+    component "Embedding Layer" as embedding <<layer>> {
+        [Document Acquisition]
+        [Text Chunking]
+        [Embedding Generation]
+        [Pipeline Orchestration]
+    }
+    
+    component "Data Layer" as data <<layer>> {
+        database "PostgreSQL + pgvector" as db {
+            [Documentation Chunks]
+            [Chat History]
+            [Configuration]
+        }
+    }
+}
+
+presentation -down-> api : HTTP/JSON
+api -down-> business : Service Calls
+business -down-> embedding : Embedding Requests
+business -down-> data : Query/Store
+embedding -down-> data : Store Embeddings
+
+note right of presentation
+  User-facing components
+  integrated in PLM UI
+end note
+
+note right of data
+  Vector similarity search
+  with IVFFlat indexing
+end note
+
+@enduml

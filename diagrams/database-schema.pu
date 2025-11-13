@@ -1,0 +1,81 @@
+@startuml
+!theme plain
+
+skinparam class {
+    BackgroundColor #E3F2FD
+    BorderColor #1976D2
+    ArrowColor #1976D2
+}
+
+entity "AIConfig" as config {
+    * key : TEXT <<PK>>
+    --
+    value : TEXT
+}
+
+entity "AIEmbeddingCriteria" as criteria {
+    * key : SERIAL <<PK>>
+    --
+    criteria : JSONB
+}
+
+entity "AIChatHistory" as history {
+    * messageid : SERIAL <<PK>>
+    --
+    * chatid : UUID
+    * message : JSONB
+    * created : TIMESTAMP
+    * mode : TEXT
+    * userkey : INTEGER
+    deleted : BOOLEAN
+    uid : TEXT
+    feedback : BOOLEAN
+}
+
+enum "SourceTypes" as sourcetypes {
+    sovelia
+    document360
+    umbraco
+}
+
+entity "AIDocSources" as sources {
+    * sourceid : TEXT <<PK>>
+    * sourcetype : SourceTypes <<PK>>
+    --
+    version : INTEGER
+    title : TEXT
+    url : TEXT
+}
+
+entity "AIDocChunks" as chunks {
+    * chunkid : SERIAL <<PK>>
+    --
+    * sourceid : TEXT <<FK>>
+    * sourcetype : SourceTypes <<FK>>
+    * content : TEXT
+    * embedding : VECTOR(1536)
+    * chunkorder : INTEGER
+}
+
+sources ||--o{ chunks : "has many"
+sources }o--|| sourcetypes : "is type"
+
+note right of chunks
+    IVFFlat index on embedding
+    using cosine distance
+    for similarity search
+end note
+
+note right of history
+    Stores conversation threads
+    with user/AI messages
+    and source references
+end note
+
+note right of sources
+    Tracks documentation
+    from three source types
+    with version control
+end note
+
+@enduml

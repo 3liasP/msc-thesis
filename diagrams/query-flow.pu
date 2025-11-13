@@ -1,0 +1,60 @@
+@startuml
+!theme plain
+
+actor User
+participant "Chat UI" as UI
+participant "API Layer" as API
+participant "Business Logic" as BL
+participant "Embedder" as EMB
+database "PostgreSQL\n+ pgvector" as DB
+participant "LLM Provider" as LLM
+
+User -> UI: Submit Query
+activate UI
+
+UI -> API: POST /help\n{prompt, sessionToken}
+activate API
+
+API -> API: Validate Session
+API -> API: Check Rate Limits
+
+API -> BL: Process Query(prompt, userKey)
+activate BL
+
+BL -> EMB: Generate Embedding(prompt)
+activate EMB
+EMB -> EMB: Queue Embedding Request
+EMB --> BL: Embedding Vector [1536-dim]
+deactivate EMB
+
+BL -> DB: Vector Similarity Search\n(embedding, k=5, userKey)
+activate DB
+DB -> DB: Filter by Permissions
+DB -> DB: Cosine Distance Ranking
+DB --> BL: Top-K Chunks\n+ Source Metadata
+deactivate DB
+
+BL -> BL: Construct Prompt:\n- System Instructions\n- Retrieved Context\n- Conversation History\n- User Question
+
+BL -> LLM: Generate Response\n(prompt, temperature=0.2)
+activate LLM
+LLM --> BL: AI Response
+deactivate LLM
+
+BL -> DB: Save Chat History\n(user msg, AI response, sources)
+activate DB
+DB --> BL: Message IDs
+deactivate DB
+
+BL --> API: Response + Sources\n+ Message ID
+deactivate BL
+
+API --> UI: JSON Response
+deactivate API
+
+UI -> UI: Render Markdown
+UI -> UI: Display Source Links
+UI --> User: AI Response with Sources
+deactivate UI
+
+@enduml
