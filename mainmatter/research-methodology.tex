@@ -1,7 +1,47 @@
 \chapter{Research methodology}
 \label{ch:research-methodology}
 
-In this chapter, we detail the research methodology employed in this study, focusing on the design science research (DSR) paradigm and the single case study approach. We describe the case context of Sovelia Core, an on-premise PLM system, and outline the data collection and evaluation strategies used to assess the developed Retrieval-Augmented Generation (RAG) system.
+This chapter details the research methodology employed in this study. It focuses on the literature search strategy, the design science research (DSR) paradigm, and the single case study approach. The case context of Sovelia Core, an on-premise PLM system, is described, and the data collection and evaluation strategies used to assess the developed Retrieval-Augmented Generation (RAG) system are outlined.
+
+\section{Literature search strategy}
+\label{sec:literature-search-strategy}
+
+The literature review for this thesis was conducted using a systematic search strategy to identify relevant academic and industry sources. The primary search platform was Andor \parencite{Andor}, Tampere University's library search service, which uses the Ex Libris Primo discovery system and the Central Discovery Index (CDI) in the background. The CDI has a relevance ranking algorithm that considers multiple factors, including term frequency, field weighting, citation counts, and publication recency \parencite{SearchRankingCDI2020}.
+
+The search strategy combined domain-specific terms from PLM and enterprise software with emerging AI concepts, particularly RAG systems. Given the relative novelty of RAG technology in enterprise contexts, search terms needed to balance specificity (to find relevant work) with breadth (to capture the limited existing literature). Table~\ref{tab:search-terms} presents the search terms used and the number of results returned by each query.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{lr}
+        \hline
+        \textbf{Search term} & \textbf{Results} \\
+        \hline
+        ``AI'' AND ``assistant'' & 19,355 \\
+        ``artificial intelligence'' AND ``lifecycle management'' & 1,300 \\
+        ``AI'' AND ``lifecycle management'' & 1,189 \\
+        ``artificial intelligence'' AND ``PLM'' & 923 \\
+        ``AI'' AND ``PLM'' & 482 \\
+        ``RAG'' AND ``manufacturing'' AND ``AI'' & 467 \\
+        ``artificial intelligence'' AND ``product lifecycle management'' & 409 \\
+        ``RAG'' AND ``documentation'' & 285 \\
+        ``product lifecycle management'' AND ``documentation'' & 180 \\
+        ``Agentic RAG'' & 65 \\
+        lewis retrieval augmented & 59 \\
+        ``RAG'' AND ``manufacturing'' & 58 \\
+        ``Self RAG'' & 17 \\
+        ``RAG'' AND ``PLM'' & 13 \\
+        ``RAG'' AND ``PDM'' & 2 \\
+        \hline
+    \end{tabular}
+    \caption{Literature search terms and result counts}
+    \label{tab:search-terms}
+\end{table}
+
+The search strategy revealed a notable gap in the literature. While broad terms like ``AI'' AND ``assistant'' returned thousands of results, highly specific queries targeting RAG systems in PLM contexts (e.g., ``RAG'' AND ``PLM'') yielded only 13 results. This distribution reflects the state of RAG research in enterprise PLM environments and highlights the contribution of this thesis to an under-explored area.
+
+For queries returning large result sets, sources were prioritized based on the Primo ranking algorithm \parencite{SearchRankingCDI2020}, which surfaces the most relevant and authoritative sources as the first results. This approach was particularly useful for broad searches like ``AI'' AND ``assistant'' (19,355 results) or ``artificial intelligence'' AND ``lifecycle management'' (1,300 results), where manual review of all results would be impractical. Conversely, for narrow searches yielding fewer than 100 results, a larger proportion of the returned sources was reviewed to ensure comprehensive coverage.
+
+In addition to structured database searches, snowballing techniques were employed by following citations from key papers to identify seminal works in RAG architecture, vector databases, and enterprise AI deployment. Industry documentation, particularly from vector database vendors and LLM providers, supplemented academic sources to capture practitioner knowledge about deployment patterns and performance considerations. This industry literature is put to use in Chapter~\ref{ch:system-design-and-implementation}, where practical implementation insights are in the foreground.
 
 \section{Design science methodology}
 \label{sec:design-science-methodology}
@@ -10,7 +50,7 @@ Design Science Research (DSR) is a problem-solving paradigm that seeks to create
 
 According to \textcite{johannessonIntroductionDesignScience2021}, design science research follows a structured process consisting of five key activities: (1) \emph{explicate problem}, where the practical problem and its context are identified and defined; (2) \emph{define requirements}, which establishes the criteria that the artifact must satisfy; (3) \emph{design and develop artifact}, involving the actual construction of the solution; (4) \emph{demonstrate artifact}, where the artifact's utility is shown in solving the problem; and (5) \emph{evaluate artifact}, assessing how well it meets the requirements and solves the problem.
 
-In this thesis, we employ design science methodology to develop an AI assistant integrated with Sovelia Core, an on-premise PLM system. The practical problem we address is the knowledge accessibility challenge faced by users navigating fragmented documentation across vendor manuals, release notes, and customer-specific standard operating procedures. The artifact in this case is the RAG system, which is designed, implemented, and evaluated through iterative cycles within both internal and external contexts. Internal environments, such as testing sandboxes, allow for rapid testing and refinement, while external contexts are mainly gathered through user feedback from demos and pilot implementations. The purpose of this approach is to contribute both a practical solution for Sovelia Core and generalizable knowledge about RAG system integration in on-premise enterprise PLM environments.
+In this thesis, design science methodology is employed to develop an AI assistant integrated with Sovelia Core, an on-premise PLM system. The practical problem addressed is the knowledge accessibility challenge faced by users navigating fragmented documentation across vendor manuals, release notes, and customer-specific SOPs. The artifact in this case is the RAG system, which is designed, implemented, and evaluated through iterative cycles within both internal and external contexts. Internal environments, such as testing sandboxes, allow for rapid testing and refinement, while external contexts are mainly gathered through user feedback from demos and pilot implementations. The purpose of this approach is to contribute both a practical solution for Sovelia Core and generalizable knowledge about RAG system integration in on-premise enterprise PLM environments.
 
 \section{Case study approach}
 \label{sec:case-study-approach}
@@ -20,7 +60,7 @@ This research employs a single case study design \parencite{yinCaseStudyResearch
 \subsection{Case description: Sovelia Core PLM environment}
 \label{subsec:case-description}
 
-Sovelia Core is an on-premise PLM platform specifically beneficial for medium to large manufacturing organizations. It is developed and maintained by Symetri, a provider of technology solutions catering to design, engineering, construction, and manufacturing businesses \parencite{Symetri2025Company}. The main purpose of the system is to serve as a centralized hub for managing product data, engineering change processes, bill-of-materials structures, and document management workflows throughout the product lifecycle. The system has a history of more than two decades and is widely adopted among various manufacturing enterprises in the Nordic region \parencite{SoveliaOneDigital}.
+Sovelia Core is an on-premise PLM platform specifically beneficial for companies of varying sizes that are involved in product development and manufacturing. It is developed and maintained by Symetri, a provider of technology solutions catering to design, engineering, construction, and manufacturing businesses \parencite{Symetri2025Company}. The main purpose of the system is to serve as a centralized hub for managing product data, engineering change processes, bill-of-materials structures, and document management workflows throughout the product lifecycle. The system has a history of more than two decades and is widely adopted among various manufacturing enterprises in the Nordic region \parencite{DigitalSolutionsEngineering}. It is designed to be flexible, with implementations and features that can be adapted to the specific needs of both small and large organizations, from those needing basic document management to large enterprises with complex, global product lifecycles. Its scalability is demonstrated by its use in a wide range of industries and by companies with over 20,000 users worldwide. \parencite{DigitalSolutionsEngineering}
 
 \subsubsection{Technical architecture and deployment model}
 
@@ -39,6 +79,8 @@ A central challenge in this environment is the fragmentation of knowledge across
 Sovelia Core implements role-based access control (RBAC) to restrict data visibility based on user roles and organizational structure. Users should only access product data relevant to their functional responsibilities, and this principle must extend to any AI assistant that queries the system's knowledge base. However, in the initial implementation phase, the RAG system is designed to offer retrieval of documents accessible to all users, with plans to implement finer-grained access controls in future iterations.
 
 Additionally, customer organizations usually have strict policies regarding data processing and AI usage. Many customers express concerns about data privacy, algorithmic transparency, and the risk of AI hallucinations leading to incorrect guidance in engineering workflows. These concerns shape the requirements for any AI integration, including source attribution, and mechanisms to mitigate the risk of fabricated information. The aim is to make the AI assistant cite sources clearly and provide verifiable references for all generated responses.
+
+Another important topic is the cost-effectiveness of the solution. Many manufacturing organizations operate under tight budget constraints, making it essential that the RAG system delivers tangible productivity improvements without incurring prohibitive costs related to infrastructure, licensing, or maintenance. Based on historical customer feedback, solutions that are too costly or complex to maintain often face resistance during adoption even if they offer new advanced capabilities.
 
 \subsection{Case study boundaries and unit of analysis}
 \label{subsec:case-boundaries}
@@ -60,7 +102,7 @@ Data collection in this case study combines multiple sources to formulate the fi
 
 \begin{itemize}
     \item \textbf{System implementation artifacts}: Architecture documentation, source code, configuration files, etc. that document the technical design decisions and implementation approach.
-    \item \textbf{User feedback}: Qualitative feedback gathered through informal interviews, support channel discussions, and structured feedback sessions with pilot users.
+    \item \textbf{User feedback}: Qualitative feedback gathered through informal interviews and structured feedback sessions with pilot users.
     \item \textbf{Technical performance metrics}: Quantitative measures of retrieval accuracy, response latency, embedding quality, and system resource utilization.
 \end{itemize}
 
