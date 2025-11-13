@@ -34,6 +34,18 @@ lualatex main.tex
 
 **Note:** The compiler `lualatex` must be used, as the template fonts are loaded with `lualatex`-specific functionality.
 
+### Diagram Compilation
+
+PlantUML diagrams are stored as `.pu` files in the `diagrams/` folder and compiled to LaTeX using:
+
+```sh
+# Compile all diagrams
+cd diagrams && ./compile.sh
+
+# Or manually
+plantuml *.pu -latex:nopreamble
+```
+
 📋 **See [`LATEX_SETUP.md`](./LATEX_SETUP.md) for detailed compilation setup documentation.**
 
 ## 📖 About This Thesis
@@ -78,6 +90,7 @@ The thesis content is organized in the following folders:
 - `appendices/` - Additional supporting material
 - `images/` - Figures and images
 - `code/` - Source code examples
+- `diagrams/` - PlantUML diagram sources and compilation script
 
 Each folder contains an `index.tex` file that includes the individual content files.
 
@@ -135,6 +148,7 @@ This thesis is based on the official [Tampere University LaTeX thesis template](
 - `main.tex` - Main document file (compile this)
 - `metadata.tex` - Thesis metadata and configuration
 - `compile.sh` - Automated compilation script
+- `diagrams/compile.sh` - PlantUML diagram compilation script
 - `.vscode/settings.json` - VS Code LaTeX Workshop configuration
   - Includes also personal settings, e.g., for fonts and themes.
   - You can override these in your local VS Code settings.
@@ -155,6 +169,7 @@ For template-related issues or improvements, please visit the [original template
 - ✅ **PDF/A compliance**: Configured in document metadata
 - ✅ **Bibliography**: BibLaTeX with IEEE style
 - ✅ **Glossaries**: Automatic generation configured
+- ✅ **PlantUML Diagrams**: Automated generation from .pu sources
 
 ## 🚀 Release Process
 

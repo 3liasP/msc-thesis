@@ -6,6 +6,8 @@ skinparam class {
     BorderColor #1976D2
     ArrowColor #1976D2
 }
+skinparam nodesep 10
+skinparam ranksep 20
 
 entity "AIConfig" as config {
     * key : TEXT <<PK>>
@@ -60,19 +62,19 @@ entity "AIDocChunks" as chunks {
 sources ||--o{ chunks : "has many"
 sources }o--|| sourcetypes : "is type"
 
-note right of chunks
+note bottom of chunks
     IVFFlat index on embedding
     using cosine distance
     for similarity search
 end note
 
-note right of history
+note bottom of history
     Stores conversation threads
     with user/AI messages
     and source references
 end note
 
-note right of sources
+note bottom of sources
     Tracks documentation
     from three source types
     with version control

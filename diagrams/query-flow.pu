@@ -1,6 +1,9 @@
 @startuml
 !theme plain
 
+skinparam nodesep 10
+skinparam ranksep 20
+
 actor User
 participant "Chat UI" as UI
 participant "API Layer" as API

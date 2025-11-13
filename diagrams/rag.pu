@@ -1,8 +1,10 @@
-@startuml RAG Architecture
+@startuml
 !theme plain
 skinparam defaultTextAlignment center
 skinparam backgroundColor white
 skinparam componentStyle rectangle
+skinparam nodesep 10
+skinparam ranksep 20
 
 title Retrieval-Augmented Generation (RAG) System Architecture
 

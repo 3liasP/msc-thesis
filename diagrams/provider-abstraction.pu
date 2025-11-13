@@ -5,6 +5,8 @@ skinparam component {
     BackgroundColor #E3F2FD
     BorderColor #1976D2
 }
+skinparam nodesep 10
+skinparam ranksep 20
 
 package "Provider Abstraction Layer" {
     interface "AIChat" as chat
@@ -25,34 +27,34 @@ component "Application Logic" as app
 app --> chat : uses
 app --> embeddings : uses
 
-chat <|.. openai : implements
-chat <|.. azure : implements
-chat <|.. groq : implements
-chat <|.. ollama : implements
+note as N1
+    Providers implement
+    AIChat and AIEmbeddings
+    as appropriate
+end note
 
-embeddings <|.. openai : implements
-embeddings <|.. azure : implements
-embeddings <|.. ollama : implements
+N1 .. chat
+N1 .. embeddings
 
-note right of openai
+note bottom of openai
     Cloud deployment
     Latest models
     API key auth
 end note
 
-note right of azure
+note bottom of azure
     Microsoft infrastructure
     Enterprise compliance
     Managed deployment
 end note
 
-note right of groq
+note bottom of groq
     High-performance inference
     Low latency
     Cloud-based
 end note
 
-note right of ollama
+note bottom of ollama
     On-premises deployment
     Complete data residency
     Local model serving
