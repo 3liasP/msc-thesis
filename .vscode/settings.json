@@ -148,7 +148,7 @@
     "*.xmpdata"
   ],
   "latex-workshop.view.pdf.viewer": "tab",
-  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.autoBuild.run": "never",
   "latex-workshop.message.error.show": true,
   "latex-workshop.message.warning.show": true,
   "latex-workshop.latex.rootFile.doNotPrompt": true,
