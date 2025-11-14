@@ -12,7 +12,7 @@ start
 partition "Document Acquisition" {
     :Check Source Type;
     if (Internal PLM Document?) then (yes)
-        :Monitor Embedder Queue;
+        :Listen Embedder Queue;
         :Retrieve Document Files;
     elseif (External Vendor Docs?) then (yes)
         :Check Last Update Time;
@@ -40,14 +40,14 @@ partition "Document Chunking" {
     else (Plain Text)
         :Basic Character Splitting;
     endif
-    :Split into Chunks\n(2000 chars, 200 overlap);
+    :Split into Chunks, defaults to\n2000 chars, 200 overlap;
 }
 
 partition "Embedding Generation" {
     :Add Chunks to Queue;
     repeat
         :Dequeue Chunk;
-        :Generate 1536-dim Vector;
+        :Generate Vector;
         :Log Progress;
     repeat while (More chunks?) is (yes)
     ->no;

@@ -1,12 +1,12 @@
 \chapter{System design and implementation}
 \label{ch:system-design-and-implementation}
 
-This chapter details the design and implementation of the RAG-based AI assistant integrated with Sovelia Core. The implementation addresses the research questions outlined in Chapter~\ref{ch:introduction} by presenting a practical architecture that operates within the constraints of an on-premises PLM environment. The discussion covers the system architecture, data models, documentation pipeline, retrieval mechanisms, and user interface integration.
+This chapter details the design and implementation of the RAG-based AI assistant integrated with Sovelia Core. The implementation addresses the research questions outlined in Chapter~\ref{ch:introduction} by presenting a practical architecture that operates within the constraints of an on-premises PLM environment. The design decisions documented in this chapter reflect both insights synthesized from the literature review (Chapter~\ref{ch:literature-review}) and the specific technical and organizational requirements of Sovelia Core as an enterprise PLM system discussed in Chapter~\ref{ch:research-methodology}. Where applicable, references to supporting literature, case study precedents, and technical documentation are provided to establish the rationale for architectural choices. The discussion covers the system architecture, data models, documentation pipeline, retrieval mechanisms, and user interface integration.
 
 \section{RAG system architecture}
 \label{sec:rag-system-architecture}
 
-The RAG system architecture was designed to operate within Sovelia Core's existing infrastructure while maintaining compliance with data governance requirements. The architecture follows a layered approach, separating concerns between data persistence, business logic, API services, and user interface components.
+The RAG system architecture was designed to operate within Sovelia Core's existing infrastructure while maintaining compliance with data governance requirements. The architecture follows a layered approach, separating concerns between data persistence, business logic, API services, and user interface components. This architectural approach reflects the pragmatic implementation strategy identified in the literature review (\autoref{sec:case-studies-on-similar-integrations}), prioritizing foundational RAG capabilities using pre-trained models over more complex approaches requiring extensive infrastructure or domain-specific fine-tuning \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025, shejutiExtendedAbstractEnhancing2025}. The design emphasizes maintainability, operational simplicity, and alignment with Sovelia Core's existing technology stack to facilitate production deployment in on-premises enterprise environments.
 
 \subsection{System overview}
 \label{subsec:system-overview}
@@ -33,11 +33,11 @@ This layered architecture enables clear separation of concerns while maintaining
 \subsection{Database schema design}
 \label{subsec:database-schema-design}
 
-The data persistence layer leverages PostgreSQL's pgvector extension to enable efficient similarity search over vector embeddings. The schema design prioritizes both performance and data integrity through careful normalization and indexing strategies.
+The data persistence layer leverages PostgreSQL's pgvector extension to enable efficient similarity search over vector embeddings. This choice aligns with Sovelia Core's existing PostgreSQL infrastructure, avoiding the need for separate vector database systems as employed in some of the reviewed case studies \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025, shejutiExtendedAbstractEnhancing2025}. The pgvector extension provides production-ready vector operations while maintaining the operational simplicity of a single database system, which is particularly valuable for on-premises deployments where minimizing infrastructure complexity reduces maintenance overhead. The schema design prioritizes both performance and data integrity through careful normalization and indexing strategies.
 
-The core data model consists of three primary tables. The first table maintains configuration parameters for the system, storing key-value pairs that control various aspects of AI functionality including update schedules and system behavior. The second table stores source document metadata, tracking documentation from three distinct source types: internal PLM documents, external vendor documentation, and web-based knowledge articles. Each source record maintains information about document identifiers, versions, titles, and URLs where applicable. The third table contains the actual content chunks with their corresponding vector embeddings, maintaining references back to their source documents through foreign key constraints.
+The core data model consists of three primary tables. The first table maintains configuration parameters for the system, storing key-value pairs that control various aspects of AI functionality including update schedules and system behavior. The second table stores source document metadata, tracking documentation from three distinct source types: customer specific internal PLM documents, external vendor documentation, and web-based knowledge articles. Each source record maintains information about document identifiers, versions, titles, and URLs where applicable. The third table contains the actual content chunks with their corresponding vector embeddings, maintaining references back to their source documents through foreign key constraints.
 
-This design enables cascade deletion behavior, where removing a source document automatically cleans up all associated chunks, preventing orphaned data in the system. Version tracking for external documentation sources allows the system to detect when updates are needed without re-processing unchanged content.
+This design utilizes cascade deletion behavior, where removing a source document automatically cleans up all associated chunks, preventing orphaned data in the system. Version tracking for external documentation sources allows the system to detect when updates are needed without re-processing unchanged content.
 
 An enumerated type defines the three supported source types, providing type safety at the database level. This approach prevents invalid source type values from entering the system while maintaining clear semantics about the origin of each piece of documentation.
 
@@ -55,7 +55,7 @@ Figure~\ref{fig:database-schema} shows the complete database schema including th
 
 Query performance was a critical concern given that retrieval operations occur on every user query. The indexing strategy addresses this through two specialized index types.
 
-For vector similarity search, an IVFFlat (Inverted File with Flat compression) index operates on the embedding column using cosine distance as the similarity metric. This index type provides approximate nearest neighbor search with configurable trade-offs between accuracy and performance. The choice of cosine distance aligns with the embedding models used, which produce normalized vectors where cosine similarity effectively measures semantic relatedness.
+For vector similarity search, an IVFFlat (Inverted File with Flat compression) index operates on the embedding column using cosine distance as the similarity metric. This index type provides approximate nearest neighbor search with configurable trade-offs between accuracy and performance, as recommended in the pgvector documentation for balancing query speed and recall quality. The choice of cosine distance aligns with the embedding models used, which produce normalized vectors where cosine similarity effectively measures semantic relatedness. This distance metric choice is consistent with implementations observed in the reviewed manufacturing RAG systems \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025}, where cosine similarity proved effective for technical documentation retrieval.
 
 For source-based lookups and filtering, compound indexes on source identifier and type columns enable efficient retrieval of all chunks belonging to a specific document. This proves essential during document updates when existing chunks must be removed before inserting new versions.
 
@@ -64,30 +64,30 @@ Additional indexes on chat history tables support efficient retrieval of convers
 \subsection{Access control integration}
 \label{subsec:access-control-integration}
 
-A critical requirement for the RAG system was maintaining Sovelia Core's existing access control model. Documents in the PLM system have granular permissions that determine which users can view specific content. The RAG system must respect these permissions to prevent information leakage through AI responses.
+A critical requirement for the RAG system was maintaining Sovelia Core's existing access control model. Documents in the PLM system have granular permissions that determine which users can view specific content. The RAG system must respect these permissions to prevent information leakage through AI responses. This security consideration reflects broader concerns about data governance and access control in enterprise AI systems identified by \textcite{wangArtificialIntelligenceProduct2021}, who emphasized that security and trust remain critical challenges for AI adoption in manufacturing contexts.
 
 The implementation addresses this through a permissions check embedded in the vector search function. When retrieving relevant chunks for a query, the search function accepts the requesting user's identifier and filters results based on permission criteria stored in a separate table. This criteria table defines search patterns that determine which documents should be accessible through the AI system.
 
-For internal PLM documents, each source record links back to the original document key in the PLM database. The search function performs a permissions check against this original document before including chunks in results. External documentation sources bypass this check since they represent publicly available vendor documentation.
+For internal PLM documents, each source record links back to the original document key in the PLM database. The search function performs a permissions check against this original document before including chunks in results. External documentation sources bypass this check since they are publicly available in the internet as official vendor documentation.
 
 This approach ensures that the AI system acts as an extension of the existing PLM interface rather than a separate system with its own permission model. Users can only retrieve information through the AI that they could access through traditional navigation and search.
 
 \subsection{Provider abstraction layer}
 \label{subsec:provider-abstraction-layer}
 
-To maintain flexibility in model selection and avoid vendor lock-in, the implementation includes an abstraction layer for both LLM and embedding providers. This design decision acknowledges the rapidly evolving landscape of language models and the varying deployment constraints organizations may face.
+To maintain flexibility in model selection and avoid vendor lock-in, the implementation includes an abstraction layer for both LLM and embedding providers. This design decision acknowledges the rapidly evolving landscape of language models and the varying deployment constraints organizations may face. The provider abstraction pattern follows established software engineering principles for dependency inversion and supports the diverse deployment scenarios encountered across PLM installations, from cloud-first organizations to those with strict on-premises requirements.
 
-The abstraction layer supports four provider types: OpenAI's cloud-based API, Azure OpenAI service for organizations requiring Microsoft's infrastructure, Groq for high-performance inference, and Ollama for fully on-premises deployment. Each provider requires different configuration parameters and authentication methods, but the abstraction layer presents a uniform interface to the rest of the system.
+The abstraction layer supports four provider types: OpenAI's cloud-based API, Azure OpenAI service for organizations requiring Microsoft's infrastructure, Groq for high-performance inference, and Ollama for fully on-premises deployment. Each provider requires different configuration parameters and authentication methods, but the abstraction layer presents a uniform interface to the rest of the system. This multi-provider support directly addresses the on-premises deployment constraint emphasized in the research questions while maintaining flexibility for organizations with different security postures.
 
-Configuration strings follow a simple format combining provider name and model identifier, such as \texttt{provider:model-name}. This allows system administrators to change models through environment variable updates without modifying application code. The abstraction layer parses these configuration strings and instantiates the appropriate provider class with necessary credentials and endpoint URLs.
+Configuration strings follow a simple format combining provider name and model identifier, such as \texttt{provider:model-name}. This allows system administrators to change models through the administration UI in the Sovelia Core web client. The abstraction layer parses these configuration strings and instantiates the appropriate provider class with necessary credentials and endpoint URLs.
 
-Separate abstractions exist for chat models and embedding models, recognizing that organizations might choose different providers for these distinct use cases. For example, an organization might use Ollama for embeddings (prioritizing data residency) while using Groq for chat completion (prioritizing response speed).
+Separate abstractions exist for chat models and embedding models, recognizing that organizations might choose different providers for these distinct use cases. For example, an organization might use Ollama for embeddings (prioritizing data residency) while using Groq for chat completion (prioritizing response speed). Creating embeddings is typically faster and less resource-intensive than generating chat completions, which allows for different trade-offs in provider selection.
 
 Figure~\ref{fig:provider-abstraction} illustrates the provider abstraction layer showing how different LLM and embedding providers are integrated through common interfaces, enabling flexible deployment strategies.
 
 \begin{figure}[htbp]
     \centering
-    \small{\resizebox{0.85\textwidth}{!}{\input{diagrams/provider-abstraction.tex}}}
+    \small{\resizebox{0.9\textwidth}{!}{\input{diagrams/provider-abstraction.tex}}}
     \caption{Provider abstraction layer supporting multiple LLM and embedding providers}
     \label{fig:provider-abstraction}
 \end{figure}
@@ -95,7 +95,7 @@ Figure~\ref{fig:provider-abstraction} illustrates the provider abstraction layer
 \section{Documentation pipeline design}
 \label{sec:documentation-pipeline-design}
 
-The documentation pipeline transforms raw documentation from various sources into searchable vector embeddings. The pipeline design emphasizes reliability, maintainability, and extensibility to accommodate different document formats and sources.
+The documentation pipeline transforms raw documentation from various sources into searchable vector embeddings. The pipeline design emphasizes reliability, maintainability, and extensibility to accommodate different document formats and sources. The four-stage architecture (acquisition, chunking, embedding, storage) follows established patterns in document processing systems and aligns with pipelines described in the reviewed RAG implementations \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025, shejutiExtendedAbstractEnhancing2025}. Each stage is designed as an independent, testable component with clear input-output contracts, enabling iterative refinement of individual stages based on evaluation results without requiring redesigning of the whole pipeline.
 
 \subsection{Pipeline stages}
 \label{subsec:pipeline-stages}
@@ -108,17 +108,17 @@ The acquisition stage retrieves documentation from configured sources. The imple
 
 For internal PLM documents, the system monitors a queue of documents requiring vectorization. When users upload or modify documents matching configured criteria, the PLM system triggers an action that places the document in this queue. The embedder service periodically checks this queue and processes pending documents. This event-driven approach ensures timely updates without requiring continuous polling of all documents in the system.
 
-For external vendor documentation accessed through a REST API, the system checks whether the documentation has been updated within a configurable time window (default seven days). This periodic update strategy balances freshness with resource consumption, as full re-indexing of external documentation requires significant processing time. The system tracks the last update timestamp in the configuration table and compares this against the current time to determine if a refresh is needed.
+For external vendor documentation accessed through a REST API (mainly release notes from Sovelia.com \parencite{DigitalSolutionsEngineering}), the system checks whether the documentation has been updated within a configurable time window (default seven days). This periodic update strategy balances freshness with resource consumption, as full re-indexing of external documentation requires significant processing time. The system tracks the last update timestamp in the configuration table and compares this against the current time to determine if a refresh is needed.
 
 For web-based knowledge articles, a similar periodic update strategy applies. The system queries a content management system API to retrieve a list of published articles matching specific tags and categories. A blacklist mechanism allows administrators to exclude certain content categories from vectorization, providing control over which information flows into the AI system.
 
 \subsubsection{Document chunking}
 
-Once acquired, documents must be divided into appropriately sized chunks for embedding. Chunk size significantly impacts both retrieval quality and system performance. Smaller chunks provide more precise retrieval but may lack sufficient context, while larger chunks include more context but reduce retrieval precision.
+Once acquired, documents must be divided into appropriately sized chunks for embedding. Chunk size significantly impacts both retrieval quality and system performance. Smaller chunks provide more precise retrieval but may lack sufficient context, while larger chunks include more context but reduce retrieval precision. This precision-context trade-off has been identified as a fundamental challenge in RAG systems across multiple case studies \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025, shejutiExtendedAbstractEnhancing2025}.
 
-The implemented chunking strategy uses a recursive character text splitter with a target chunk size of 2000 characters and 200-character overlap between adjacent chunks. This overlap ensures that information near chunk boundaries appears in multiple chunks, reducing the risk of relevant context being split across boundaries in ways that harm retrieval.
+The implemented chunking strategy uses a recursive character text splitter from LangChain \parencite{LangChainOverview} with a target chunk size of 2000 characters and 200-character overlap between adjacent chunks. The 2000-character chunk size was selected based on balancing retrieval precision with semantic completeness, representing approximately 300-400 tokens depending on content type. This size enables most chunks to contain complete concepts or procedures while remaining well below the context window limits of modern embedding models. The 200-character overlap ensures that information near chunk boundaries appears in multiple chunks, reducing the risk of relevant context being split across boundaries in ways that harm retrieval. This overlap strategy is consistent with best practices documented in LangChain's text splitting documentation \parencite{LangChainOverview} and mirrors approaches used in successful technical documentation RAG implementations \parencite{shejutiExtendedAbstractEnhancing2025}.
 
-Different document formats require format-specific processing before chunking. PDF documents undergo text extraction using a specialized library that maintains document structure while removing embedded images and metadata. Markdown documents receive language-aware splitting that attempts to preserve semantic boundaries like headers and code blocks. Plain text documents receive basic character-based splitting without special handling.
+Different document formats require format-specific processing before chunking. PDF documents undergo text extraction using a specialized library that maintains document structure while currently removing images and metadata. Processing and embedding these non-textual elements remains an area for future enhancement. Plain text documents receive basic character-based splitting without special handling. This format-specific processing approach follows established best practices in document ingestion pipelines, as documented in the LangChain text loader documentation \parencite{LangChainOverview}, while recognizing that maintaining semantic boundaries (such as section headers and paragraph breaks) improves retrieval quality by preventing artificial mid-concept splits. For the initial version, only PDF and plain text formats are supported, since most documents can be easily converted to these formats. Future enhancements may include support for Word documents, PowerPoint presentations, HTML content, and other common formats supported by the Sovelia Core system.
 
 For documents retrieved from external sources, HTML content undergoes conversion to Markdown format before chunking. This conversion process removes non-textual elements like scripts, stylesheets, and embedded media while preserving semantic structure through Markdown's lightweight syntax. The conversion also handles link transformation, converting relative URLs to absolute URLs to maintain reference integrity in the embedded content.
 
@@ -126,11 +126,11 @@ For documents retrieved from external sources, HTML content undergoes conversion
 
 After chunking, each text segment requires transformation into a vector embedding. The embedding process operates through a queue-based system to manage rate limits and provide graceful degradation under load.
 
-As chunks are created, they enter an embedding queue. A single-threaded processor removes items from this queue and sends them to the configured embedding model. This serialization prevents overwhelming the embedding service with concurrent requests while providing a natural backpressure mechanism if chunk creation outpaces embedding generation.
+As chunks are created, they enter an embedding queue. A single-threaded processor removes items from this queue and sends them to the configured embedding model. This serialization prevents overwhelming the embedding service with concurrent requests while providing a natural backpressure mechanism if chunk creation outpaces embedding generation. The queue-based architecture follows established patterns for reliable asynchronous processing and enables graceful handling of provider rate limits, which vary significantly across different embedding services.
 
-Each chunk produces a 1536-dimensional vector representing its semantic content. The dimensionality matches OpenAI's text-embedding-ada-002 model, which was selected for its balance of quality and efficiency. While higher-dimensional embeddings might capture more nuanced semantic relationships, they also increase storage requirements and query latency.
+Each chunk produces a 1536-dimensional vector representing its semantic content. The dimensionality matches OpenAI's text-embedding-ada-002 model, which was selected for its balance of quality and efficiency. While higher-dimensional embeddings might capture more nuanced semantic relationships, they also increase storage requirements and query latency. This embedding model choice reflects the pragmatic approach emphasized in the literature review (\autoref{sec:case-studies-on-similar-integrations}), prioritizing production-ready models with established performance characteristics over experimental alternatives requiring extensive validation.
 
-The embedding service logs its progress throughout this process, recording which documents are being processed, how many chunks each document produces, and any errors encountered. These logs prove essential for troubleshooting pipeline failures and monitoring system health.
+The embedding service logs its progress throughout this process, recording which documents are being processed, how many chunks each document produces, and any errors encountered. These logs are highly useful when troubleshooting pipeline failures and monitoring system health.
 
 \subsubsection{Storage and indexing}
 
@@ -140,7 +140,7 @@ Before inserting chunks for a document, the system deletes any existing chunks a
 
 After deletion, the system inserts a new source record (or updates the existing one if it already exists) followed by insertion of all chunk records. This two-phase operation maintains referential integrity while enabling atomic document updates.
 
-For internal PLM documents, the deletion logic includes special handling to remove all versions of a document when any version is updated. PLM documents have a document identifier that remains constant across versions, while each version receives a unique document key. When updating a document, the system looks up the document identifier from the provided key and deletes all source records associated with that identifier, ensuring old versions don't appear in search results alongside the current version.
+For internal PLM documents, the deletion logic includes special handling to remove all versions of a document when any version is updated. PLM documents have a document identifier that remains constant across versions, while each version receives a unique document key. When updating a document, the system looks up the document identifier from the provided key and deletes all source records associated with that identifier, making sure that old versions don't appear in search results alongside the current version.
 
 \subsection{Pipeline orchestration}
 \label{subsec:pipeline-orchestration}
@@ -149,9 +149,9 @@ The pipeline operates through a service that initializes during application star
 
 During initialization, the service checks whether external documentation sources require updating based on their configured refresh intervals. If updates are needed, the service processes all documentation from those sources before completing initialization. This ensures that the system has current documentation available when users first access AI features.
 
-For internal PLM documents, the service responds to messages placed in the embedding queue by the PLM system. When a document matching configured criteria is created or modified, the PLM system creates an action record that triggers document processing. The embedder service periodically checks for pending actions and processes them in order.
+For internal PLM documents, the service responds to messages placed in the embedding queue by the PLM system. When a document matching configured criteria is created or modified, the PLM system creates an action record that triggers document processing. The embedder service receives these pending actions via PostgreSQL notifications \parencite{PostgreSQL181Documentation2025} and processes them in order.
 
-This hybrid approach balances proactive and reactive processing strategies. External documentation updates predictably on a schedule, while internal documentation updates responsively as changes occur. The combination ensures both freshness and efficiency.
+This hybrid approach balances proactive and reactive processing strategies. External documentation updates predictably on a schedule, while internal documentation updates responsively as changes occur. The combination ensures both freshness and efficiency. Documentation managed inside the Sovelia Core system benefits from immediate processing upon change, while external documentation changes are less frequent and can be handled through periodic refreshes. It's important to immediately process internal document changes to ensure that users always receive up-to-date information through the AI assistant, to avoid risks of outdated or incorrect responses. This is highly relevant, since the core idea of PLM systems is to maintain accurate and current product information throughout its lifecycle. \parencite{starkProductLifecycleManagement2015} Additionally the chunks are automatically deleted when a document is removed from the PLM system, ensuring that obsolete information does not persist in the vector database. This is important from security aspect too: if a document is deleted due to sensitivity or confidentiality concerns, retaining its embeddings could lead to unauthorized access through the AI assistant for a document that should no longer be accessible.
 
 Error handling throughout the pipeline emphasizes resilience and observability. Failures processing individual documents are logged but do not interrupt processing of other documents. The logging system maintains a rotating file that captures detailed information about each processing step, enabling post-mortem analysis of failures without impacting system performance.
 
@@ -167,34 +167,34 @@ Figure~\ref{fig:documentation-pipeline} presents the complete documentation pipe
 \section{Retrieval mechanism}
 \label{sec:retrieval-mechanism}
 
-The retrieval mechanism forms the critical bridge between user queries and relevant documentation. The implementation balances retrieval quality, response time, and access control requirements.
+The retrieval mechanism forms the critical bridge between user queries and relevant documentation. The implementation aims to balance retrieval quality, response time, and access control requirements.
 
 \subsection{Query processing}
 \label{subsec:query-processing}
 
 When a user submits a query, the system first transforms the query text into an embedding vector using the same embedding model used for documentation. This ensures that queries and documents exist in the same vector space, enabling meaningful similarity comparisons.
 
-The query embedding then serves as input to a vector similarity search against the chunk embeddings stored in the database. The search function retrieves the top-k most similar chunks, where k is configurable (default value of 5). The choice of k reflects a trade-off between context breadth and relevance precision. Smaller k values ensure only highly relevant chunks reach the LLM but may miss important context. Larger k values provide more context but increase the risk of including weakly related information.
+The query embedding then serves as input to a vector similarity search against the chunk embeddings stored in the database. The search function retrieves the top-k most similar chunks, where k is configurable (default value of 5). The choice of k reflects a trade-off between context breadth and relevance precision. Smaller k values ensure only highly relevant chunks reach the LLM but may miss important context. Larger k values provide more context but increase the risk of including weakly related information. The default value of k=5 was selected based on empirical observations from the reviewed case studies, where retrieval depths between 5 and 13 demonstrated effectiveness across different technical documentation contexts \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025, shejutiExtendedAbstractEnhancing2025}. This parameter remains configurable to allow tuning based on specific documentation characteristics and user feedback in Sovelia Core.
 
-The similarity metric uses cosine distance, which ranges from 0 (identical vectors) to 2 (opposite vectors). The database returns chunks ordered by ascending distance, meaning lower values indicate higher similarity. This scoring approach aligns with the vector index implementation and provides intuitive similarity rankings.
+The similarity metric uses cosine distance, which ranges from 0 (identical vectors) to 2 (opposite vectors). The database returns chunks ordered by ascending distance, meaning lower values indicate higher similarity. This scoring approach aligns with the vector index implementation and provides intuitive similarity rankings. A more sophisticated search and ranking mechanism could be implemented in future iterations, such as incorporating relevance feedback or hybrid search techniques that combine vector similarity with traditional keyword matching. However, the current cosine distance-based retrieval provides a solid foundation for effective document retrieval in the RAG system.
 
 \subsection{Permission filtering}
 \label{subsec:permission-filtering}
 
 As discussed in Section~\ref{subsec:access-control-integration}, the retrieval function integrates permission checks directly in the database query. This database-level filtering provides better performance than application-level filtering because it avoids retrieving chunks that will subsequently be discarded.
 
-The permission check operates through a criteria table that defines patterns for matching documents. Each criterion consists of search conditions that can match documents based on various attributes like document type, status, or custom fields. When a document is added to the embedder queue, the system evaluates all criteria to determine if the document should be vectorized and made available through the AI system.
+The permission check operates through a search criteria that defines patterns for matching documents. The search itself is handled by custom search engine inside Sovelia Core. Each criterion consists of search conditions that can match documents based on various attributes like document type, status, or custom fields. When a document is created or modified and then saved to the system, it evaluates all criteria to determine if the document should be vectorized and made available through the AI system.
 
-During retrieval, the search function evaluates these same criteria against internal documents before including their chunks in results. This ensures consistency between which documents are vectorized and which documents appear in search results. External documentation sources bypass this check, as they represent vendor-provided documentation that should be available to all users.
+During retrieval, the search function evaluates these same criteria against internal documents before including their chunks in results. This ensures consistency between which documents are vectorized and which documents appear in search results. As mentioned in Section~\ref{subsec:external-documentation-sources}, external documentation sources bypass this check, as they represent vendor-provided documentation that should be available to all users.
 
-This design allows organizations to implement custom access policies through configuration rather than code changes. For example, an organization might restrict AI access to only released documents, or might limit access to documents in specific product lines based on user roles.
+This design allows organizations to implement custom access policies easilly through configuration UI. For example, an organization might restrict AI access to only released documents, or might limit access to documents in specific product lines based on user roles.
 
 \subsection{Source tracking}
 \label{subsec:source-tracking}
 
 Each retrieved chunk includes metadata about its source document. For internal PLM documents, this includes the unique document identifier, document revision, and description. For external documentation, this includes the article title and URL.
 
-This source information serves two purposes. First, it enables the user interface to display source references alongside AI responses, allowing users to verify information and access complete documents when needed. Second, it supports the LLM's ability to cite sources in its responses, improving transparency and trustworthiness.
+This source information serves two purposes. First, it enables the user interface to display source references alongside AI responses, allowing users to verify information and access complete documents when needed. Second, it supports the LLM's ability to directly link to sources in its responses, improving transparency and trustworthiness. This emphasis on source transparency addresses a fundamental advantage of RAG systems identified by \textcite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}: the ability to provide provenance for generated responses, enabling users to verify information and build trust in AI recommendations. For enterprise PLM environments where accuracy is critical and users may be skeptical of AI-generated content, this transparency mechanism is essential for adoption and responsible use. This approach allows users to actually verify the information provided by the AI assistant, which is extremely important in technical contexts of PLM systems where incorrect information can lead to costly mistakes.
 
 The implementation aggregates chunks from the same source document, recognizing that multiple chunks from one document indicate strong relevance for that source. However, the LLM receives chunks individually rather than grouped, allowing it to synthesize information from multiple sources when appropriate.
 
@@ -210,25 +210,25 @@ Figure~\ref{fig:query-flow} depicts the complete query processing flow, from use
 \section{Prompt engineering and LLM integration}
 \label{sec:prompt-engineering}
 
-The integration between retrieved context and language models requires careful prompt engineering to elicit appropriate responses while maintaining consistency and accuracy.
+The integration between retrieved context and language models requires careful prompt engineering for appropriate responses while maintaining consistency and accuracy.
 
 \subsection{Prompt structure}
 \label{subsec:prompt-structure}
 
-The system employs a structured prompt template that combines system instructions, conversation history, retrieved context, and the user's question. This structure follows best practices for RAG implementations while being adapted to the specific domain of PLM systems.
+The system employs a structured prompt template that combines system instructions, conversation history, retrieved context, and the user's question. This structure follows best practices for RAG implementations as documented in the LangChain framework \cite{LangChainOverview} and aligns with successful patterns observed in the reviewed case studies, while being adapted to the specific domain of PLM systems.
 
-The system prompt establishes the AI assistant's role and behavior. It identifies the assistant as an integrated component of the PLM system, setting expectations for the types of questions it can answer. The prompt includes explicit instructions about citation behavior, instructing the model to reference provided URLs when available and to avoid fabricating links or information not present in the retrieved context.
+The system prompt establishes the AI assistant's role and behavior. It identifies the assistant as an integrated component of the PLM system, setting expectations for the types of questions it can answer. The prompt includes explicit instructions about citation behavior, instructing the model to reference provided URLs when available and to avoid fabricating links or information not present in the retrieved context. This explicit anti-hallucination instruction addresses a key risk factor identified in RAG system deployments \parencite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}, where models may blend parametric knowledge with retrieved context in ways that reduce factual accuracy.
 
 Retrieved documentation appears in a dedicated section marked as contextual information. The formatting uses code blocks to separate the context from instructions, making clear which information comes from the documentation base versus the prompt structure itself. Each piece of contextual information includes the source title, URL (when applicable), and the chunk content.
 
-The prompt includes meta-instructions that the model should not reveal to users. This prevents the assistant from discussing its prompt structure or implementation details when asked, maintaining appropriate boundaries in the user interaction.
+The prompt includes meta-instructions that the model should not reveal to users. This aims to prevent the assistant from discussing its prompt structure or implementation details when asked, maintaining appropriate boundaries in the user interaction.
 
 \subsection{Conversation history}
 \label{subsec:conversation-history}
 
-The implementation maintains conversation history to support multi-turn interactions. Users often ask follow-up questions that refer to previous messages or request clarification on earlier responses. Maintaining history enables more natural conversations while improving the relevance of responses.
+The implementation maintains conversation history to support multi-turn interactions. Users often ask follow-up questions that refer to previous messages or request clarification on earlier responses. Maintaining history enables more natural conversations while improving the relevance of responses. This conversational capability reflects the human-in-the-loop design principle emphasized in the AI assistant framework \parencite{petricekAIAssistantsFramework2023}, where iterative interaction patterns enable users to refine queries and provide feedback through natural dialogue rather than single-shot requests.
 
-Each conversation receives a unique identifier that groups related messages. The system tracks separate conversations for different contexts within the PLM interface, recognizing that a conversation about a specific product should remain distinct from general help queries.
+Each conversation receives a unique identifier that groups related messages. The system tracks separate conversations for different contexts within the PLM interface, recognizing that a conversation about a specific product should remain distinct from general help queries. This is enabled for future enhancements where conversations could be tied to specific product records or document contexts.
 
 Message history includes all user messages and AI responses, but conditionally includes system prompts. The system prompt is added only at the start of a new conversation, not for each turn. This reduces token usage while ensuring the LLM understands its role throughout the conversation. However, when relevant context changes (such as when retrieval results differ significantly), a contextual update message provides new documentation references without repeating the full system prompt.
 
@@ -237,13 +237,11 @@ The history storage uses JSONB columns in PostgreSQL, allowing flexible message 
 \subsection{Model configuration}
 \label{subsec:model-configuration}
 
-Different language models exhibit varying characteristics in terms of response style, accuracy, and speed. The implementation allows runtime configuration of model selection through environment variables, enabling organizations to choose models that best fit their requirements.
+Different language models exhibit varying characteristics in terms of response style, accuracy, and speed. The implementation allows runtime configuration of model selection through administration UI. This enables organizations to choose models that best fit their requirements and also try different models and providers easilly in their respective test deployments. This configuration flexibility reflects lessons learned from the reviewed case studies, where different deployment contexts favored different model choices based on infrastructure constraints, data governance requirements, and performance expectations.
 
-Key configuration parameters include the model provider and identifier, temperature setting, and token limits. Temperature controls response randomness, with lower values producing more deterministic and conservative responses. For a documentation assistant, lower temperatures (0.1-0.3) are generally preferable as they prioritize accuracy over creativity.
+The system supports both cloud-based and on-premises model deployment. Cloud deployment typically provides access to more powerful models with faster inference times, but requires sending data to external services. On-premises deployment through Ollama maintains complete data residency but limits model selection to those that can run on available hardware. This dual deployment model addresses the data governance concerns central to the research questions while acknowledging that different Sovelia Core installations face varying regulatory and policy constraints. The importance of this flexibility is underscored by \textcite{wangArtificialIntelligenceProduct2021}, who identified data security and sovereignty as critical concerns for AI adoption in manufacturing and PLM environments.
 
-The system supports both cloud-based and on-premises model deployment. Cloud deployment typically provides access to more powerful models with faster inference times, but requires sending data to external services. On-premises deployment through Ollama maintains complete data residency but limits model selection to those that can run on available hardware.
-
-This flexibility acknowledges that different organizations face different constraints. A large enterprise with strict data governance requirements might mandate on-premises deployment despite performance trade-offs, while a smaller organization might prioritize response quality and operational simplicity through cloud deployment.
+This flexibility acknowledges that different organizations face different constraints. For example, a large enterprise with strict data governance requirements might mandate on-premises deployment despite performance trade-offs, while a smaller organization might prioritize response quality and operational simplicity through cloud deployment.
 
 \section{API design and access control}
 \label{sec:api-design}
@@ -272,16 +270,12 @@ Permission errors occur when users attempt operations they lack authorization to
 
 Service errors occur when dependencies like the database or embedding service encounter failures. These return HTTP 500 status codes and log detailed error information for investigation while providing generic error messages to users to avoid information disclosure.
 
-Rate limiting protects the system from excessive query volume from individual users or overall system load. Configuration parameters control the maximum number of requests per user per time window and maximum concurrent processing requests. When limits are exceeded, the API returns HTTP 429 status codes with retry-after headers.
-
 \subsection{Testing and validation}
 \label{subsec:testing-validation}
 
-A dedicated testing endpoint enables administrators to validate system configuration without affecting production conversations. This endpoint accepts model configuration parameters and attempts to connect to the specified provider, returning success or failure with diagnostic information.
+A dedicated testing endpoint enables administrators to validate system configuration without affecting production conversations. This endpoint accepts model configuration parameters and attempts to connect to the specified provider, returning success or failure with diagnostic information. This endpoint is connected to Sovelia Core's administration UI, allowing administrators to test model configurations before enabling them for end users.
 
-Testing occurs independently for chat models and embedding models, as these may use different providers. The test endpoint attempts a minimal operation with each model (generating a simple completion or embedding a short text) and reports whether the operation succeeded.
-
-This functionality proves valuable during initial system setup and when updating model configurations. Administrators can validate that API keys, endpoint URLs, and network connectivity are correctly configured before enabling features for end users.
+Testing occurs independently for chat models and embedding models, as these may use different providers. The test endpoint attempts a minimal operation with each model (generating a simple completion or embedding a short text) and reports whether the operation succeeded. This functionality proves valuable during initial system setup and when updating model configurations. Administrators can validate that API keys, endpoint URLs, and network connectivity are correctly configured before enabling features for end users.
 
 \section{User interface integration}
 \label{sec:user-interface-integration}
@@ -291,27 +285,23 @@ The AI assistant integrates directly into Sovelia Core's web interface as a cont
 \subsection{Chat interface design}
 \label{subsec:chat-interface-design}
 
-The user interface presents a familiar chat-style interaction pattern with a message history area and input field. This design aligns with user expectations shaped by consumer chat applications while being adapted to the PLM context.
+The user interface presents a familiar chat-style interaction pattern with a message history area and input field. This design aligns with user expectations shaped by consumer chat applications while being adapted to the PLM context. The conversational interface pattern has become a de facto standard for AI assistants, leveraging established user mental models that reduce cognitive load and training requirements. This design choice reflects the human-in-the-loop principle where natural language interaction enables users to iteratively refine their information needs \parencite{petricekAIAssistantsFramework2023}.
 
 Messages alternate between user queries and AI responses, with visual styling distinguishing between the two. AI responses support Markdown rendering, allowing formatted text with emphasis, lists, and inline code when appropriate. This formatting capability enables more readable responses for technical content.
 
-Source references appear alongside AI responses as interactive elements. For internal documents, clicking a source reference opens the document in the PLM viewer. For external documentation, clicking a source reference opens the URL in a new browser tab. This integration enables seamless transition from AI-assisted discovery to detailed document review.
-
-The interface maintains separate conversation contexts based on where the user accesses the feature. A general help conversation remains independent of conversations about specific products or documents. This separation prevents context confusion and allows more targeted conversations.
+Source references appear alongside AI responses as interactive elements. For internal documents, clicking a source reference opens the document object in Sovelia Core. For external documentation, clicking a source reference opens the URL in a new browser tab. This integration enables seamless transition from AI-assisted discovery to detailed document review.
 
 \subsection{User feedback mechanisms}
 \label{subsec:user-feedback-mechanisms}
 
-Each AI response includes feedback controls allowing users to indicate whether the response was helpful. This simple thumbs-up/thumbs-down mechanism provides quantitative data about response quality without requiring detailed user input.
+Each AI response includes feedback controls allowing users to indicate whether the response was helpful. This simple thumbs-up/thumbs-down mechanism provides quantitative data about response quality without requiring detailed user input. The feedback mechanism is not directly connected to anything yet other that storing the feedback, but it lays the groundwork for future enhancements where feedback could inform model adaptation or retrieval improvements. These kinds of feedback loops are essential for continuous improvement of AI systems, as they provide real-world data about system performance and user satisfaction \parencite{petricekAIAssistantsFramework2023}. Additionally similar case studies have highlighted the importance of user feedback in refining RAG systems via validation \parencite{knollmeyerDocumentGraphRAGKnowledge2025}.
 
 Feedback data persists to the database associated with the specific message identifier. This enables later analysis of which types of queries and responses receive positive or negative feedback, informing improvements to retrieval parameters, prompt engineering, or model selection.
-
-The current implementation captures feedback but does not use it for real-time model adaptation. However, the data structure supports future enhancement where feedback could influence retrieval ranking or prompt selection.
 
 \subsection{Loading and status indicators}
 \label{subsec:loading-status-indicators}
 
-RAG queries typically require 2-5 seconds to complete, encompassing embedding generation, vector search, and LLM inference. The interface provides appropriate loading indicators during this processing time to maintain user confidence that the system is working.
+Based on initial testing of the system, RAG queries typically require 2-5 seconds to complete, encompassing embedding generation, vector search, and LLM inference. The interface provides appropriate loading indicators during this processing time to maintain user confidence that the system is working.
 
 A loading message area displays rotating status messages while processing queries. These messages progress through several stages: fetching information, analyzing documentation, and generating response. This progression provides feedback about what the system is doing without exposing technical implementation details.
 
@@ -322,7 +312,7 @@ Error states receive appropriate visual treatment with error messages explaining
 
 Users can clear conversation history to start fresh conversations. This proves useful when switching topics or when the conversation context becomes unwieldy. The clear action affects only the current conversation context, preserving conversations in other contexts.
 
-Deleted conversations remain in the database with a deletion flag rather than being physically removed. This soft deletion approach supports potential future features like conversation restoration or administrative audit trails while preventing accidental permanent data loss.
+Deleted conversations remain in the database with a deletion flag rather than being physically removed. This soft deletion approach supports potential future features like conversation restoration or administrative audit trails while preventing accidental permanent data loss. Additionally feedback associated with deleted conversations remains available for analysis, preserving valuable data about response quality.
 
 \section{Operational considerations}
 \label{sec:operational-considerations}
@@ -341,16 +331,16 @@ The logging implementation uses structured log messages with consistent formatti
 \subsection{Configuration management}
 \label{subsec:configuration-management}
 
-System behavior is controlled through environment variables rather than hard-coded configuration. This approach follows twelve-factor application principles and enables different configurations for development, testing, and production environments without code changes.
+System behavior is controlled through environment variables rather than hard-coded configuration. This approach follows twelve-factor application principles and enables different configurations for development, testing, and production environments without code changes. The environment-based configuration pattern is widely documented as a best practice in modern application deployment, particularly for containerized applications and cloud-native architectures as described in the Twelve-Factor App methodology \parencite{TwelveFactorApp}. These environment variables are managed through Sovelia Core's existing configuration management system integrated into the web application, the so-called "Self Admin Tool", which provides a user interface for maintaining the customized configuration of customer specific deployments. More technical configuration can be done via editing the environment variables directly on the server hosting the application.
 
-Key configuration parameters include model provider selection, embedding dimensions, chunk size, retrieval parameters, update intervals for external documentation, and feature flags for enabling or disabling AI functionality entirely.
+In the Sovelia Core's Self Admin Tool key configuration parameters include model and provider selection along with API keys and retrieval parameters (search criteria) to get the RAG system up and running. Other variables such as embedding dimensions, chunk size, update intervals for external documentation are managed via setting the environment variables on the server hosting the application by editing configuration files directly.
 
 Documentation of configuration parameters includes descriptions of each parameter's purpose, valid values, default values, and deployment considerations. This documentation proves essential for system administrators who deploy and maintain the system without deep knowledge of the implementation.
 
 \subsection{Resource management}
 \label{subsec:resource-management}
 
-The embedding service manages resource utilization through queue-based processing with configurable concurrency limits. This prevents the service from overwhelming downstream systems during bulk documentation processing while maintaining reasonable throughput.
+The embedding service manages resource utilization through queue-based processing with configurable concurrency limits. This prevents the service from overwhelming downstream systems during bulk documentation processing while maintaining reasonable throughput. This applied to prevent "port flooding" of the embedding provider when large document sets are processed, which could lead to rate limiting or service degradation.
 
 Database connection pooling ensures efficient use of database resources while preventing connection exhaustion during high query volumes. The connection pool parameters are tuned based on expected concurrent user load and available database capacity.
 
@@ -361,6 +351,8 @@ For organizations using on-premises model deployment, GPU resource allocation be
 
 This chapter presented a comprehensive description of the RAG system implementation integrated within Sovelia Core. The architecture demonstrates how RAG can be deployed in on-premises PLM environments while respecting data governance constraints and existing access control mechanisms.
 
-Key design decisions include the use of PostgreSQL with vector extensions for unified data management, provider abstraction for flexible model selection, database-level permission filtering for security, and modular pipeline architecture for maintainability. These decisions address the practical constraints of enterprise PLM deployment while maintaining the flexibility to evolve as technology and requirements change.
+Key design decisions include the use of PostgreSQL with vector extensions for unified data management, provider abstraction for flexible model selection, database-level permission filtering for security, and modular pipeline architecture for maintainability. These decisions reflect a synthesis of insights from the reviewed case studies (\autoref{sec:case-studies-on-similar-integrations}) and Sovelia Core's specific requirements as an enterprise PLM system. The pragmatic approach prioritizes production-ready components and established patterns over experimental techniques, aligning with the emphasis on foundational RAG capabilities identified in successful manufacturing documentation deployments \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025, shejutiExtendedAbstractEnhancing2025}. At the same time, the modular architecture and configurable parameters enable future enhancement with more advanced retrieval strategies, such as the graph-based approaches discussed by \textcite{knollmeyerDocumentGraphRAGKnowledge2025} and \textcite{wanEmpoweringLLMsHybrid2025}, once the baseline system demonstrates value and achieves production stability.
+
+The implementation addresses the practical constraints of enterprise PLM deployment while maintaining the flexibility to evolve as technology and requirements change. The choice of widely adopted open-source components (PostgreSQL, pgvector, LangChain) and support for multiple LLM providers reduces vendor lock-in risk while leveraging mature, well-documented technologies. The on-premises deployment capability, achieved through the provider abstraction layer and Ollama integration, directly addresses the data governance requirements central to the research questions.
 
 The next chapter evaluates this implementation through user feedback, performance metrics, and analysis of risks and mitigation strategies.

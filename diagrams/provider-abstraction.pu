@@ -62,7 +62,7 @@ end note
 
 note left of app
     Configuration via
-    environment variables:
+    web client admin UI:
     "provider:model-name"
 end note
 

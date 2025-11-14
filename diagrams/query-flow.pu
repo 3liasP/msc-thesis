@@ -19,7 +19,6 @@ UI -> API: POST /help\n{prompt, sessionToken}
 activate API
 
 API -> API: Validate Session
-API -> API: Check Rate Limits
 
 API -> BL: Process Query(prompt, userKey)
 activate BL
@@ -27,7 +26,7 @@ activate BL
 BL -> EMB: Generate Embedding(prompt)
 activate EMB
 EMB -> EMB: Queue Embedding Request
-EMB --> BL: Embedding Vector [1536-dim]
+EMB --> BL: Embedding Vector
 deactivate EMB
 
 BL -> DB: Vector Similarity Search\n(embedding, k=5, userKey)
