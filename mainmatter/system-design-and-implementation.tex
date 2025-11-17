@@ -185,7 +185,7 @@ As discussed in Section~\ref{subsec:access-control-integration}, the retrieval f
 
 The permission check operates through a search criteria that defines patterns for matching documents. The search itself is handled by custom search engine inside Sovelia Core. Each criterion consists of search conditions that can match documents based on various attributes like document type, status, or custom fields. When a document is created or modified and then saved to the system, it evaluates all criteria to determine if the document should be vectorized and made available through the AI system.
 
-During retrieval, the search function evaluates these same criteria against internal documents before including their chunks in results. This ensures consistency between which documents are vectorized and which documents appear in search results. As mentioned in Section~\ref{subsec:external-documentation-sources}, external documentation sources bypass this check, as they represent vendor-provided documentation that should be available to all users.
+During retrieval, the search function evaluates these same criteria against internal documents before including their chunks in results. This ensures consistency between which documents are vectorized and which documents appear in search results. As mentioned in Section~\ref{subsec:access-control-integration}, external documentation sources bypass this check, as they represent vendor-provided documentation that should be available to all users.
 
 This design allows organizations to implement custom access policies easilly through configuration UI. For example, an organization might restrict AI access to only released documents, or might limit access to documents in specific product lines based on user roles.
 

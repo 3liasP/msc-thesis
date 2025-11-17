@@ -12,11 +12,7 @@ In the case of PLM systems, one of the key challenges is the fact that they ofte
 
 To manage and utilize this documentation effectively, there is a growing interest in developing AI assistants that can interact with PLM systems. These AI assistants can help users navigate the vast amounts of documentation, provide context-aware help for specific tasks, and allow for knowledge sharing among team members. To implement an effective context-aware AI assistant within a PLM system, it is needed to address several challenges, including data integration, natural language processing, and user interface design. One promising approach to building such AI assistants is the use of Retrieval-Augmented Generation (RAG) systems, which combine large language models (LLMs) with external knowledge bases to provide accurate and contextually relevant responses \parencite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.
 
-%@TODO: expand this background section later with content below
-
-\textit{I will add more information about Sovelia Core and its documentation management challenges here...}
-
-\textit{Additionally, I will elaborate a bit on the research methodology and system design generally here...}
+This research investigates the integration of a RAG-based AI assistant within Sovelia Core, an on-premise PLM platform widely adopted across Nordic manufacturing enterprises. Sovelia Core presents a typical PLM knowledge management challenge: users must navigate fragmented documentation spanning vendor help files, release notes, and customer-specific standard operating procedures. The on-premise deployment model, driven by intellectual property protection and data sovereignty requirements common in manufacturing organizations, imposes strict constraints on AI implementation strategies. This study employs Design Science Research methodology \parencite{johannessonIntroductionDesignScience2021} combined with a single case study approach to develop, implement, and evaluate a RAG system that operates entirely within customer-controlled infrastructure. The implemented architecture leverages PostgreSQL \parencite{PostgreSQL181Documentation2025} with pgvector \parencite{PgvectorPgvector2025} extension for vector storage, supports multiple LLM providers (including fully on-premises options via Ollama \parencite{Ollama}), and integrates a documentation pipeline that processes internal PLM documents, external vendor documentation, and web-based knowledge articles. The system design emphasizes maintainability, operational simplicity, and alignment with existing PLM access control mechanisms to ensure practical deployability in enterprise environments.
 
 \section{Research objectives and questions}
 \label{sec:research-objectives-and-questions}
@@ -26,7 +22,7 @@ The primary objective of this research is to develop an AI assistant that is sea
 \begin{itemize}
 	\item \textbf{RQ1 (Design)}: What RAG system architecture best fits Sovelia Core's on-prem, PostgreSQL-based environment and data governance constraints?
 	\item \textbf{RQ2 (Process)}: How should customer documentation pipelines (parse $ \rightarrow $ chunk $ \rightarrow $ embed $ \rightarrow $ retire) be engineered for reliability, maintainability and cost efficiency?
-	\item \textbf{RQ3 (Quality \& Risk)}: Which risks, particularly those related to intellectual property rights (IPR), alongside hallucinations and stale context, are most critical, and what mitigations work in practice?
+	\item \textbf{RQ3 (Quality \& Risk)}: Which risks, particularly those related to intellectual property rights (IPR), alongside access control and stale context, are most critical, and what mitigations work in practice?
 \end{itemize}
 
 By addressing these research questions, this study aims to contribute to the development of effective AI assistants for PLM systems, ultimately enhancing user experience and improving documentation management in complex industrial environments.
