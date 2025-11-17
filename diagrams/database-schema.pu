@@ -55,7 +55,7 @@ entity "AIDocChunks" as chunks {
     * sourceid : TEXT <<FK>>
     * sourcetype : SourceTypes <<FK>>
     * content : TEXT
-    * embedding : VECTOR(1536)
+    * embedding : VECTOR(768)
     * chunkorder : INTEGER
 }
 
