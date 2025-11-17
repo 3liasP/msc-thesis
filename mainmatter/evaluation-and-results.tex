@@ -1,15 +1,219 @@
-%@TODO: Write this chapter
 \chapter{Evaluation and results}
 \label{ch:evaluation-and-results}
 
-\textit{In this chapter, we present the evaluation of the AI assistant integrated with the Product Lifecycle Management (PLM) system. We discuss the methodologies used for evaluation, the metrics considered, and the results obtained from various tests and user feedback.}
+This chapter presents the evaluation of the RAG-based AI assistant integrated with Sovelia Core. The evaluation follows a dual approach combining expert analysis of system responses with technical performance measurements. This methodology aligns with the design science research framework outlined in Chapter~\ref{ch:research-methodology}, assessing both the artifact's utility (does it solve the identified problem?) and its technical performance (does it function as designed?). The evaluation examines response quality through systematic expert review and quantifies operational characteristics through performance metrics collected during testing deployments.
 
-\section{Testing and validation of chatbot functionality}
-\label{sec:testing-and-validation-of-chatbot-functionality}
+\section{Evaluation methodology}
+\label{sec:evaluation-methodology}
 
-\textit{The chatbot functionality was tested through a series of scenarios that mimic real-world interactions within the PLM environment. These tests included both automated scripts and manual interactions by users familiar with the PLM system. The chatbot's ability to understand and respond to queries related to product data, documentation retrieval, and workflow assistance was evaluated.}
+The evaluation strategy employs two complementary methodologies: expert evaluation of RAG system responses and technical performance analysis. This dual approach addresses different dimensions of system quality, with expert evaluation focusing on response accuracy, relevance, and trustworthiness, while performance metrics quantify operational characteristics such as latency, resource consumption, and scalability.
 
-\section{User feedback}
-\label{sec:user-feedback}
+\subsection{Expert evaluation design}
+\label{subsec:expert-evaluation-design}
 
-\textit{User feedback was collected through surveys and interviews with a group of PLM system users who interacted with the AI assistant. The feedback focused on the usability, effectiveness, and overall satisfaction with the chatbot. Users were asked to rate their experience on various aspects, including response accuracy, ease of use, and the helpfulness of the information provided.}
+Expert evaluation was conducted through structured analysis of RAG system responses to representative queries from the PLM documentation domain. This methodology draws on established practices in information retrieval evaluation \parencite{manningIntroductionInformationRetrieval2008a} and RAG system assessment \parencite{essamDecodingQueriesInDepth2024}, adapted to the specific context of enterprise PLM documentation.
+
+\subsubsection{Query set construction}
+
+A balanced query set was constructed to represent the diversity of information needs encountered in Sovelia Core usage. The query set consists of 30 question pairs organized into five categories, each containing six questions, totaling 30 questions. The complete question set is provided in Appendix~\ref{app:evaluation-questions}. The five categories are:
+
+\begin{enumerate}
+    \item \textbf{Feature inquiries}: Questions about system capabilities, configuration options, and available features (e.g., ``What are the available workflow states for items in Sovelia Core?'', `` What types of reports are available in the Sovelia Core Template?'').
+    
+    \item \textbf{Procedural questions}: Step-by-step instructions for common tasks and workflows (e.g., `What is the process for creating a new item in Sovelia?'', ``How do I add components to a bill of materials structure?'').
+    
+    \item \textbf{Troubleshooting queries}: Questions about unexpected behavior and problem resolution (e.g., ``Why can't I check in my document after making changes?'', ``My search is taking too long and returning too many results. How can I cancel or refine it?'').
+    
+    \item \textbf{Version-specific questions}: Queries about features introduced in specific releases or changes between versions (e.g., ``What's new in Sovelia Core version 25.1?'', `` When was the drag and drop functionality introduced?'').
+    
+    \item \textbf{Integration questions}: Questions about CAD/ERP integration, data exchange, and cross-system workflows (e.g., ``How can I control which items are visible to external users through the Extranet?'', ``How does Sovelia Sync work with local file editing?'').
+\end{enumerate}
+
+The 30-question set size balances evaluation comprehensiveness with practical feasibility, following precedents in RAG evaluation literature where test sets typically range from 20 to 50 questions \parencite{essamDecodingQueriesInDepth2024}. Each category contains six questions to ensure sufficient representation of each query type while maintaining manageable evaluation workload. Example questions from each category are shown in Table~\ref{tab:example-questions}, with the complete set detailed in Appendix~\ref{app:evaluation-questions}.
+
+Questions were formulated based on actual support inquiries, user documentation sections, and common onboarding challenges identified by Sovelia support staff and implementation consultants. This approach ensures ecological validity, meaning that the evaluation reflects real-world usage patterns rather than artificial test scenarios.
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{p{0.25\textwidth}p{0.65\textwidth}}
+        \hline
+        \textbf{Category} & \textbf{Example Question} \\
+        \hline
+        Feature Inquiries & What are the available workflow states for items in Sovelia Core? \\
+        \addlinespace
+        Procedural Questions & How do I add components to a bill of materials structure? \\
+        \addlinespace
+        Troubleshooting Queries & Why can't I check in my document after making changes? \\
+        \addlinespace
+        Version-Specific Questions & What's new in Sovelia Core version 25.1? \\
+        \addlinespace
+        Integration Questions & How does Sovelia sync with Inventor for managing CAD models? \\
+        \hline
+    \end{tabular}
+    \caption{Example questions from each evaluation category}
+    \label{tab:example-questions}
+\end{table}
+
+\subsubsection{Evaluation criteria}
+
+Each response was evaluated across four dimensions:
+
+\begin{enumerate}
+    \item \textbf{Factual accuracy}: The correctness of information provided, verified against official documentation and system behavior. Responses are rated as accurate (fully correct), partially accurate (contains some correct information with minor errors or omissions), or inaccurate (contains substantial errors or misinformation).
+    
+    \item \textbf{Relevance}: The degree to which the response addresses the user's actual information need. Rated on a three-point scale: highly relevant (directly answers the question), partially relevant (provides related but incomplete information), or not relevant (fails to address the question).
+    
+    \item \textbf{Source attribution}: The quality and completeness of cited sources, including whether sources are provided, whether they are appropriate, and whether they support the claims made. Evaluated as complete (all claims properly attributed), partial (some attribution but gaps exist), or absent (no source references).
+    
+    \item \textbf{Completeness}: Whether the response provides sufficient information to address the user's need without requiring additional queries. Rated as complete (fully answers the question), incomplete (requires follow-up), or insufficient (lacks critical information).
+\end{enumerate}
+
+This multi-dimensional evaluation framework follows established practices in conversational AI assessment \parencite{essamDecodingQueriesInDepth2024} while being adapted to the specific requirements of technical documentation retrieval in enterprise contexts.
+
+\subsubsection{Evaluation procedure}
+
+The evaluation was conducted by domain experts with extensive knowledge of both Sovelia Core functionality and PLM workflows. These evaluators include system architects, senior implementation consultants, and support engineers with a combined experience of over 50 years in PLM systems. This expert panel approach mitigates individual bias while leveraging deep domain knowledge necessary to assess technical accuracy.
+
+For each query, the evaluation procedure consisted of:
+
+\begin{enumerate}
+    \item \textbf{Query submission}: The question is submitted to the RAG system through the standard user interface, capturing the complete interaction including retrieved chunks, generated response, and source citations.
+    
+    \item \textbf{Response analysis}: Experts independently review the response against the evaluation criteria, consulting official documentation and testing system behavior when necessary to verify factual claims.
+    
+    \item \textbf{Source verification}: Retrieved documentation chunks are examined to assess whether they contain information supporting the generated response and whether the most relevant sources were successfully retrieved.
+    
+    \item \textbf{Scoring and annotation}: Each dimension is scored according to the defined scale, with qualitative notes capturing specific strengths, weaknesses, and examples of errors or excellent performance.
+\end{enumerate}
+
+Inter-rater reliability is established through initial calibration sessions where evaluators jointly assess a subset of responses to align understanding of evaluation criteria. Disagreements in scoring are resolved through discussion and reference to authoritative sources.
+
+\subsection{Technical performance metrics}
+\label{subsec:technical-performance-metrics}
+
+Technical performance evaluation quantifies operational characteristics of the RAG system under realistic load conditions. These metrics provide insight into system scalability, resource requirements, and user experience quality from a performance perspective.
+
+\subsubsection{Response latency measurement}
+
+Response latency encompasses the complete query processing pipeline from user question submission to response delivery. Latency is measured across three stages:
+
+\begin{enumerate}
+    \item \textbf{Embedding generation}: Time required to convert the user query into a 768-dimensional vector using the configured embedding model. This stage includes API call overhead, model inference time, and network transfer for cloud-based providers.
+    
+    \item \textbf{Vector search}: Time to perform similarity search against the embedding index in PostgreSQL using pgvector's HNSW index. This includes the cosine distance calculation across the index structure and retrieval of the top-k chunks (default k=5).
+    
+    \item \textbf{LLM generation}: Time from submitting the augmented prompt to the language model until receiving the complete response. This includes prompt processing, generation, and streaming the response back to the client.
+\end{enumerate}
+
+Measurements are collected using the system's built-in logging capabilities, which capture timestamps at each pipeline stage. Latency is measured for each of the 30 evaluation queries, with statistics computed including mean, median, 95th percentile, and maximum values. These percentile metrics are particularly important for user experience evaluation, as occasional high latency can significantly impact perceived system responsiveness even if mean latency is acceptable.
+
+\subsubsection{Token usage analysis}
+
+Token consumption directly impacts operational costs when using cloud-based LLM providers and provides insight into prompt optimization opportunities. Token usage is measured separately for:
+
+\begin{enumerate}
+    \item \textbf{Input tokens}: The sum of system prompt tokens, retrieved context tokens, conversation history tokens, and user query tokens. This measurement reveals the overhead introduced by RAG context augmentation and identifies opportunities for prompt compression.
+    
+    \item \textbf{Output tokens}: The length of generated responses, indicating verbosity and thoroughness of answers. Excessive output token usage may suggest over-generation or lack of conciseness, while insufficient output suggests incomplete responses.
+\end{enumerate}
+
+Token counts are captured through the LangChain framework's built-in usage tracking, which reports token consumption for each LLM API call. Analysis examines token distribution across query categories to identify whether certain question types consistently require more context or produce longer responses.
+
+\subsubsection{Embedding generation throughput}
+
+During the initial documentation ingestion phase, embedding generation throughput determines how quickly the system can process large documentation sets. Throughput is measured during the vectorization of Sovelia's complete help documentation, release notes, and customer documentation libraries.
+
+Metrics captured include:
+
+\begin{enumerate}
+    \item \textbf{Documents processed per minute}: The rate at which complete documents move through the pipeline from acquisition to storage in the vector database.
+    
+    \item \textbf{Chunks embedded per second}: The throughput of the embedding queue, indicating the sustainable rate of embedding generation given provider rate limits and API performance.
+    
+    \item \textbf{End-to-end processing time}: Total elapsed time from initiating a full documentation refresh to completion, providing insight into maintenance window requirements.
+\end{enumerate}
+
+These measurements characterize the batch processing capabilities of the documentation pipeline and identify potential bottlenecks in the ingestion workflow.
+
+\subsubsection{Retrieval quality metrics}
+
+Beyond latency, the effectiveness of the retrieval stage is assessed through metrics that quantify how well the vector search identifies relevant documentation chunks:
+
+\begin{enumerate}
+    \item \textbf{Retrieval precision}: The proportion of retrieved chunks that contain information relevant to answering the query, assessed manually during expert evaluation. High precision indicates that the embedding space effectively captures semantic similarity for technical documentation.
+    
+    \item \textbf{Source diversity}: The number of distinct source documents represented in the retrieved chunks. Low diversity suggests retrieval is overly concentrated in specific documents, potentially missing relevant information from other sources.
+    
+    \item \textbf{Chunk overlap analysis}: Examination of semantic overlap between retrieved chunks to identify whether the chunking strategy creates redundancy or effectively partitions documents into distinct semantic units.
+\end{enumerate}
+
+\section{Expert evaluation results}
+\label{sec:expert-evaluation-results}
+
+\textit{[Results from the expert evaluation will be presented here, including aggregate scores across the four evaluation dimensions, category-specific performance analysis, examples of high-quality and problematic responses, and qualitative insights from evaluator feedback.]}
+
+\subsection{Response accuracy analysis}
+\label{subsec:response-accuracy-analysis}
+
+\textit{[Analysis of factual accuracy scores, including breakdown by query category, common error patterns, and examples of accurate vs. inaccurate responses.]}
+
+\subsection{Relevance and completeness assessment}
+\label{subsec:relevance-completeness-assessment}
+
+\textit{[Evaluation of how well responses address user information needs, including analysis of incomplete responses and follow-up query requirements.]}
+
+\subsection{Source attribution quality}
+\label{subsec:source-attribution-quality}
+
+\textit{[Assessment of citation quality, source appropriateness, and the ability to verify claims through provided references.]}
+
+\subsection{Category-specific performance patterns}
+\label{subsec:category-specific-performance}
+
+\textit{[Comparative analysis across the five query categories, identifying which question types the system handles most effectively and where challenges remain.]}
+
+\section{Technical performance results}
+\label{sec:technical-performance-results}
+
+\textit{[Presentation of quantitative performance metrics, including statistical summaries, performance distribution visualizations, and identification of performance bottlenecks.]}
+
+\subsection{Response latency analysis}
+\label{subsec:response-latency-analysis}
+
+\textit{[Detailed breakdown of latency across pipeline stages, including mean, median, and percentile statistics, with discussion of user experience implications.]}
+
+\subsection{Token consumption patterns}
+\label{subsec:token-consumption-patterns}
+
+\textit{[Analysis of input and output token usage, cost implications, and opportunities for optimization through prompt engineering or context compression.]}
+
+\subsection{Documentation pipeline performance}
+\label{subsec:documentation-pipeline-performance}
+
+\textit{[Throughput metrics for embedding generation and document processing, including analysis of bottlenecks and scalability considerations.]}
+
+\subsection{Retrieval effectiveness metrics}
+\label{subsec:retrieval-effectiveness-metrics}
+
+\textit{[Quantitative assessment of retrieval quality, including precision measurements, source diversity analysis, and chunk overlap evaluation.]}
+
+\section{Discussion of findings}
+\label{sec:discussion-of-findings}
+
+\textit{[Synthesis of expert evaluation and technical performance results, discussing implications for RAG system design in enterprise PLM contexts, trade-offs between different architectural choices, and lessons learned from the implementation.]}
+
+\subsection{Strengths and limitations}
+\label{subsec:strengths-limitations}
+
+\textit{[Critical assessment of what the RAG system does well and where significant limitations remain, grounded in the evaluation results.]}
+
+\subsection{Implications for on-premise PLM deployments}
+\label{subsec:implications-for-plm}
+
+\textit{[Discussion of how the findings apply specifically to on-premise enterprise PLM environments, including infrastructure requirements, deployment considerations, and organizational adoption factors.]}
+
+\subsection{Comparison with literature expectations}
+\label{subsec:comparison-with-literature}
+
+\textit{[Reflection on how the empirical results align with or diverge from expectations established in the literature review, particularly regarding RAG performance patterns and enterprise AI integration challenges.]}

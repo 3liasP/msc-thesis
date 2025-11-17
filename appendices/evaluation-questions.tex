@@ -1,0 +1,177 @@
+%
+% appendices/evaluation-questions.tex
+%
+% RAG System Evaluation Questions
+%
+
+\chapter{RAG System Evaluation Questions}
+\label{app:evaluation-questions}
+
+This appendix contains the 30 questions across 5 categories used for evaluating the RAG-based AI assistant integrated with Sovelia Core. These questions are based on actual documentation content available in the system and represent realistic user information needs identified from support inquiries, user documentation sections, and common onboarding challenges.
+
+\section{Category 1: Feature Inquiries}
+\label{app:category-feature-inquiries}
+
+Questions about system capabilities, configuration options, and available features.
+
+\subsection*{Q1.1: What are the available workflow states for items in Sovelia Core?}
+
+\textbf{Expected answer focus}: Lifecycle states including In design, Design review, Design ready, In production, and Obsolete. Should explain the purpose of each state.
+
+\subsection*{Q1.2: How do I configure automatic revision increments for my items?}
+
+\textbf{Expected answer focus}: Revision schemes setup, administration configuration, revision sequences, and how they are assigned to item types in the type tree.
+
+\subsection*{Q1.3: What types of reports are available in the Sovelia Core Template?}
+
+\textbf{Expected answer focus}: PDF reports (Bills of Material, Multilevel BOM, Item Consumption, Drawings Only, Production package), Excel reports, and ZIP reports with their variations (structured/flat).
+
+\subsection*{Q1.4: What is the difference between Product documents and general Documents in Sovelia?}
+
+\textbf{Expected answer focus}: Product documents are official documents with the same lifecycle as items, while Documents have a simple independent lifecycle. Product documents include drawings as a subtype.
+
+\subsection*{Q1.5: What file formats does Sovelia Core support for document conversion to PDF?}
+
+\textbf{Expected answer focus}: Microsoft Office formats (Word, Excel, Publisher), with automatic conversion capabilities configured through triggers. Should mention secondary format generation.
+
+\subsection*{Q1.6: What user roles are available for managing product data in the Sovelia Template?}
+
+\textbf{Expected answer focus}: Designer, Design reviewer, Production preparation, Production approver, Viewer Released - Product data, and Viewer - Product data. Should explain their access rights and responsibilities.
+
+\section{Category 2: Procedural Questions}
+\label{app:category-procedural-questions}
+
+Step-by-step instructions for common tasks and workflows.
+
+\subsection*{Q2.1: How do I release a document for manufacturing in Sovelia Core?}
+
+\textbf{Expected answer focus}: Promoting items and product documents through lifecycle states (Design review $\rightarrow$ Design ready $\rightarrow$ In production), role requirements (Production approver), and lifecycle rules that must be satisfied.
+
+\subsection*{Q2.2: What is the process for creating a new item in Sovelia?}
+
+\textbf{Expected answer focus}: Click + icon, select object type, enter mandatory attributes (bolded fields), optionally add files via Files tab using drag \& drop or browse, click New button to create.
+
+\subsection*{Q2.3: How do I add components to a bill of materials structure?}
+
+\textbf{Expected answer focus}: Three methods - drag \& drop from thumbnails, pull method (Link from menu with search panel), or push method (Link to... from multiselect). Explain each method's use case.
+
+\subsection*{Q2.4: How can I clone an existing item structure for a new product variant?}
+
+\textbf{Expected answer focus}: Use Clone Structure from menu, define options for each child (Clone, Clone with children, Reuse, or Remove), configure using color indicators, click Start operation.
+
+\subsection*{Q2.5: What steps are required to create an Engineering Change Order (ECO)?}
+
+\textbf{Expected answer focus}: Create ECO from ECR or standalone, assign to designer (ECO assigned to field), link changed product data, promote through states: Created $\rightarrow$ Assigned $\rightarrow$ Completed $\rightarrow$ Approved $\rightarrow$ Released $\rightarrow$ Closed.
+
+\subsection*{Q2.6: How do I export a BOM structure to Excel for external use?}
+
+\textbf{Expected answer focus}: Use Export grid/search results from gridview menu, select all data (don't select individual rows), choose Excel or CSV format, download when notification indicates completion.
+
+\section{Category 3: Troubleshooting Queries}
+\label{app:category-troubleshooting-queries}
+
+Questions about error messages, unexpected behavior, and problem resolution.
+
+\subsection*{Q3.1: Why can't I check in my document after making changes?}
+
+\textbf{Expected answer focus}: Object might be locked by another user, insufficient access rights for the current state, or lifecycle rules preventing the operation. Check Apply section for locked objects.
+
+\subsection*{Q3.2: Why does Sovelia prevent me from promoting my item to In Production status?}
+
+\textbf{Expected answer focus}: Lifecycle rules require all child items, drawings, and product documents to be at In Production state first. Check structure for items at incompatible states.
+
+\subsection*{Q3.3: I'm getting a "No permission" message when trying to edit an item. What should I do?}
+
+\textbf{Expected answer focus}: Access rights vary by object type and status. User's roles may not allow changes at the current lifecycle state. Contact system administrator to verify role assignments.
+
+\subsection*{Q3.4: Why don't I see the 3D viewer option for my item?}
+
+\textbf{Expected answer focus}: Requires minimum server version (22.0+), CAD Add-in version (22.2+), 3D file must be exported from Inventor or SolidWorks using Export 3D Files function, or .glb file manually uploaded.
+
+\subsection*{Q3.5: My search is taking too long and returning too many results. How can I cancel or refine it?}
+
+\textbf{Expected answer focus}: Cancel button appears after approximately 5 seconds in search bar. Use filters (Type tree, Status name always visible) to narrow results. Save refined searches for future use.
+
+\subsection*{Q3.6: Why are my linked child items not appearing in the structure view?}
+
+\textbf{Expected answer focus}: Check if appropriate grid view is selected (not all views show all object types), verify access rights to view child objects, ensure objects are actually linked (check Parents tab on child).
+
+\section{Category 4: Version-Specific Questions}
+\label{app:category-version-specific-questions}
+
+Queries about features introduced in specific releases or changes between versions.
+
+\subsection*{Q4.1: What's new in Sovelia Core version 25.1?}
+
+\textbf{Expected answer focus}: Report tool enhancements, position numbering improvements, multirevision support, streamlined attribute management in lifecycle changes, self-admin tool additions, improved grid column selection.
+
+\subsection*{Q4.2: Has the search functionality changed in the latest release?}
+
+\textbf{Expected answer focus}: Version 23.1+ added Type tree and Status name as always-available quick selections, contextual subtree search, pinnable filters, Show More/Show Less sections, ability to search multiple columns including relational fields.
+
+\subsection*{Q4.3: When was the drag and drop functionality introduced?}
+
+\textbf{Expected answer focus}: Version 25.0 introduced drag and drop for objects wherever thumbnails are available, supporting all object types and multiple objects simultaneously, works within same structure or across tabs.
+
+\subsection*{Q4.4: What reporting improvements were made in version 25.1?}
+
+\textbf{Expected answer focus}: Extended filtering for documents/drawings, formatting improvements, report sequences, index page in ZIP reports, all configurable through report configuration UI without backend access.
+
+\subsection*{Q4.5: Which version introduced the commenting feature and how has it evolved?}
+
+\textbf{Expected answer focus}: Comments introduced in version 23.x, enhanced in later versions to include @mentions for notifications, ability to comment during status changes, temporary notifications (30 days), permanent comment history on objects.
+
+\subsection*{Q4.6: What measure functionality is available in the 3D viewer and when was it added?}
+
+\textbf{Expected answer focus}: Version 23.0 added measure tool, select ruler icon, choose unit, click two points (green=edge/corner, black=surface), shows straight line and X/Y/Z distances, approximation only not for manufacturing.
+
+\section{Category 5: Integration Questions}
+\label{app:category-integration-questions}
+
+Questions about CAD/ERP integration, data exchange, and cross-system workflows.
+
+\subsection*{Q5.1: How does Sovelia sync with Inventor for managing CAD models?}
+
+\textbf{Expected answer focus}: Sovelia CAD Add-in for Inventor, parts/assemblies represent items, structures automatically transferred, drawings and 3D representations linked, Property card tool for referencing, BOM update for 3D driven items.
+
+\subsection*{Q5.2: What data flows to the ERP system when an item is approved?}
+
+\textbf{Expected answer focus}: Item and BOM data sent when promoted to In Production status, typical format XML or JSON, preconfigured triggers in Sovelia Template, includes item metadata and structure information.
+
+\subsection*{Q5.3: How can I control which items are visible to external users through the Extranet?}
+
+\textbf{Expected answer focus}: Partner Access template, link information to organizations, users see information linked to their organization and child structures, separate roles (Reader, Editor) with different rights, SSO support available.
+
+\subsection*{Q5.4: What is the Equipment BOM and how does it relate to the Engineering BOM?}
+
+\textbf{Expected answer focus}: Engineering BOM defines traceability (Item traceability, Serial number traced, Attach to equipment), Equipment BOM generated from EBOM creates unique structures per manufactured unit, spare part BOMs supported.
+
+\subsection*{Q5.5: How does Sovelia Sync work with local file editing?}
+
+\textbf{Expected answer focus}: Download and edit file function locks object, edit locally, drag and drop back or browse to select, automatic secondary format generation, properties synchronized between Sovelia and Office files.
+
+\subsection*{Q5.6: Can I create ECOs directly from the Inventor CAD Add-in?}
+
+\textbf{Expected answer focus}: Version 25.0+ supports ECO and ECR creation from Sovelia CAD Add-in for Inventor (requires CAD Add-in 25.1+), reduces window switching during ECM workflow, maintains context in CAD environment.
+
+\section{Evaluation Framework}
+\label{app:evaluation-framework}
+
+For each question, responses are evaluated across four dimensions:
+
+\begin{enumerate}
+    \item \textbf{Factual Accuracy}: Accurate / Partially Accurate / Inaccurate
+    \item \textbf{Relevance}: Highly Relevant / Partially Relevant / Not Relevant
+    \item \textbf{Source Attribution}: Complete / Partial / Absent
+    \item \textbf{Completeness}: Complete / Incomplete / Insufficient
+\end{enumerate}
+
+\subsection*{Notes for Evaluators}
+
+\begin{itemize}
+    \item Questions are based on actual Sovelia Core documentation content available in the system
+    \item Answers should be verified against Sovelia Help documentation and release notes
+    \item Version-specific questions focus on features in releases 23.0 through 25.1
+    \item Integration questions cover CAD Add-ins (Inventor, SolidWorks), ERP, and Extranet scenarios
+    \item Questions represent realistic user information needs identified from support inquiries and onboarding challenges
+\end{itemize}
