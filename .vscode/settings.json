@@ -156,5 +156,8 @@
   "latex-workshop.latex.recipe.default": "Tampere Thesis (Full Build)",
   "latex-workshop.latex.build.forceRecipeUsage": true,
   "editor.formatOnSave": true,
-  "latex-workshop.formatting.latex": "latexindent"
+  "latex-workshop.formatting.latex": "latexindent",
+  "[sql]": {
+    "editor.formatOnSave": false
+  }
 }

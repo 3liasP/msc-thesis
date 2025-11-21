@@ -1,0 +1,105 @@
+%
+% appendices/performance-queries.tex
+%
+% RAG system performance evaluation SQL queries
+%
+
+\chapter{RAG system performance evaluation SQL queries}
+\label{app:performance-queries}
+\renewcommand{\lstlistingname}{Code snippet}
+
+\lstinputlisting
+    [
+        float,
+        caption={Query 1: Overall latency distribution},
+        label=prog:query1,
+        language=SQL,
+        numbers=left,
+        morekeywords={SQL,WITH,SELECT,FROM,WHERE,JOIN,ON,GROUP,BY,AS,COUNT,AVG,MIN,MAX,DISTINCT,INNER,LEFT,OUTER,RIGHT,FILTER,WHEN,THEN,ELSE,END,NULLIF},
+        inputencoding=utf8,
+    ]
+    {code/query1.sql}
+
+\lstinputlisting
+    [
+        float,
+        caption={Query 2: Stage contribution to total chat latency},
+        label=prog:query2,
+        language=SQL,
+        numbers=left,
+        morekeywords={SQL,WITH,SELECT,FROM,WHERE,JOIN,ON,GROUP,BY,AS,COUNT,AVG,MIN,MAX,DISTINCT,INNER,LEFT,OUTER,RIGHT,FILTER,WHEN,THEN,ELSE,END,NULLIF},
+        inputencoding=utf8,
+    ]
+    {code/query2.sql}
+
+\lstinputlisting
+    [
+        float,
+        caption={Query 3: Embedding throughput per minute},
+        label=prog:query3,
+        language=SQL,
+        numbers=left,
+        morekeywords={SQL,WITH,SELECT,FROM,WHERE,JOIN,ON,GROUP,BY,AS,COUNT,AVG,MIN,MAX,DISTINCT,INNER,LEFT,OUTER,RIGHT,FILTER,WHEN,THEN,ELSE,END,NULLIF},
+        inputencoding=utf8,
+    ]
+    {code/query3.sql}
+
+\lstinputlisting
+    [
+        float,
+        caption={Query 4: Extraction vs. Embedding bottleneck per source type},
+        label=prog:query4,
+        language=SQL,
+        numbers=left,
+        morekeywords={SQL,WITH,SELECT,FROM,WHERE,JOIN,ON,GROUP,BY,AS,COUNT,AVG,MIN,MAX,DISTINCT,INNER,LEFT,OUTER,RIGHT,FILTER,WHEN,THEN,ELSE,END,NULLIF},
+        inputencoding=utf8,
+    ]
+    {code/query4.sql}
+
+\lstinputlisting
+    [
+        float,
+        caption={Query 5: Vector database chunk size distribution},
+        label=prog:query5,
+        language=SQL,
+        numbers=left,
+        morekeywords={SQL,WITH,SELECT,FROM,WHERE,JOIN,ON,GROUP,BY,AS,COUNT,AVG,MIN,MAX,DISTINCT,INNER,LEFT,OUTER,RIGHT,FILTER,WHEN,THEN,ELSE,END,NULLIF},
+        inputencoding=utf8,
+    ]
+    {code/query5.sql}
+
+\lstinputlisting
+    [
+        float,
+        caption={Query 6: Document inventory per source type},
+        label=prog:query6,
+        language=SQL,
+        numbers=left,
+        morekeywords={SQL,WITH,SELECT,FROM,WHERE,JOIN,ON,GROUP,BY,AS,COUNT,AVG,MIN,MAX,DISTINCT,INNER,LEFT,OUTER,RIGHT,FILTER,WHEN,THEN,ELSE,END,NULLIF},
+        inputencoding=utf8,
+    ]
+    {code/query6.sql}
+
+\lstinputlisting
+    [
+        float,
+        caption={Query 7: Token-based cost estimation},
+        label=prog:query7,
+        language=SQL,
+        numbers=left,
+        morekeywords={SQL,WITH,SELECT,FROM,WHERE,JOIN,ON,GROUP,BY,AS,COUNT,AVG,MIN,MAX,DISTINCT,INNER,LEFT,OUTER,RIGHT,FILTER,WHEN,THEN,ELSE,END,NULLIF},
+        inputencoding=utf8,
+    ]
+    {code/query7.sql}
+
+\lstinputlisting
+    [
+        float,
+        caption={Query 8: Latency SLA compliance per threshold},
+        label=prog:query8,
+        language=SQL,
+        numbers=left,
+        morekeywords={SQL,WITH,SELECT,FROM,WHERE,JOIN,ON,GROUP,BY,AS,COUNT,AVG,MIN,MAX,DISTINCT,INNER,LEFT,OUTER,RIGHT,FILTER,WHEN,THEN,ELSE,END,NULLIF},
+        inputencoding=utf8,
+    ]
+    {code/query8.sql}

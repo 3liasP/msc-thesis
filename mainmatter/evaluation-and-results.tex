@@ -122,7 +122,7 @@ Token counts are captured through the LangChain framework's built-in usage track
 
 \subsubsection{Embedding generation throughput}
 
-During the initial documentation ingestion phase, embedding generation throughput determines how quickly the system can process large documentation sets. Throughput is measured during the vectorization of Sovelia's complete help documentation, release notes, and customer documentation libraries.
+During the initial documentation ingestion phase, embedding generation throughput determines how quickly the system can process large documentation sets. Throughput is measured during the vectorization of Sovelia's complete help documentation, release notes, and simulated customer documentation library.
 
 Metrics captured include:
 
@@ -135,18 +135,6 @@ Metrics captured include:
 \end{enumerate}
 
 These measurements characterize the batch processing capabilities of the documentation pipeline and identify potential bottlenecks in the ingestion workflow.
-
-\subsubsection{Retrieval quality metrics}
-
-Beyond latency, the effectiveness of the retrieval stage is assessed through metrics that quantify how well the vector search identifies relevant documentation chunks:
-
-\begin{enumerate}
-    \item \textbf{Retrieval precision}: The proportion of retrieved chunks that contain information relevant to answering the query, assessed manually during expert evaluation. High precision indicates that the embedding space effectively captures semantic similarity for technical documentation.
-    
-    \item \textbf{Source diversity}: The number of distinct source documents represented in the retrieved chunks. Low diversity suggests retrieval is overly concentrated in specific documents, potentially missing relevant information from other sources.
-    
-    \item \textbf{Chunk overlap analysis}: Examination of semantic overlap between retrieved chunks to identify whether the chunking strategy creates redundancy or effectively partitions documents into distinct semantic units.
-\end{enumerate}
 
 \section{Expert evaluation results}
 \label{sec:expert-evaluation-results}
@@ -176,27 +164,9 @@ Beyond latency, the effectiveness of the retrieval stage is assessed through met
 \section{Technical performance results}
 \label{sec:technical-performance-results}
 
-\textit{[Presentation of quantitative performance metrics, including statistical summaries, performance distribution visualizations, and identification of performance bottlenecks.]}
+Performance evaluation was conducted using the 30-question evaluation set described in Section~\ref{subsec:expert-evaluation-design}. The test environment consisted of 6 simulated users executing queries concurrently, with each user submitting 6 questions from a single category sequentially. This methodology simulates realistic concurrent load while avoiding artificial parallelization that might not reflect actual usage patterns. Performance data was collected through PostgreSQL stored procedures and logged to dedicated performance tables (see Appendix~\ref{app:performance-queries} for the queries used).
 
-\subsection{Response latency analysis}
-\label{subsec:response-latency-analysis}
-
-\textit{[Detailed breakdown of latency across pipeline stages, including mean, median, and percentile statistics, with discussion of user experience implications.]}
-
-\subsection{Token consumption patterns}
-\label{subsec:token-consumption-patterns}
-
-\textit{[Analysis of input and output token usage, cost implications, and opportunities for optimization through prompt engineering or context compression.]}
-
-\subsection{Documentation pipeline performance}
-\label{subsec:documentation-pipeline-performance}
-
-\textit{[Throughput metrics for embedding generation and document processing, including analysis of bottlenecks and scalability considerations.]}
-
-\subsection{Retrieval effectiveness metrics}
-\label{subsec:retrieval-effectiveness-metrics}
-
-\textit{[Quantitative assessment of retrieval quality, including precision measurements, source diversity analysis, and chunk overlap evaluation.]}
+The vector database contained documentation from three sources at the time of testing: Sovelia Core help documentation (knowledge base articles), release notes from multiple versions, and two sample customer standard operating procedure (SOP) documents representing typical on-premise customer documentation. This test corpus provides a representative baseline for assessing system performance under realistic documentation volumes.
 
 \section{Discussion of findings}
 \label{sec:discussion-of-findings}
