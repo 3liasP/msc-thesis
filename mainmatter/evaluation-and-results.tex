@@ -1,24 +1,24 @@
 \chapter{Evaluation and results}
 \label{ch:evaluation-and-results}
 
-This chapter presents the evaluation of the RAG-based AI assistant integrated with Sovelia Core. The evaluation follows a dual approach combining expert analysis of system responses with technical performance measurements. This methodology aligns with the design science research framework outlined in Chapter~\ref{ch:research-methodology}, assessing both the artifact's utility (does it solve the identified problem?) and its technical performance (does it function as designed?). The evaluation examines response quality through systematic expert review and quantifies operational characteristics through performance metrics collected during testing deployments.
+This chapter presents the evaluation of the RAG-based AI assistant integrated with Sovelia Core. The evaluation follows a dual approach combining expert analysis of system responses with technical performance measurements. This methodology aligns with the design science research framework outlined in Chapter~\ref{ch:research-methodology}, assessing both the artifact's utility (does it solve the identified problem?) and its technical performance (does it function as designed?). The evaluation examines response quality through systematic expert review and quantifies operational characteristics through performance metrics collected during testing deployment.
 
 \section{Evaluation methodology}
 \label{sec:evaluation-methodology}
 
-The evaluation strategy employs two complementary methodologies: expert evaluation of RAG system responses and technical performance analysis. This dual approach addresses different dimensions of system quality, with expert evaluation focusing on response accuracy, relevance, and trustworthiness, while performance metrics quantify operational characteristics such as latency, resource consumption, and scalability.
+The evaluation strategy employs two complementary methodologies: expert evaluation of RAG system responses and technical performance analysis. This dual approach addresses different dimensions of system quality, with expert evaluation focusing on response accuracy, relevance, and trustworthiness, while performance metrics quantify operational characteristics such as latency, throughput, and token consumption.
 
 \subsection{Expert evaluation design}
 \label{subsec:expert-evaluation-design}
 
-Expert evaluation was conducted through structured analysis of RAG system responses to representative queries from the PLM documentation domain. This methodology draws on established practices in information retrieval evaluation \parencite{manningIntroductionInformationRetrieval2008a} and RAG system assessment \parencite{essamDecodingQueriesInDepth2024}, adapted to the specific context of enterprise PLM documentation.
+Expert evaluation was conducted through structured analysis of RAG system responses to representative queries from the PLM documentation domain. This methodology draws on established practices in information retrieval evaluation \parencite{manningIntroductionInformationRetrieval2008a} and follows evaluation approaches used in domain-specific RAG systems \parencite{knollmeyerDocumentGraphRAGKnowledge2025,namLoRATunedMultimodalRAG2025}, adapted to the specific context of enterprise PLM documentation.
 
 \subsubsection{Query set construction}
 
 A balanced query set was constructed to represent the diversity of information needs encountered in Sovelia Core usage. The query set consists of 30 question pairs organized into five categories, each containing six questions, totaling 30 questions. The complete question set is provided in Appendix~\ref{app:evaluation-questions}. The five categories are:
 
 \begin{enumerate}
-    \item \textbf{Feature inquiries}: Questions about system capabilities, configuration options, and available features (e.g., ``What are the available workflow states for items in Sovelia Core?'', `` What types of reports are available in the Sovelia Core Template?'').
+    \item \textbf{Feature inquiries}: Questions about system capabilities, configuration options, and available features (e.g., ``What are the available lifecycle states for items in Sovelia Core?'', `` What types of reports are available in the Sovelia Core Template?'').
     
     \item \textbf{Procedural questions}: Step-by-step instructions for common tasks and workflows (e.g., `What is the process for creating a new item in Sovelia?'', ``How do I add components to a bill of materials structure?'').
     
@@ -29,9 +29,9 @@ A balanced query set was constructed to represent the diversity of information n
     \item \textbf{Integration questions}: Questions about CAD/ERP integration, data exchange, and cross-system workflows (e.g., ``How can I control which items are visible to external users through the Extranet?'', ``How does Sovelia Sync work with local file editing?'').
 \end{enumerate}
 
-The 30-question set size balances evaluation comprehensiveness with practical feasibility, following precedents in RAG evaluation literature where test sets typically range from 20 to 50 questions \parencite{essamDecodingQueriesInDepth2024}. Each category contains six questions to ensure sufficient representation of each query type while maintaining manageable evaluation workload. Example questions from each category are shown in Table~\ref{tab:example-questions}, with the complete set detailed in Appendix~\ref{app:evaluation-questions}.
+The 30-question set size balances evaluation comprehensiveness with practical feasibility. This scale aligns with evaluation practices in domain-specific RAG implementations for technical documentation, where focused test sets allow for detailed qualitative assessment while maintaining feasibility \parencite{namLoRATunedMultimodalRAG2025}. Each category contains six questions to ensure sufficient representation of each query type while maintaining manageable evaluation workload. Example questions from each category are shown in Table~\ref{tab:example-questions}, with the complete set detailed in Appendix~\ref{app:evaluation-questions}.
 
-Questions were formulated based on actual support inquiries, user documentation sections, and common onboarding challenges identified by Sovelia support staff and implementation consultants. This approach ensures ecological validity, meaning that the evaluation reflects real-world usage patterns rather than artificial test scenarios.
+Questions were formulated based on actual support inquiries, user documentation sections, and common onboarding challenges identified by Sovelia implementation consultants. This approach aims to ensure validity, meaning that the evaluation reflects real-world usage patterns rather than artificial test scenarios.
 
 \begin{table}[htbp]
     \centering
@@ -40,7 +40,7 @@ Questions were formulated based on actual support inquiries, user documentation 
         \hline
         \textbf{Category} & \textbf{Example Question} \\
         \hline
-        Feature Inquiries & What are the available workflow states for items in Sovelia Core? \\
+        Feature Inquiries & What are the available lifecycle states for items in Sovelia Core? \\
         \addlinespace
         Procedural Questions & How do I add components to a bill of materials structure? \\
         \addlinespace
@@ -69,11 +69,11 @@ Each response was evaluated across four dimensions:
     \item \textbf{Completeness}: Whether the response provides sufficient information to address the user's need without requiring additional queries. Rated as complete (fully answers the question), incomplete (requires follow-up), or insufficient (lacks critical information).
 \end{enumerate}
 
-This multi-dimensional evaluation framework follows established practices in conversational AI assessment \parencite{essamDecodingQueriesInDepth2024} while being adapted to the specific requirements of technical documentation retrieval in enterprise contexts.
+This multi-dimensional evaluation framework extends standard information retrieval metrics \parencite{manningIntroductionInformationRetrieval2008a} to address the specific challenges of RAG-based question answering in technical documentation contexts, where both retrieval quality and generation accuracy must be assessed \parencite{knollmeyerDocumentGraphRAGKnowledge2025}.
 
 \subsubsection{Evaluation procedure}
 
-The evaluation was conducted by domain experts with extensive knowledge of both Sovelia Core functionality and PLM workflows. These evaluators include system architects, senior implementation consultants, and support engineers with a combined experience of over 50 years in PLM systems. This expert panel approach mitigates individual bias while leveraging deep domain knowledge necessary to assess technical accuracy.
+The evaluation was conducted by domain experts with extensive knowledge of both Sovelia Core functionality and PLM workflows. These evaluators include product owner of Sovelia Core and senior implementation consultant with a combined experience of over 40 years in PLM systems. This expert panel approach mitigates individual bias while leveraging deep domain knowledge necessary to assess technical accuracy.
 
 For each query, the evaluation procedure consisted of:
 
@@ -94,96 +94,89 @@ Inter-rater reliability is established through initial calibration sessions wher
 
 Technical performance evaluation quantifies operational characteristics of the RAG system under realistic load conditions. These metrics provide insight into system scalability, resource requirements, and user experience quality from a performance perspective.
 
-\subsubsection{Response latency measurement}
-
-Response latency encompasses the complete query processing pipeline from user question submission to response delivery. Latency is measured across three stages:
+Performance measurement focuses on three critical stages of the RAG query pipeline:
 
 \begin{enumerate}
-    \item \textbf{Embedding generation}: Time required to convert the user query into a 768-dimensional vector using the configured embedding model. This stage includes API call overhead, model inference time, and network transfer for cloud-based providers.
+    \item \textbf{Query embedding}: Time required to convert the user's natural language query into a vector representation suitable for similarity search. This operation utilizes the same embedding model (text-embedding-3-small) as the document processing pipeline.
     
-    \item \textbf{Vector search}: Time to perform similarity search against the embedding index in PostgreSQL using pgvector's HNSW index. This includes the cosine distance calculation across the index structure and retrieval of the top-k chunks (default k=5).
+    \item \textbf{Vector search}: Time required to retrieve the top-k most similar documentation chunks from the PostgreSQL database using pgvector's cosine similarity search. This stage reflects database query performance and index efficiency.
     
-    \item \textbf{LLM generation}: Time from submitting the augmented prompt to the language model until receiving the complete response. This includes prompt processing, generation, and streaming the response back to the client.
+    \item \textbf{LLM response generation}: Time required for the language model to process the retrieved context and generate a response, including both the model inference time and API communication overhead.
 \end{enumerate}
 
-Measurements are collected using the system's built-in logging capabilities, which capture timestamps at each pipeline stage. Latency is measured for each of the 30 evaluation queries, with statistics computed including mean, median, 95th percentile, and maximum values. These percentile metrics are particularly important for user experience evaluation, as occasional high latency can significantly impact perceived system responsiveness even if mean latency is acceptable.
+Performance data is captured through PostgreSQL stored procedures that measure elapsed time for each stage and persist measurements to the \texttt{AIChatPerformance} table. Total query latency represents the sum of all three stages, providing an end-to-end user experience metric. Token usage statistics are extracted from LLM response metadata and logged to the \texttt{AIChatHistory} table, enabling cost analysis and context window utilization assessment.
 
-\subsubsection{Token usage analysis}
-
-Token consumption directly impacts operational costs when using cloud-based LLM providers and provides insight into prompt optimization opportunities. Token usage is measured separately for:
+For the documentation pipeline, performance metrics focus on:
 
 \begin{enumerate}
-    \item \textbf{Input tokens}: The sum of system prompt tokens, retrieved context tokens, conversation history tokens, and user query tokens. This measurement reveals the overhead introduced by RAG context augmentation and identifies opportunities for prompt compression.
+    \item \textbf{Content extraction}: Time required to parse and extract text content from source documents (HTML from Document360, markdown from Umbraco, structured content from Sovelia's internal format).
     
-    \item \textbf{Output tokens}: The length of generated responses, indicating verbosity and thoroughness of answers. Excessive output token usage may suggest over-generation or lack of conciseness, while insufficient output suggests incomplete responses.
+    \item \textbf{Chunk embedding}: Time required to generate vector embeddings for each documentation chunk, representing the primary computational cost of the pipeline.
+    
+    \item \textbf{Processing throughput}: Documents and chunks processed per unit time, indicating the pipeline's ability to handle large documentation volumes during initial ingestion and periodic updates.
 \end{enumerate}
 
-Token counts are captured through the LangChain framework's built-in usage tracking, which reports token consumption for each LLM API call. Analysis examines token distribution across query categories to identify whether certain question types consistently require more context or produce longer responses.
-
-\subsubsection{Embedding generation throughput}
-
-During the initial documentation ingestion phase, embedding generation throughput determines how quickly the system can process large documentation sets. Throughput is measured during the vectorization of Sovelia's complete help documentation, release notes, and simulated customer documentation library.
-
-Metrics captured include:
-
-\begin{enumerate}
-    \item \textbf{Documents processed per minute}: The rate at which complete documents move through the pipeline from acquisition to storage in the vector database.
-    
-    \item \textbf{Chunks embedded per second}: The throughput of the embedding queue, indicating the sustainable rate of embedding generation given provider rate limits and API performance.
-    
-    \item \textbf{End-to-end processing time}: Total elapsed time from initiating a full documentation refresh to completion, providing insight into maintenance window requirements.
-\end{enumerate}
-
-These measurements characterize the batch processing capabilities of the documentation pipeline and identify potential bottlenecks in the ingestion workflow.
+These metrics provide quantitative insight into system performance characteristics, identifying potential bottlenecks and informing infrastructure sizing decisions for production deployments.
 
 \section{Expert evaluation results}
 \label{sec:expert-evaluation-results}
 
-\textit{[Results from the expert evaluation will be presented here, including aggregate scores across the four evaluation dimensions, category-specific performance analysis, examples of high-quality and problematic responses, and qualitative insights from evaluator feedback.]}
-
-\subsection{Response accuracy analysis}
-\label{subsec:response-accuracy-analysis}
-
-\textit{[Analysis of factual accuracy scores, including breakdown by query category, common error patterns, and examples of accurate vs. inaccurate responses.]}
-
-\subsection{Relevance and completeness assessment}
-\label{subsec:relevance-completeness-assessment}
-
-\textit{[Evaluation of how well responses address user information needs, including analysis of incomplete responses and follow-up query requirements.]}
-
-\subsection{Source attribution quality}
-\label{subsec:source-attribution-quality}
-
-\textit{[Assessment of citation quality, source appropriateness, and the ability to verify claims through provided references.]}
-
-\subsection{Category-specific performance patterns}
-\label{subsec:category-specific-performance}
-
-\textit{[Comparative analysis across the five query categories, identifying which question types the system handles most effectively and where challenges remain.]}
+\textit{[Summary of expert evaluation results, including quantitative scores across evaluation dimensions and qualitative analysis of response quality. Discussion of common error types, strengths, and weaknesses observed in system responses.]}
 
 \section{Technical performance results}
 \label{sec:technical-performance-results}
 
-Performance evaluation was conducted using the 30-question evaluation set described in Section~\ref{subsec:expert-evaluation-design}. The test environment consisted of 6 simulated users executing queries concurrently, with each user submitting 6 questions from a single category sequentially. This methodology simulates realistic concurrent load while avoiding artificial parallelization that might not reflect actual usage patterns. Performance data was collected through PostgreSQL stored procedures and logged to dedicated performance tables (see Appendix~\ref{app:performance-queries} for the queries used).
+Performance evaluation was conducted using the 30-question evaluation set described in Section~\ref{subsec:expert-evaluation-design}. The test environment consisted of 6 simulated users executing queries concurrently, with each user submitting 6 questions from a single category sequentially. This methodology simulates realistic concurrent load while avoiding artificial parallelization that might not reflect actual usage patterns. Performance data was collected through PostgreSQL stored procedures and logged to dedicated performance tables (see Appendix~\ref{app:performance-queries} for the SQL queries used and Appendix~\ref{app:performance-tables} for complete results).
 
-The vector database contained documentation from three sources at the time of testing: Sovelia Core help documentation (knowledge base articles), release notes from multiple versions, and two sample customer standard operating procedure (SOP) documents representing typical on-premise customer documentation. This test corpus provides a representative baseline for assessing system performance under realistic documentation volumes.
+The vector database contained documentation from three sources at the time of testing: Sovelia Core help documentation (knowledge base articles), release notes from multiple versions, and two sample customer standard operating procedure (SOP) documents representing typical on-premise customer documentation. This test corpus comprised 113 documents processed into 217 chunks, providing a representative baseline for assessing system performance under realistic documentation volumes.
+
+\subsection{Query latency analysis}
+\label{subsec:query-latency-analysis}
+
+Query performance results demonstrate the system's ability to respond within acceptable timeframes for interactive use. Across 30 concurrent queries, mean total latency was 10.6 seconds with a median of 10.0 seconds. The 95th percentile latency reached 14.7 seconds, with a maximum observed latency of 20.8 seconds. These measurements encompass the complete query pipeline from user input to response delivery.
+
+Breaking down latency by pipeline stage reveals where computational resources are consumed. LLM response generation dominates total latency at 88.05\% of query time, with a mean of 9.3 seconds. Query embedding accounts for 11.72\% (mean 1.2 seconds), while vector search represents only 0.15\% (mean 14.3 milliseconds). This distribution indicates that the vector database performs efficiently, with similarity search over 217 chunks completing in under 20 milliseconds even at the 95th percentile.
+
+The performance profile suggests that query latency scales primarily with LLM response generation time rather than retrieval operations. Vector search remains consistently fast regardless of retrieved context size, validating the efficiency of pgvector's indexing for this workload. Query embedding time exhibits some variability (median 1.2 seconds, 95th percentile 2.1 seconds), likely due to variations in query length and API latency to the embedding service.
+
+Latency SLA compliance analysis shows that 93.3\% of queries complete within 15 seconds, while 96.7\% complete within 20 seconds (Table~\ref{tab:sla-compliance}). Only 50\% of queries meet a 10-second target, indicating that while the system provides acceptable interactive performance, sub-10-second response times would require optimizations such as faster LLM inference, streaming responses, or prompt engineering to reduce generated response length.
+
+\subsection{Token usage and cost analysis}
+\label{subsec:token-usage-cost}
+
+Token consumption directly influences operational costs for cloud-based LLM deployments. Across 30 queries, the system consumed a total of 77,931 tokens: 32,198 input tokens (context and prompt) and 45,733 output tokens (generated responses). Mean token usage per query was 2,598 tokens total, with 1,073 input tokens and 1,524 output tokens.
+
+At current OpenAI API pricing (\$0.01 per 1,000 input tokens, \$0.03 per 1,000 output tokens for text-embedding-3-small and gpt-5-nano), the 30-query evaluation incurred approximately \$0.02 in total costs: negligible input costs and \$0.02 for output generation (Table~\ref{tab:token-cost-summary}). This translates to approximately \$0.0007 per query, suggesting that token costs remain modest even for detailed responses.
+
+However, these costs scale linearly with query volume. Extrapolating to enterprise usage scenarios with hundreds or thousands of daily queries, monthly costs could range from tens to hundreds of dollars depending on adoption rates. This cost structure favors on-premise deployments where organizations already operate LLM infrastructure, eliminating per-token charges while introducing fixed infrastructure costs.
+
+Input token consumption reflects both the system prompt (instructions and guidelines) and retrieved documentation context. With a mean of 1,073 input tokens per query, context window utilization remains well below gpt-5-nano's limit, allowing for additional retrieved chunks if needed. Output token counts average 1,524 tokens, indicating that responses are detailed and comprehensive rather than terse.
+
+\subsection{Documentation pipeline performance}
+\label{subsec:documentation-pipeline-performance}
+
+The documentation processing pipeline demonstrates markedly different performance characteristics than the query pipeline. Processing 113 documents into 217 chunks occurred during initial system deployment, with performance metrics captured for each chunk embedding operation.
+
+Embedding time dominates pipeline performance across all source types. For Sovelia-format documents, embedding accounts for 98.98\% of processing time, while extraction requires only 0.52\%. Document360 content shows 80.95\% embedding time versus 0.17\% extraction, and Umbraco content follows a similar pattern at 96.30\% embedding versus 0.35\% extraction (Table~\ref{tab:extraction-embedding-bottleneck}). This consistent pattern across source types indicates that embedding generation, not content parsing, represents the pipeline bottleneck.
+
+Processing throughput varied during the test period, with peak rates of 71 chunks per minute and 50 documents per minute observed during initial bulk ingestion (Table~\ref{tab:embedding-throughput}). Mean embedding time per chunk was approximately 1.2 seconds during high-throughput periods, increasing to 2.8 seconds under lower concurrency. The significant spike to 28.1 seconds embedding time in one interval suggests that external factors (API rate limiting, network latency, or service throttling) can intermittently impact pipeline performance.
+
+Chunk size distribution analysis reveals that documentation chunks average 1,167 characters in length, with a median of 1,095 characters (Table~\ref{tab:chunk-size-distribution}). Chunk sizes range from 56 to 1,999 characters, approaching the configured maximum chunk size of 2,000 characters. This distribution suggests that the semantic chunking strategy successfully creates reasonably uniform chunks while respecting natural document boundaries.
+
+Document inventory shows that the test corpus consisted primarily of Document360 knowledge base articles (95 documents), with smaller contributions from Umbraco-based content (16 documents) and Sovelia-internal documentation (2 documents) (Table~\ref{tab:document-inventory}). This distribution reflects the initial deployment focus on general product documentation rather than customer-specific SOPs or internal engineering documentation.
+
+\subsection{Performance implications for deployment}
+\label{subsec:performance-implications}
+
+The observed performance characteristics inform several deployment considerations. Query latency of 10-15 seconds provides acceptable interactive performance for documentation lookup tasks where users expect to read and digest information. However, this latency would be problematic for real-time assistance during active work tasks where sub-second responses are expected. Organizations deploying similar systems should set user expectations accordingly and consider use cases where brief delays are acceptable.
+
+Vector search performance validates the architectural decision to use pgvector within the existing PostgreSQL infrastructure. Search latency under 20 milliseconds demonstrates that semantic similarity search scales efficiently even without specialized vector database infrastructure. This result suggests that organizations with established PostgreSQL deployments can achieve strong RAG performance without introducing additional database technologies.
+
+Embedding-dominated pipeline performance indicates that documentation ingestion throughput depends primarily on embedding API capacity rather than parsing efficiency. Organizations processing large documentation corpora should provision adequate API quota or consider local embedding models to accelerate initial ingestion and periodic updates. The observed throughput of 60-70 chunks per minute suggests that ingesting documentation sets of several thousand documents would require hours to complete, making incremental updates preferable to full re-indexing.
+
+Token costs remain modest at current usage levels but merit monitoring as adoption scales. The \$0.0007 per query cost structure implies that even high-usage scenarios (1,000 queries per day) would incur monthly costs under \$25 at current API pricing. However, organizations should evaluate whether on-premise LLM deployment becomes cost-effective at higher volumes, particularly when considering data governance and latency benefits alongside cost considerations.
 
 \section{Discussion of findings}
 \label{sec:discussion-of-findings}
 
-\textit{[Synthesis of expert evaluation and technical performance results, discussing implications for RAG system design in enterprise PLM contexts, trade-offs between different architectural choices, and lessons learned from the implementation.]}
-
-\subsection{Strengths and limitations}
-\label{subsec:strengths-limitations}
-
-\textit{[Critical assessment of what the RAG system does well and where significant limitations remain, grounded in the evaluation results.]}
-
-\subsection{Implications for on-premise PLM deployments}
-\label{subsec:implications-for-plm}
-
-\textit{[Discussion of how the findings apply specifically to on-premise enterprise PLM environments, including infrastructure requirements, deployment considerations, and organizational adoption factors.]}
-
-\subsection{Comparison with literature expectations}
-\label{subsec:comparison-with-literature}
-
-\textit{[Reflection on how the empirical results align with or diverge from expectations established in the literature review, particularly regarding RAG performance patterns and enterprise AI integration challenges.]}
+\textit{[Interpretation of evaluation results, implications for RAG system design in PLM contexts, limitations of the study, and suggestions for future research directions.]}

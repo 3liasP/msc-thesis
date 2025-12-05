@@ -7,15 +7,25 @@ WITH
             embedding
         FROM
             public.AIDocPerformance
+    ),
+    chunk_counts AS (
+        SELECT
+            sourceid,
+            COUNT(*) AS chunk_count
+        FROM
+            public.AIDocChunks
+        GROUP BY
+            sourceid
     )
 SELECT
-    time_bucket,
-    COUNT(*) AS chunks_per_min,
-    COUNT(DISTINCT sourceid) AS docs_per_min,
-    AVG(embedding) AS mean_embedding_ms
+    dp.time_bucket,
+    SUM(cc.chunk_count) AS chunks_per_min,
+    COUNT(DISTINCT dp.sourceid) AS docs_per_min,
+    AVG(dp.embedding) AS mean_embedding_ms
 FROM
-    doc_perf
+    doc_perf dp
+    JOIN chunk_counts cc ON dp.sourceid = cc.sourceid
 GROUP BY
-    time_bucket
+    dp.time_bucket
 ORDER BY
-    time_bucket;
+    dp.time_bucket;
