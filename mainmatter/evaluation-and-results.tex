@@ -19,13 +19,13 @@ A balanced query set was constructed to represent the diversity of information n
 
 \begin{enumerate}
     \item \textbf{Feature inquiries}: Questions about system capabilities, configuration options, and available features (e.g., ``What are the available lifecycle states for items in Sovelia Core?'', `` What types of reports are available in the Sovelia Core Template?'').
-    
+
     \item \textbf{Procedural questions}: Step-by-step instructions for common tasks and workflows (e.g., `What is the process for creating a new item in Sovelia?'', ``How do I add components to a bill of materials structure?'').
-    
+
     \item \textbf{Troubleshooting queries}: Questions about unexpected behavior and problem resolution (e.g., ``Why can't I check in my document after making changes?'', ``My search is taking too long and returning too many results. How can I cancel or refine it?'').
-    
+
     \item \textbf{Version-specific questions}: Queries about features introduced in specific releases or changes between versions (e.g., ``What's new in Sovelia Core version 25.1?'', `` When was the drag and drop functionality introduced?'').
-    
+
     \item \textbf{Integration questions}: Questions about CAD/ERP integration, data exchange, and cross-system workflows (e.g., ``How can I control which items are visible to external users through the Extranet?'', ``How does Sovelia Sync work with local file editing?'').
 \end{enumerate}
 
@@ -38,17 +38,17 @@ Questions were formulated based on actual support inquiries, user documentation 
     \small
     \begin{tabular}{p{0.25\textwidth}p{0.65\textwidth}}
         \hline
-        \textbf{Category} & \textbf{Example Question} \\
+        \textbf{Category}          & \textbf{Example Question}                                          \\
         \hline
-        Feature Inquiries & What are the available lifecycle states for items in Sovelia Core? \\
+        Feature Inquiries          & What are the available lifecycle states for items in Sovelia Core? \\
         \addlinespace
-        Procedural Questions & How do I add components to a bill of materials structure? \\
+        Procedural Questions       & How do I add components to a bill of materials structure?          \\
         \addlinespace
-        Troubleshooting Queries & Why can't I check in my document after making changes? \\
+        Troubleshooting Queries    & Why can't I check in my document after making changes?             \\
         \addlinespace
-        Version-Specific Questions & What's new in Sovelia Core version 25.1? \\
+        Version-Specific Questions & What's new in Sovelia Core version 25.1?                           \\
         \addlinespace
-        Integration Questions & How does Sovelia sync with Inventor for managing CAD models? \\
+        Integration Questions      & How does Sovelia sync with Inventor for managing CAD models?       \\
         \hline
     \end{tabular}
     \caption{Example questions from each evaluation category}
@@ -61,11 +61,11 @@ Each response was evaluated across four dimensions:
 
 \begin{enumerate}
     \item \textbf{Factual accuracy}: The correctness of information provided, verified against official documentation and system behavior. Responses are rated as accurate (fully correct), partially accurate (contains some correct information with minor errors or omissions), or inaccurate (contains substantial errors or misinformation).
-    
+
     \item \textbf{Relevance}: The degree to which the response addresses the user's actual information need. Rated on a three-point scale: highly relevant (directly answers the question), partially relevant (provides related but incomplete information), or not relevant (fails to address the question).
-    
+
     \item \textbf{Source attribution}: The quality and completeness of cited sources, including whether sources are provided, whether they are appropriate, and whether they support the claims made. Evaluated as complete (all claims properly attributed), partial (some attribution but gaps exist), or absent (no source references).
-    
+
     \item \textbf{Completeness}: Whether the response provides sufficient information to address the user's need without requiring additional queries. Rated as complete (fully answers the question), incomplete (requires follow-up), or insufficient (lacks critical information).
 \end{enumerate}
 
@@ -79,11 +79,11 @@ For each query, the evaluation procedure consisted of:
 
 \begin{enumerate}
     \item \textbf{Query submission}: The question is submitted to the RAG system through the standard user interface, capturing the complete interaction including retrieved chunks, generated response, and source citations.
-    
+
     \item \textbf{Response analysis}: Experts independently review the response against the evaluation criteria, consulting official documentation and testing system behavior when necessary to verify factual claims.
-    
+
     \item \textbf{Source verification}: Retrieved documentation chunks are examined to assess whether they contain information supporting the generated response and whether the most relevant sources were successfully retrieved.
-    
+
     \item \textbf{Scoring and annotation}: Each dimension is scored according to the defined scale, with qualitative notes capturing specific strengths, weaknesses, and examples of errors or excellent performance.
 \end{enumerate}
 
@@ -97,10 +97,10 @@ Technical performance evaluation quantifies operational characteristics of the R
 Performance measurement focuses on three critical stages of the RAG query pipeline:
 
 \begin{enumerate}
-    \item \textbf{Query embedding}: Time required to convert the user's natural language query into a vector representation suitable for similarity search. This operation utilizes the same embedding model (text-embedding-3-small) as the document processing pipeline.
-    
+    \item \textbf{Query embedding}: Time required to convert the user's natural language query into a vector representation suitable for similarity search. This operation utilizes the same embedding model (nomic-embed-text) as the document processing pipeline.
+
     \item \textbf{Vector search}: Time required to retrieve the top-k most similar documentation chunks from the PostgreSQL database using pgvector's cosine similarity search. This stage reflects database query performance and index efficiency.
-    
+
     \item \textbf{LLM response generation}: Time required for the language model to process the retrieved context and generate a response, including both the model inference time and API communication overhead.
 \end{enumerate}
 
@@ -110,9 +110,9 @@ For the documentation pipeline, performance metrics focus on:
 
 \begin{enumerate}
     \item \textbf{Content extraction}: Time required to parse and extract text content from source documents (HTML from Document360, markdown from Umbraco, structured content from Sovelia's internal format).
-    
+
     \item \textbf{Chunk embedding}: Time required to generate vector embeddings for each documentation chunk, representing the primary computational cost of the pipeline.
-    
+
     \item \textbf{Processing throughput}: Documents and chunks processed per unit time, indicating the pipeline's ability to handle large documentation volumes during initial ingestion and periodic updates.
 \end{enumerate}
 
@@ -126,7 +126,7 @@ These metrics provide quantitative insight into system performance characteristi
 \section{Technical performance results}
 \label{sec:technical-performance-results}
 
-Performance evaluation was conducted using the 30-question evaluation set described in Section~\ref{subsec:expert-evaluation-design}. The test environment consisted of 6 simulated users executing queries concurrently, with each user submitting 6 questions from a single category sequentially. This methodology simulates realistic concurrent load while avoiding artificial parallelization that might not reflect actual usage patterns. Performance data was collected through PostgreSQL stored procedures and logged to dedicated performance tables (see Appendix~\ref{app:performance-queries} for the SQL queries used and Appendix~\ref{app:performance-tables} for complete results).
+Performance evaluation was conducted using the 30-question evaluation set described in Section~\ref{subsec:expert-evaluation-design}. The test environment consisted of 5 simulated users executing queries concurrently, with each user submitting 6 questions from a single category sequentially. This methodology simulates reasonably realistic concurrent load while avoiding artificial parallelization that might not reflect actual usage patterns. Performance data was collected through PostgreSQL stored procedures and logged to dedicated performance tables (see Appendix~\ref{app:performance-queries} for the SQL queries used and Appendix~\ref{app:performance-tables} for complete results).
 
 The vector database contained documentation from three sources at the time of testing: Sovelia Core help documentation (knowledge base articles), release notes from multiple versions, and two sample customer standard operating procedure (SOP) documents representing typical on-premise customer documentation. This test corpus comprised 113 documents processed into 217 chunks, providing a representative baseline for assessing system performance under realistic documentation volumes.
 
@@ -137,7 +137,7 @@ Query performance results demonstrate the system's ability to respond within acc
 
 Breaking down latency by pipeline stage reveals where computational resources are consumed. LLM response generation dominates total latency at 88.05\% of query time, with a mean of 9.3 seconds. Query embedding accounts for 11.72\% (mean 1.2 seconds), while vector search represents only 0.15\% (mean 14.3 milliseconds). This distribution indicates that the vector database performs efficiently, with similarity search over 217 chunks completing in under 20 milliseconds even at the 95th percentile.
 
-The performance profile suggests that query latency scales primarily with LLM response generation time rather than retrieval operations. Vector search remains consistently fast regardless of retrieved context size, validating the efficiency of pgvector's indexing for this workload. Query embedding time exhibits some variability (median 1.2 seconds, 95th percentile 2.1 seconds), likely due to variations in query length and API latency to the embedding service.
+The performance profile suggests that query latency scales primarily with LLM response generation time rather than retrieval operations. Vector search remains consistently fast regardless of retrieved context size, validating the efficiency of pgvector's indexing for this workload. Query embedding time exhibits some variability (median 1.2 seconds, 95th percentile 2.1 seconds), likely due to variations in query length and latency to the embedding service.
 
 Latency SLA compliance analysis shows that 93.3\% of queries complete within 15 seconds, while 96.7\% complete within 20 seconds (Table~\ref{tab:sla-compliance}). Only 50\% of queries meet a 10-second target, indicating that while the system provides acceptable interactive performance, sub-10-second response times would require optimizations such as faster LLM inference, streaming responses, or prompt engineering to reduce generated response length.
 
@@ -146,7 +146,7 @@ Latency SLA compliance analysis shows that 93.3\% of queries complete within 15 
 
 Token consumption directly influences operational costs for cloud-based LLM deployments. Across 30 queries, the system consumed a total of 77,931 tokens: 32,198 input tokens (context and prompt) and 45,733 output tokens (generated responses). Mean token usage per query was 2,598 tokens total, with 1,073 input tokens and 1,524 output tokens.
 
-At current OpenAI API pricing (\$0.01 per 1,000 input tokens, \$0.03 per 1,000 output tokens for text-embedding-3-small and gpt-5-nano), the 30-query evaluation incurred approximately \$0.02 in total costs: negligible input costs and \$0.02 for output generation (Table~\ref{tab:token-cost-summary}). This translates to approximately \$0.0007 per query, suggesting that token costs remain modest even for detailed responses.
+At current OpenAI API pricing (\$0.01 per 1,000 input tokens, \$0.03 per 1,000 output tokens for gpt-5-nano), the 30-query evaluation incurred approximately \$0.02 in total costs: negligible input costs and \$0.02 for output generation (Table~\ref{tab:token-cost-summary}). This translates to approximately \$0.0007 per query, suggesting that token costs remain modest even for detailed responses.
 
 However, these costs scale linearly with query volume. Extrapolating to enterprise usage scenarios with hundreds or thousands of daily queries, monthly costs could range from tens to hundreds of dollars depending on adoption rates. This cost structure favors on-premise deployments where organizations already operate LLM infrastructure, eliminating per-token charges while introducing fixed infrastructure costs.
 
@@ -157,13 +157,13 @@ Input token consumption reflects both the system prompt (instructions and guidel
 
 The documentation processing pipeline demonstrates markedly different performance characteristics than the query pipeline. Processing 113 documents into 217 chunks occurred during initial system deployment, with performance metrics captured for each chunk embedding operation.
 
-Embedding time dominates pipeline performance across all source types. For Sovelia-format documents, embedding accounts for 98.98\% of processing time, while extraction requires only 0.52\%. Document360 content shows 80.95\% embedding time versus 0.17\% extraction, and Umbraco content follows a similar pattern at 96.30\% embedding versus 0.35\% extraction (Table~\ref{tab:extraction-embedding-bottleneck}). This consistent pattern across source types indicates that embedding generation, not content parsing, represents the pipeline bottleneck.
+Embedding time dominates pipeline performance across all source types. For internal PLM documents, embedding accounts for 98.98\% of processing time, while extraction requires only 0.52\%. Document360 content shows 80.95\% embedding time versus 0.17\% extraction, and Umbraco content follows a similar pattern at 96.30\% embedding versus 0.35\% extraction (Table~\ref{tab:extraction-embedding-bottleneck}). This consistent pattern across source types indicates that embedding generation, not content parsing, represents the pipeline bottleneck.
 
-Processing throughput varied during the test period, with peak rates of 71 chunks per minute and 50 documents per minute observed during initial bulk ingestion (Table~\ref{tab:embedding-throughput}). Mean embedding time per chunk was approximately 1.2 seconds during high-throughput periods, increasing to 2.8 seconds under lower concurrency. The significant spike to 28.1 seconds embedding time in one interval suggests that external factors (API rate limiting, network latency, or service throttling) can intermittently impact pipeline performance.
+Processing throughput varied during the test period, with peak rates of 71 chunks per minute and 50 documents per minute observed during initial bulk ingestion (Table~\ref{tab:embedding-throughput}). Mean embedding time per chunk was approximately 1.2 seconds during high-throughput periods, increasing to 2.8 seconds under lower concurrency. The significant spike to 28.1 seconds embedding time in one interval suggests that external factors (API rate limiting, network latency, or service throttling) can intermittently impact pipeline performance. This particular spike was due to hitting the rate limit of the Document360 API after which the system had to wait before continuing.
 
 Chunk size distribution analysis reveals that documentation chunks average 1,167 characters in length, with a median of 1,095 characters (Table~\ref{tab:chunk-size-distribution}). Chunk sizes range from 56 to 1,999 characters, approaching the configured maximum chunk size of 2,000 characters. This distribution suggests that the semantic chunking strategy successfully creates reasonably uniform chunks while respecting natural document boundaries.
 
-Document inventory shows that the test corpus consisted primarily of Document360 knowledge base articles (95 documents), with smaller contributions from Umbraco-based content (16 documents) and Sovelia-internal documentation (2 documents) (Table~\ref{tab:document-inventory}). This distribution reflects the initial deployment focus on general product documentation rather than customer-specific SOPs or internal engineering documentation.
+Document inventory shows that the test corpus consisted primarily of Document360 knowledge base articles (95 documents), with smaller contributions from Umbraco-based content (16 documents) and Sovelia-internal documentation (2 documents) (Table~\ref{tab:document-inventory}). This distribution reflects that this initial testing focuses on general product documentation rather than customer-specific SOPs or internal engineering documentation. Over time, as more customer documentation could be ingested, the corpus will diversify further.
 
 \subsection{Performance implications for deployment}
 \label{subsec:performance-implications}
@@ -174,7 +174,7 @@ Vector search performance validates the architectural decision to use pgvector w
 
 Embedding-dominated pipeline performance indicates that documentation ingestion throughput depends primarily on embedding API capacity rather than parsing efficiency. Organizations processing large documentation corpora should provision adequate API quota or consider local embedding models to accelerate initial ingestion and periodic updates. The observed throughput of 60-70 chunks per minute suggests that ingesting documentation sets of several thousand documents would require hours to complete, making incremental updates preferable to full re-indexing.
 
-Token costs remain modest at current usage levels but merit monitoring as adoption scales. The \$0.0007 per query cost structure implies that even high-usage scenarios (1,000 queries per day) would incur monthly costs under \$25 at current API pricing. However, organizations should evaluate whether on-premise LLM deployment becomes cost-effective at higher volumes, particularly when considering data governance and latency benefits alongside cost considerations.
+Token costs remain modest at current usage levels but could rise as the adoption scales. The \$0.0007 per query cost structure implies that even high-usage scenarios (1,000 queries per day) would incur monthly costs under \$25 (\$0.0007 \times 1000 \times 30 \approx \$21) at current API pricing. However, organizations should evaluate whether on-premise LLM deployment becomes cost-effective at higher volumes, particularly when considering data governance and latency benefits alongside cost considerations.
 
 \section{Discussion of findings}
 \label{sec:discussion-of-findings}
