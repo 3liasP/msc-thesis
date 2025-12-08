@@ -69,7 +69,7 @@ Each response was evaluated across four dimensions:
     \item \textbf{Completeness}: Whether the response provides sufficient information to address the user's need without requiring additional queries. Rated as complete (fully answers the question), incomplete (requires follow-up), or insufficient (lacks critical information).
 \end{enumerate}
 
-This multi-dimensional evaluation framework extends standard information retrieval metrics \parencite{manningIntroductionInformationRetrieval2008a} to address the specific challenges of RAG-based question answering in technical documentation contexts, where both retrieval quality and generation accuracy must be assessed \parencite{knollmeyerDocumentGraphRAGKnowledge2025}.
+This multi-dimensional evaluation framework extends standard information retrieval metrics \parencite{manningIntroductionInformationRetrieval2008a} to address the specific challenges of RAG-based question answering in technical documentation contexts, where both retrieval quality and generation accuracy must be assessed \parencite{knollmeyerDocumentGraphRAGKnowledge2025}. The framework recognizes that effective retrieval is fundamental to RAG performance, with recent work showing that query likelihood approaches can achieve competitive document ranking performance \parencite{zhuangOpensourceLargeLanguage2023}.
 
 \subsubsection{Evaluation procedure}
 
@@ -99,9 +99,9 @@ Performance measurement focuses on three critical stages of the RAG query pipeli
 \begin{enumerate}
     \item \textbf{Query embedding}: Time required to convert the user's natural language query into a vector representation suitable for similarity search. This operation utilizes the same embedding model (nomic-embed-text) as the document processing pipeline.
 
-    \item \textbf{Vector search}: Time required to retrieve the top-k most similar documentation chunks from the PostgreSQL database using pgvector's cosine similarity search. This stage reflects database query performance and index efficiency.
+    \item \textbf{Vector search}: Time required to retrieve the top-k most similar documentation chunks from the PostgreSQL database using pgvector's cosine similarity search. This stage reflects database query performance and index efficiency. Recent research has demonstrated that open-source language models can effectively serve as zero-shot query likelihood models for document ranking \parencite{zhuangOpensourceLargeLanguage2023}, validating the effectiveness of similarity-based retrieval approaches.
 
-    \item \textbf{LLM response generation}: Time required for the language model to process the retrieved context and generate a response, including both the model inference time and API communication overhead.
+    \item \textbf{LLM response generation}: Time required for the language model to process the retrieved context and generate a response, including both the model inference time and API communication overhead. The quality of generated responses depends critically on the model's ability to follow instructions and align with user intent \parencite{ouyangTrainingLanguageModels2022}, which has been enhanced through reinforcement learning from human feedback (RLHF) in modern language models.
 \end{enumerate}
 
 Performance data is captured through PostgreSQL stored procedures that measure elapsed time for each stage and persist measurements to the \texttt{AIChatPerformance} table. Total query latency represents the sum of all three stages, providing an end-to-end user experience metric. Token usage statistics are extracted from LLM response metadata and logged to the \texttt{AIChatHistory} table, enabling cost analysis and context window utilization assessment.

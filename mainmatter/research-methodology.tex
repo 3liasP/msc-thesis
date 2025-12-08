@@ -14,23 +14,23 @@ The search strategy combined domain-specific terms from PLM and enterprise softw
     \centering
     \begin{tabular}{lr}
         \hline
-        \textbf{Search term} & \textbf{Results} \\
+        \textbf{Search term}                                             & \textbf{Results} \\
         \hline
-        ``AI'' AND ``assistant'' & 19,355 \\
-        ``artificial intelligence'' AND ``lifecycle management'' & 1,300 \\
-        ``AI'' AND ``lifecycle management'' & 1,189 \\
-        ``artificial intelligence'' AND ``PLM'' & 923 \\
-        ``AI'' AND ``PLM'' & 482 \\
-        ``RAG'' AND ``manufacturing'' AND ``AI'' & 467 \\
-        ``artificial intelligence'' AND ``product lifecycle management'' & 409 \\
-        ``RAG'' AND ``documentation'' & 285 \\
-        ``product lifecycle management'' AND ``documentation'' & 180 \\
-        ``Agentic RAG'' & 65 \\
-        lewis retrieval augmented & 59 \\
-        ``RAG'' AND ``manufacturing'' & 58 \\
-        ``Self RAG'' & 17 \\
-        ``RAG'' AND ``PLM'' & 13 \\
-        ``RAG'' AND ``PDM'' & 2 \\
+        ``AI'' AND ``assistant''                                         & 19,355           \\
+        ``artificial intelligence'' AND ``lifecycle management''         & 1,300            \\
+        ``AI'' AND ``lifecycle management''                              & 1,189            \\
+        ``artificial intelligence'' AND ``PLM''                          & 923              \\
+        ``AI'' AND ``PLM''                                               & 482              \\
+        ``RAG'' AND ``manufacturing'' AND ``AI''                         & 467              \\
+        ``artificial intelligence'' AND ``product lifecycle management'' & 409              \\
+        ``RAG'' AND ``documentation''                                    & 285              \\
+        ``product lifecycle management'' AND ``documentation''           & 180              \\
+        ``Agentic RAG''                                                  & 65               \\
+        lewis retrieval augmented                                        & 59               \\
+        ``RAG'' AND ``manufacturing''                                    & 58               \\
+        ``Self RAG''                                                     & 17               \\
+        ``RAG'' AND ``PLM''                                              & 13               \\
+        ``RAG'' AND ``PDM''                                              & 2                \\
         \hline
     \end{tabular}
     \caption{Literature search terms and result counts}
@@ -76,7 +76,7 @@ A central challenge in this environment is the fragmentation of knowledge across
 
 \subsubsection{Data governance and security context}
 
-Sovelia Core implements role-based access control (RBAC) to restrict data visibility based on user roles and organizational structure. Users should only access product data relevant to their functional responsibilities, and this principle must extend to any AI assistant that queries the system's knowledge base. However, in the initial implementation phase, the RAG system is designed to offer retrieval of documents accessible to all users, with plans to implement finer-grained access controls in future iterations.
+Sovelia Core implements role-based access control (RBAC) \parencite{sandhuRolebasedAccessControl1996} to restrict data visibility based on user roles and organizational structure. Users should only access product data relevant to their functional responsibilities, and this principle must extend to any AI assistant that queries the system's knowledge base. However, in the initial implementation phase, the RAG system is designed to offer retrieval of documents accessible to all users, with plans to implement finer-grained access controls in future iterations.
 
 Additionally, customer organizations usually have strict policies regarding data processing and AI usage. Many customers express concerns about data privacy, algorithmic transparency, and the risk of AI hallucinations leading to incorrect guidance in engineering workflows. These concerns shape the requirements for any AI integration, including source attribution, and mechanisms to mitigate the risk of fabricated information. The aim is to make the AI assistant cite sources clearly and provide verifiable references for all generated responses.
 
