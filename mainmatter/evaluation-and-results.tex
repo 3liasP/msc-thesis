@@ -87,7 +87,7 @@ For each query, the evaluation procedure consisted of:
     \item \textbf{Scoring and annotation}: Each dimension is scored according to the defined scale, with qualitative notes capturing specific strengths, weaknesses, and examples of errors or excellent performance.
 \end{enumerate}
 
-Inter-rater reliability is established through initial calibration sessions where evaluators jointly assess a subset of responses to align understanding of evaluation criteria. Disagreements in scoring are resolved through discussion and reference to authoritative sources.
+Inter-rater reliability \parencite{borseInvestigationInterRaterReliability2025} is established through initial calibration sessions where evaluators jointly assess a subset of responses to align understanding of evaluation criteria. Disagreements in scoring are resolved through discussion and reference to authoritative sources.
 
 \subsection{Technical performance metrics}
 \label{subsec:technical-performance-metrics}
@@ -101,7 +101,7 @@ Performance measurement focuses on three critical stages of the RAG query pipeli
 
     \item \textbf{Vector search}: Time required to retrieve the top-k most similar documentation chunks from the PostgreSQL database using pgvector's cosine similarity search. This stage reflects database query performance and index efficiency. Recent research has demonstrated that open-source language models can effectively serve as zero-shot query likelihood models for document ranking \parencite{zhuangOpensourceLargeLanguage2023}, validating the effectiveness of similarity-based retrieval approaches.
 
-    \item \textbf{LLM response generation}: Time required for the language model to process the retrieved context and generate a response, including both the model inference time and API communication overhead. The quality of generated responses depends critically on the model's ability to follow instructions and align with user intent \parencite{ouyangTrainingLanguageModels2022}, which has been enhanced through reinforcement learning from human feedback (RLHF) in modern language models.
+    \item \textbf{LLM response generation}: Time required for the language model to process the retrieved context and generate a response, including both the model inference time and API communication overhead. The quality of generated responses depends critically on the model's ability to follow instructions and align with user intent \parencite{ouyangTrainingLanguageModels2022}, which has been enhanced through reinforcement learning from human feedback (RLHF) \parencite{kaufmannSurveyReinforcementLearning2024} in modern language models.
 \end{enumerate}
 
 Performance data is captured through PostgreSQL stored procedures that measure elapsed time for each stage and persist measurements to the \texttt{AIChatPerformance} table. Total query latency represents the sum of all three stages, providing an end-to-end user experience metric. Token usage statistics are extracted from LLM response metadata and logged to the \texttt{AIChatHistory} table, enabling cost analysis and context window utilization assessment.
@@ -109,7 +109,7 @@ Performance data is captured through PostgreSQL stored procedures that measure e
 For the documentation pipeline, performance metrics focus on:
 
 \begin{enumerate}
-    \item \textbf{Content extraction}: Time required to parse and extract text content from source documents (HTML from Document360, markdown from Umbraco, structured content from Sovelia's internal format).
+    \item \textbf{Content extraction}: Time required to parse and extract text content from source documents (HTML from Document360 \parencite{Document360API}, markdown from Umbraco \parencite{UmbracoCMSDocumentation2025}, structured content from Sovelia's internal format).
 
     \item \textbf{Chunk embedding}: Time required to generate vector embeddings for each documentation chunk, representing the primary computational cost of the pipeline.
 

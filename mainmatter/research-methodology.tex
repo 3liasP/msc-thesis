@@ -64,7 +64,7 @@ Sovelia Core is an on-premise PLM platform specifically beneficial for companies
 
 \subsubsection{Technical architecture and deployment model}
 
-Sovelia Core follows a traditional client-server architecture deployed entirely within customer premises. The system is built on a custom technology stack, with a PostgreSQL database serving as the primary data repository. Client applications connect to the server through proprietary APIs, and the system can be integrated with both CAD systems (e.g. Autodesk Inventor) and various ERP platforms.
+Sovelia Core follows a traditional client-server architecture \parencite{saternosClientServerWebApps2014} deployed entirely within customer premises. The system is built on a custom technology stack, with a PostgreSQL database serving as the primary data repository. Client applications connect to the server through proprietary APIs, and the system can be integrated with both CAD systems (e.g. Autodesk Inventor \parencite{AutodeskInventorSoftware}) and various ERP platforms.
 
 The on-premise deployment model is not just a technical preference but usually a fundamental requirement for Sovelia Core's customers. Manufacturing organizations in the mechanical engineering, industrial automation, and equipment manufacturing sectors typically handle sensitive intellectual property in the form of CAD models, proprietary designs, and confidential customer specifications. These organizations often operate under strict data sovereignty requirements, regulatory compliance mandates, or even contractual obligations that prohibit storing product data on external cloud infrastructure. Consequently, any AI-powered solution integrated with Sovelia Core must respect these constraints and operate entirely within the customer's controlled IT environment.
 
@@ -80,7 +80,7 @@ Sovelia Core implements role-based access control (RBAC) \parencite{sandhuRoleba
 
 Additionally, customer organizations usually have strict policies regarding data processing and AI usage. Many customers express concerns about data privacy, algorithmic transparency, and the risk of AI hallucinations leading to incorrect guidance in engineering workflows. These concerns shape the requirements for any AI integration, including source attribution, and mechanisms to mitigate the risk of fabricated information. The aim is to make the AI assistant cite sources clearly and provide verifiable references for all generated responses.
 
-Another important topic is the cost-effectiveness of the solution. Many manufacturing organizations operate under tight budget constraints, making it essential that the RAG system delivers tangible productivity improvements without incurring prohibitive costs related to infrastructure, licensing, or maintenance. Based on historical customer feedback, solutions that are too costly or complex to maintain often face resistance during adoption even if they offer new advanced capabilities.
+Another important topic is the cost-effectiveness of the solution. Many manufacturing organizations operate under tight budget constraints, making it essential that the RAG system delivers tangible productivity improvements without incurring prohibitive costs related to infrastructure, licensing, or maintenance. Based on historical customer feedback, solutions that are too costly or complex to adopt and maintain often face resistance during adoption even if they offer new advanced capabilities.
 
 \subsection{Case study boundaries and unit of analysis}
 \label{subsec:case-boundaries}
