@@ -1,0 +1,73 @@
+% Auto-generated LaTeX tables from expert evaluation results
+% Generated: ti 9.12.2025 16.26.39 +0200
+% DO NOT EDIT MANUALLY - regenerate using export-evaluation-tables.py
+
+\chapter{RAG system expert evaluation results}
+\label{app:evaluation-tables}
+\renewcommand{\tablename}{Table}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrrrr}
+        \toprule
+        Dimension          & Mean & Median & Std Dev & Range \\
+        \midrule
+        Factual Accuracy   & 4.70 & 5.0    & 0.60    & 3--5  \\
+        Relevance          & 4.50 & 5.0    & 0.78    & 2--5  \\
+        Source Attribution & 4.83 & 5.0    & 0.46    & 3--5  \\
+        Completeness       & 4.70 & 5.0    & 0.60    & 3--5  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Summary statistics for expert evaluation across all dimensions (N=30 queries)}
+    \label{tab:evaluation-summary}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrrrr}
+        \toprule
+        Evaluator      & Accuracy & Relevance & Attribution & Completeness \\
+        \midrule
+        Product Expert & 4.70     & 4.50      & 4.83        & 4.70         \\
+        \bottomrule
+    \end{tabular}
+    \caption{Mean evaluation scores by expert evaluator}
+    \label{tab:evaluation-by-evaluator}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrrrrr}
+        \toprule
+        Category          & N & Accuracy & Relevance & Attribution & Completeness \\
+        \midrule
+        Version-specific  & 6 & 4.50     & 4.50      & 4.67        & 4.67         \\
+        Feature inquiries & 6 & 4.83     & 4.67      & 4.83        & 4.67         \\
+        Troubleshooting   & 6 & 5.00     & 5.00      & 5.00        & 5.00         \\
+        Integration       & 6 & 4.17     & 3.83      & 4.67        & 4.17         \\
+        Procedural        & 6 & 5.00     & 4.50      & 5.00        & 5.00         \\
+        \bottomrule
+    \end{tabular}
+    \caption{Mean evaluation scores by question category}
+    \label{tab:evaluation-by-category}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrrrrr}
+        \toprule
+        Dimension    & Score 1 & Score 2 & Score 3 & Score 4 & Score 5 \\
+        \midrule
+        Accuracy     & 0.0\%   & 0.0\%   & 6.7\%   & 16.7\%  & 76.7\%  \\
+        Relevance    & 0.0\%   & 3.3\%   & 6.7\%   & 26.7\%  & 63.3\%  \\
+        Attribution  & 0.0\%   & 0.0\%   & 3.3\%   & 10.0\%  & 86.7\%  \\
+        Completeness & 0.0\%   & 0.0\%   & 6.7\%   & 16.7\%  & 76.7\%  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Score distribution across evaluation dimensions (percentage of responses)}
+    \label{tab:evaluation-score-distribution}
+\end{table}

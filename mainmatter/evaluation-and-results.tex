@@ -57,37 +57,47 @@ Questions were formulated based on actual support inquiries, user documentation 
 
 \subsubsection{Evaluation criteria}
 
-Each response was evaluated across four dimensions:
+The evaluation employs a factored assessment approach where responses are rated across multiple independent dimensions \parencite{abeysingheChallengesEvaluatingLLM2024}. This methodology addresses limitations of holistic evaluation approaches by decomposing response quality into specific measurable aspects, enabling more precise identification of system strengths and weaknesses. Each dimension is assessed independently using a 5-point Likert scale (1 = Very poor, 2 = Poor, 3 = Acceptable, 4 = Good, 5 = Excellent), providing granular quality measurements suitable for both quantitative aggregation and qualitative analysis.
+
+The four evaluation dimensions are:
 
 \begin{enumerate}
-    \item \textbf{Factual accuracy}: The correctness of information provided, verified against official documentation and system behavior. Responses are rated as accurate (fully correct), partially accurate (contains some correct information with minor errors or omissions), or inaccurate (contains substantial errors or misinformation).
+    \item \textbf{Factual accuracy}: Correctness of information provided in the response, verified against official Sovelia documentation and, where necessary, actual system behavior. This dimension assesses whether factual claims are accurate, whether technical details are correct, and whether procedures described align with documented workflows. Ratings range from very poor (contains substantial misinformation) through acceptable (mostly correct with minor inaccuracies) to excellent (fully accurate with precise technical details).
 
-    \item \textbf{Relevance}: The degree to which the response addresses the user's actual information need. Rated on a three-point scale: highly relevant (directly answers the question), partially relevant (provides related but incomplete information), or not relevant (fails to address the question).
+    \item \textbf{Relevance}: The degree to which the response addresses the user's specific information need as expressed in the query. This dimension evaluates whether the response directly answers the question asked, whether information provided aligns with the query's intent, and whether extraneous information is minimized. Ratings reflect how well the response matches the user's actual information need, from very poor (fails to address the question) to excellent (directly and comprehensively addresses the specific query).
 
-    \item \textbf{Source attribution}: The quality and completeness of cited sources, including whether sources are provided, whether they are appropriate, and whether they support the claims made. Evaluated as complete (all claims properly attributed), partial (some attribution but gaps exist), or absent (no source references).
+    \item \textbf{Source attribution}: Quality and completeness of citations to source documentation. This dimension assesses whether sources are provided, whether cited sources are appropriate and authoritative, and whether sources actually support the claims made in the response. Strong source attribution enhances trustworthiness and enables users to verify information or explore topics in greater depth. Ratings range from very poor (no sources provided or sources do not support claims) to excellent (all major claims properly attributed to appropriate, verifiable sources).
 
-    \item \textbf{Completeness}: Whether the response provides sufficient information to address the user's need without requiring additional queries. Rated as complete (fully answers the question), incomplete (requires follow-up), or insufficient (lacks critical information).
+    \item \textbf{Completeness}: Sufficiency of information provided to satisfy the user's information need without requiring follow-up queries. This dimension evaluates whether the response contains all information necessary to fully answer the question, whether important caveats or context are included, and whether the level of detail is appropriate for the query type. Ratings span from very poor (lacks critical information) to excellent (provides comprehensive information with appropriate detail and context).
 \end{enumerate}
 
-This multi-dimensional evaluation framework extends standard information retrieval metrics \parencite{manningIntroductionInformationRetrieval2008a} to address the specific challenges of RAG-based question answering in technical documentation contexts, where both retrieval quality and generation accuracy must be assessed \parencite{knollmeyerDocumentGraphRAGKnowledge2025}. The framework recognizes that effective retrieval is fundamental to RAG performance, with recent work showing that query likelihood approaches can achieve competitive document ranking performance \parencite{zhuangOpensourceLargeLanguage2023}.
+This multi-dimensional evaluation framework extends standard information retrieval metrics \parencite{manningIntroductionInformationRetrieval2008a} to address the specific challenges of RAG-based question answering in technical documentation contexts, where both retrieval quality and generation accuracy must be assessed \parencite{knollmeyerDocumentGraphRAGKnowledge2025}. The factored approach produces better insights into which specific aspects require improvement compared to holistic evaluation methods \parencite{abeysingheChallengesEvaluatingLLM2024}, making it particularly valuable for iterative system refinement. The framework recognizes that effective retrieval is fundamental to RAG performance, with recent work showing that query likelihood approaches can achieve competitive document ranking performance \parencite{zhuangOpensourceLargeLanguage2023}.
 
 \subsubsection{Evaluation procedure}
 
-The evaluation was conducted by domain experts with extensive knowledge of both Sovelia Core functionality and PLM workflows. These evaluators include product owner of Sovelia Core and senior implementation consultant with a combined experience of over 40 years in PLM systems. This expert panel approach mitigates individual bias while leveraging deep domain knowledge necessary to assess technical accuracy.
+The evaluation was conducted by domain experts with extensive knowledge of both Sovelia Core functionality and PLM workflows. These evaluators include the product owner of Sovelia Core and a senior implementation consultant with a combined experience of over 40 years in PLM systems. This expert panel approach mitigates individual bias while leveraging deep domain knowledge necessary to assess technical accuracy.
 
-For each query, the evaluation procedure consisted of:
+Responses evaluated were generated during the technical performance testing described in Section~\ref{sec:technical-performance-results}, where 30 queries were submitted to the RAG system under realistic load conditions. This approach ensures that evaluated responses reflect actual system behavior under operational conditions rather than idealized single-query scenarios. Each query produced a generated answer with cited source documentation, which was captured along with performance metrics.
+
+The evaluation process employed a structured web-based form presenting each question alongside its generated response and cited sources. For each of the 30 question-answer pairs, evaluators assessed all four dimensions (factual accuracy, relevance, source attribution, completeness) using the 5-point Likert scale. The evaluation form also provided a free-text comment field for each question, enabling evaluators to document specific observations, identify particular strengths or weaknesses, and note examples of errors or exemplary responses.
+
+The evaluation procedure for each question consisted of:
 
 \begin{enumerate}
-    \item \textbf{Query submission}: The question is submitted to the RAG system through the standard user interface, capturing the complete interaction including retrieved chunks, generated response, and source citations.
+    \item \textbf{Response review}: Evaluators read the generated answer in full, assessing its structure, content, and presentation quality.
 
-    \item \textbf{Response analysis}: Experts independently review the response against the evaluation criteria, consulting official documentation and testing system behavior when necessary to verify factual claims.
+    \item \textbf{Factual verification}: Claims and technical details in the response were verified against official Sovelia documentation (Help articles and release notes). Where necessary, evaluators consulted the actual system behavior to confirm procedural instructions or feature descriptions.
 
-    \item \textbf{Source verification}: Retrieved documentation chunks are examined to assess whether they contain information supporting the generated response and whether the most relevant sources were successfully retrieved.
+    \item \textbf{Source examination}: The three cited documentation sources provided with each response were examined to assess whether they were appropriate for the query and whether they actually supported the claims made in the generated answer. The system is configured to return three sources by default, though this limit is adjustable.
 
-    \item \textbf{Scoring and annotation}: Each dimension is scored according to the defined scale, with qualitative notes capturing specific strengths, weaknesses, and examples of errors or excellent performance.
+    \item \textbf{Relevance assessment}: Evaluators judged whether the response directly addressed the user's information need as expressed in the question, noting any inclusion of irrelevant information or omission of pertinent details.
+
+    \item \textbf{Completeness evaluation}: The sufficiency of the response was assessed, determining whether users would need to submit follow-up queries or consult additional documentation to fully address their information need.
+
+    \item \textbf{Scoring and annotation}: Each dimension received a score from 1 (very poor) to 5 (excellent), accompanied by optional qualitative comments explaining the rationale for ratings, particularly for responses scoring below 4 or exhibiting notable characteristics.
 \end{enumerate}
 
-Inter-rater reliability \parencite{borseInvestigationInterRaterReliability2025} is established through initial calibration sessions where evaluators jointly assess a subset of responses to align understanding of evaluation criteria. Disagreements in scoring are resolved through discussion and reference to authoritative sources.
+Evaluators completed the assessment independently, with subsequent discussion of divergent ratings to understand different perspectives and ensure consistent interpretation of evaluation criteria. The web-based form facilitated systematic data collection, with responses exported as structured JSON data for quantitative analysis.
 
 \subsection{Technical performance metrics}
 \label{subsec:technical-performance-metrics}
