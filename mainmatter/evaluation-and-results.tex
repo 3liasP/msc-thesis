@@ -8,6 +8,23 @@ This chapter presents the evaluation of the RAG-based AI assistant integrated wi
 
 The evaluation strategy employs two complementary methodologies: expert evaluation of RAG system responses and technical performance analysis. This dual approach addresses different dimensions of system quality, with expert evaluation focusing on response accuracy, relevance, and trustworthiness, while performance metrics quantify operational characteristics such as latency, throughput, and token consumption.
 
+\subsection{Test environment and configuration}
+\label{subsec:test-environment}
+
+All evaluation activities were conducted on a development workstation running Ubuntu 22.04.5 LTS (Jammy Jellyfish) with an Intel Core i7-1360P processor (16 cores, 5.00 GHz maximum frequency), 32 GiB system memory, and 2 TiB storage capacity. The system utilized integrated Intel graphics (Intel Iris Xe Graphics) without dedicated GPU acceleration. The system operated the Sovelia Core RAG implementation with PostgreSQL database and pgvector extension for vector similarity search, representing a typical on-premise development environment suitable for testing and evaluation.
+
+The RAG system configuration employed two key AI service components:
+
+\begin{itemize}
+    \item \textbf{Embedding model}: Nomic Embed Text (nomic-embed-text) via Ollama, running locally for generating 768-dimensional vector embeddings of both documentation chunks and user queries. This open-source embedding model provides efficient semantic representation suitable for on-premise deployment without external API dependencies.
+
+    \item \textbf{Language model}: GPT-5 Nano (gpt-5-nano) via OpenAI API, used for response generation from retrieved documentation context. This model balances response quality with cost efficiency, making it appropriate for evaluation scenarios where token consumption and latency characteristics inform deployment decisions.
+\end{itemize}
+
+The vector database contained 113 documents processed into 217 chunks at the time of evaluation, comprising Sovelia Core help documentation from Document360, release notes from Umbraco, and sample customer standard operating procedure documents. The system was configured to retrieve three documentation sources per query by default, though this parameter is adjustable in the implementation.
+
+This test environment represents a realistic on-premise deployment scenario where embedding generation occurs locally while leveraging cloud-based LLM services for response generation, reflecting a hybrid architecture common in organizations balancing data governance requirements with access to advanced language models.
+
 \subsection{Expert evaluation design}
 \label{subsec:expert-evaluation-design}
 
@@ -77,7 +94,7 @@ This multi-dimensional evaluation framework extends standard information retriev
 
 The evaluation was conducted by domain experts with extensive knowledge of both Sovelia Core functionality and PLM workflows. These evaluators include the product owner of Sovelia Core and a senior implementation consultant with a combined experience of over 40 years in PLM systems. This expert panel approach mitigates individual bias while leveraging deep domain knowledge necessary to assess technical accuracy.
 
-Responses evaluated were generated during the technical performance testing described in Section~\ref{sec:technical-performance-results}, where 30 queries were submitted to the RAG system under realistic load conditions. This approach ensures that evaluated responses reflect actual system behavior under operational conditions rather than idealized single-query scenarios. Each query produced a generated answer with cited source documentation, which was captured along with performance metrics.
+Responses evaluated were generated during the technical performance testing described in Section~\ref{sec:technical-performance-results}, where 30 queries were submitted to the RAG system under realistic load conditions using the test environment detailed in Section~\ref{subsec:test-environment}. This approach ensures that evaluated responses reflect actual system behavior under operational conditions rather than idealized single-query scenarios. Each query produced a generated answer with cited source documentation, which was captured along with performance metrics.
 
 The evaluation process employed a structured web-based form presenting each question alongside its generated response and cited sources. For each of the 30 question-answer pairs, evaluators assessed all four dimensions (factual accuracy, relevance, source attribution, completeness) using the 5-point Likert scale. The evaluation form also provided a free-text comment field for each question, enabling evaluators to document specific observations, identify particular strengths or weaknesses, and note examples of errors or exemplary responses.
 
@@ -88,7 +105,7 @@ The evaluation procedure for each question consisted of:
 
     \item \textbf{Factual verification}: Claims and technical details in the response were verified against official Sovelia documentation (Help articles and release notes). Where necessary, evaluators consulted the actual system behavior to confirm procedural instructions or feature descriptions.
 
-    \item \textbf{Source examination}: The three cited documentation sources provided with each response were examined to assess whether they were appropriate for the query and whether they actually supported the claims made in the generated answer. The system is configured to return three sources by default, though this limit is adjustable.
+    \item \textbf{Source examination}: The cited documentation sources provided with each response were examined to assess whether they were appropriate for the query and whether they actually supported the claims made in the generated answer.
 
     \item \textbf{Relevance assessment}: Evaluators judged whether the response directly addressed the user's information need as expressed in the question, noting any inclusion of irrelevant information or omission of pertinent details.
 
@@ -102,12 +119,12 @@ Evaluators completed the assessment independently, with subsequent discussion of
 \subsection{Technical performance metrics}
 \label{subsec:technical-performance-metrics}
 
-Technical performance evaluation quantifies operational characteristics of the RAG system under realistic load conditions. These metrics provide insight into system scalability, resource requirements, and user experience quality from a performance perspective.
+Technical performance evaluation quantifies operational characteristics of the RAG system under realistic load conditions using the test environment described in Section~\ref{subsec:test-environment}. These metrics provide insight into system scalability, resource requirements, and user experience quality from a performance perspective.
 
 Performance measurement focuses on three critical stages of the RAG query pipeline:
 
 \begin{enumerate}
-    \item \textbf{Query embedding}: Time required to convert the user's natural language query into a vector representation suitable for similarity search. This operation utilizes the same embedding model (nomic-embed-text) as the document processing pipeline.
+    \item \textbf{Query embedding}: Time required to convert the user's natural language query into a vector representation suitable for similarity search. This operation utilizes the locally-hosted Nomic Embed Text model via Ollama.
 
     \item \textbf{Vector search}: Time required to retrieve the top-k most similar documentation chunks from the PostgreSQL database using pgvector's cosine similarity search. This stage reflects database query performance and index efficiency. Recent research has demonstrated that open-source language models can effectively serve as zero-shot query likelihood models for document ranking \parencite{zhuangOpensourceLargeLanguage2023}, validating the effectiveness of similarity-based retrieval approaches.
 
@@ -121,7 +138,7 @@ For the documentation pipeline, performance metrics focus on:
 \begin{enumerate}
     \item \textbf{Content extraction}: Time required to parse and extract text content from source documents (HTML from Document360 \parencite{Document360API} (Sovelia help \parencite{SoveliaHelp}) and Umbraco \parencite{UmbracoCMSDocumentation2025} (Sovelia release notes \parencite{ReleaseNewsAll}), structured content from Sovelia's internal format).
 
-    \item \textbf{Chunk embedding}: Time required to generate vector embeddings for each documentation chunk, representing the primary computational cost of the pipeline.
+    \item \textbf{Chunk embedding}: Time required to generate vector embeddings for each documentation chunk using the local Nomic Embed Text model, representing the primary computational cost of the pipeline.
 
     \item \textbf{Processing throughput}: Documents and chunks processed per unit time, indicating the pipeline's ability to handle large documentation volumes during initial ingestion and periodic updates.
 \end{enumerate}
@@ -136,9 +153,7 @@ These metrics provide quantitative insight into system performance characteristi
 \section{Technical performance results}
 \label{sec:technical-performance-results}
 
-Performance evaluation was conducted using the 30-question evaluation set described in Section~\ref{subsec:expert-evaluation-design}. The test environment consisted of 5 simulated users executing queries concurrently, with each user submitting 6 questions from a single category sequentially. This methodology simulates reasonably realistic concurrent load while avoiding artificial parallelization that might not reflect actual usage patterns. Performance data was collected through PostgreSQL stored procedures and logged to dedicated performance tables (see Appendix~\ref{app:performance-queries} for the SQL queries used and Appendix~\ref{app:performance-tables} for complete results).
-
-The vector database contained documentation from three sources at the time of testing: Sovelia Core help documentation (knowledge base articles), release notes from multiple versions, and two sample customer standard operating procedure (SOP) documents representing typical on-premise customer documentation. This test corpus comprised 113 documents processed into 217 chunks, providing a representative baseline for assessing system performance under realistic documentation volumes.
+Performance evaluation was conducted using the 30-question evaluation set described in Section~\ref{subsec:expert-evaluation-design} on the test environment detailed in Section~\ref{subsec:test-environment}. The test environment consisted of 5 simulated users executing queries concurrently, with each user submitting 6 questions from a single category sequentially. This methodology simulates reasonably realistic concurrent load while avoiding artificial parallelization that might not reflect actual usage patterns. Performance data was collected through PostgreSQL stored procedures and logged to dedicated performance tables (see Appendix~\ref{app:performance-queries} for the SQL queries used and Appendix~\ref{app:performance-tables} for complete results).
 
 \subsection{Query latency analysis}
 \label{subsec:query-latency-analysis}
@@ -156,7 +171,7 @@ Latency SLA compliance analysis shows that 93.3\% of queries complete within 15 
 
 Token consumption directly influences operational costs for cloud-based LLM deployments. Across 30 queries, the system consumed a total of 77,931 tokens: 32,198 input tokens (context and prompt) and 45,733 output tokens (generated responses). Mean token usage per query was 2,598 tokens total, with 1,073 input tokens and 1,524 output tokens.
 
-At current OpenAI API pricing (\$0.01 per 1,000 input tokens, \$0.03 per 1,000 output tokens for gpt-5-nano), the 30-query evaluation incurred approximately \$0.02 in total costs: negligible input costs and \$0.02 for output generation (Table~\ref{tab:token-cost-summary}). This translates to approximately \$0.0007 per query, suggesting that token costs remain modest even for detailed responses.
+At current OpenAI API pricing (\$0.05 per 1 million input tokens, \$0.40 per 1 million output tokens for gpt-5-nano), the 30-query evaluation incurred approximately \$0.02 in total costs: negligible input costs and \$0.02 for output generation (Table~\ref{tab:token-cost-summary}). This translates to approximately \$0.0007 per query, suggesting that token costs remain modest even for detailed responses.
 
 However, these costs scale linearly with query volume. Extrapolating to enterprise usage scenarios with hundreds or thousands of daily queries, monthly costs could range from tens to hundreds of dollars depending on adoption rates. This cost structure favors on-premise deployments where organizations already operate LLM infrastructure, eliminating per-token charges while introducing fixed infrastructure costs.
 
