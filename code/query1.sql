@@ -1,5 +1,27 @@
--- 1. Overall latency distribution (mean, median, percentiles)
+-- 1. Overall latency distribution for agentic tool-calling RAG by provider (mean, median, percentiles)
+-- OpenAI (gpt-5-nano): messageids 315-402
+-- Ollama (gpt-oss-20b): messageids 412-501
+WITH
+    provider_data AS (
+        SELECT
+            CASE
+                WHEN messageid BETWEEN 315 AND 402 THEN 'OpenAI (gpt-5-nano)'
+                WHEN messageid BETWEEN 412 AND 501 THEN 'Ollama (gpt-oss-20b)'
+            END AS provider,
+            total,
+            tools,
+            embedding,
+            llm,
+            (metrics -> 'toolCalls' ->> 'count')::NUMERIC AS tool_calls,
+            (metrics -> 'modelCalls' ->> 'count')::NUMERIC AS llm_calls
+        FROM
+            public.AIChatPerformance
+        WHERE
+            messageid BETWEEN 315 AND 402
+            OR messageid BETWEEN 412 AND 501
+    )
 SELECT
+    provider,
     COUNT(*) AS total_queries,
     AVG(total) AS mean_total_ms,
     PERCENTILE_CONT(0.5) WITHIN GROUP (
@@ -10,33 +32,14 @@ SELECT
         ORDER BY
             total
     ) AS p95_total_ms,
-    MAX(total) AS max_total_ms,
+    AVG(tools) AS mean_tools_ms,
     AVG(embedding) AS mean_embedding_ms,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (
-        ORDER BY
-            embedding
-    ) AS median_embedding_ms,
-    PERCENTILE_CONT(0.95) WITHIN GROUP (
-        ORDER BY
-            embedding
-    ) AS p95_embedding_ms,
-    AVG(search) AS mean_search_ms,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (
-        ORDER BY
-            search
-    ) AS median_search_ms,
-    PERCENTILE_CONT(0.95) WITHIN GROUP (
-        ORDER BY
-            search
-    ) AS p95_search_ms,
-    AVG(response) AS mean_response_ms,
-    PERCENTILE_CONT(0.5) WITHIN GROUP (
-        ORDER BY
-            response
-    ) AS median_response_ms,
-    PERCENTILE_CONT(0.95) WITHIN GROUP (
-        ORDER BY
-            response
-    ) AS p95_response_ms
+    AVG(llm) AS mean_llm_ms,
+    AVG(tool_calls) AS avg_tool_calls,
+    AVG(llm_calls) AS avg_llm_calls
 FROM
-    public.AIChatPerformance;
+    provider_data
+GROUP BY
+    provider
+ORDER BY
+    provider;

@@ -7,10 +7,11 @@ skinparam ranksep 20
 actor User
 participant "Chat UI" as UI
 participant "API Layer" as API
-participant "Business Logic" as BL
+participant "Agent Controller" as BL
+participant "LLM Agent" as LLM
+participant "Retrieval Tool" as TOOL
 participant "Embedder" as EMB
 database "PostgreSQL\n+ pgvector" as DB
-participant "LLM Provider" as LLM
 
 User -> UI: Submit Query
 activate UI
@@ -23,27 +24,55 @@ API -> API: Validate Session
 API -> BL: Process Query(prompt, userKey)
 activate BL
 
-BL -> EMB: Generate Embedding(prompt)
-activate EMB
-EMB -> EMB: Queue Embedding Request
-EMB --> BL: Embedding Vector
-deactivate EMB
+BL -> BL: Load Chat History
+BL -> BL: Construct Agent:\n- System Instructions\n- Tool Definitions\n- Conversation History
 
-BL -> DB: Vector Similarity Search\n(embedding, k=5, userKey)
-activate DB
-DB -> DB: Filter by Permissions
-DB -> DB: Cosine Distance Ranking
-DB --> BL: Top-K Chunks\n+ Source Metadata
-deactivate DB
-
-BL -> BL: Construct Prompt:\n- System Instructions\n- Retrieved Context\n- Conversation History\n- User Question
-
-BL -> LLM: Generate Response\n(prompt, temperature=0.2)
+BL -> LLM: Stream Agent Execution\n(messages, tools)
 activate LLM
-LLM --> BL: AI Response
+
+LLM -> LLM: Reason: Does query\nneed retrieval?
+
+alt Tool Invocation Needed
+    LLM -> TOOL: Invoke plm_documentation_retriever\n(refined query)
+    activate TOOL
+    
+    TOOL -> EMB: Generate Embedding(query)
+    activate EMB
+    EMB --> TOOL: Embedding Vector
+    deactivate EMB
+    
+    TOOL -> DB: Vector Similarity Search\n(embedding, k=20-30, userKey)
+    activate DB
+    DB -> DB: Filter by Permissions
+    DB -> DB: Cosine Distance Ranking
+    DB --> TOOL: Semantic Candidates\n+ Similarity Scores
+    deactivate DB
+    
+    TOOL -> TOOL: BM25 Re-ranking:\n- Build in-memory index\n- Lexical matching\n- Top-8 results
+    
+    TOOL -> TOOL: Hybrid Scoring:\n- Semantic (60%)\n- BM25 (40%)\n- Final Top-5
+    
+    TOOL -> TOOL: Context Windowing:\nCombine adjacent chunks
+    
+    TOOL --> LLM: ToolMessage:\nDocumentation Chunks\n+ Source Metadata
+    deactivate TOOL
+    
+    LLM -> LLM: Reason with\nretrieved context
+    
+    opt Multiple Retrieval Rounds
+        LLM -> TOOL: Invoke again with\nrefined query
+        note right: Agent can iterate\nretrieval based on\nintermediate reasoning
+    end
+end
+
+LLM -> LLM: Generate Final Response\nwith Source Citations
+
+LLM --> BL: AIMessage:\nResponse + Tool Artifacts
 deactivate LLM
 
-BL -> DB: Save Chat History\n(user msg, AI response, sources)
+BL -> BL: Extract Sources\nfrom ToolMessage artifacts
+
+BL -> DB: Save Chat History:\n- SystemMessage\n- HumanMessage\n- ToolMessage(s)\n- AIMessage
 activate DB
 DB --> BL: Message IDs
 deactivate DB

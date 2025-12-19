@@ -1,156 +1,210 @@
-% Auto-generated LaTeX tables from performance queries
-% Generated: ma 24.11.2025 10.26.55 +0200
-% DO NOT EDIT MANUALLY - regenerate using export-latex-tables.py
-
 \chapter{RAG system performance evaluation results}
 \label{app:performance-tables}
 \renewcommand{\tablename}{Table}
 
 \begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lr}
-\toprule
-Metric & Value \\
-\midrule
-total\_queries & 30.00 \\
-mean\_total\_ms & 10560.02 \\
-median\_total\_ms & 10003.13 \\
-p95\_total\_ms & 14710.39 \\
-max\_total\_ms & 20833.61 \\
-mean\_embedding\_ms & 1239.99 \\
-median\_embedding\_ms & 1211.87 \\
-p95\_embedding\_ms & 2056.24 \\
-mean\_search\_ms & 14.30 \\
-median\_search\_ms & 12.62 \\
-p95\_search\_ms & 18.80 \\
-mean\_response\_ms & 9298.75 \\
-median\_response\_ms & 9212.14 \\
-p95\_response\_ms & 13478.32 \\
-\bottomrule
-\end{tabular}
-\caption{Overall latency distribution for chat queries (milliseconds)}
-\label{tab:latency-distribution}
+    \centering
+    \small
+    \begin{tabular}{lrr}
+        \toprule
+        Metric              & Ollama (gpt-oss-20b) & OpenAI (gpt-5-nano) \\
+        \midrule
+        total\_queries      & 30.00                & 30.00               \\
+        mean\_total\_ms     & 91407.39             & 25939.10            \\
+        median\_total\_ms   & 92431.47             & 22845.73            \\
+        p95\_total\_ms      & 163720.51            & 40208.49            \\
+        mean\_tools\_ms     & 78.72                & 92.83               \\
+        mean\_embedding\_ms & 61.01                & 79.72               \\
+        mean\_llm\_ms       & 91315.91             & 25836.98            \\
+        avg\_tool\_calls    & 1.30                 & 1.33                \\
+        avg\_llm\_calls     & 2.30                 & 2.30                \\
+        \bottomrule
+    \end{tabular}
+    \caption{Overall latency distribution by provider: OpenAI (gpt-5-nano) vs Ollama (gpt-oss-20b)}
+    \label{tab:latency-distribution}
 \end{table}
 
 \begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lr}
-\toprule
-Metric & Value \\
-\midrule
-embedding\_pct & 11.72 \\
-search\_pct & 0.15 \\
-response\_pct & 88.05 \\
-\bottomrule
-\end{tabular}
-\caption{Stage contribution to total chat latency (percentage)}
-\label{tab:stage-contribution}
+    \centering
+    \small
+    \begin{tabular}{lrr}
+        \toprule
+        Metric               & Ollama (gpt-oss-20b) & OpenAI (gpt-5-nano) \\
+        \midrule
+        tools\_pct           & 0.11                 & 0.41                \\
+        embedding\_pct       & 0.08                 & 0.36                \\
+        llm\_pct             & 99.87                & 99.54               \\
+        vector\_search\_pct  & 0.02                 & 0.04                \\
+        reranking\_pct       & 0.00                 & 0.00                \\
+        chunk\_grouping\_pct & 0.00                 & 0.00                \\
+        \bottomrule
+    \end{tabular}
+    \caption{Stage contribution to total chat latency by provider (percentage)}
+    \label{tab:stage-contribution}
+\end{table}
+
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrrr}
+        \toprule
+        time\_bucket        & chunks\_per\_min & docs\_per\_min & mean\_embedding\_ms \\
+        \midrule
+        2025-11-19 15:10:00 & 31.00            & 24.00          & 1245.55             \\
+        2025-11-19 15:11:00 & 68.00            & 50.00          & 1056.58             \\
+        2025-11-19 15:12:00 & 71.00            & 29.00          & 1856.01             \\
+        2025-11-19 15:13:00 & 30.00            & 8.00           & 2763.40             \\
+        2025-11-19 15:20:00 & 17.00            & 2.00           & 28109.82            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Embedding throughput per minute}
+    \label{tab:embedding-throughput}
 \end{table}
 
 \begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lrrr}
-\toprule
-time\_bucket & chunks\_per\_min & docs\_per\_min & mean\_embedding\_ms \\
-\midrule
-2025-11-19 15:10:00 & 31.00 & 24.00 & 1245.55 \\
-2025-11-19 15:11:00 & 68.00 & 50.00 & 1056.58 \\
-2025-11-19 15:12:00 & 71.00 & 29.00 & 1856.01 \\
-2025-11-19 15:13:00 & 30.00 & 8.00 & 2763.40 \\
-2025-11-19 15:20:00 & 17.00 & 2.00 & 28109.82 \\
-\bottomrule
-\end{tabular}
-\caption{Embedding throughput per minute}
-\label{tab:embedding-throughput}
+    \centering
+    \small
+    \begin{tabular}{lrrr}
+        \toprule
+        sourcetype  & extraction\_pct & embedding\_pct & bottleneck \\
+        \midrule
+        sovelia     & 0.52            & 98.98          & Embedding  \\
+        document360 & 0.17            & 80.95          & Embedding  \\
+        umbraco     & 0.35            & 96.30          & Embedding  \\
+        \bottomrule
+    \end{tabular}
+    \caption{Extraction vs. embedding bottleneck per source type}
+    \label{tab:extraction-embedding-bottleneck}
 \end{table}
 
 \begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lrrr}
-\toprule
-sourcetype & extraction\_pct & embedding\_pct & bottleneck \\
-\midrule
-sovelia & 0.52 & 98.98 & Embedding \\
-document360 & 0.17 & 80.95 & Embedding \\
-umbraco & 0.35 & 96.30 & Embedding \\
-\bottomrule
-\end{tabular}
-\caption{Extraction vs. embedding bottleneck per source type}
-\label{tab:extraction-embedding-bottleneck}
+    \centering
+    \small
+    \begin{tabular}{lr}
+        \toprule
+        Metric                & Value   \\
+        \midrule
+        total\_chunks         & 217.00  \\
+        total\_documents      & 113.00  \\
+        mean\_chunk\_length   & 1166.53 \\
+        min\_chunk\_length    & 56.00   \\
+        max\_chunk\_length    & 1,999   \\
+        median\_chunk\_length & 1095.00 \\
+        \bottomrule
+    \end{tabular}
+    \caption{Vector database chunk size distribution}
+    \label{tab:chunk-size-distribution}
 \end{table}
 
 \begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lr}
-\toprule
-Metric & Value \\
-\midrule
-total\_chunks & 217.00 \\
-total\_documents & 113.00 \\
-mean\_chunk\_length & 1166.53 \\
-min\_chunk\_length & 56.00 \\
-max\_chunk\_length & 1,999 \\
-median\_chunk\_length & 1095.00 \\
-\bottomrule
-\end{tabular}
-\caption{Vector database chunk size distribution}
-\label{tab:chunk-size-distribution}
+    \centering
+    \small
+    \begin{tabular}{lr}
+        \toprule
+        sourcetype  & document\_count \\
+        \midrule
+        document360 & 95.00           \\
+        umbraco     & 16.00           \\
+        sovelia     & 2.00            \\
+        \bottomrule
+    \end{tabular}
+    \caption{Document inventory per source type}
+    \label{tab:document-inventory}
 \end{table}
 
 \begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lr}
-\toprule
-sourcetype & document\_count \\
-\midrule
-document360 & 95.00 \\
-umbraco & 16.00 \\
-sovelia & 2.00 \\
-\bottomrule
-\end{tabular}
-\caption{Document inventory per source type}
-\label{tab:document-inventory}
+    \centering
+    \small
+    \begin{tabular}{lr}
+        \toprule
+        Metric      & Value     \\
+        \midrule
+        queries     & 30.00     \\
+        in\_tokens  & 97471.00  \\
+        out\_tokens & 53769.00  \\
+        all\_tokens & 151240.00 \\
+        in\_cost    & 0.00      \\
+        out\_cost   & 0.02      \\
+        tot\_cost   & 0.03      \\
+        \bottomrule
+    \end{tabular}
+    \caption{Token usage and cost summary (OpenAI gpt-5-nano only, cost in USD)}
+    \label{tab:token-cost-summary}
 \end{table}
 
 \begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lr}
-\toprule
-Metric & Value \\
-\midrule
-queries & 30.00 \\
-in\_tokens & 32198.00 \\
-out\_tokens & 45733.00 \\
-all\_tokens & 77931.00 \\
-in\_cost & 0.00 \\
-out\_cost & 0.02 \\
-tot\_cost & 0.02 \\
-\bottomrule
-\end{tabular}
-\caption{Token usage and cost summary}
-\label{tab:token-cost-summary}
+    \centering
+    \small
+    \begin{tabular}{lrrrr}
+        \toprule
+        threshold\_ms & \multicolumn{2}{c}{Ollama (gpt-oss-20b)} & \multicolumn{2}{c}{OpenAI (gpt-5-nano)}                                    \\
+                      & queries\_under                           & compliance\_pct                         & queries\_under & compliance\_pct \\
+        \midrule
+        10,000        & 0.00                                     & 0.00                                    & 0.00           & 0.00            \\
+        15,000        & 0.00                                     & 0.00                                    & 2.00           & 33.33           \\
+        20,000        & 1.00                                     & 16.67                                   & 8.00           & 133.33          \\
+        30,000        & 2.00                                     & 33.33                                   & 24.00          & 400.00          \\
+        40,000        & 5.00                                     & 83.33                                   & 28.00          & 466.67          \\
+        50,000        & 7.00                                     & 116.67                                  & 29.00          & 483.33          \\
+        \bottomrule
+    \end{tabular}
+    \caption{Latency SLA compliance by provider and threshold}
+    \label{tab:sla-compliance}
 \end{table}
 
 \begin{table}[htbp]
-\centering
-\small
-\begin{tabular}{lrr}
-\toprule
-threshold\_ms & queries\_under\_threshold & compliance\_pct \\
-\midrule
-10,000 & 15.00 & 500.00 \\
-15,000 & 28.00 & 933.33 \\
-20,000 & 29.00 & 966.67 \\
-\bottomrule
-\end{tabular}
-\caption{Latency SLA compliance per threshold}
-\label{tab:sla-compliance}
+    \centering
+    \small
+    \begin{tabular}{lrr}
+        \toprule
+        Metric                     & Ollama (gpt-oss-20b) & OpenAI (gpt-5-nano) \\
+        \midrule
+        mean\_vector\_search\_ms   & 15.71                & 11.65               \\
+        mean\_bm25\_rerank\_ms     & 1.19                 & 0.86                \\
+        mean\_hybrid\_rerank\_ms   & 0.01                 & 0.01                \\
+        mean\_chunk\_group\_ms     & 0.09                 & 0.07                \\
+        mean\_retriever\_total\_ms & 78.06                & 92.34               \\
+        \bottomrule
+    \end{tabular}
+    \caption{Retrieval pipeline stage breakdown by provider (milliseconds)}
+    \label{tab:retrieval-stages}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrr}
+        \toprule
+        Metric                & Ollama (gpt-oss-20b) & OpenAI (gpt-5-nano) \\
+        \midrule
+        min\_tools            & 1.00                 & 1.00                \\
+        max\_tools            & 4.00                 & 6.00                \\
+        avg\_tools            & 1.30                 & 1.33                \\
+        single\_tool\_queries & 23.00                & 26.00               \\
+        multi\_tool\_queries  & 7.00                 & 4.00                \\
+        multi\_tool\_pct      & 23.33                & 13.33               \\
+        \bottomrule
+    \end{tabular}
+    \caption{Tool calling patterns by provider}
+    \label{tab:tool-patterns}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrr}
+        \toprule
+        Metric                   & Ollama (gpt-oss-20b) & OpenAI (gpt-5-nano) \\
+        \midrule
+        avg\_llm\_calls          & 2.30                 & 2.30                \\
+        mean\_first\_call\_ms    & 36994.77             & 5130.10             \\
+        mean\_second\_call\_ms   & 42168.50             & 16361.15            \\
+        second\_to\_first\_ratio & 4.85                 & 3.57                \\
+        mean\_total\_llm\_ms     & 91315.91             & 25836.98            \\
+        \bottomrule
+    \end{tabular}
+    \caption{LLM call patterns by provider (initial decision vs final response)}
+    \label{tab:llm-patterns}
 \end{table}
 
