@@ -1,9 +1,9 @@
 % Auto-generated LaTeX tables from expert evaluation results
-% Generated: ti 9.12.2025 16.26.39 +0200
+% Generated: ma 12.1.2026 13.56.41 +0200
 % DO NOT EDIT MANUALLY - regenerate using export-evaluation-tables.py
 
 \chapter{RAG system expert evaluation results}
-\label{app:evaluation-tables}
+\label{app:expert-tables}
 \renewcommand{\tablename}{Table}
 
 \begin{table}[htbp]
@@ -13,10 +13,10 @@
         \toprule
         Dimension          & Mean & Median & Std Dev & Range \\
         \midrule
-        Factual Accuracy   & 4.70 & 5.0    & 0.60    & 3--5  \\
-        Relevance          & 4.50 & 5.0    & 0.78    & 2--5  \\
-        Source Attribution & 4.83 & 5.0    & 0.46    & 3--5  \\
-        Completeness       & 4.70 & 5.0    & 0.60    & 3--5  \\
+        Factual Accuracy   & 4.36 & 5.0    & 1.15    & 1--5  \\
+        Relevance          & 4.31 & 5.0    & 1.01    & 1--5  \\
+        Source Attribution & 4.49 & 5.0    & 1.09    & 1--5  \\
+        Completeness       & 4.32 & 5.0    & 1.13    & 1--5  \\
         \bottomrule
     \end{tabular}
     \caption{Summary statistics for expert evaluation across all dimensions (N=30 queries)}
@@ -28,9 +28,11 @@
     \small
     \begin{tabular}{lrrrr}
         \toprule
-        Evaluator      & Accuracy & Relevance & Attribution & Completeness \\
+        Evaluator                   & Accuracy & Relevance & Attribution & Completeness \\
         \midrule
-        Product Expert & 4.70     & 4.50      & 4.83        & 4.70         \\
+        Product Expert              & 4.70     & 4.50      & 4.83        & 4.70         \\
+        Product Manager             & 3.90     & 3.80      & 4.07        & 3.87         \\
+        Senior Application Engineer & 4.47     & 4.63      & 4.57        & 4.40         \\
         \bottomrule
     \end{tabular}
     \caption{Mean evaluation scores by expert evaluator}
@@ -42,13 +44,13 @@
     \small
     \begin{tabular}{lrrrrr}
         \toprule
-        Category          & N & Accuracy & Relevance & Attribution & Completeness \\
+        Category          & Accuracy & Relevance & Attribution & Completeness \\
         \midrule
-        Version-specific  & 6 & 4.50     & 4.50      & 4.67        & 4.67         \\
-        Feature inquiries & 6 & 4.83     & 4.67      & 4.83        & 4.67         \\
-        Troubleshooting   & 6 & 5.00     & 5.00      & 5.00        & 5.00         \\
-        Integration       & 6 & 4.17     & 3.83      & 4.67        & 4.17         \\
-        Procedural        & 6 & 5.00     & 4.50      & 5.00        & 5.00         \\
+        Version-specific  & 4.61     & 4.56      & 4.78        & 4.67         \\
+        Feature inquiries & 4.17     & 4.56      & 4.44        & 4.33         \\
+        Troubleshooting   & 4.22     & 4.17      & 4.28        & 4.17         \\
+        Integration       & 4.06     & 3.89      & 4.22        & 3.94         \\
+        Procedural        & 4.72     & 4.39      & 4.72        & 4.50         \\
         \bottomrule
     \end{tabular}
     \caption{Mean evaluation scores by question category}
@@ -62,12 +64,55 @@
         \toprule
         Dimension    & Score 1 & Score 2 & Score 3 & Score 4 & Score 5 \\
         \midrule
-        Accuracy     & 0.0\%   & 0.0\%   & 6.7\%   & 16.7\%  & 76.7\%  \\
-        Relevance    & 0.0\%   & 3.3\%   & 6.7\%   & 26.7\%  & 63.3\%  \\
-        Attribution  & 0.0\%   & 0.0\%   & 3.3\%   & 10.0\%  & 86.7\%  \\
-        Completeness & 0.0\%   & 0.0\%   & 6.7\%   & 16.7\%  & 76.7\%  \\
+        Accuracy     & 5.6\%   & 4.4\%   & 7.8\%   & 13.3\%  & 68.9\%  \\
+        Relevance    & 1.1\%   & 6.7\%   & 13.3\%  & 17.8\%  & 61.1\%  \\
+        Attribution  & 5.6\%   & 2.2\%   & 6.7\%   & 8.9\%   & 76.7\%  \\
+        Completeness & 5.6\%   & 2.2\%   & 12.2\%  & 14.4\%  & 65.6\%  \\
         \bottomrule
     \end{tabular}
     \caption{Score distribution across evaluation dimensions (percentage of responses)}
     \label{tab:evaluation-score-distribution}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \begin{tabular}{lrrrr}
+        \toprule
+        Question & Accuracy & Relevance & Attribution & Completeness \\
+        \midrule
+        Q1.1     & 4.3      & 4.3       & 5.0         & 4.7          \\
+        Q1.2     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q1.3     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q1.4     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q1.5     & 5.0      & 4.3       & 5.0         & 4.7          \\
+        Q1.6     & 3.3      & 3.7       & 3.7         & 3.7          \\
+        Q2.1     & 3.3      & 4.3       & 4.3         & 4.3          \\
+        Q2.2     & 4.7      & 5.0       & 5.0         & 5.0          \\
+        Q2.3     & 3.7      & 4.7       & 3.7         & 3.7          \\
+        Q2.4     & 3.3      & 3.3       & 3.7         & 3.7          \\
+        Q2.5     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q2.6     & 5.0      & 5.0       & 5.0         & 4.3          \\
+        Q3.1     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q3.2     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q3.3     & 5.0      & 4.7       & 5.0         & 4.7          \\
+        Q3.4     & 4.7      & 4.3       & 4.7         & 4.7          \\
+        Q3.5     & 2.3      & 2.7       & 2.3         & 2.3          \\
+        Q3.6     & 3.3      & 3.3       & 3.7         & 3.3          \\
+        Q4.1     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q4.2     & 2.3      & 2.7       & 2.7         & 2.3          \\
+        Q4.3     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q4.4     & 3.7      & 3.3       & 4.0         & 3.7          \\
+        Q4.5     & 4.3      & 3.3       & 4.3         & 3.7          \\
+        Q4.6     & 4.0      & 4.0       & 4.3         & 4.0          \\
+        Q5.1     & 4.3      & 4.3       & 4.3         & 4.3          \\
+        Q5.2     & 5.0      & 5.0       & 5.0         & 5.0          \\
+        Q5.3     & 5.0      & 4.0       & 5.0         & 3.7          \\
+        Q5.4     & 5.0      & 4.7       & 5.0         & 5.0          \\
+        Q5.5     & 4.7      & 4.3       & 4.7         & 4.7          \\
+        Q5.6     & 4.3      & 4.0       & 4.3         & 4.3          \\
+        \bottomrule
+    \end{tabular}
+    \caption{Detailed evaluation scores per question (averaged across evaluators)}
+    \label{tab:evaluation-detailed}
 \end{table}
