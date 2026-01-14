@@ -136,26 +136,6 @@
 \begin{table}[htbp]
     \centering
     \small
-    \begin{tabular}{lrrrr}
-        \toprule
-        threshold\_ms & \multicolumn{2}{c}{Ollama (gpt-oss-20b)} & \multicolumn{2}{c}{OpenAI (gpt-5-nano)}                                    \\
-                      & queries\_under                           & compliance\_pct                         & queries\_under & compliance\_pct \\
-        \midrule
-        10,000        & 0.00                                     & 0.00                                    & 0.00           & 0.00            \\
-        15,000        & 0.00                                     & 0.00                                    & 2.00           & 33.33           \\
-        20,000        & 1.00                                     & 16.67                                   & 8.00           & 133.33          \\
-        30,000        & 2.00                                     & 33.33                                   & 24.00          & 400.00          \\
-        40,000        & 5.00                                     & 83.33                                   & 28.00          & 466.67          \\
-        50,000        & 7.00                                     & 116.67                                  & 29.00          & 483.33          \\
-        \bottomrule
-    \end{tabular}
-    \caption{Latency SLA compliance by provider and threshold}
-    \label{tab:sla-compliance}
-\end{table}
-
-\begin{table}[htbp]
-    \centering
-    \small
     \begin{tabular}{lrr}
         \toprule
         Metric                     & Ollama (gpt-oss-20b) & OpenAI (gpt-5-nano) \\
