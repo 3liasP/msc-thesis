@@ -8,7 +8,7 @@ LaTeX thesis on integrating a RAG chatbot into Sovelia Core, an on-premise PLM p
 
 **Problem**: Knowledge silos in Sovelia documentation (Help files, release notes, SOPs) hinder onboarding and support.
 
-**Solution**: RAG-based AI assistant for contextual query responses from vendor and customer documentation.
+**Solution**: Agentic RAG-based AI assistant for contextual query responses from vendor and customer documentation.
 
 **Research Questions**:
 
