@@ -40,6 +40,7 @@ LaTeX thesis on integrating a RAG chatbot into Sovelia Core, an on-premise PLM p
 - Practitioner-oriented (balance theory and implementation).
 - Evidence-based (data, literature, empirics).
 - Reflective (acknowledge limitations and trade-offs).
+- Use European decial commas (e.g., 3,14). and spaces for thousands (e.g., 1 000).
 
 ### LaTeX Conventions
 
