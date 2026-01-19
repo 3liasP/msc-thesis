@@ -219,12 +219,3 @@ Procedural weaknesses also suggest that the system should more often take a mult
 From an infrastructure perspective, the performance results indicate that LLM inference dominates end-to-end latency, while retrieval remains fast at the evaluated scale. This means that deployments should prioritize LLM serving choices and inference optimization over further retrieval complexity. Hybrid cloud-local deployment remains a practical option, because embedding and retrieval can remain on-premise while LLM inference is selected based on policy and latency requirements.
 
 Finally, the evaluation suggests that improvements should be targeted where they provide the most value. For response quality, the highest leverage comes from improving documentation coverage for procedural and versioned topics. For system responsiveness, the highest leverage comes from improving LLM inference performance, for example by choosing a faster provider or a more optimized on-premise inference framework. This however needs to be balanced against cost, data governance, and infrastructure complexity considerations so there is no one-size-fits-all solution for all organizations.
-
-\section{Chapter summary}
-\label{sec:evaluation-summary}
-
-This chapter evaluated the implemented RAG-based assistant using two complementary perspectives. Response quality was assessed through expert ratings and qualitative comments on a 30-question set covering feature inquiries, procedural tasks, troubleshooting, version-specific queries, and integrations. System performance was assessed using measured latency, tool usage patterns, and token consumption under a scripted load.
-
-Expert evaluation showed strong overall response quality with high source attribution and generally high accuracy, relevance, and completeness. At the same time, the detailed results show that weaknesses were concentrated in a small number of questions, especially procedural workflows and version-specific queries where the source documentation was incomplete, fragmented, or missing explicit version context.
-
-Performance measurements showed that end-to-end latency was dominated by LLM inference rather than retrieval. At the evaluated scale, vector search and reranking completed in under 100 milliseconds, while model choice and inference deployment determined overall response time. Taken together, the results indicate that documentation coverage and LLM deployment decisions are the main practical levers for improving a production-ready PLM documentation assistant.
