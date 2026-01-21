@@ -1,106 +1,22 @@
-\chapter{Conclusion}
-\label{ch:conclusion}
+\chapter{Conclusions}
+\label{ch:conclusions}
 
-This thesis designed, implemented, and evaluated an AI-powered documentation assistant for Sovelia Core that applies Retrieval-Augmented Generation (RAG) in an on-premise Product Lifecycle Management setting. The work addressed the practical problem described in Chapter~\ref{ch:introduction}: documentation relevant for daily PLM work is often fragmented across vendor help content, release notes, and customer-specific procedures, which increases search effort and support workload.
+This thesis designed, implemented, and evaluated an AI-powered documentation assistant for Sovelia Core that applies Retrieval-Augmented Generation in an on-premise PLM environment. The work demonstrates that RAG-based assistance can be integrated into enterprise systems under strict governance constraints while achieving usable response quality.
 
-The study followed a Design Science Research approach within a single case study (Chapter~\ref{ch:research-methodology}). The artifact was intentionally developed under realistic constraints for manufacturing organizations, in particular data governance, on-premise infrastructure, and the need to integrate with existing access control. The resulting system design and implementation are presented in Chapter~\ref{ch:system-design-and-implementation}, and the evaluation results are reported in Chapter~\ref{ch:evaluation-and-results}.
+The evaluation indicates that documentation coverage and structure are the decisive determinants of answer quality in domain-specific RAG deployments. Retrieval and generation amplify both strengths and weaknesses of the underlying documentation: when the corpus is complete and consistently written, relatively simple retrieval strategies suffice, while missing or ambiguous source material limits performance regardless of retrieval complexity. This finding has direct implications for organizations considering RAG deployment, as it shifts focus from algorithmic sophistication to documentation quality as the primary lever for improvement.
 
-\section{Research contributions}
+The implemented architecture provides empirical support for a hybrid deployment pattern: retrieval and embeddings can remain on-premise while LLM inference is selected based on policy and performance needs. This pattern offers a pragmatic alternative to fully cloud-based or fully on-premise solutions, accommodating both data sovereignty requirements and practical performance constraints.
 
-This research provides theoretical and practical contributions for the design and deployment of RAG-based documentation assistance in on-premise enterprise environments.
+The evaluation approach contributes a factored assessment framework suitable for technical documentation assistants, especially for those deployed in PLM environments. Response quality was assessed across four separable dimensions (factual accuracy, relevance, source attribution, and completeness), enabling distinction between retrieval failures and generation issues. This diagnostic capability proved valuable for identifying specific weaknesses, such as missing procedural details or version context gaps.
 
-\subsection{Theoretical contributions}
+Performance measurements illustrate that on-premise inference latency depends more on framework optimization and serving architecture than on raw GPU capacity. This observation separates the question of data residency from the question of inference efficiency, informing deployment decisions for organizations with strict on-premise requirements.
 
-The evaluation in Chapter~\ref{ch:evaluation-and-results} indicates that documentation coverage and structure are decisive determinants of answer quality in domain-specific RAG deployments. In practice, retrieval and generation amplify both strengths and weaknesses of the underlying documentation. When the corpus is complete and consistently written, relatively simple retrieval (vector similarity search with BM25 reranking) can be sufficient, while missing or ambiguous source material limits performance regardless of retrieval complexity.
+From a practical perspective, the work delivers a production-ready assistant achieving expert evaluation scores between 4,31 and 4,49 on a 5-point Likert scale across all quality dimensions. The architecture demonstrates that effective RAG can be implemented using existing PostgreSQL infrastructure augmented with pgvector, database-level access control, and a maintainable documentation pipeline. The design treats the assistant as an extension of existing PLM interfaces rather than a separate system, reducing integration complexity and preserving established permission models and overall architecture.
 
-The system architecture described in Chapter~\ref{ch:system-design-and-implementation} provides empirical support for a hybrid deployment pattern that fits common governance constraints: retrieval and embeddings can be kept on-premise, while LLM inference can be selected between local and cloud providers depending on policy and performance needs. This pattern offers a pragmatic alternative to the two extremes that dominate the discussion in Chapter~\ref{ch:literature-review} (fully cloud-based solutions versus fully on-premise solutions).
+The research questions posed in Chapter~\ref{ch:introduction} are addressed through the design and evaluation. For RQ1 (architecture), the work demonstrates that PostgreSQL with pgvector provides adequate performance without requiring a separate vector database, while hybrid deployment supports both governance constraints and practical performance needs. Database-level access control enforcement aligns the assistant with existing PLM permissions and prevents information leakage. For RQ2 (pipeline engineering), the evaluation shows that reliability depends on predictable interfaces and lifecycle handling, while maintainability requires modular components, configuration-driven parameters, and version-aware updates. Chunking parameters should be treated as tunable configurations rather than fixed design decisions. For RQ3 (risk mitigation), the most critical risk proved to be insufficient documentation rather than technical failures. Access control risks are mitigated through retrieval-time enforcement, stale context through version-aware processing, and hallucination through required source attribution. Category-specific weaknesses in procedural and version-specific questions can be addressed through targeted documentation improvements and multi-step retrieval strategies.
 
-This thesis also contributes an evaluation approach suitable for technical documentation assistants. Response quality was assessed through expert review across four separable dimensions (factual accuracy, relevance, source attribution, and completeness). This factored framing supports diagnosis: it helps distinguish retrieval failures (missing or irrelevant context) from generation issues (incorrect synthesis), which is not possible when only aggregate scores are reported.
+Several limitations constrain generalizability. The evaluation was conducted on a limited corpus and bounded question set. Production deployments may involve larger and more heterogeneous documentation, changing both retrieval behavior and answer quality. Performance results reflect specific hardware and deployment configurations. Expert evaluation provided detailed feedback, but limited evaluator numbers constrain statistical generalization. The question set focused on text-based queries, leaving multi-part questions and multi-modal needs underexplored. The study relied on expert rather than end-user evaluation due to the pre-release nature of the feature, limiting insights into real-world usability and impact.
 
-Finally, the performance results in Chapter~\ref{ch:evaluation-and-results} illustrate that on-premise inference latency is not determined solely by GPU capacity. Framework constraints and optimization maturity strongly influence response times. This observation is relevant for deployment decisions because it separates the question of data residency (on-premise versus cloud) from the question of inference efficiency (framework and model serving choices).
+Future work should focus on operational sustainability and user impact. Documentation improvement deserves dedicated attention through measurable quality indicators and evaluation of how targeted changes affect RAG answer quality. Integration questions remain challenging due to information distribution across system boundaries, motivating research on retrieval strategies that connect CAD, PLM, and ERP concepts. On-premise inference performance can likely be improved through modern multi-GPU serving frameworks. User-facing evaluation should complement expert judgement through longitudinal studies measuring task completion, time-to-resolution, and adoption patterns.
 
-\subsection{Practical contributions}
-
-From a practical perspective, this thesis delivers a RAG-based documentation assistant integrated with Sovelia Core and evaluated through expert assessment and performance testing (Chapter~\ref{ch:evaluation-and-results}). The results indicate that the system can reach a quality level that is meaningful in daily work, particularly when documentation coverage is good and users benefit from direct source attribution.
-
-The implemented architecture (Chapter~\ref{ch:system-design-and-implementation}) demonstrates an integration strategy that is compatible with existing enterprise systems. It combines database-level access control during retrieval, a provider abstraction that supports multiple LLM backends, and a documentation pipeline that can be operated as a routine maintenance activity. The design treats the assistant as an extension of the existing PLM interface rather than a separate system with independent permissions.
-
-The documentation pipeline provides a concrete pattern for maintaining a RAG corpus over time. It integrates multiple source types (including vendor content via the Document360 API \parencite{Document360API}) and supports version-aware updates so that content changes propagate without unnecessary recomputation. This operational aspect is central in practice: without a reliable update process, RAG systems risk becoming outdated and therefore untrusted.
-
-The cost analysis frames the trade-off between cloud inference and local infrastructure in operational terms. For interactive assistance, API-based inference can be economically viable at moderate query volumes, while local inference becomes attractive primarily when policy constraints require it or when sustained usage justifies the operational investment.
-
-\section{Addressing the research questions}
-
-The research questions posed in Chapter~\ref{ch:introduction} guided the design and evaluation of the artifact. The findings across the design and evaluation chapters provide the following answers.
-
-\subsection{RQ1: RAG system architecture for on-premise PLM environments}
-
-The first research question asked: \textit{What RAG system architecture best fits Sovelia Core's on-premise, PostgreSQL-based environment and data governance constraints?}
-
-The architecture presented in Chapter~\ref{ch:system-design-and-implementation} demonstrates that an effective RAG assistant can be implemented using existing PostgreSQL infrastructure augmented with pgvector, without adopting a separate vector database. This choice reduces operational overhead and keeps structured PLM data, document metadata, and embeddings within one governed data platform.
-
-The hybrid deployment model further supports governance constraints by keeping retrieval and document storage on-premise, while allowing the inference provider to be selected based on policy and performance needs. When full on-premise operation is required, the same interfaces can be used with local inference backends, with the performance trade-offs documented in Chapter~\ref{ch:evaluation-and-results}.
-
-Access control is enforced during retrieval at the database level, so that unauthorized content is excluded before it can influence generation. This approach aligns the assistant with existing PLM permission boundaries and reduces the risk of information leakage through responses.
-
-\subsection{RQ2: Documentation pipeline engineering}
-
-The second research question asked: \textit{How should customer documentation pipelines (parse $ \rightarrow $ chunk $ \rightarrow $ embed $ \rightarrow $ retire) be engineered for reliability, maintainability, and cost efficiency?}
-
-The pipeline described in Chapter~\ref{ch:system-design-and-implementation} demonstrates that reliability and maintainability depend on predictable interfaces and lifecycle handling. Multi-source extraction, version-aware updates, and cascade deletion reduce manual intervention and prevent stale or orphaned content from accumulating.
-
-In this case study, the chosen chunking parameters provided a workable balance between context completeness and retrieval precision, and they performed adequately across the evaluated query categories (Chapter~\ref{ch:evaluation-and-results}). The main operational insight is that chunking should be treated as a configurable parameter set that can be tuned against observed failure cases rather than as a one-time design decision.
-
-Cost efficiency can be improved by generating embeddings locally, which avoids per-embedding API costs and keeps sensitive content within controlled infrastructure. The pipeline supports scheduled batch updates, which allows synchronization to be performed during off-peak periods and reduces operational disruption.
-
-Maintainability is supported through modular components, configuration-driven parameters, and logging suitable for troubleshooting. Provider abstraction keeps the implementation adaptable as embedding models and inference backends evolve.
-
-\subsection{RQ3: Risk mitigation in practice}
-
-The third research question asked: \textit{Which risks, particularly those related to access control and stale context, are most critical, and what mitigations work in practice?}
-
-The evaluation in Chapter~\ref{ch:evaluation-and-results} indicates that the most critical risk in practice is insufficient or inconsistent documentation. When source material is missing, the system cannot provide reliable answers regardless of retrieval strategy. The primary mitigation is therefore organizational rather than purely technical: systematic documentation improvement, with particular attention to cross-system workflows and troubleshooting content.
-
-Access control risks are mitigated by enforcing permissions during retrieval, not after generation. This ensures that restricted content does not reach the language model and aligns the assistant with the existing PLM security model.
-
-Stale context risks are addressed through version-aware processing and periodic synchronization from authoritative sources. This reduces the likelihood that outdated instructions are served as current guidance.
-
-Hallucination risks are mitigated by requiring source attribution and by structuring prompts so that responses are grounded in retrieved context. Source-linked answers allow users to verify claims and support trust-building in operational use.
-
-Category-specific weaknesses were observed procedural questions and version-specific questions. These can be mitigated through targeted documentation updates and by refining retrieval strategies (e.g. by doing multiple tool calls) to better capture procedural steps and version differences.
-
-\section{Limitations and future research directions}
-
-Several limitations constrain the generalizability of these findings and suggest promising directions for future research.
-
-\subsection{Study limitations}
-
-The evaluation (Chapter~\ref{ch:evaluation-and-results}) was conducted on a limited corpus and a bounded question set. Production deployments may involve much larger and more heterogeneous documentation as the feature gets widely adopted, including more customer-specific content and legacy manuals, which can change both retrieval behavior and answer quality.
-
-Performance results reflect a specific hardware and deployment configuration. Different environments, concurrency levels, and inference frameworks can change latency and throughput characteristics.
-
-Expert evaluation provided detailed qualitative feedback, but the number of evaluators limits statistical generalisation and highlights the need for careful calibration in human rating tasks.
-
-The question set does not necessarily represent the full distribution of real user needs, and the evaluation focused on text-based queries. Multi-part questions, customer-specific scenarios, and multi-modal information needs remain underexplored.
-
-Finally, the study relied on expert evaluation rather than end-user testing because of the pre-release nature of this feature as of writing this thesis. Complementary user studies would better capture novice perspectives, task completion outcomes, and productivity effects in daily work.
-
-\subsection{Future research directions}
-
-Future work should primarily focus on operational sustainability and user impact.
-
-First, documentation improvement deserves dedicated attention. Future studies could operationalize documentation quality through measurable indicators (coverage, consistency, presence of prerequisites and error handling) and evaluate how targeted documentation changes affect RAG answer quality.
-
-Second, integration questions remain challenging because the relevant information is spread across system boundaries. This motivates research on retrieval strategies that explicitly connect CAD, PLM, and ERP concepts, for example through structured metadata or lightweight knowledge graphs, and on evaluation sets designed for multi-system workflows.
-
-Third, on-premise inference performance can likely be improved through modern multi-GPU serving frameworks and improved deployment practices. Comparative studies that report latency, throughput, and cost across frameworks would provide more actionable guidance for organizations with strict data residency requirements.
-
-Finally, user-facing evaluation should complement expert judgement. Longitudinal studies with production users and usage logging can measure task completion, time-to-resolution, and adoption patterns, and can reveal whether improvements persist as documentation changes over time.
-
-\section{Closing remarks}
-
-This thesis demonstrates that RAG can provide practical value in on-premise PLM environments when it is implemented as a governed extension of existing systems. The work shows that a usable assistant is achievable without a complete platform redesign, provided that retrieval respects access control and that the documentation pipeline is treated as an operational responsibility (Chapter~\ref{ch:system-design-and-implementation}).
-
-The evaluation results (Chapter~\ref{ch:evaluation-and-results}) support the central insight that the main limiting factor is typically the documentation itself. For organizations considering similar deployments, this implies that technical implementation and documentation improvement should be treated as a combined programme: the system makes existing knowledge easier to access, but it also reveals where that knowledge is missing.
-
-Taken together, the answers to RQ1--RQ3 indicate that an on-premise, PostgreSQL-based RAG architecture with permission-aware retrieval and maintainable ingestion can satisfy governance requirements while still providing usable response quality. This provides a concrete example of a baseline for further development of documentation assistance in enterprise PLM contexts.
+This work demonstrates that RAG can provide practical value in on-premise PLM environments when implemented as a governed extension of existing systems. The evaluation supports the insight that documentation quality is typically the main limiting factor. For organizations considering similar deployments, technical implementation and documentation improvement should be treated as a combined effort: the system makes existing knowledge easier to access while revealing where that knowledge is missing. An on-premise, PostgreSQL-based RAG architecture with permission-aware retrieval and maintainable ingestion can satisfy governance requirements while providing usable response quality, establishing a baseline for further development of documentation assistance in enterprise PLM contexts and in Sovelia Core specifically.
