@@ -79,9 +79,6 @@ Figure~\ref{fig:provider-abstraction} illustrates the provider abstraction layer
 
 The documentation pipeline transforms source material into searchable embeddings. It follows a four-stage flow (acquisition, chunking, embedding, storage), consistent with practical implementations reported in comparable RAG integrations \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025, shejutiExtendedAbstractEnhancing2025}.
 
-\subsection{Pipeline processing and orchestration}
-\label{subsec:pipeline-stages}
-
 Documentation is ingested from three sources: internal PLM documents (stored inside the Sovelia Core server), Sovelia release notes retrieved via Umbraco \parencite{UmbracoCMSDocumentation2025, ReleaseNewsAll}, and Sovelia Help articles retrieved via the Document360 API \parencite{Document360API, SoveliaHelp}. Internal PLM documents are processed automatically and immediately when they change, while external sources are refreshed on a schedule.
 
 For internal PLM documents, the system maintains a queue of documents requiring vectorization. When users upload or modify documents matching configured criteria, the PLM system enqueues the document for processing. The embedder processes queued documents asynchronously, ensuring timely updates without continuous polling of the entire document base. This event-driven design aligns with the core PLM principle of maintaining accurate, current product information throughout the lifecycle \parencite{starkProductLifecycleManagement2015}: stale embeddings would undermine the assistant's value just as stale product data undermines PLM itself.
@@ -143,11 +140,6 @@ Figure~\ref{fig:query-flow} depicts the complete tool-augmented query processing
 \section{Prompt engineering and LLM integration}
 \label{sec:prompt-engineering}
 
-Prompting constrains the model to behave as a documentation assistant: use retrieval when needed, cite sources, and avoid unsupported claims.
-
-\subsection{Prompting, history, and model selection}
-\label{subsec:prompt-structure}
-
 The prompt provides the model with tool access and instructions, so retrieval is performed selectively rather than unconditionally. This follows the tool-use pattern described in ReAct-style prompting \parencite{yaoReActSynergizingReasoning2023}. The system prompt defines the assistant role, available tools, and behavioral constraints, and it instructs the model to use the \texttt{plm\_documentation\_retriever} tool when documentation evidence is required \parencite{yaoReActSynergizingReasoning2023, lewisRetrievalAugmentedGenerationKnowledgeIntensive2021}.
 
 The prompt also requires aims to handle uncertainty and source attribution to reduce hallucination risk and support transparency expectations \parencite{lewisRetrievalAugmentedGenerationKnowledgeIntensive2021, sillbergEUAIAct2025}. This is achieved by including explicit anti-hallucination instructions that apply both to parametric generation and tool-augmented generation. The model receives guidance to cite specific sources when information derives from retrieved documentation, to avoid fabricating links or references, and to acknowledge uncertainty when retrieved context does not contain sufficient information to answer a query.
@@ -170,14 +162,7 @@ A dedicated testing endpoint enables administrators to validate system configura
 \section{User interface integration}
 \label{sec:user-interface-integration}
 
-The AI assistant integrates directly into Sovelia Core's web interface as a contextual help panel, making AI functionality discoverable and accessible without disrupting existing workflows.
-
-\subsection{Chat interface design}
-\label{subsec:chat-interface-design}
-
-The user interface provides a chat panel with message history and an input field. The design supports iterative, human-in-the-loop interaction typical for AI assistants \parencite{petricekAIAssistantsFramework2023, budiu6TypesConversations2023}.
-
-Figure~\ref{fig:sovelia-chat-ui} shows the chat interface integrated into Sovelia Core's web client. The interface appears as a popup that can be opened or closed without disrupting the main PLM workflow.
+The AI assistant integrates directly into Sovelia Core's web interface as a contextual help panel, providing a chat interface with message history and input field. The design supports iterative, human-in-the-loop interaction typical for AI assistants \parencite{petricekAIAssistantsFramework2023, budiu6TypesConversations2023}. Figure~\ref{fig:sovelia-chat-ui} shows the chat interface implemented as a popup that can be opened or closed without disrupting the main PLM workflow.
 
 \begin{figure}[htbp]
     \centering
