@@ -63,7 +63,7 @@ sources ||--o{ chunks : "has many"
 sources }o--|| sourcetypes : "is type"
 
 note bottom of chunks
-    IVFFlat index on embedding
+    HNSW index on embedding
     using cosine distance
     for similarity search
 end note

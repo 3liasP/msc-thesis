@@ -6,95 +6,95 @@
 \definecolor{plantucolor0004}{RGB}{241,241,241}
 \definecolor{plantucolor0005}{RGB}{254,255,221}
 \begin{tikzpicture}[yscale=-1
-,pstyle0/.style={color=black,line width=1.5pt}
-,pstyle1/.style={color=plantucolor0002,fill=plantucolor0001,line width=1.0pt}
-,pstyle2/.style={color=plantucolor0003,line width=1.0pt}
-,pstyle3/.style={color=plantucolor0003,fill=plantucolor0004,line width=0.5pt}
-,pstyle4/.style={color=plantucolor0003,fill=plantucolor0005,line width=0.5pt}
-,pstyle5/.style={color=plantucolor0003,fill=plantucolor0005,line width=1.0pt}
-,pstyle6/.style={color=plantucolor0003,fill=plantucolor0003,line width=1.0pt}
-,pstyle7/.style={color=plantucolor0003,line width=1.0pt,dash pattern=on 7.0pt off 7.0pt}
-]
-\draw[pstyle0] (8.5pt,6pt) -- (143.04pt,6pt) arc(270:360:3.75pt)  -- (152.54pt,22pt) -- (750.5pt,22pt) arc(270:360:2.5pt)  -- (753pt,952.5pt) arc(0:90:2.5pt)  -- (8.5pt,955pt) arc(90:180:2.5pt)  -- (6pt,8.5pt) arc(180:270:2.5pt) ;
-\draw[pstyle0] (6pt,22pt) -- (152.54pt,22pt);
-\node at (10pt,8pt)[below right,color=black,inner sep=0]{\textbf{RAG System Architecture}};
-\draw[pstyle1] (83pt,56pt) arc (180:270:5pt) -- (88pt,51pt) -- (328pt,51pt) arc (270:360:5pt) -- (333pt,56pt) -- (333pt,270pt) arc (0:90:5pt) -- (328pt,275pt) -- (88pt,275pt) arc (90:180:5pt) -- (83pt,270pt) -- cycle;
-\node at (191.705pt,53pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
-\node at (160.305pt,63pt)[below right,color=black,inner sep=0]{\textbf{Presentation Layer}};
-\draw[pstyle1] (373pt,179pt) arc (180:270:5pt) -- (378pt,174pt) -- (665pt,174pt) arc (270:360:5pt) -- (670pt,179pt) -- (670pt,431pt) arc (0:90:5pt) -- (665pt,436pt) -- (378pt,436pt) arc (90:180:5pt) -- (373pt,431pt) -- cycle;
-\node at (505.205pt,176pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
-\node at (495.155pt,186pt)[below right,color=black,inner sep=0]{\textbf{API Layer}};
-\draw[pstyle1] (38pt,340pt) arc (180:270:5pt) -- (43pt,335pt) -- (327pt,335pt) arc (270:360:5pt) -- (332pt,340pt) -- (332pt,592pt) arc (0:90:5pt) -- (327pt,597pt) -- (43pt,597pt) arc (90:180:5pt) -- (38pt,592pt) -- cycle;
-\node at (168.705pt,337pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
-\node at (132.315pt,347pt)[below right,color=black,inner sep=0]{\textbf{Business Logic Layer}};
-\draw[pstyle1] (414pt,501pt) arc (180:270:5pt) -- (419pt,496pt) -- (716pt,496pt) arc (270:360:5pt) -- (721pt,501pt) -- (721pt,805pt) arc (0:90:5pt) -- (716pt,810pt) -- (419pt,810pt) arc (90:180:5pt) -- (414pt,805pt) -- cycle;
-\node at (551.205pt,498pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
-\node at (523.155pt,508pt)[below right,color=black,inner sep=0]{\textbf{Embedding Layer}};
-\draw[pstyle1] (59pt,662pt) arc (180:270:5pt) -- (64pt,657pt) -- (369pt,657pt) arc (270:360:5pt) -- (374pt,662pt) -- (374pt,918pt) arc (0:90:5pt) -- (369pt,923pt) -- (64pt,923pt) arc (90:180:5pt) -- (59pt,918pt) -- cycle;
-\node at (200.205pt,659pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
-\node at (188.375pt,669pt)[below right,color=black,inner sep=0]{\textbf{Data Layer}};
-\draw[pstyle2] (99pt,722pt) ..controls (99pt,712pt) and (220.5pt,712pt) .. (220.5pt,712pt) ..controls (220.5pt,712pt) and (342pt,712pt) .. (342pt,722pt) -- (342pt,881pt) ..controls (342pt,891pt) and (220.5pt,891pt) .. (220.5pt,891pt) ..controls (220.5pt,891pt) and (99pt,891pt) .. (99pt,881pt) -- (99pt,722pt);
-\draw[pstyle2] (99pt,722pt) ..controls (99pt,732pt) and (220.5pt,732pt) .. (220.5pt,732pt) ..controls (220.5pt,732pt) and (342pt,732pt) .. (342pt,722pt);
-\node at (160.58pt,734pt)[below right,color=black,inner sep=0]{\textbf{PostgreSQL + pgvector}};
-\draw[pstyle3] (107.5pt,103pt) arc (180:270:5pt) -- (112.5pt,98pt) -- (185.58pt,98pt) arc (270:360:5pt) -- (190.58pt,103pt) -- (190.58pt,123pt) arc (0:90:5pt) -- (185.58pt,128pt) -- (112.5pt,128pt) arc (90:180:5pt) -- (107.5pt,123pt) -- cycle;
-\node at (117.5pt,108pt)[below right,color=black,inner sep=0]{Chat Interface};
-\draw[pstyle3] (201pt,103pt) arc (180:270:5pt) -- (206pt,98pt) -- (296.5pt,98pt) arc (270:360:5pt) -- (301.5pt,103pt) -- (301.5pt,123pt) arc (0:90:5pt) -- (296.5pt,128pt) -- (206pt,128pt) arc (90:180:5pt) -- (201pt,123pt) -- cycle;
-\node at (211pt,108pt)[below right,color=black,inner sep=0]{Feedback Controls};
-\draw[pstyle3] (107pt,226pt) arc (180:270:5pt) -- (112pt,221pt) -- (200.29pt,221pt) arc (270:360:5pt) -- (205.29pt,226pt) -- (205.29pt,246pt) arc (0:90:5pt) -- (200.29pt,251pt) -- (112pt,251pt) arc (90:180:5pt) -- (107pt,246pt) -- cycle;
-\node at (117pt,231pt)[below right,color=black,inner sep=0]{Source References};
-\draw[pstyle3] (405.5pt,226pt) arc (180:270:5pt) -- (410.5pt,221pt) -- (539.71pt,221pt) arc (270:360:5pt) -- (544.71pt,226pt) -- (544.71pt,246pt) arc (0:90:5pt) -- (539.71pt,251pt) -- (410.5pt,251pt) arc (90:180:5pt) -- (405.5pt,246pt) -- cycle;
-\node at (415.5pt,231pt)[below right,color=black,inner sep=0]{Authentication Middleware};
-\draw[pstyle3] (554.5pt,226pt) arc (180:270:5pt) -- (559.5pt,221pt) -- (640.53pt,221pt) arc (270:360:5pt) -- (645.53pt,226pt) -- (645.53pt,246pt) arc (0:90:5pt) -- (640.53pt,251pt) -- (559.5pt,251pt) arc (90:180:5pt) -- (554.5pt,246pt) -- cycle;
-\node at (564.5pt,231pt)[below right,color=black,inner sep=0]{Query Endpoint};
-\draw[pstyle3] (427pt,387pt) arc (180:270:5pt) -- (432pt,382pt) -- (518.36pt,382pt) arc (270:360:5pt) -- (523.36pt,387pt) -- (523.36pt,407pt) arc (0:90:5pt) -- (518.36pt,412pt) -- (432pt,412pt) arc (90:180:5pt) -- (427pt,407pt) -- cycle;
-\node at (437pt,392pt)[below right,color=black,inner sep=0]{History Endpoint};
-\draw[pstyle3] (533pt,387pt) arc (180:270:5pt) -- (538pt,382pt) -- (632.19pt,382pt) arc (270:360:5pt) -- (637.19pt,387pt) -- (637.19pt,407pt) arc (0:90:5pt) -- (632.19pt,412pt) -- (538pt,412pt) arc (90:180:5pt) -- (533pt,407pt) -- cycle;
-\node at (543pt,392pt)[below right,color=black,inner sep=0]{Feedback Endpoint};
-\draw[pstyle3] (62.5pt,387pt) arc (180:270:5pt) -- (67.5pt,382pt) -- (166.19pt,382pt) arc (270:360:5pt) -- (171.19pt,387pt) -- (171.19pt,407pt) arc (0:90:5pt) -- (166.19pt,412pt) -- (67.5pt,412pt) arc (90:180:5pt) -- (62.5pt,407pt) -- cycle;
-\node at (72.5pt,392pt)[below right,color=black,inner sep=0]{Prompt Engineering};
-\draw[pstyle3] (182pt,387pt) arc (180:270:5pt) -- (187pt,382pt) -- (295.45pt,382pt) arc (270:360:5pt) -- (300.45pt,387pt) -- (300.45pt,407pt) arc (0:90:5pt) -- (295.45pt,412pt) -- (187pt,412pt) arc (90:180:5pt) -- (182pt,407pt) -- cycle;
-\node at (192pt,392pt)[below right,color=black,inner sep=0]{Conversation Manager};
-\draw[pstyle3] (64.5pt,548pt) arc (180:270:5pt) -- (69.5pt,543pt) -- (164.34pt,543pt) arc (270:360:5pt) -- (169.34pt,548pt) -- (169.34pt,568pt) arc (0:90:5pt) -- (164.34pt,573pt) -- (69.5pt,573pt) arc (90:180:5pt) -- (64.5pt,568pt) -- cycle;
-\node at (74.5pt,553pt)[below right,color=black,inner sep=0]{LLM Orchestration};
-\draw[pstyle3] (180pt,548pt) arc (180:270:5pt) -- (185pt,543pt) -- (287.24pt,543pt) arc (270:360:5pt) -- (292.24pt,548pt) -- (292.24pt,568pt) arc (0:90:5pt) -- (287.24pt,573pt) -- (185pt,573pt) arc (90:180:5pt) -- (180pt,568pt) -- cycle;
-\node at (190pt,553pt)[below right,color=black,inner sep=0]{Provider Abstraction};
-\draw[pstyle3] (447.5pt,548pt) arc (180:270:5pt) -- (452.5pt,543pt) -- (559.92pt,543pt) arc (270:360:5pt) -- (564.92pt,548pt) -- (564.92pt,568pt) arc (0:90:5pt) -- (559.92pt,573pt) -- (452.5pt,573pt) arc (90:180:5pt) -- (447.5pt,568pt) -- cycle;
-\node at (457.5pt,553pt)[below right,color=black,inner sep=0]{Document Acquisition};
-\draw[pstyle3] (575pt,548pt) arc (180:270:5pt) -- (580pt,543pt) -- (655.57pt,543pt) arc (270:360:5pt) -- (660.57pt,548pt) -- (660.57pt,568pt) arc (0:90:5pt) -- (655.57pt,573pt) -- (580pt,573pt) arc (90:180:5pt) -- (575pt,568pt) -- cycle;
-\node at (585pt,553pt)[below right,color=black,inner sep=0]{Text Chunking};
-\draw[pstyle3] (446.5pt,761pt) arc (180:270:5pt) -- (451.5pt,756pt) -- (562.87pt,756pt) arc (270:360:5pt) -- (567.87pt,761pt) -- (567.87pt,781pt) arc (0:90:5pt) -- (562.87pt,786pt) -- (451.5pt,786pt) arc (90:180:5pt) -- (446.5pt,781pt) -- cycle;
-\node at (456.5pt,766pt)[below right,color=black,inner sep=0]{Embedding Generation};
-\draw[pstyle3] (577.5pt,761pt) arc (180:270:5pt) -- (582.5pt,756pt) -- (691.1pt,756pt) arc (270:360:5pt) -- (696.1pt,761pt) -- (696.1pt,781pt) arc (0:90:5pt) -- (691.1pt,786pt) -- (582.5pt,786pt) arc (90:180:5pt) -- (577.5pt,781pt) -- cycle;
-\node at (587.5pt,766pt)[below right,color=black,inner sep=0]{Pipeline Orchestration};
-\draw[pstyle3] (115.5pt,761pt) arc (180:270:5pt) -- (120.5pt,756pt) -- (233.76pt,756pt) arc (270:360:5pt) -- (238.76pt,761pt) -- (238.76pt,781pt) arc (0:90:5pt) -- (233.76pt,786pt) -- (120.5pt,786pt) arc (90:180:5pt) -- (115.5pt,781pt) -- cycle;
-\node at (125.5pt,766pt)[below right,color=black,inner sep=0]{Documentation Chunks};
-\draw[pstyle3] (248.5pt,761pt) arc (180:270:5pt) -- (253.5pt,756pt) -- (320.81pt,756pt) arc (270:360:5pt) -- (325.81pt,761pt) -- (325.81pt,781pt) arc (0:90:5pt) -- (320.81pt,786pt) -- (253.5pt,786pt) arc (90:180:5pt) -- (248.5pt,781pt) -- cycle;
-\node at (258.5pt,766pt)[below right,color=black,inner sep=0]{Chat History};
-\draw[pstyle3] (137pt,850pt) arc (180:270:5pt) -- (142pt,845pt) -- (212.05pt,845pt) arc (270:360:5pt) -- (217.05pt,850pt) -- (217.05pt,870pt) arc (0:90:5pt) -- (212.05pt,875pt) -- (142pt,875pt) arc (90:180:5pt) -- (137pt,870pt) -- cycle;
-\node at (147pt,855pt)[below right,color=black,inner sep=0]{Configuration};
-\draw[pstyle4] (769.5pt,98pt) -- (769.5pt,128.11pt) -- (894.52pt,128.11pt) -- (894.52pt,108pt) -- (884.52pt,98pt) -- (769.5pt,98pt);
-\draw[pstyle5] (884.52pt,98pt) -- (884.52pt,108pt) -- (894.52pt,108pt) -- (884.52pt,98pt);
-\node at (775.5pt,103pt)[below right,color=black,inner sep=0]{User-facing components};
-\node at (779.575pt,113.11pt)[below right,color=black,inner sep=0]{integrated in PLM UI};
-\draw[pstyle4] (769pt,756pt) -- (769pt,786pt) -- (893.24pt,786pt) -- (893.24pt,766pt) -- (883.24pt,756pt) -- (769pt,756pt);
-\draw[pstyle5] (883.24pt,756pt) -- (883.24pt,766pt) -- (893.24pt,766pt) -- (883.24pt,756pt);
-\node at (775pt,761pt)[below right,color=black,inner sep=0]{Vector similarity search};
-\node at (777.165pt,771pt)[below right,color=black,inner sep=0]{with IVFFlat indexing};
-\draw[pstyle2] (333.0643pt,131.4231pt) ..controls (333.1414pt,131.5897pt) and (333.2189pt,131.7571pt) .. (333.2968pt,131.9255pt) ..controls (333.6085pt,132.5989pt) and (333.9269pt,133.2867pt) .. (334.2514pt,133.9878pt) ..controls (339.4441pt,145.2063pt) and (346.2281pt,159.8638pt) .. (353.0113pt,174.52pt) ..controls (359.7944pt,189.1763pt) and (366.5766pt,203.8313pt) .. (371.7655pt,215.0447pt) ..controls (372.0898pt,215.7455pt) and (372.4079pt,216.4329pt) .. (372.7193pt,217.106pt) ..controls (372.7972pt,217.2743pt) and (370.355pt,211.9964pt) .. (370.432pt,212.1629pt);
-\draw[pstyle6] (372.9517pt,217.6082pt) -- (372.8023pt,207.7605pt) -- (370.8519pt,213.0704pt) -- (365.542pt,211.12pt) -- (372.9517pt,217.6082pt) -- cycle;
-\node at (342pt,139pt)[below right,color=black,inner sep=0]{HTTP/JSON};
-\draw[pstyle2] (372.8895pt,245.789pt) ..controls (372.7773pt,245.9167pt) and (372.6643pt,246.0455pt) .. (372.5505pt,246.1755pt) ..controls (371.64pt,247.2158pt) and (370.6771pt,248.3317pt) .. (369.6727pt,249.5165pt) ..controls (367.6638pt,251.8862pt) and (365.4888pt,254.5316pt) .. (363.235pt,257.3987pt) ..controls (354.22pt,268.8675pt) and (343.945pt,283.885pt) .. (338pt,299pt) ..controls (334.1375pt,308.8175pt) and (331.325pt,319.5694pt) .. (329.2803pt,330.2272pt) ..controls (329.0247pt,331.5594pt) and (328.7811pt,332.8902pt) .. (328.549pt,334.2174pt) ..controls (328.52pt,334.3834pt) and (329.5132pt,328.6369pt) .. (329.4845pt,328.8027pt);
-\draw[pstyle6] (328.4625pt,334.715pt) -- (333.9371pt,326.5279pt) -- (329.3142pt,329.7881pt) -- (326.054pt,325.1652pt) -- (328.4625pt,334.715pt) -- cycle;
-\node at (339pt,300pt)[below right,color=black,inner sep=0]{Service Calls};
-\draw[pstyle2] (332.1276pt,405.9527pt) ..controls (332.2704pt,406.0962pt) and (332.4148pt,406.2415pt) .. (332.5606pt,406.3884pt) ..controls (337.2281pt,411.0913pt) and (343.45pt,417.5438pt) .. (350.3175pt,425.155pt) ..controls (364.0525pt,440.3775pt) and (380.37pt,460.235pt) .. (392pt,480pt) ..controls (401.025pt,495.33pt) and (408.345pt,513.875pt) .. (413.495pt,528.9238pt) ..controls (413.6559pt,529.394pt) and (411.8923pt,524.1772pt) .. (412.049pt,524.6404pt);
-\draw[pstyle6] (413.9714pt,530.3241pt) -- (414.8769pt,520.517pt) -- (412.3694pt,525.5877pt) -- (407.2987pt,523.0802pt) -- (413.9714pt,530.3241pt) -- cycle;
-\node at (386pt,461pt)[below right,color=black,inner sep=0]{Embedding Requests};
-\draw[pstyle2] (332.0619pt,425.9828pt) ..controls (332.1215pt,426.2242pt) and (332.1811pt,426.4669pt) .. (332.2409pt,426.7109pt) ..controls (332.4797pt,427.6867pt) and (332.7197pt,428.6824pt) .. (332.9602pt,429.6971pt) ..controls (333.4412pt,431.7266pt) and (333.9243pt,433.8325pt) .. (334.4046pt,436.0083pt) ..controls (335.3652pt,440.3598pt) and (336.3145pt,444.991pt) .. (337.2136pt,449.8507pt) ..controls (339.0116pt,459.5701pt) and (340.6084pt,470.2034pt) .. (341.6912pt,481.3412pt) ..controls (346.0225pt,525.8925pt) and (342.13pt,578.515pt) .. (310pt,613pt) ..controls (247.32pt,680.28pt) and (174.73pt,581.06pt) .. (105pt,641pt) ..controls (102.2113pt,643.3969pt) and (99.6218pt,645.9871pt) .. (97.2177pt,648.7378pt) ..controls (96.0156pt,650.1132pt) and (94.8599pt,651.5287pt) .. (93.7487pt,652.9802pt) ..controls (93.1932pt,653.7059pt) and (92.6487pt,654.4407pt) .. (92.1152pt,655.1839pt) ..controls (91.8485pt,655.5556pt) and (91.5845pt,655.9293pt) .. (91.3232pt,656.3051pt) ..controls (91.1925pt,656.493pt) and (94.4514pt,651.7301pt) .. (94.3221pt,651.919pt);
-\draw[pstyle6] (90.9332pt,656.8704pt) -- (99.3174pt,651.7026pt) -- (93.7573pt,652.7443pt) -- (92.7157pt,647.1841pt) -- (90.9332pt,656.8704pt) -- cycle;
-\node at (344pt,553pt)[below right,color=black,inner sep=0]{Query/Store};
-\draw[pstyle2] (413.8923pt,583.0647pt) ..controls (413.574pt,583.7772pt) and (413.2454pt,584.4947pt) .. (412.9062pt,585.2157pt) ..controls (412.2278pt,586.6576pt) and (411.5074pt,588.113pt) .. (410.7434pt,589.5689pt) ..controls (409.2154pt,592.4807pt) and (407.5135pt,595.3943pt) .. (405.6267pt,598.2052pt) ..controls (401.8531pt,603.8269pt) and (397.34pt,609.0375pt) .. (392pt,613pt) ..controls (378.49pt,623.02pt) and (371.03pt,615.88pt) .. (355pt,621pt) ..controls (342.1pt,625.12pt) and (340.21pt,630.04pt) .. (327pt,633pt) ..controls (302.91pt,638.4pt) and (124.5pt,625.86pt) .. (105pt,641pt) ..controls (99.1913pt,645.51pt) and (97.7206pt,645.9783pt) .. (93.498pt,651.8991pt);
-\draw[pstyle6] (90.0141pt,656.784pt) -- (98.4966pt,651.7792pt) -- (92.9174pt,652.7132pt) -- (91.9833pt,647.134pt) -- (90.0141pt,656.784pt) -- cycle;
-\node at (356pt,622pt)[below right,color=black,inner sep=0]{Store Embeddings};
-\draw[pstyle7] (334.1654pt,113pt) ..controls (334.7431pt,113pt) and (335.3208pt,113pt) .. (335.8985pt,113pt) ..controls (337.0539pt,113pt) and (338.2093pt,113pt) .. (339.3647pt,113pt) ..controls (343.9863pt,113pt) and (348.6079pt,113pt) .. (353.2295pt,113pt) ..controls (362.4727pt,113pt) and (371.7159pt,113pt) .. (380.9592pt,113pt) ..controls (399.4457pt,113pt) and (417.9323pt,113pt) .. (436.4191pt,113pt) ..controls (473.3925pt,113pt) and (510.3662pt,113pt) .. (547.34pt,113pt) ..controls (621.2875pt,113pt) and (695.235pt,113pt) .. (769.18pt,113pt);
-\draw[pstyle7] (84.4639pt,656.9333pt) ..controls (84.6956pt,656.498pt) and (84.9302pt,656.0645pt) .. (85.1676pt,655.6329pt) ..controls (85.6424pt,654.7696pt) and (86.1286pt,653.9138pt) .. (86.6263pt,653.066pt) ..controls (88.6173pt,649.6749pt) and (90.7939pt,646.4122pt) .. (93.1725pt,643.3146pt) ..controls (97.9297pt,637.1192pt) and (103.495pt,631.5838pt) .. (110pt,627pt) ..controls (136.88pt,608.05pt) and (671.97pt,613.58pt) .. (702pt,627pt) ..controls (762.37pt,653.97pt) and (806.22pt,724.71pt) .. (823.22pt,755.88pt);
+        ,pstyle0/.style={color=black,line width=1.5pt}
+        ,pstyle1/.style={color=plantucolor0002,fill=plantucolor0001,line width=1.0pt}
+        ,pstyle2/.style={color=plantucolor0003,line width=1.0pt}
+        ,pstyle3/.style={color=plantucolor0003,fill=plantucolor0004,line width=0.5pt}
+        ,pstyle4/.style={color=plantucolor0003,fill=plantucolor0005,line width=0.5pt}
+        ,pstyle5/.style={color=plantucolor0003,fill=plantucolor0005,line width=1.0pt}
+        ,pstyle6/.style={color=plantucolor0003,fill=plantucolor0003,line width=1.0pt}
+        ,pstyle7/.style={color=plantucolor0003,line width=1.0pt,dash pattern=on 7.0pt off 7.0pt}
+    ]
+    \draw[pstyle0] (8.5pt,6pt) -- (143.04pt,6pt) arc(270:360:3.75pt)  -- (152.54pt,22pt) -- (750.5pt,22pt) arc(270:360:2.5pt)  -- (753pt,952.5pt) arc(0:90:2.5pt)  -- (8.5pt,955pt) arc(90:180:2.5pt)  -- (6pt,8.5pt) arc(180:270:2.5pt) ;
+    \draw[pstyle0] (6pt,22pt) -- (152.54pt,22pt);
+    \node at (10pt,8pt)[below right,color=black,inner sep=0]{\textbf{RAG System Architecture}};
+    \draw[pstyle1] (83pt,56pt) arc (180:270:5pt) -- (88pt,51pt) -- (328pt,51pt) arc (270:360:5pt) -- (333pt,56pt) -- (333pt,270pt) arc (0:90:5pt) -- (328pt,275pt) -- (88pt,275pt) arc (90:180:5pt) -- (83pt,270pt) -- cycle;
+    \node at (191.705pt,53pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
+    \node at (160.305pt,63pt)[below right,color=black,inner sep=0]{\textbf{Presentation Layer}};
+    \draw[pstyle1] (373pt,179pt) arc (180:270:5pt) -- (378pt,174pt) -- (665pt,174pt) arc (270:360:5pt) -- (670pt,179pt) -- (670pt,431pt) arc (0:90:5pt) -- (665pt,436pt) -- (378pt,436pt) arc (90:180:5pt) -- (373pt,431pt) -- cycle;
+    \node at (505.205pt,176pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
+    \node at (495.155pt,186pt)[below right,color=black,inner sep=0]{\textbf{API Layer}};
+    \draw[pstyle1] (38pt,340pt) arc (180:270:5pt) -- (43pt,335pt) -- (327pt,335pt) arc (270:360:5pt) -- (332pt,340pt) -- (332pt,592pt) arc (0:90:5pt) -- (327pt,597pt) -- (43pt,597pt) arc (90:180:5pt) -- (38pt,592pt) -- cycle;
+    \node at (168.705pt,337pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
+    \node at (132.315pt,347pt)[below right,color=black,inner sep=0]{\textbf{Business Logic Layer}};
+    \draw[pstyle1] (414pt,501pt) arc (180:270:5pt) -- (419pt,496pt) -- (716pt,496pt) arc (270:360:5pt) -- (721pt,501pt) -- (721pt,805pt) arc (0:90:5pt) -- (716pt,810pt) -- (419pt,810pt) arc (90:180:5pt) -- (414pt,805pt) -- cycle;
+    \node at (551.205pt,498pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
+    \node at (523.155pt,508pt)[below right,color=black,inner sep=0]{\textbf{Embedding Layer}};
+    \draw[pstyle1] (59pt,662pt) arc (180:270:5pt) -- (64pt,657pt) -- (369pt,657pt) arc (270:360:5pt) -- (374pt,662pt) -- (374pt,918pt) arc (0:90:5pt) -- (369pt,923pt) -- (64pt,923pt) arc (90:180:5pt) -- (59pt,918pt) -- cycle;
+    \node at (200.205pt,659pt)[below right,color=black,inner sep=0]{\textit{\guillemotleft{}layer\guillemotright{}}};
+    \node at (188.375pt,669pt)[below right,color=black,inner sep=0]{\textbf{Data Layer}};
+    \draw[pstyle2] (99pt,722pt) ..controls (99pt,712pt) and (220.5pt,712pt) .. (220.5pt,712pt) ..controls (220.5pt,712pt) and (342pt,712pt) .. (342pt,722pt) -- (342pt,881pt) ..controls (342pt,891pt) and (220.5pt,891pt) .. (220.5pt,891pt) ..controls (220.5pt,891pt) and (99pt,891pt) .. (99pt,881pt) -- (99pt,722pt);
+    \draw[pstyle2] (99pt,722pt) ..controls (99pt,732pt) and (220.5pt,732pt) .. (220.5pt,732pt) ..controls (220.5pt,732pt) and (342pt,732pt) .. (342pt,722pt);
+    \node at (160.58pt,734pt)[below right,color=black,inner sep=0]{\textbf{PostgreSQL + pgvector}};
+    \draw[pstyle3] (107.5pt,103pt) arc (180:270:5pt) -- (112.5pt,98pt) -- (185.58pt,98pt) arc (270:360:5pt) -- (190.58pt,103pt) -- (190.58pt,123pt) arc (0:90:5pt) -- (185.58pt,128pt) -- (112.5pt,128pt) arc (90:180:5pt) -- (107.5pt,123pt) -- cycle;
+    \node at (117.5pt,108pt)[below right,color=black,inner sep=0]{Chat Interface};
+    \draw[pstyle3] (201pt,103pt) arc (180:270:5pt) -- (206pt,98pt) -- (296.5pt,98pt) arc (270:360:5pt) -- (301.5pt,103pt) -- (301.5pt,123pt) arc (0:90:5pt) -- (296.5pt,128pt) -- (206pt,128pt) arc (90:180:5pt) -- (201pt,123pt) -- cycle;
+    \node at (211pt,108pt)[below right,color=black,inner sep=0]{Feedback Controls};
+    \draw[pstyle3] (107pt,226pt) arc (180:270:5pt) -- (112pt,221pt) -- (200.29pt,221pt) arc (270:360:5pt) -- (205.29pt,226pt) -- (205.29pt,246pt) arc (0:90:5pt) -- (200.29pt,251pt) -- (112pt,251pt) arc (90:180:5pt) -- (107pt,246pt) -- cycle;
+    \node at (117pt,231pt)[below right,color=black,inner sep=0]{Source References};
+    \draw[pstyle3] (405.5pt,226pt) arc (180:270:5pt) -- (410.5pt,221pt) -- (539.71pt,221pt) arc (270:360:5pt) -- (544.71pt,226pt) -- (544.71pt,246pt) arc (0:90:5pt) -- (539.71pt,251pt) -- (410.5pt,251pt) arc (90:180:5pt) -- (405.5pt,246pt) -- cycle;
+    \node at (415.5pt,231pt)[below right,color=black,inner sep=0]{Authentication Middleware};
+    \draw[pstyle3] (554.5pt,226pt) arc (180:270:5pt) -- (559.5pt,221pt) -- (640.53pt,221pt) arc (270:360:5pt) -- (645.53pt,226pt) -- (645.53pt,246pt) arc (0:90:5pt) -- (640.53pt,251pt) -- (559.5pt,251pt) arc (90:180:5pt) -- (554.5pt,246pt) -- cycle;
+    \node at (564.5pt,231pt)[below right,color=black,inner sep=0]{Query Endpoint};
+    \draw[pstyle3] (427pt,387pt) arc (180:270:5pt) -- (432pt,382pt) -- (518.36pt,382pt) arc (270:360:5pt) -- (523.36pt,387pt) -- (523.36pt,407pt) arc (0:90:5pt) -- (518.36pt,412pt) -- (432pt,412pt) arc (90:180:5pt) -- (427pt,407pt) -- cycle;
+    \node at (437pt,392pt)[below right,color=black,inner sep=0]{History Endpoint};
+    \draw[pstyle3] (533pt,387pt) arc (180:270:5pt) -- (538pt,382pt) -- (632.19pt,382pt) arc (270:360:5pt) -- (637.19pt,387pt) -- (637.19pt,407pt) arc (0:90:5pt) -- (632.19pt,412pt) -- (538pt,412pt) arc (90:180:5pt) -- (533pt,407pt) -- cycle;
+    \node at (543pt,392pt)[below right,color=black,inner sep=0]{Feedback Endpoint};
+    \draw[pstyle3] (62.5pt,387pt) arc (180:270:5pt) -- (67.5pt,382pt) -- (166.19pt,382pt) arc (270:360:5pt) -- (171.19pt,387pt) -- (171.19pt,407pt) arc (0:90:5pt) -- (166.19pt,412pt) -- (67.5pt,412pt) arc (90:180:5pt) -- (62.5pt,407pt) -- cycle;
+    \node at (72.5pt,392pt)[below right,color=black,inner sep=0]{Prompt Engineering};
+    \draw[pstyle3] (182pt,387pt) arc (180:270:5pt) -- (187pt,382pt) -- (295.45pt,382pt) arc (270:360:5pt) -- (300.45pt,387pt) -- (300.45pt,407pt) arc (0:90:5pt) -- (295.45pt,412pt) -- (187pt,412pt) arc (90:180:5pt) -- (182pt,407pt) -- cycle;
+    \node at (192pt,392pt)[below right,color=black,inner sep=0]{Conversation Manager};
+    \draw[pstyle3] (64.5pt,548pt) arc (180:270:5pt) -- (69.5pt,543pt) -- (164.34pt,543pt) arc (270:360:5pt) -- (169.34pt,548pt) -- (169.34pt,568pt) arc (0:90:5pt) -- (164.34pt,573pt) -- (69.5pt,573pt) arc (90:180:5pt) -- (64.5pt,568pt) -- cycle;
+    \node at (74.5pt,553pt)[below right,color=black,inner sep=0]{LLM Orchestration};
+    \draw[pstyle3] (180pt,548pt) arc (180:270:5pt) -- (185pt,543pt) -- (287.24pt,543pt) arc (270:360:5pt) -- (292.24pt,548pt) -- (292.24pt,568pt) arc (0:90:5pt) -- (287.24pt,573pt) -- (185pt,573pt) arc (90:180:5pt) -- (180pt,568pt) -- cycle;
+    \node at (190pt,553pt)[below right,color=black,inner sep=0]{Provider Abstraction};
+    \draw[pstyle3] (447.5pt,548pt) arc (180:270:5pt) -- (452.5pt,543pt) -- (559.92pt,543pt) arc (270:360:5pt) -- (564.92pt,548pt) -- (564.92pt,568pt) arc (0:90:5pt) -- (559.92pt,573pt) -- (452.5pt,573pt) arc (90:180:5pt) -- (447.5pt,568pt) -- cycle;
+    \node at (457.5pt,553pt)[below right,color=black,inner sep=0]{Document Acquisition};
+    \draw[pstyle3] (575pt,548pt) arc (180:270:5pt) -- (580pt,543pt) -- (655.57pt,543pt) arc (270:360:5pt) -- (660.57pt,548pt) -- (660.57pt,568pt) arc (0:90:5pt) -- (655.57pt,573pt) -- (580pt,573pt) arc (90:180:5pt) -- (575pt,568pt) -- cycle;
+    \node at (585pt,553pt)[below right,color=black,inner sep=0]{Text Chunking};
+    \draw[pstyle3] (446.5pt,761pt) arc (180:270:5pt) -- (451.5pt,756pt) -- (562.87pt,756pt) arc (270:360:5pt) -- (567.87pt,761pt) -- (567.87pt,781pt) arc (0:90:5pt) -- (562.87pt,786pt) -- (451.5pt,786pt) arc (90:180:5pt) -- (446.5pt,781pt) -- cycle;
+    \node at (456.5pt,766pt)[below right,color=black,inner sep=0]{Embedding Generation};
+    \draw[pstyle3] (577.5pt,761pt) arc (180:270:5pt) -- (582.5pt,756pt) -- (691.1pt,756pt) arc (270:360:5pt) -- (696.1pt,761pt) -- (696.1pt,781pt) arc (0:90:5pt) -- (691.1pt,786pt) -- (582.5pt,786pt) arc (90:180:5pt) -- (577.5pt,781pt) -- cycle;
+    \node at (587.5pt,766pt)[below right,color=black,inner sep=0]{Pipeline Orchestration};
+    \draw[pstyle3] (115.5pt,761pt) arc (180:270:5pt) -- (120.5pt,756pt) -- (233.76pt,756pt) arc (270:360:5pt) -- (238.76pt,761pt) -- (238.76pt,781pt) arc (0:90:5pt) -- (233.76pt,786pt) -- (120.5pt,786pt) arc (90:180:5pt) -- (115.5pt,781pt) -- cycle;
+    \node at (125.5pt,766pt)[below right,color=black,inner sep=0]{Documentation Chunks};
+    \draw[pstyle3] (248.5pt,761pt) arc (180:270:5pt) -- (253.5pt,756pt) -- (320.81pt,756pt) arc (270:360:5pt) -- (325.81pt,761pt) -- (325.81pt,781pt) arc (0:90:5pt) -- (320.81pt,786pt) -- (253.5pt,786pt) arc (90:180:5pt) -- (248.5pt,781pt) -- cycle;
+    \node at (258.5pt,766pt)[below right,color=black,inner sep=0]{Chat History};
+    \draw[pstyle3] (137pt,850pt) arc (180:270:5pt) -- (142pt,845pt) -- (212.05pt,845pt) arc (270:360:5pt) -- (217.05pt,850pt) -- (217.05pt,870pt) arc (0:90:5pt) -- (212.05pt,875pt) -- (142pt,875pt) arc (90:180:5pt) -- (137pt,870pt) -- cycle;
+    \node at (147pt,855pt)[below right,color=black,inner sep=0]{Configuration};
+    \draw[pstyle4] (769.5pt,98pt) -- (769.5pt,128.11pt) -- (894.52pt,128.11pt) -- (894.52pt,108pt) -- (884.52pt,98pt) -- (769.5pt,98pt);
+    \draw[pstyle5] (884.52pt,98pt) -- (884.52pt,108pt) -- (894.52pt,108pt) -- (884.52pt,98pt);
+    \node at (775.5pt,103pt)[below right,color=black,inner sep=0]{User-facing components};
+    \node at (779.575pt,113.11pt)[below right,color=black,inner sep=0]{integrated in PLM UI};
+    \draw[pstyle4] (769pt,756pt) -- (769pt,786pt) -- (893.24pt,786pt) -- (893.24pt,766pt) -- (883.24pt,756pt) -- (769pt,756pt);
+    \draw[pstyle5] (883.24pt,756pt) -- (883.24pt,766pt) -- (893.24pt,766pt) -- (883.24pt,756pt);
+    \node at (775pt,761pt)[below right,color=black,inner sep=0]{Vector similarity search};
+    \node at (777.165pt,771pt)[below right,color=black,inner sep=0]{with HNSW indexing};
+    \draw[pstyle2] (333.0643pt,131.4231pt) ..controls (333.1414pt,131.5897pt) and (333.2189pt,131.7571pt) .. (333.2968pt,131.9255pt) ..controls (333.6085pt,132.5989pt) and (333.9269pt,133.2867pt) .. (334.2514pt,133.9878pt) ..controls (339.4441pt,145.2063pt) and (346.2281pt,159.8638pt) .. (353.0113pt,174.52pt) ..controls (359.7944pt,189.1763pt) and (366.5766pt,203.8313pt) .. (371.7655pt,215.0447pt) ..controls (372.0898pt,215.7455pt) and (372.4079pt,216.4329pt) .. (372.7193pt,217.106pt) ..controls (372.7972pt,217.2743pt) and (370.355pt,211.9964pt) .. (370.432pt,212.1629pt);
+    \draw[pstyle6] (372.9517pt,217.6082pt) -- (372.8023pt,207.7605pt) -- (370.8519pt,213.0704pt) -- (365.542pt,211.12pt) -- (372.9517pt,217.6082pt) -- cycle;
+    \node at (342pt,139pt)[below right,color=black,inner sep=0]{HTTP/JSON};
+    \draw[pstyle2] (372.8895pt,245.789pt) ..controls (372.7773pt,245.9167pt) and (372.6643pt,246.0455pt) .. (372.5505pt,246.1755pt) ..controls (371.64pt,247.2158pt) and (370.6771pt,248.3317pt) .. (369.6727pt,249.5165pt) ..controls (367.6638pt,251.8862pt) and (365.4888pt,254.5316pt) .. (363.235pt,257.3987pt) ..controls (354.22pt,268.8675pt) and (343.945pt,283.885pt) .. (338pt,299pt) ..controls (334.1375pt,308.8175pt) and (331.325pt,319.5694pt) .. (329.2803pt,330.2272pt) ..controls (329.0247pt,331.5594pt) and (328.7811pt,332.8902pt) .. (328.549pt,334.2174pt) ..controls (328.52pt,334.3834pt) and (329.5132pt,328.6369pt) .. (329.4845pt,328.8027pt);
+    \draw[pstyle6] (328.4625pt,334.715pt) -- (333.9371pt,326.5279pt) -- (329.3142pt,329.7881pt) -- (326.054pt,325.1652pt) -- (328.4625pt,334.715pt) -- cycle;
+    \node at (339pt,300pt)[below right,color=black,inner sep=0]{Service Calls};
+    \draw[pstyle2] (332.1276pt,405.9527pt) ..controls (332.2704pt,406.0962pt) and (332.4148pt,406.2415pt) .. (332.5606pt,406.3884pt) ..controls (337.2281pt,411.0913pt) and (343.45pt,417.5438pt) .. (350.3175pt,425.155pt) ..controls (364.0525pt,440.3775pt) and (380.37pt,460.235pt) .. (392pt,480pt) ..controls (401.025pt,495.33pt) and (408.345pt,513.875pt) .. (413.495pt,528.9238pt) ..controls (413.6559pt,529.394pt) and (411.8923pt,524.1772pt) .. (412.049pt,524.6404pt);
+    \draw[pstyle6] (413.9714pt,530.3241pt) -- (414.8769pt,520.517pt) -- (412.3694pt,525.5877pt) -- (407.2987pt,523.0802pt) -- (413.9714pt,530.3241pt) -- cycle;
+    \node at (386pt,461pt)[below right,color=black,inner sep=0]{Embedding Requests};
+    \draw[pstyle2] (332.0619pt,425.9828pt) ..controls (332.1215pt,426.2242pt) and (332.1811pt,426.4669pt) .. (332.2409pt,426.7109pt) ..controls (332.4797pt,427.6867pt) and (332.7197pt,428.6824pt) .. (332.9602pt,429.6971pt) ..controls (333.4412pt,431.7266pt) and (333.9243pt,433.8325pt) .. (334.4046pt,436.0083pt) ..controls (335.3652pt,440.3598pt) and (336.3145pt,444.991pt) .. (337.2136pt,449.8507pt) ..controls (339.0116pt,459.5701pt) and (340.6084pt,470.2034pt) .. (341.6912pt,481.3412pt) ..controls (346.0225pt,525.8925pt) and (342.13pt,578.515pt) .. (310pt,613pt) ..controls (247.32pt,680.28pt) and (174.73pt,581.06pt) .. (105pt,641pt) ..controls (102.2113pt,643.3969pt) and (99.6218pt,645.9871pt) .. (97.2177pt,648.7378pt) ..controls (96.0156pt,650.1132pt) and (94.8599pt,651.5287pt) .. (93.7487pt,652.9802pt) ..controls (93.1932pt,653.7059pt) and (92.6487pt,654.4407pt) .. (92.1152pt,655.1839pt) ..controls (91.8485pt,655.5556pt) and (91.5845pt,655.9293pt) .. (91.3232pt,656.3051pt) ..controls (91.1925pt,656.493pt) and (94.4514pt,651.7301pt) .. (94.3221pt,651.919pt);
+    \draw[pstyle6] (90.9332pt,656.8704pt) -- (99.3174pt,651.7026pt) -- (93.7573pt,652.7443pt) -- (92.7157pt,647.1841pt) -- (90.9332pt,656.8704pt) -- cycle;
+    \node at (344pt,553pt)[below right,color=black,inner sep=0]{Query/Store};
+    \draw[pstyle2] (413.8923pt,583.0647pt) ..controls (413.574pt,583.7772pt) and (413.2454pt,584.4947pt) .. (412.9062pt,585.2157pt) ..controls (412.2278pt,586.6576pt) and (411.5074pt,588.113pt) .. (410.7434pt,589.5689pt) ..controls (409.2154pt,592.4807pt) and (407.5135pt,595.3943pt) .. (405.6267pt,598.2052pt) ..controls (401.8531pt,603.8269pt) and (397.34pt,609.0375pt) .. (392pt,613pt) ..controls (378.49pt,623.02pt) and (371.03pt,615.88pt) .. (355pt,621pt) ..controls (342.1pt,625.12pt) and (340.21pt,630.04pt) .. (327pt,633pt) ..controls (302.91pt,638.4pt) and (124.5pt,625.86pt) .. (105pt,641pt) ..controls (99.1913pt,645.51pt) and (97.7206pt,645.9783pt) .. (93.498pt,651.8991pt);
+    \draw[pstyle6] (90.0141pt,656.784pt) -- (98.4966pt,651.7792pt) -- (92.9174pt,652.7132pt) -- (91.9833pt,647.134pt) -- (90.0141pt,656.784pt) -- cycle;
+    \node at (356pt,622pt)[below right,color=black,inner sep=0]{Store Embeddings};
+    \draw[pstyle7] (334.1654pt,113pt) ..controls (334.7431pt,113pt) and (335.3208pt,113pt) .. (335.8985pt,113pt) ..controls (337.0539pt,113pt) and (338.2093pt,113pt) .. (339.3647pt,113pt) ..controls (343.9863pt,113pt) and (348.6079pt,113pt) .. (353.2295pt,113pt) ..controls (362.4727pt,113pt) and (371.7159pt,113pt) .. (380.9592pt,113pt) ..controls (399.4457pt,113pt) and (417.9323pt,113pt) .. (436.4191pt,113pt) ..controls (473.3925pt,113pt) and (510.3662pt,113pt) .. (547.34pt,113pt) ..controls (621.2875pt,113pt) and (695.235pt,113pt) .. (769.18pt,113pt);
+    \draw[pstyle7] (84.4639pt,656.9333pt) ..controls (84.6956pt,656.498pt) and (84.9302pt,656.0645pt) .. (85.1676pt,655.6329pt) ..controls (85.6424pt,654.7696pt) and (86.1286pt,653.9138pt) .. (86.6263pt,653.066pt) ..controls (88.6173pt,649.6749pt) and (90.7939pt,646.4122pt) .. (93.1725pt,643.3146pt) ..controls (97.9297pt,637.1192pt) and (103.495pt,631.5838pt) .. (110pt,627pt) ..controls (136.88pt,608.05pt) and (671.97pt,613.58pt) .. (702pt,627pt) ..controls (762.37pt,653.97pt) and (806.22pt,724.71pt) .. (823.22pt,755.88pt);
 \end{tikzpicture}

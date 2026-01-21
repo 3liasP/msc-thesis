@@ -61,7 +61,7 @@ end note
 
 note right of data
   Vector similarity search
-  with IVFFlat indexing
+  with HNSW indexing
 end note
 
 @enduml
