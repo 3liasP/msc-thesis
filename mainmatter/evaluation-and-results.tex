@@ -37,25 +37,25 @@ The 30-question set size aims to balance evaluation comprehensiveness with pract
 Questions were formulated based on actual support inquiries, user documentation sections, and common onboarding challenges identified by Sovelia implementation consultants, but also based on experience of the author as a Sovelia Core developer and thus intimate knowledge of typical user needs. This approach aims to ensure validity, meaning that the evaluation reflects real-world usage patterns rather than artificial test scenarios. Most of the questions have specific answers in the documentation, while a few are more open-ended to reflect realistic information-seeking behavior. Some of questions are also designed to be more challenging, for example by requiring synthesis across multiple documents or by addressing areas where documentation coverage is known to be limited. This mix of question types allows for a nuanced assessment of system capabilities across different information retrieval challenges.
 
 \begin{table}[htbp]
-  \centering
-  \small
-  \begin{tabular}{p{0.25\textwidth}p{0.65\textwidth}}
-    \hline
-    \textbf{Category}          & \textbf{Example Question}                                          \\
-    \hline
-    Feature Inquiries          & What are the available lifecycle states for items in Sovelia Core? \\
-    \addlinespace
-    Procedural Questions       & How do I add components to a bill of materials structure?          \\
-    \addlinespace
-    Troubleshooting Queries    & Why can't I check in my document after making changes?             \\
-    \addlinespace
-    Version-Specific Questions & What's new in Sovelia Core version 25.1?                           \\
-    \addlinespace
-    Integration Questions      & How does Sovelia sync with Inventor for managing CAD models?       \\
-    \hline
-  \end{tabular}
-  \caption{Example questions from each evaluation category}
-  \label{tab:example-questions}
+    \centering
+    \small
+    \begin{tabular}{p{0.25\textwidth}p{0.65\textwidth}}
+        \hline
+        \textbf{Category}          & \textbf{Example Question}                                          \\
+        \hline
+        Feature Inquiries          & What are the available lifecycle states for items in Sovelia Core? \\
+        \addlinespace
+        Procedural Questions       & How do I add components to a bill of materials structure?          \\
+        \addlinespace
+        Troubleshooting Queries    & Why can't I check in my document after making changes?             \\
+        \addlinespace
+        Version-Specific Questions & What's new in Sovelia Core version 25.1?                           \\
+        \addlinespace
+        Integration Questions      & How does Sovelia sync with Inventor for managing CAD models?       \\
+        \hline
+    \end{tabular}
+    \caption{Example questions from each evaluation category}
+    \label{tab:example-questions}
 \end{table}
 
 \subsubsection{Evaluation criteria}
@@ -187,6 +187,8 @@ The Ollama on-premise deployment incurs no per-query API costs, though it requir
 
 \section{Implications for RAG system design in PLM contexts}
 \label{sec:implications-plm-rag}
+
+Beyond the Sovelia Core case, these results provide an empirical point of reference for PLM research on how RAG systems behave when integrated into operational PLM environments. The findings highlight which constraints tend to dominate in practice (documentation completeness, version context, and access control) and which factors are secondary at typical scales (retrieval latency and embedding overhead). This supports further research and development on AI-assisted PLM knowledge work by grounding design choices in observed behavior rather than only conceptual architectures.
 
 The results suggest that the primary determinant of response quality is the availability and structure of source documentation. Most questions achieved high scores with strong source attribution, which indicates that the system can reliably summarize and cite what exists in the corpus. When answers were weak, the issues often matched gaps in the available sources or missing workflow details, especially in procedural questions such as releasing documents, exporting structures, and adding BOM components.
 
