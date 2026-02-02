@@ -43,6 +43,8 @@ For queries returning large result sets, sources were prioritized based on the P
 
 In addition to structured database searches, snowballing techniques were employed by following citations from key papers to identify seminal works in RAG architecture, vector databases, and enterprise AI deployment. Industry documentation, particularly from database vendors and LLM providers, supplemented academic sources to capture practitioner knowledge about deployment patterns and performance considerations. This industry literature is put to use in Chapter~\ref{ch:system-design-and-implementation}, where practical implementation insights are in the foreground.
 
+The search strategy is best described as a structured and systematic literature search rather than a fully formal systematic literature review. This methodological choice was motivated by the novelty and fast evolution of RAG-related techniques in practice: relevant knowledge is currently distributed across peer-reviewed research, preprints, and vendor documentation. A pragmatic synthesis was therefore required to (1) establish a credible conceptual foundation, and (2) ensure that the selected design decisions remain feasible in an on-premise enterprise setting. Source selection emphasized relevance to on-premise deployment, data governance, and enterprise documentation retrieval, and it prioritized highly-cited and recent works in broad searches, while reviewing most results for narrow queries.
+
 \section{Design science methodology}
 \label{sec:design-science-methodology}
 
@@ -52,10 +54,31 @@ According to \textcite{johannessonIntroductionDesignScience2021}, design science
 
 In this thesis, design science methodology is employed to develop an AI assistant integrated with Sovelia Core, an on-premise PLM system. The practical problem addressed is the knowledge accessibility challenge faced by users navigating fragmented documentation across vendor manuals, release notes, and customer-specific SOPs. The artifact in this case is the RAG system, which is designed, implemented, and evaluated through iterative cycles within both internal and external contexts. Internal environments, such as testing sandboxes, allow for rapid testing and refinement, while external contexts are mainly gathered through user feedback from demos and pilot implementations. The purpose of this approach is to contribute both a practical solution for Sovelia Core and generalizable knowledge about RAG system integration in on-premise enterprise PLM environments.
 
+\subsection{DSR stages and connection to the thesis structure}
+\label{subsec:dsr-stages-connection}
+
+DSR was chosen because the research questions in Chapter~\ref{ch:introduction} are primarily design-oriented and prescriptive. RQ1 requires selecting and justifying an architecture under explicit constraints (on-premise deployment, PostgreSQL, governance). RQ2 focuses on engineering a maintainable process (documentation pipeline lifecycle). RQ3 concerns risk identification and mitigation in a real permission model. These aims align with DSR, where knowledge is produced through building and evaluating an artifact in context.
+
+The \emph{explicate problem} stage is addressed in Chapter~\ref{ch:introduction}, where the documentation fragmentation problem and its motivation are defined, and in Section~\ref{subsec:case-description}, where the contextual constraints are described (on-premise deployment, sensitive engineering data, and heterogeneous documentation sources). These aspects define what is feasible and what constitutes success in this setting.
+
+The \emph{define requirements} stage is accomplished by synthesizing constraints from the case context with the literature in Chapter~\ref{ch:literature-review}. This results in concrete design goals for RQ1--RQ3, such as permission-aware retrieval, explicit source attribution, and version-aware handling of documentation so that the assistant can be governed similarly to the underlying enterprise system.
+
+The \emph{design and develop artifact} stage is carried out in Chapter~\ref{ch:system-design-and-implementation}, which presents the architecture, the documentation pipeline, and the integration with Sovelia Core's permission model. This stage primarily contributes to RQ1 and RQ2, while implementing controls that mitigate the risks emphasized in RQ3.
+
+The \emph{demonstrate artifact} stage is covered through end-to-end integration and representative query execution, showing that retrieval, access control enforcement, and response generation function as a coherent whole. This demonstration is reported across Chapters~\ref{ch:system-design-and-implementation} and \ref{ch:evaluation-and-results}.
+
+The \emph{evaluate artifact} stage is addressed in Chapter~\ref{ch:evaluation-and-results} through expert assessment of response quality and technical performance measurements. The evaluation is then interpreted against RQ1--RQ3 and synthesized into implications, limitations, and transferability in Chapter~\ref{ch:conclusions}.
+
+The DSR process was iterative in the sense that implementation findings informed refinements to chunking, retrieval methodology, and risk controls. This was especially relevant for RQ2 and RQ3, where reliability and governance issues often emerge only when the pipeline is executed on realistic documentation and the assistant is exposed to diverse query types.
+
 \section{Case study approach}
 \label{sec:case-study-approach}
 
 This research employs a single case study design \parencite{yinCaseStudyResearch2018} to investigate the integration of a RAG-based AI assistant within an on-premise PLM environment. The case study approach allows for in-depth exploration of the technical, organizational, and practical challenges inherent in deploying enterprise AI systems under strict data governance constraints.
+
+The case study method was selected because the thesis is inherently commissioned and practice-oriented: the work was conducted in the R\&D context of Symetri and the Sovelia Core development team, where the primary outcome is a functioning artifact intended for real product development. In such a setting, the relevant design constraints are not abstract assumptions but operational realities, including on-premise deployment requirements, an existing permission model, heterogeneous documentation sources, and organizational risk tolerance. These contextual factors influence both what can be built (RQ1--RQ2) and what risks are critical in practice (RQ3), and they can only be assessed credibly by studying the artifact in its intended environment.
+
+A single, information-rich case enables detailed examination of these constraints while supporting \emph{analytic generalization}: rather than claiming statistical representativeness, the case is used to derive transferable design principles for similar enterprise software development contexts, where documentation assistants must be integrated into existing systems under governance constraints.
 
 \subsection{Case description: Sovelia Core PLM environment}
 \label{subsec:case-description}
@@ -93,3 +116,12 @@ The case study is bounded by three scope constraints. The temporal scope covers 
 Data collection in this case study combines multiple sources to formulate the findings. The primary data consists of system implementation artifacts (such as architecture documentation and source code) that document design decisions and the implementation approach. Expert evaluation is used to assess responses generated by the RAG system during internal testing deployments, focusing on accuracy, relevance, and source attribution. In addition, technical performance metrics are collected, including token usage, response latency, and embedding generation time.
 
 The source code itself will not be made publicly available due to intellectual property considerations. The evaluation strategy follows the design science framework's emphasis on \textit{technical performance} (whether the artifact functions as designed) and \textit{utility} (whether the artifact addresses the identified problem). Technical performance is assessed through qualitative RAG performance metrics, while utility is evaluated mainly through expert feedback.
+
+\subsection{Linkage between the case study and the thesis structure}
+\label{subsec:case-study-connection}
+
+The case study is used as a structuring device across the thesis and reflects the commissioned development setting. Chapter~\ref{ch:introduction} motivates the practical problem and defines the research questions from the perspective of an enterprise product development context. Chapter~\ref{ch:research-methodology} specifies the case boundaries, unit of analysis, and data sources, which include implementation artifacts produced during R\&D work (architecture documentation, pipeline configuration, and selected code excerpts) and evaluation data collected from internal testing and expert review.
+
+Chapter~\ref{ch:system-design-and-implementation} reports the concrete instantiation of the artifact in the Sovelia Core environment, making the case constraints explicit as design drivers rather than post-hoc explanations. Chapter~\ref{ch:evaluation-and-results} reports the empirical observations produced within the same development setting, including expert evaluation of response quality and performance measurements under realistic deployment configurations.
+
+The main outcome of this case study is a validated set of design choices that can be transferred to other document-heavy enterprise systems with similar constraints. These include using a relational database with vector extensions for governed retrieval, enforcing permissions at retrieval-time, treating the documentation pipeline as a versioned lifecycle process, and evaluating response quality with separable dimensions that distinguish retrieval failures from generation failures.
