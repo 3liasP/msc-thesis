@@ -37,36 +37,36 @@ The 30-question set size aims to balance evaluation comprehensiveness with pract
 Questions were formulated based on actual support inquiries, user documentation sections, and common onboarding challenges identified by Sovelia implementation consultants, but also based on experience of the author as a Sovelia Core developer and thus intimate knowledge of typical user needs. This approach aims to ensure validity, meaning that the evaluation reflects real-world usage patterns rather than artificial test scenarios. Most of the questions have specific answers in the documentation, while a few are more open-ended to reflect realistic information-seeking behavior. Some of questions are also designed to be more challenging, for example by requiring synthesis across multiple documents or by addressing areas where documentation coverage is known to be limited. This mix of question types allows for a nuanced assessment of system capabilities across different information retrieval challenges.
 
 \begin{table}[htbp]
-    \centering
-    \small
-    \begin{tabular}{p{0.25\textwidth}p{0.65\textwidth}}
-        \hline
-        \textbf{Category}          & \textbf{Example Question}                                          \\
-        \hline
-        Feature Inquiries          & What are the available lifecycle states for items in Sovelia Core? \\
-        \addlinespace
-        Procedural Questions       & How do I add components to a bill of materials structure?          \\
-        \addlinespace
-        Troubleshooting Queries    & Why can't I check in my document after making changes?             \\
-        \addlinespace
-        Version-Specific Questions & What's new in Sovelia Core version 25.1?                           \\
-        \addlinespace
-        Integration Questions      & How does Sovelia sync with Inventor for managing CAD models?       \\
-        \hline
-    \end{tabular}
-    \caption{Example questions from each evaluation category}
-    \label{tab:example-questions}
+  \centering
+  \small
+  \begin{tabular}{p{0.25\textwidth}p{0.65\textwidth}}
+    \hline
+    \textbf{Category}          & \textbf{Example Question}                                          \\
+    \hline
+    Feature Inquiries          & What are the available lifecycle states for items in Sovelia Core? \\
+    \addlinespace
+    Procedural Questions       & How do I add components to a bill of materials structure?          \\
+    \addlinespace
+    Troubleshooting Queries    & Why can't I check in my document after making changes?             \\
+    \addlinespace
+    Version-Specific Questions & What's new in Sovelia Core version 25.1?                           \\
+    \addlinespace
+    Integration Questions      & How does Sovelia sync with Inventor for managing CAD models?       \\
+    \hline
+  \end{tabular}
+  \caption{Example questions from each evaluation category}
+  \label{tab:example-questions}
 \end{table}
 
 \subsubsection{Evaluation criteria}
 
-The evaluation employs a factored assessment approach where responses are rated across multiple independent dimensions \parencite{abeysingheChallengesEvaluatingLLM2024}. Each dimension is assessed independently using a 5-point Likert scale (1 = Very poor, 2 = Poor, 3 = Acceptable, 4 = Good, 5 = Excellent).
+The evaluation employs a factored assessment approach where responses are rated across multiple independent dimensions \parencite{AbeysingheBhashithe2024TCoE}. Each dimension is assessed independently using a 5-point Likert scale (1 = Very poor, 2 = Poor, 3 = Acceptable, 4 = Good, 5 = Excellent).
 
 Four dimensions were assessed. \textit{Factual accuracy} measures correctness of claims against official Sovelia documentation (and, when needed, observed system behavior). \textit{Relevance} measures how directly the response addresses the query without unnecessary content. \textit{Source attribution} measures whether citations are provided and whether cited sources support the stated claims. \textit{Completeness} measures whether the response provides sufficient information to satisfy the query without requiring follow-up questions or additional research.
 
 The use of a 5-point Likert instrument mirrors prior domain evaluations where multiple user-facing dimensions were rated (e.g., response speed, clarity, usability, and perceived reliability) \parencite{namLoRATunedMultimodalRAG2025}. However, the dimensions differ intentionally: for a documentation assistant in a PLM context, traceability to retrieved sources is treated as a first-class requirement, and source attribution is therefore assessed explicitly.
 
-This multi-dimensional evaluation framework extends standard information retrieval metrics \parencite{manningIntroductionInformationRetrieval2008a} to address the specific challenges of RAG-based question answering in technical documentation contexts, where both retrieval quality and generation accuracy must be assessed \parencite{namLoRATunedMultimodalRAG2025}. The factored approach produces better insights into which specific aspects require improvement compared to holistic evaluation methods \parencite{abeysingheChallengesEvaluatingLLM2024}, making it particularly valuable for iterative system refinement. The framework recognizes that effective retrieval is fundamental to RAG performance, with recent work showing that query likelihood approaches can achieve competitive document ranking performance \parencite{zhuangOpensourceLargeLanguage2023}.
+This multi-dimensional evaluation framework extends standard information retrieval metrics \parencite{manningIntroductionInformationRetrieval2008a} to address the specific challenges of RAG-based question answering in technical documentation contexts, where both retrieval quality and generation accuracy must be assessed \parencite{namLoRATunedMultimodalRAG2025}. The factored approach produces better insights into which specific aspects require improvement compared to holistic evaluation methods \parencite{AbeysingheBhashithe2024TCoE}, making it particularly valuable for iterative system refinement. The framework recognizes that effective retrieval is fundamental to RAG performance, with recent work showing that query likelihood approaches can achieve competitive document ranking performance \parencite{ZhuangShengyao2023OLLM}.
 
 \subsubsection{Evaluation procedure}
 
@@ -89,7 +89,7 @@ Technical performance evaluation quantifies operational characteristics of the R
 
 In contrast to evaluation setups where response quality is assessed using similarity-to-reference metrics (e.g., ROUGE-L or embedding similarity) \parencite{namLoRATunedMultimodalRAG2025}, this thesis prioritizes operational measurements (latency, tool usage, token consumption) and expert assessment against documentation sources. Similarity-based metrics require well-defined ground-truth answers, which are often unavailable or ambiguous in enterprise documentation questions, and may not reflect whether a response is supported by the cited sources. Additionally, while response speed is sometimes assessed via user satisfaction ratings \parencite{namLoRATunedMultimodalRAG2025}, it is measured directly in this thesis through end-to-end latency metrics. This is to get rough understanding of how the system would perform in real-world usage scenarios before it's first actual customer deployment.
 
-The implemented system employs a tool-augmented, tool-calling architecture where the language model determines whether to invoke retrieval tools, may execute multiple retrieval operations, and synthesizes responses from gathered context. Performance measurement captures timing data for tool execution (including query embedding, vector search, BM25 reranking, hybrid scoring, and chunk grouping), embedding generation (reported separately to isolate embedding performance), and LLM inference. LLM inference is measured for both the tool decision phase and the response generation phase, reflecting the two-step structure of the tool-calling workflow \parencite{plaatAgenticLargeLanguage2025}.
+The implemented system employs a tool-augmented, tool-calling architecture where the language model determines whether to invoke retrieval tools, may execute multiple retrieval operations, and synthesizes responses from gathered context. Performance measurement captures timing data for tool execution (including query embedding, vector search, BM25 reranking, hybrid scoring, and chunk grouping), embedding generation (reported separately to isolate embedding performance), and LLM inference. LLM inference is measured for both the tool decision phase and the response generation phase, reflecting the two-step structure of the tool-calling workflow \parencite{plaatAgenticLargeLanguage2026}.
 
 Performance data is captured through PostgreSQL stored procedures that measure elapsed time for each component and persist measurements to the \texttt{AIChatPerformance} table. Detailed metrics including tool call counts, LLM call counts, individual operation timings, and retrieval pipeline stage breakdowns are stored in a JSONB column for granular analysis. Total query latency represents the sum of all tool executions and LLM calls, providing an end-to-end user experience metric. Token usage statistics are extracted from LLM response metadata and logged to the \texttt{AIChatHistory} table, enabling cost analysis and context window utilization assessment.
 
