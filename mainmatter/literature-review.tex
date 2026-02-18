@@ -39,7 +39,7 @@ Several recent implementations of RAG-based systems for technical documentation 
 
 \subsection*{Manufacturing quality control: Heredia Álvaro and Barreda's ceramic tile RAG system}
 
-Heredia Álvaro and Barreda (2025) developed a RAG system for manufacturing quality control in the ceramic tile industry \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025}. The work is relevant because it targets a documentation-heavy domain with specialized processes and users who need fast, actionable guidance from procedural and defect-related knowledge.
+Heredia Álvaro and Barreda \parencite{herediaalvaroAdvancedRetrievalaugmentedGeneration2025} developed a RAG system for manufacturing quality control in the ceramic tile industry. The work is relevant because it targets a documentation-heavy domain with specialized processes and users who need fast, actionable guidance from procedural and defect-related knowledge.
 
 The proposed approach relies on careful preprocessing of domain content and a retrieval pipeline that prioritizes external knowledge over the language model's parametric memory. A central design choice is a two-stage retrieval strategy, where an efficient initial retrieval step is followed by reranking to improve relevance. In evaluation, the authors report that domain-adapted retrieval improves answer quality compared to using a general-purpose model without access to the curated documentation. For Sovelia Core, the main implication is that maintainable improvements can be achieved through document structuring, retrieval tuning, and reranking, without requiring model fine-tuning.
 
