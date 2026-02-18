@@ -178,7 +178,13 @@ Each response includes per-message feedback controls (thumbs up / thumbs down). 
 \section{Operational considerations}
 \label{sec:operational-considerations}
 
-Operational features support production deployment: logging, runtime configuration, and basic resource controls \parencite{KimothiAbhinav2025ASGt}. The embedding service and application server maintain logs for document processing, query handling, and error conditions, with log rotation to manage storage \parencite{KimothiAbhinav2025ASGt}. Key configuration parameters (provider selection, API keys, and retrieval criteria) are managed through Sovelia Core administration UI. Resource controls include queue-based processing for embedding generation and database connection pooling \parencite{KimothiAbhinav2025ASGt}.
+Operational features support production deployment by providing logging, runtime configuration, and basic resource controls \parencite{KimothiAbhinav2025ASGt}.
+
+For observability, the embedding service and application server maintain logs for document processing, query handling, and error conditions. Log rotation is used to manage storage growth \parencite{KimothiAbhinav2025ASGt}.
+
+Runtime configuration is supported through the Sovelia Core administration UI, which is used to manage key parameters such as provider selection, API keys, and retrieval criteria.
+
+Basic resource controls are implemented with queue-based processing for embedding generation and database connection pooling, aiming to keep the system responsive under load \parencite{KimothiAbhinav2025ASGt}.
 
 \section{Design implications}
 \label{sec:system-design-implications}
