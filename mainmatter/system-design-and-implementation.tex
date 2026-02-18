@@ -47,7 +47,7 @@ Figure~\ref{fig:database-schema} shows the complete database schema including th
 \subsection{Indexing strategy}
 \label{subsec:indexing-strategy}
 
-Retrieval operations usually run on each user query, so indexing is required for predictable latency. Vector similarity search uses an HNSW index \cite{malkovEfficientRobustApproximate2016} with cosine distance, following pgvector guidance \parencite{PgvectorPgvector2025} and common practice in documentation RAG systems \parencite{zhongHoneyBeeEfficientRolebased2025}. Additional indexes support document-level maintenance operations and conversation history queries. These are added to speed up replacing the old versions of certain documents along with their associated chunks and chat history fetching respectively.
+Retrieval operations usually run on each user query, so indexing is required for predictable latency. Vector similarity search uses a Hierarchical Navigable Small World (HNSW) index \cite{malkovEfficientRobustApproximate2016} with cosine distance, following pgvector guidance \parencite{PgvectorPgvector2025} and common practice in documentation RAG systems \parencite{zhongHoneyBeeEfficientRolebased2025}. Additional indexes support document-level maintenance operations and conversation history queries. These are added to speed up replacing the old versions of certain documents along with their associated chunks and chat history fetching respectively.
 
 \subsection{Access control integration}
 \label{subsec:access-control-integration}
