@@ -22,10 +22,10 @@ The implemented system follows a layered design aligned with Sovelia Core's arch
 This separation keeps integration effort low and supports maintainability, as components can evolve without changing the whole system. The design aligns with practical lifecycle management concerns discussed in RAGOps literature \parencite{KimothiAbhinav2025ASGt}. Figure~\ref{fig:system-layers} illustrates the complete system architecture.
 
 \begin{figure}[htbp]
-    \centering
-    \small{\resizebox{\textwidth}{!}{\input{diagrams/system-layers.tex}}}
-    \caption{Five-layer architecture of the RAG system showing separation of concerns}
-    \label{fig:system-layers}
+  \centering
+  \small{\resizebox{\textwidth}{!}{\input{diagrams/system-layers.tex}}}
+  \caption{Five-layer architecture of the RAG system showing separation of concerns}
+  \label{fig:system-layers}
 \end{figure}
 
 \subsection{Database schema design}
@@ -38,10 +38,10 @@ The schema stores configuration parameters, source document metadata, and embedd
 Figure~\ref{fig:database-schema} shows the complete database schema including the relationships between tables, foreign key constraints, and the enumerated source types. The diagram also highlights the cascade deletion behavior and the vector indexing strategy employed for efficient similarity search.
 
 \begin{figure}[htbp]
-    \centering
-    \small{\resizebox{0.9\textwidth}{!}{\input{diagrams/database-schema.tex}}}
-    \caption{Database schema showing core tables, relationships, and vector indexing for RAG functionality}
-    \label{fig:database-schema}
+  \centering
+  \small{\resizebox{0.9\textwidth}{!}{\input{diagrams/database-schema.tex}}}
+  \caption{Database schema showing core tables, relationships, and vector indexing for RAG functionality}
+  \label{fig:database-schema}
 \end{figure}
 
 \subsection{Indexing strategy}
@@ -68,10 +68,10 @@ Separate abstractions exist for chat models and embedding models, as different p
 Figure~\ref{fig:provider-abstraction} illustrates the provider abstraction layer showing how different LLM and embedding providers are integrated through common interfaces, enabling flexible deployment strategies. \texttt{AIChat} and \texttt{AIEmbeddings} implement provider abstractions and can be used directly elsewhere in source code regardless of the underlying configuration.
 
 \begin{figure}[htbp]
-    \centering
-    \small{\resizebox{0.9\textwidth}{!}{\input{diagrams/provider-abstraction.tex}}}
-    \caption{Provider abstraction layer supporting multiple LLM and embedding providers}
-    \label{fig:provider-abstraction}
+  \centering
+  \small{\resizebox{0.9\textwidth}{!}{\input{diagrams/provider-abstraction.tex}}}
+  \caption{Provider abstraction layer supporting multiple LLM and embedding providers}
+  \label{fig:provider-abstraction}
 \end{figure}
 
 \section{Documentation pipeline design}
@@ -95,10 +95,10 @@ Embedded chunks are stored with source metadata and can be safely reprocessed. W
 Figure~\ref{fig:documentation-pipeline} presents the complete documentation pipeline workflow, from initial document acquisition through final storage and indexing, showing decision points for different document types and error handling paths.
 
 \begin{figure}[htbp]
-    \centering
-    \small{\resizebox{0.75\textwidth}{!}{\input{diagrams/documentation-pipeline.tex}}}
-    \caption{Documentation pipeline workflow showing acquisition, chunking, embedding, and storage stages}
-    \label{fig:documentation-pipeline}
+  \centering
+  \small{\resizebox{0.75\textwidth}{!}{\input{diagrams/documentation-pipeline.tex}}}
+  \caption{Documentation pipeline workflow showing acquisition, chunking, embedding, and storage stages}
+  \label{fig:documentation-pipeline}
 \end{figure}
 
 \section{Retrieval mechanism}
@@ -126,23 +126,23 @@ The retrieval tool implements hybrid retrieval by combining vector similarity se
 Permission filtering is applied during retrieval using database queries, so unauthorized chunks are not returned to the model. This supports both security and retrieval quality compared to post-filtering approaches \parencite{zhongHoneyBeeEfficientRolebased2025, jeongPermissionAwareRAGIdentity2025}.
 
 \label{subsec:source-tracking}
-Each retrieved chunk includes metadata about its source document. For internal PLM documents, this includes the unique document identifier, document revision, and description. For external documentation, this includes the article title and URL. Source metadata supports provenance in responses, enabling verification and navigation to the underlying documentation \parencite{LewisPatrick2020Rgfk}.
+Each retrieved chunk includes metadata about its source document. For internal PLM documents, this includes the unique document identifier, document revision, and description. For external documentation, this includes the article title and URL. Source metadata supports provenance in responses, enabling verification and navigation to the underlying documentation \parencite{NEURIPS2020_6b493230}.
 
 Figure~\ref{fig:query-flow} depicts the complete tool-augmented query processing flow, showing how the language model decides when to invoke the documentation retrieval tool, processes hybrid retrieval results combining semantic search with BM25 re-ranking, and generates responses with source references based on tool outputs.
 
 \begin{figure}[htbp]
-    \centering
-    \small{\resizebox{\textwidth}{!}{\input{diagrams/query-flow.tex}}}
-    \caption{Complete query processing flow showing interaction between system components}
-    \label{fig:query-flow}
+  \centering
+  \small{\resizebox{\textwidth}{!}{\input{diagrams/query-flow.tex}}}
+  \caption{Complete query processing flow showing interaction between system components}
+  \label{fig:query-flow}
 \end{figure}
 
 \section{Prompt engineering and LLM integration}
 \label{sec:prompt-engineering}
 
-The prompt provides the model with tool access and instructions, so retrieval is performed selectively rather than unconditionally. This follows the tool-use pattern described in ReAct-style prompting \parencite{yaoReActSynergizingReasoning2022}. The system prompt defines the assistant role, available tools, and behavioral constraints, and it instructs the model to use the \texttt{plm\_documentation\_retriever} tool when documentation evidence is required \parencite{yaoReActSynergizingReasoning2022, LewisPatrick2020Rgfk}.
+The prompt provides the model with tool access and instructions, so retrieval is performed selectively rather than unconditionally. This follows the tool-use pattern described in ReAct-style prompting \parencite{yaoReActSynergizingReasoning2022}. The system prompt defines the assistant role, available tools, and behavioral constraints, and it instructs the model to use the \texttt{plm\_documentation\_retriever} tool when documentation evidence is required \parencite{yaoReActSynergizingReasoning2022, NEURIPS2020_6b493230}.
 
-The prompt also requires aims to handle uncertainty and source attribution to reduce hallucination risk and support transparency expectations \parencite{LewisPatrick2020Rgfk, sillbergEUAIAct2025}. This is achieved by including explicit anti-hallucination instructions that apply both to parametric generation and tool-augmented generation. The model receives guidance to cite specific sources when information derives from retrieved documentation, to avoid fabricating links or references, and to acknowledge uncertainty when retrieved context does not contain sufficient information to answer a query.
+The prompt also requires aims to handle uncertainty and source attribution to reduce hallucination risk and support transparency expectations \parencite{NEURIPS2020_6b493230, sillbergEUAIAct2025}. This is achieved by including explicit anti-hallucination instructions that apply both to parametric generation and tool-augmented generation. The model receives guidance to cite specific sources when information derives from retrieved documentation, to avoid fabricating links or references, and to acknowledge uncertainty when retrieved context does not contain sufficient information to answer a query.
 
 \label{subsec:conversation-history}
 Conversation history is retained to support multi-turn assistance, where follow-up questions can build on earlier context and earlier retrieval results. This done to support iterative information seeking behavior typical in AI assistants \parencite{petricekAIAssistantsFramework2023, budiu6TypesConversations2023}, where iterative interaction patterns enable users to refine queries and provide feedback through natural dialogue rather than single-shot requests
@@ -165,13 +165,13 @@ A dedicated testing endpoint enables administrators to validate system configura
 The AI assistant integrates directly into Sovelia Core's web interface as a contextual help panel, providing a chat interface with message history and input field. The design supports iterative, human-in-the-loop interaction typical for AI assistants \parencite{petricekAIAssistantsFramework2023, budiu6TypesConversations2023}. Figure~\ref{fig:sovelia-chat-ui} shows the chat interface implemented as a popup that can be opened or closed without disrupting the main PLM workflow.
 
 \begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\textwidth]{figures/sovelia-chat-ui.png}
-    \caption{AI assistant chat interface integrated into Sovelia Core home screen (pre-release version)}
-    \label{fig:sovelia-chat-ui}
+  \centering
+  \includegraphics[width=\textwidth]{figures/sovelia-chat-ui.png}
+  \caption{AI assistant chat interface integrated into Sovelia Core home screen (pre-release version)}
+  \label{fig:sovelia-chat-ui}
 \end{figure}
 
-AI responses render Markdown for readability in technical content. Each response includes clickable source references that appear alongside AI responses as interactive elements. For internal PLM documents, clicking a source reference opens the document object in Sovelia Core. For external documentation, clicking a source reference opens the URL in a new browser tab. This integration enables seamless transition from AI-assisted discovery to detailed document review. Showing the sources directly in the UI addresses the transparency and verifiability requirements identified by \textcite{LewisPatrick2020Rgfk}, where users must be able to trace AI-generated information back to authoritative documents to build trust and ensure accuracy in technical contexts. The prominence of source references also supports exploring conversations, as \parencite{budiu6TypesConversations2023} observed that users engaged in depth-focused learning benefit from explicit pathways to detailed documentation that can inform subsequent followup questions.
+AI responses render Markdown for readability in technical content. Each response includes clickable source references that appear alongside AI responses as interactive elements. For internal PLM documents, clicking a source reference opens the document object in Sovelia Core. For external documentation, clicking a source reference opens the URL in a new browser tab. This integration enables seamless transition from AI-assisted discovery to detailed document review. Showing the sources directly in the UI addresses the transparency and verifiability requirements identified by \textcite{NEURIPS2020_6b493230}, where users must be able to trace AI-generated information back to authoritative documents to build trust and ensure accuracy in technical contexts. The prominence of source references also supports exploring conversations, as \parencite{budiu6TypesConversations2023} observed that users engaged in depth-focused learning benefit from explicit pathways to detailed documentation that can inform subsequent followup questions.
 
 Each response includes per-message feedback controls (thumbs up / thumbs down). Feedback is stored for later analysis and continuous improvement \parencite{petricekAIAssistantsFramework2023, knollmeyerDocumentGraphRAGKnowledge2025}. Users can clear conversation history to reset context. Conversations are soft-deleted (flagged as deleted) rather than physically removed, supporting auditability and later analysis \parencite{budiu6TypesConversations2023}.
 
