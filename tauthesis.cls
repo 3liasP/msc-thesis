@@ -26,10 +26,10 @@
 \RequirePackage{ifluatex}
 
 \ifluatex
-  % Everything is fine and dandy.
+    % Everything is fine and dandy.
 \else
-  \PackageError{tauthesis}{This class requires LuaLaTeX to compile}{Please compile your document with LuaLaTeX.}
-  \expandafter\stop
+    \PackageError{tauthesis}{This class requires LuaLaTeX to compile}{Please compile your document with LuaLaTeX.}
+    \expandafter\stop
 \fi
 %
 % Load the expl3 package and l3keys2e module
@@ -48,22 +48,22 @@
 % Define error message for use below.
 
 \msg_new:nnnn
-    { tauthesis }
-    { unknown-mainlanguage }
-    { Unknown~value~for~keyword~argument~mainlanguage. }
-    { Valid~values~are~~'finnish'~and~'english'. }
+{ tauthesis }
+{ unknown-mainlanguage }
+{ Unknown~value~for~keyword~argument~mainlanguage. }
+{ Valid~values~are~~'finnish'~and~'english'. }
 
 \msg_new:nnnn
-    { tauthesis }
-    { unknown-fithesistype }
-    { Unknown~value~for~keyword~argument~fithesistype. }
-    { Valid~values~are~'kandidaatti',~'maisteri'~and~'diplomi'. }
+{ tauthesis }
+{ unknown-fithesistype }
+{ Unknown~value~for~keyword~argument~fithesistype. }
+{ Valid~values~are~'kandidaatti',~'maisteri'~and~'diplomi'. }
 
 \msg_new:nnnn
-    { tauthesis }
-    { unknown-enthesistype }
-    { Unknown~value~for~keyword~argument~fithesistype. }
-    { Valid~values~are~'bachelor'~and~'master'. }
+{ tauthesis }
+{ unknown-enthesistype }
+{ Unknown~value~for~keyword~argument~fithesistype. }
+{ Valid~values~are~'bachelor'~and~'master'. }
 
 % Settings based on language.
 
@@ -117,78 +117,78 @@
     enprogrammename.store = \@tauthesis@enprogrammename,
 
     ensubtitle .code:n = {
-        \tl_if_blank:nTF
+            \tl_if_blank:nTF
             {#1}
             {\newcommand{\@tauthesis@ensubtitle@joiner}{}}
             {\newcommand{\@tauthesis@ensubtitle@joiner}{:~}}
-        \newcommand{\@tauthesis@ensubtitle}{#1}
-    },
+            \newcommand{\@tauthesis@ensubtitle}{#1}
+        },
 
     enthesistype .choice:,
 
     enthesistype / bachelor .code:n =
-        \tl_set:Nn\@tauthesis@enthesistype {Bachelor's~thesis}
-        \tl_set:Nn\@tauthesis@innermargin {4cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
-        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
-        \tl_set:Nn\@tauthesis@papersize {a4paper}
-        \tl_set:Nn\@tauthesis@paperwidth {210mm}
-        \tl_set:Nn\@tauthesis@paperheight {297mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
-        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@bachelorsthesistypeint}
+    \tl_set:Nn\@tauthesis@enthesistype {Bachelor's~thesis}
+    \tl_set:Nn\@tauthesis@innermargin {4cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+    \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+    \tl_set:Nn\@tauthesis@papersize {a4paper}
+    \tl_set:Nn\@tauthesis@paperwidth {210mm}
+    \tl_set:Nn\@tauthesis@paperheight {297mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+    \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@bachelorsthesistypeint}
     ,
 
     enthesistype / master .code:n =
-        \tl_set:Nn\@tauthesis@enthesistype {Master's~thesis}
-        \tl_set:Nn\@tauthesis@innermargin {4cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
-        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
-        \tl_set:Nn\@tauthesis@papersize {a4paper}
-        \tl_set:Nn\@tauthesis@paperwidth {210mm}
-        \tl_set:Nn\@tauthesis@paperheight {297mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
-        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
+    \tl_set:Nn\@tauthesis@enthesistype {Master's~thesis}
+    \tl_set:Nn\@tauthesis@innermargin {4cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+    \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+    \tl_set:Nn\@tauthesis@papersize {a4paper}
+    \tl_set:Nn\@tauthesis@paperwidth {210mm}
+    \tl_set:Nn\@tauthesis@paperheight {297mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+    \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
     ,
 
     enthesistype / licentiate .code:n =
-        \tl_set:Nn\@tauthesis@enthesistype {Licentiate~Thesis}
-        \tl_set:Nn\@tauthesis@innermargin {2cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2cm}
-        \tl_set:Nn\@tauthesis@bottommargin {3cm}
-        \tl_set:Nn\@tauthesis@papersize {b5paper}
-        \tl_set:Nn\@tauthesis@paperwidth {176mm}
-        \tl_set:Nn\@tauthesis@paperheight {250mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
-        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@licentiatethesistypeint}
+    \tl_set:Nn\@tauthesis@enthesistype {Licentiate~Thesis}
+    \tl_set:Nn\@tauthesis@innermargin {2cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2cm}
+    \tl_set:Nn\@tauthesis@bottommargin {3cm}
+    \tl_set:Nn\@tauthesis@papersize {b5paper}
+    \tl_set:Nn\@tauthesis@paperwidth {176mm}
+    \tl_set:Nn\@tauthesis@paperheight {250mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
+    \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@licentiatethesistypeint}
     ,
 
     enthesistype / doctor .code:n =
-        \tl_set:Nn\@tauthesis@enthesistype {Doctoral~Dissertation}
-        \tl_set:Nn\@tauthesis@innermargin {2cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2cm}
-        \tl_set:Nn\@tauthesis@bottommargin {3cm}
-        \tl_set:Nn\@tauthesis@papersize {b5paper}
-        \tl_set:Nn\@tauthesis@paperwidth {176mm}
-        \tl_set:Nn\@tauthesis@paperheight {250mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
-        \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@doctoralthesistypeint}
+    \tl_set:Nn\@tauthesis@enthesistype {Doctoral~Dissertation}
+    \tl_set:Nn\@tauthesis@innermargin {2cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2cm}
+    \tl_set:Nn\@tauthesis@bottommargin {3cm}
+    \tl_set:Nn\@tauthesis@papersize {b5paper}
+    \tl_set:Nn\@tauthesis@paperwidth {176mm}
+    \tl_set:Nn\@tauthesis@paperheight {250mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
+    \int_set:Nn\@tauthesis@enthesistypeint {\int_use:N\@tauthesis@doctoralthesistypeint}
     ,
 
     enthesistype / unknown .code:n =
-        \msg_error:nneee
-            { tauthesis }
-            { unknown-enthesistype }
-            { enthesistype }     % Name of key.
-            { bachelor, master } % Valid choices
-            { \exp_not:n {#1} }  % Invalid choice given
+    \msg_error:nneee
+    { tauthesis }
+    { unknown-enthesistype }
+    { enthesistype }     % Name of key.
+    { bachelor, master } % Valid choices
+    { \exp_not:n {#1} }  % Invalid choice given
     ,
 
     entitle.store = \@tauthesis@entitle,
@@ -202,92 +202,92 @@
     fiprogrammename.store = \@tauthesis@fiprogrammename,
 
     fisubtitle .code:n = {
-        \tl_if_blank:nTF
+            \tl_if_blank:nTF
             {#1}
             {\newcommand{\@tauthesis@fisubtitle@joiner}{}}
             {\newcommand{\@tauthesis@fisubtitle@joiner}{:~}}
-        \newcommand{\@tauthesis@fisubtitle}{#1}
-    },
+            \newcommand{\@tauthesis@fisubtitle}{#1}
+        },
 
     fithesistype .choice:,
 
     fithesistype / kandidaatti .code:n =
-        \tl_set:Nn\@tauthesis@fithesistype {Kandidaatintyö}
-        \tl_set:Nn\@tauthesis@innermargin {4cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
-        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
-        \tl_set:Nn\@tauthesis@papersize {a4paper}
-        \tl_set:Nn\@tauthesis@paperwidth {210mm}
-        \tl_set:Nn\@tauthesis@paperheight {297mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
-        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@bachelorsthesistypeint}
+    \tl_set:Nn\@tauthesis@fithesistype {Kandidaatintyö}
+    \tl_set:Nn\@tauthesis@innermargin {4cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+    \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+    \tl_set:Nn\@tauthesis@papersize {a4paper}
+    \tl_set:Nn\@tauthesis@paperwidth {210mm}
+    \tl_set:Nn\@tauthesis@paperheight {297mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+    \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@bachelorsthesistypeint}
     ,
 
     fithesistype / maisteri .code:n =
-        \tl_set:Nn\@tauthesis@fithesistype {Pro~gradu~-tutkielma}
-        \tl_set:Nn\@tauthesis@innermargin {4cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
-        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
-        \tl_set:Nn\@tauthesis@papersize {a4paper}
-        \tl_set:Nn\@tauthesis@paperwidth {210mm}
-        \tl_set:Nn\@tauthesis@paperheight {297mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
-        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
+    \tl_set:Nn\@tauthesis@fithesistype {Pro~gradu~-tutkielma}
+    \tl_set:Nn\@tauthesis@innermargin {4cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+    \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+    \tl_set:Nn\@tauthesis@papersize {a4paper}
+    \tl_set:Nn\@tauthesis@paperwidth {210mm}
+    \tl_set:Nn\@tauthesis@paperheight {297mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+    \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
     ,
 
     fithesistype / diplomi .code:n =
-        \tl_set:Nn\@tauthesis@fithesistype {Diplomityö}
-        \tl_set:Nn\@tauthesis@innermargin {4cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2.5cm}
-        \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
-        \tl_set:Nn\@tauthesis@papersize {a4paper}
-        \tl_set:Nn\@tauthesis@paperwidth {210mm}
-        \tl_set:Nn\@tauthesis@paperheight {297mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
-        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
+    \tl_set:Nn\@tauthesis@fithesistype {Diplomityö}
+    \tl_set:Nn\@tauthesis@innermargin {4cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2.5cm}
+    \tl_set:Nn\@tauthesis@bottommargin {2.5cm}
+    \tl_set:Nn\@tauthesis@papersize {a4paper}
+    \tl_set:Nn\@tauthesis@paperwidth {210mm}
+    \tl_set:Nn\@tauthesis@paperheight {297mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-3.8cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-3.1cm}
+    \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@mastersthesistypeint}
     ,
 
     fithesistype / lisensiaatti .code =
-        \tl_set:Nn\@tauthesis@fithesistype {Lisensiaatintyö}
-        \tl_set:Nn\@tauthesis@innermargin {2cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2cm}
-        \tl_set:Nn\@tauthesis@bottommargin {3cm}
-        \tl_set:Nn\@tauthesis@papersize {b5paper}
-        \tl_set:Nn\@tauthesis@paperwidth {176mm}
-        \tl_set:Nn\@tauthesis@paperheight {250mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
-        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@licentiatethesistypeint}
+    \tl_set:Nn\@tauthesis@fithesistype {Lisensiaatintyö}
+    \tl_set:Nn\@tauthesis@innermargin {2cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2cm}
+    \tl_set:Nn\@tauthesis@bottommargin {3cm}
+    \tl_set:Nn\@tauthesis@papersize {b5paper}
+    \tl_set:Nn\@tauthesis@paperwidth {176mm}
+    \tl_set:Nn\@tauthesis@paperheight {250mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
+    \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@licentiatethesistypeint}
     ,
 
     fithesistype / tohtori .code:n =
-        \tl_set:Nn\@tauthesis@fithesistype {Väitöskirja}
-        \tl_set:Nn\@tauthesis@innermargin {2cm}
-        \tl_set:Nn\@tauthesis@outermargin {2cm}
-        \tl_set:Nn\@tauthesis@topmargin {2cm}
-        \tl_set:Nn\@tauthesis@bottommargin {3cm}
-        \tl_set:Nn\@tauthesis@papersize {b5paper}
-        \tl_set:Nn\@tauthesis@paperwidth {176mm}
-        \tl_set:Nn\@tauthesis@paperheight {250mm}
-        \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
-        \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
-        \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@doctoralthesistypeint}
+    \tl_set:Nn\@tauthesis@fithesistype {Väitöskirja}
+    \tl_set:Nn\@tauthesis@innermargin {2cm}
+    \tl_set:Nn\@tauthesis@outermargin {2cm}
+    \tl_set:Nn\@tauthesis@topmargin {2cm}
+    \tl_set:Nn\@tauthesis@bottommargin {3cm}
+    \tl_set:Nn\@tauthesis@papersize {b5paper}
+    \tl_set:Nn\@tauthesis@paperwidth {176mm}
+    \tl_set:Nn\@tauthesis@paperheight {250mm}
+    \tl_set:Nn\@tauthesis@logoxoffset {-1.9cm}
+    \tl_set:Nn\@tauthesis@logoyoffset {-2.7cm}
+    \int_set:Nn\@tauthesis@fithesistypeint {\int_use:N\@tauthesis@doctoralthesistypeint}
     ,
 
     fithesistype / unknown .code:n =
-        \msg_error:nneee
-            { tauthesis }
-            { unknown-fithesistype }
-            { fithesistype }                   % Name of key.
-            { kandidaatti, maisteri, diplomi } % Valid choices
-            { \exp_not:n {#1} }                % Invalid choice given
+    \msg_error:nneee
+    { tauthesis }
+    { unknown-fithesistype }
+    { fithesistype }                   % Name of key.
+    { kandidaatti, maisteri, diplomi } % Valid choices
+    { \exp_not:n {#1} }                % Invalid choice given
     ,
 
     fititle.store = \@tauthesis@fititle,
@@ -319,146 +319,146 @@
     mainlanguage .choice:,
 
     mainlanguage / finnish .code:n = {
-        \tl_set:Nn\@tauthesis@mainlanguage{finnish}
-        \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract-fi.tex}
-        \newcommand{\@tauthesis@abstractname}{Tiivistelmä}
-        \newcommand{\@tauthesis@university}{Tampereen~yliopisto}
-        \newcommand{\@tauthesis@keywordname}{Avainsanat}
-        \newcommand{\@tauthesis@prefacename}{Alkusanat}
-        \newcommand{\@tauthesis@originalitytext}{\@finoriginalitytext}
-        \newcommand{\@tauthesis@logofile}{images/tau-logo-fin.eps}
-        \newcommand{\@tauthesis@logofile@alttext}{Tampereen yliopiston logo.}
-        \newcommand{\@tauthesis@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
-        \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai-fi.tex}
-        \newcommand{\@tauthesis@yestextcmd}{Kyllä}
-        \newcommand{\@tauthesis@notextcmd}{Ei}
-        \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
-        \newcommand{\@tauthesis@title}{\@tauthesis@fititle}
-        \newcommand{\@tauthesis@subtitle}{\@tauthesis@fisubtitle}
-        \newcommand{\@tauthesis@thesistype}{\@tauthesis@fithesistype}
-        \newcommand{\@tauthesis@facultyname}{\@tauthesis@fifacultyname}
-        \newcommand{\@tauthesis@programmename}{\@tauthesis@fiprogrammename}
-        \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@fisubtitle@joiner}
+            \tl_set:Nn\@tauthesis@mainlanguage{finnish}
+            \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract-fi.tex}
+            \newcommand{\@tauthesis@abstractname}{Tiivistelmä}
+            \newcommand{\@tauthesis@university}{Tampereen~yliopisto}
+            \newcommand{\@tauthesis@keywordname}{Avainsanat}
+            \newcommand{\@tauthesis@prefacename}{Alkusanat}
+            \newcommand{\@tauthesis@originalitytext}{\@finoriginalitytext}
+            \newcommand{\@tauthesis@logofile}{images/tau-logo-fin.eps}
+            \newcommand{\@tauthesis@logofile@alttext}{Tampereen yliopiston logo.}
+            \newcommand{\@tauthesis@aidisclaimertitle}{Tekoälyn~käyttö~tässä~työssä}
+            \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai-fi.tex}
+            \newcommand{\@tauthesis@yestextcmd}{Kyllä}
+            \newcommand{\@tauthesis@notextcmd}{Ei}
+            \newcommand{\@tauthesis@keywords}{\@tauthesis@fikeywords}
+            \newcommand{\@tauthesis@title}{\@tauthesis@fititle}
+            \newcommand{\@tauthesis@subtitle}{\@tauthesis@fisubtitle}
+            \newcommand{\@tauthesis@thesistype}{\@tauthesis@fithesistype}
+            \newcommand{\@tauthesis@facultyname}{\@tauthesis@fifacultyname}
+            \newcommand{\@tauthesis@programmename}{\@tauthesis@fiprogrammename}
+            \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@fisubtitle@joiner}
 
-        \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract-en.tex}
-        \newcommand{\@tauthesis@otherabstractname}{Abstract}
-        \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@enfacultyname}
-        \newcommand{\@tauthesis@otherkeywordname}{Keywords}
-        \newcommand{\@tauthesis@otherkeywords}{\@tauthesis@enkeywords}
-        \newcommand{\@tauthesis@otherlanguage}{english}
-        \newcommand{\@tauthesis@otheroriginalitytext}{\@engoriginalitytext}
-        \newcommand{\@tauthesis@otherprogrammename}{\@tauthesis@enprogrammename}
-        \newcommand{\@tauthesis@othersubtitle}{\@tauthesis@ensubtitle}
-        \newcommand{\@tauthesis@othersubtitle@joiner}{\@tauthesis@ensubtitle@joiner}
-        \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@enthesistype}
-        \newcommand{\@tauthesis@othertitle}{\@tauthesis@entitle}
-        \newcommand{\@tauthesis@otheruniversity}{Tampere~University}
+            \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract-en.tex}
+            \newcommand{\@tauthesis@otherabstractname}{Abstract}
+            \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@enfacultyname}
+            \newcommand{\@tauthesis@otherkeywordname}{Keywords}
+            \newcommand{\@tauthesis@otherkeywords}{\@tauthesis@enkeywords}
+            \newcommand{\@tauthesis@otherlanguage}{english}
+            \newcommand{\@tauthesis@otheroriginalitytext}{\@engoriginalitytext}
+            \newcommand{\@tauthesis@otherprogrammename}{\@tauthesis@enprogrammename}
+            \newcommand{\@tauthesis@othersubtitle}{\@tauthesis@ensubtitle}
+            \newcommand{\@tauthesis@othersubtitle@joiner}{\@tauthesis@ensubtitle@joiner}
+            \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@enthesistype}
+            \newcommand{\@tauthesis@othertitle}{\@tauthesis@entitle}
+            \newcommand{\@tauthesis@otheruniversity}{Tampere~University}
 
-        \newcommand{\@tauthesis@publicationname}{Julkaisu}
-        \newcommand{\@tauthesis@publicationplural}{Julkaisut}
-        \newcommand{\@tauthesis@listpublicationname}{Alkuperäisjulkaisut}
-        \newcommand{\@tauthesis@copyrighttext}{%
-            Artikkeleiden~käyttöön~väitöskirjan~osana~on~saatu~kustantajan~lupa.%
-        }
-        \newcommand{\@tauthesis@authorcontributionname}{Kirjoittajan~osuus}
+            \newcommand{\@tauthesis@publicationname}{Julkaisu}
+            \newcommand{\@tauthesis@publicationplural}{Julkaisut}
+            \newcommand{\@tauthesis@listpublicationname}{Alkuperäisjulkaisut}
+            \newcommand{\@tauthesis@copyrighttext}{%
+                Artikkeleiden~käyttöön~väitöskirjan~osana~on~saatu~kustantajan~lupa.%
+            }
+            \newcommand{\@tauthesis@authorcontributionname}{Kirjoittajan~osuus}
 
-        \newcommand{\@tauthesis@firstprinttext}{%
-            Tämä~ja~seuraava~sivu
-            korvataan~painossa~nimiösivuilla.
-        }
-        \newcommand{\@tauthesis@lastprinttext}{%
-            Tämä~ja~edellinen~sivu
-            korvataan~painossa~nimiösivuilla.
-        }
-        \newcommand{\@tauthesis@librarytext}{%
-            Tälle~sivulle~lisätään~kirjastossa
-            sarjan~numero,~ISBN-~ja~ISSN-numerot.
-        }
-        \newcommand{\@glossaryname}{Lyhenteet ja merkinnät}
-        \newcommand{\@appendixname}{Liite}
+            \newcommand{\@tauthesis@firstprinttext}{%
+                Tämä~ja~seuraava~sivu
+                korvataan~painossa~nimiösivuilla.
+            }
+            \newcommand{\@tauthesis@lastprinttext}{%
+                Tämä~ja~edellinen~sivu
+                korvataan~painossa~nimiösivuilla.
+            }
+            \newcommand{\@tauthesis@librarytext}{%
+                Tälle~sivulle~lisätään~kirjastossa
+                sarjan~numero,~ISBN-~ja~ISSN-numerot.
+            }
+            \newcommand{\@glossaryname}{Lyhenteet ja merkinnät}
+            \newcommand{\@appendixname}{Liite}
 
-        \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{Ohjelma-~ja~algoritmiluettelo}}
+            \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{Ohjelma-~ja~algoritmiluettelo}}
 
-        \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä~työ~on~lisensoitu~lisenssin~##1~mukaisesti}
+            \NewDocumentCommand\@tauthesis@licensedUnder{m}{Tämä~työ~on~lisensoitu~lisenssin~##1~mukaisesti}
 
-        \@langenglishfalse
-    },
+            \@langenglishfalse
+        },
 
     mainlanguage / english .code:n = {
-        \tl_set:Nn\@tauthesis@mainlanguage{english}
-        \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract-en.tex}
-        \newcommand{\@tauthesis@abstractname}{Abstract}
-        \newcommand{\@tauthesis@university}{Tampere~University}
-        \newcommand{\@tauthesis@keywordname}{Keywords}
-        \newcommand{\@tauthesis@prefacename}{Preface}
-        \newcommand{\@tauthesis@originalitytext}{\@engoriginalitytext}
-        \newcommand{\@tauthesis@logofile}{images/tau-logo-eng.eps}
-        \newcommand{\@tauthesis@logofile@alttext}{Tampere University logo.}
-        \newcommand{\@tauthesis@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
-        \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai-en.tex}
-        \newcommand{\@tauthesis@yestextcmd}{Yes}
-        \newcommand{\@tauthesis@notextcmd}{No}
+            \tl_set:Nn\@tauthesis@mainlanguage{english}
+            \newcommand{\@tauthesis@abstractfile}{frontmatter/abstract-en.tex}
+            \newcommand{\@tauthesis@abstractname}{Abstract}
+            \newcommand{\@tauthesis@university}{Tampere~University}
+            \newcommand{\@tauthesis@keywordname}{Keywords}
+            \newcommand{\@tauthesis@prefacename}{Preface}
+            \newcommand{\@tauthesis@originalitytext}{\@engoriginalitytext}
+            \newcommand{\@tauthesis@logofile}{images/tau-logo-eng.eps}
+            \newcommand{\@tauthesis@logofile@alttext}{Tampere University logo.}
+            \newcommand{\@tauthesis@aidisclaimertitle}{Use~of~artificial~intelligence~in~this~work}
+            \newcommand{\@tauthesis@aidisclaimerfile}{frontmatter/use-of-ai-en.tex}
+            \newcommand{\@tauthesis@yestextcmd}{Yes}
+            \newcommand{\@tauthesis@notextcmd}{No}
 
-        \newcommand{\@tauthesis@title}{\@tauthesis@entitle}
-        \newcommand{\@tauthesis@subtitle}{\@tauthesis@ensubtitle}
-        \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@ensubtitle@joiner}
-        \newcommand{\@tauthesis@thesistype}{\@tauthesis@enthesistype}
-        \newcommand{\@tauthesis@facultyname}{\@tauthesis@enfacultyname}
-        \newcommand{\@tauthesis@programmename}{\@tauthesis@enprogrammename}
-        \newcommand{\@tauthesis@keywords}{\@tauthesis@enkeywords}
+            \newcommand{\@tauthesis@title}{\@tauthesis@entitle}
+            \newcommand{\@tauthesis@subtitle}{\@tauthesis@ensubtitle}
+            \newcommand{\@tauthesis@subtitle@joiner}{\@tauthesis@ensubtitle@joiner}
+            \newcommand{\@tauthesis@thesistype}{\@tauthesis@enthesistype}
+            \newcommand{\@tauthesis@facultyname}{\@tauthesis@enfacultyname}
+            \newcommand{\@tauthesis@programmename}{\@tauthesis@enprogrammename}
+            \newcommand{\@tauthesis@keywords}{\@tauthesis@enkeywords}
 
-        \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract-fi.tex}
-        \newcommand{\@tauthesis@otherabstractname}{Tiivistelmä}
-        \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@fifacultyname}
-        \newcommand{\@tauthesis@otherkeywordname}{Avainsanat}
-        \newcommand{\@tauthesis@otherkeywords}{\@tauthesis@fikeywords}
-        \newcommand{\@tauthesis@otherlanguage}{finnish}
-        \newcommand{\@tauthesis@otheroriginalitytext}{\@finoriginalitytext}
-        \newcommand{\@tauthesis@otherprogrammename}{\@tauthesis@fiprogrammename}
-        \newcommand{\@tauthesis@othersubtitle}{\@tauthesis@fisubtitle}
-        \newcommand{\@tauthesis@othersubtitle@joiner}{\@tauthesis@fisubtitle@joiner}
-        \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@fithesistype}
-        \newcommand{\@tauthesis@othertitle}{\@tauthesis@fititle}
-        \newcommand{\@tauthesis@otheruniversity}{Tampereen~yliopisto}
+            \newcommand{\@tauthesis@otherabstractfile}{frontmatter/abstract-fi.tex}
+            \newcommand{\@tauthesis@otherabstractname}{Tiivistelmä}
+            \newcommand{\@tauthesis@otherfacultyname}{\@tauthesis@fifacultyname}
+            \newcommand{\@tauthesis@otherkeywordname}{Avainsanat}
+            \newcommand{\@tauthesis@otherkeywords}{\@tauthesis@fikeywords}
+            \newcommand{\@tauthesis@otherlanguage}{finnish}
+            \newcommand{\@tauthesis@otheroriginalitytext}{\@finoriginalitytext}
+            \newcommand{\@tauthesis@otherprogrammename}{\@tauthesis@fiprogrammename}
+            \newcommand{\@tauthesis@othersubtitle}{\@tauthesis@fisubtitle}
+            \newcommand{\@tauthesis@othersubtitle@joiner}{\@tauthesis@fisubtitle@joiner}
+            \newcommand{\@tauthesis@otherthesistype}{\@tauthesis@fithesistype}
+            \newcommand{\@tauthesis@othertitle}{\@tauthesis@fititle}
+            \newcommand{\@tauthesis@otheruniversity}{Tampereen~yliopisto}
 
-        \newcommand{\@tauthesis@publicationname}{Publication}
-        \newcommand{\@tauthesis@publicationplural}{Publications}
-        \newcommand{\@tauthesis@listpublicationname}{Original~publications}
-        \newcommand{\@tauthesis@copyrighttext}{%
-            Publication~reprinted~with~the~permission~of~the~copyright~holders.%
-        }
-        \newcommand{\@tauthesis@authorcontributionname}{Author's~contribution}
+            \newcommand{\@tauthesis@publicationname}{Publication}
+            \newcommand{\@tauthesis@publicationplural}{Publications}
+            \newcommand{\@tauthesis@listpublicationname}{Original~publications}
+            \newcommand{\@tauthesis@copyrighttext}{%
+                Publication~reprinted~with~the~permission~of~the~copyright~holders.%
+            }
+            \newcommand{\@tauthesis@authorcontributionname}{Author's~contribution}
 
-        \newcommand{\@tauthesis@firstprinttext}{%
-            This~and~the~following~page
-            will~be~replaced~in~the~printing~house.
-        }
-        \newcommand{\@tauthesis@lastprinttext}{%
-            This~and~the~preceding~page
-            will~be~replaced~in~the~printing~house.
-        }
-        \newcommand{\@tauthesis@librarytext}{%
-            The~series,~ISBN~and~ISSN~numbers
-            are~added~on~this~page~in~the~library.
-        }
+            \newcommand{\@tauthesis@firstprinttext}{%
+                This~and~the~following~page
+                will~be~replaced~in~the~printing~house.
+            }
+            \newcommand{\@tauthesis@lastprinttext}{%
+                This~and~the~preceding~page
+                will~be~replaced~in~the~printing~house.
+            }
+            \newcommand{\@tauthesis@librarytext}{%
+                The~series,~ISBN~and~ISSN~numbers
+                are~added~on~this~page~in~the~library.
+            }
 
-        \newcommand{\@glossaryname}{List of symbols and abbreviations}
-        \newcommand{\@appendixname}{Appendix}
+            \newcommand{\@glossaryname}{List of symbols and abbreviations}
+            \newcommand{\@appendixname}{Appendix}
 
-        \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{List~of~Programs~and~Algorithms}}
+            \NewDocumentCommand\@tauthesis@listoflistingstitle{}{\textsc{List~of~Programs~and~Algorithms}}
 
-        \NewDocumentCommand\@tauthesis@licensedUnder{m}{This~work~is~licensed~under~##1}
+            \NewDocumentCommand\@tauthesis@licensedUnder{m}{This~work~is~licensed~under~##1}
 
-        \@langenglishtrue
-    },
+            \@langenglishtrue
+        },
 
     mainlanguage / unknown .code:n =
-        \msg_error:nneee
-            { tauthesis }
-            { unknown-mainlanguage }
-            { mainlanguage }     % Name of key.
-            { finnish, english } % Valid choices
-            { \exp_not:n {#1} }  % Invalid choice given
+    \msg_error:nneee
+    { tauthesis }
+    { unknown-mainlanguage }
+    { mainlanguage }     % Name of key.
+    { finnish, english } % Valid choices
+    { \exp_not:n {#1} }  % Invalid choice given
     ,
 
     subject.store = \@tauthesis@subject,
@@ -500,12 +500,11 @@
     \vspace{2cm}
     {\raggedleft\bf\fontsize{25pt}{25pt}\selectfont\color{taupurple}%
         \textsc{\@tauthesis@title}\par}
-    \vspace{1cm}
-    {\raggedleft\scshape\fontsize{20pt}{20pt}\selectfont\color{taupurple}%
+    {\raggedleft\fontsize{20pt}{20pt}\selectfont\color{taupurple}%
         \@tauthesis@subtitle\par}
     \vfill
     \begin{center}
-    \color{red}
+        \color{red}
         \ExplSyntaxOn
         \int_compare:nTF{
             \@tauthesis@fithesistypeint
@@ -533,10 +532,10 @@
         \@tauthesis@thesistype\\%
         \@tauthesis@facultyname\\%
         \DTMDisplaydate%
-            {\the\year}%
-            {\the\month}%
-            {\the\day}{-1}%
-    \par}
+        {\the\year}%
+        {\the\month}%
+        {\the\day}{-1}%
+        \par}
     \vspace{42pt}
     \clearpage
 }
@@ -556,17 +555,17 @@
         }
         \vfill
         \begingroup\color{red}
-            \textbf{
-                \tl_if_eq:NnTF{
-                    \@tauthesis@mainlanguage
-                }{
-                    finnish
-                }{
-                    Tämä~ja~edellinen~sivu~korvataan~painotalossa.
-                }{
-                    This~and~the~preceding~page~will~be~replaced~at~the~printing~house.
-                }
+        \textbf{
+            \tl_if_eq:NnTF{
+                \@tauthesis@mainlanguage
+            }{
+                finnish
+            }{
+                Tämä~ja~edellinen~sivu~korvataan~painotalossa.
+            }{
+                This~and~the~preceding~page~will~be~replaced~at~the~printing~house.
             }
+        }
         \endgroup
     \end{center}
     \vfill
@@ -586,39 +585,39 @@
 
 \newcommand{\mainmatter}{
     \int_compare:nTF
-        {
-            \@tauthesis@fithesistypeint
-            <
-            \@tauthesis@licentiatethesistypeint
-        }
-        {\clearpage}
-        {\cleardoublepage}
+    {
+        \@tauthesis@fithesistypeint
+        <
+        \@tauthesis@licentiatethesistypeint
+    }
+    {\clearpage}
+    {\cleardoublepage}
 
     \int_compare:nTF
-        {
-            \@tauthesis@fithesistypeint
-            >=
-            \@tauthesis@licentiatethesistypeint
-        }
-        {
-            \newcounter{temp}
-            \setcounter{temp}{\value{page}}
-        }
-        {
-            % Do nothing.
-        }
+    {
+        \@tauthesis@fithesistypeint
+        >=
+        \@tauthesis@licentiatethesistypeint
+    }
+    {
+        \newcounter{temp}
+        \setcounter{temp}{\value{page}}
+    }
+    {
+        % Do nothing.
+    }
     \pagenumbering{arabic}
     \int_compare:nTF
-        {
-            \@tauthesis@fithesistypeint
-            >=
-            \@tauthesis@licentiatethesistypeint}
-        {
-            \setcounter{page}{\value{temp}}
-        }
-        {
-            % Do nothing.
-        }
+    {
+        \@tauthesis@fithesistypeint
+        >=
+        \@tauthesis@licentiatethesistypeint}
+    {
+        \setcounter{page}{\value{temp}}
+    }
+    {
+        % Do nothing.
+    }
 }
 
 % Turn off LaTeX3 syntax, so packages relying on LaTeX2e do not break when they are loaded.
@@ -637,12 +636,12 @@
 \RequirePackage{fontspec}
 
 \setmainfont[
-  Path = fonts/Roboto/,
-  Extension = .ttf,
-  UprightFont = *-Regular,
-  BoldFont = *-Bold,
-  ItalicFont = *-Italic,
-  BoldItalicFont = *-BoldItalic
+    Path = fonts/Roboto/,
+    Extension = .ttf,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    BoldItalicFont = *-BoldItalic
 ]{Roboto}
 
 \setmonofont[
@@ -657,7 +656,7 @@
 \RequirePackage{unicode-math}
 
 \setmathfont{STIXTwoMath-Regular.ttf}[
-  Path = fonts/STIXTwo/
+    Path = fonts/STIXTwo/
 ]
 
 \RequirePackage{newunicodechar}
@@ -666,7 +665,7 @@
 
 % Check to see if this font is installed system-wide
 \IfFontExistsTF{NotoSansSymbols2}{%
-% One person has this installed system-wide
+    % One person has this installed system-wide
     \newfontfamily\fallbackfont{NotoSansSymbols2}
 }{
     % If not, load it from the file
@@ -718,18 +717,18 @@
 \pagestyle{fancyplain}
 \fancyhf{}
 \ExplSyntaxOn
-    \int_compare:nTF
-        {
-            \@tauthesis@fithesistypeint
-            >=
-            \@tauthesis@licentiatethesistypeint
-        }
-        {
-            \cfoot{\thepage}
-        }
-        {
-            \rhead{\thepage}
-        }
+\int_compare:nTF
+{
+    \@tauthesis@fithesistypeint
+    >=
+    \@tauthesis@licentiatethesistypeint
+}
+{
+    \cfoot{\thepage}
+}
+{
+    \rhead{\thepage}
+}
 \ExplSyntaxOff
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
@@ -763,71 +762,71 @@
 
 % Customize chapter titles
 \titleformat{\chapter}[hang]
-    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
-    {\thechapter}
-    {\@tauthesis@spaceBetweenNumberAndTitle}
-    {~#1} % Include the chapter title text
+{\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
+{\thechapter}
+{\@tauthesis@spaceBetweenNumberAndTitle}
+{~#1} % Include the chapter title text
 
 % Adjust spacing around chapter titles
 \titlespacing*{\chapter}
-    {0pt} % Left margin
-    {0pt} % Space above
-    {20pt} % Space below
+{0pt} % Left margin
+{0pt} % Space above
+{20pt} % Space below
 
 % Customize unnumbered chapter titles
 \titleformat{name=\chapter,numberless}[hang]
-    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
-    {}
-    {\@tauthesis@spaceBetweenNumberAndTitle}
-    {#1} % Include the unnumbered chapter title text
+{\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{\@tauthesis@chapterFontSize}\selectfont}
+{}
+{\@tauthesis@spaceBetweenNumberAndTitle}
+{#1} % Include the unnumbered chapter title text
 
 % Adjust spacing around unnumbered chapter titles
 \titlespacing*{name=\chapter,numberless}
-    {0pt} % Left margin
-    {0pt} % Space above
-    {20pt} % Space below
+{0pt} % Left margin
+{0pt} % Space above
+{20pt} % Space below
 
 % Customize section titles
 \titleformat{\section}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@sectionFontSize}{\@tauthesis@sectionFontSize}\selectfont}
-    {\thesection}
-    {\@tauthesis@spaceBetweenNumberAndTitle}
-    {~#1} % Include the section title text
+{\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@sectionFontSize}{\@tauthesis@sectionFontSize}\selectfont}
+{\thesection}
+{\@tauthesis@spaceBetweenNumberAndTitle}
+{~#1} % Include the section title text
 
 % Customize unnumbered section titles
 \titleformat{name=\section,numberless}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@sectionFontSize}{\@tauthesis@sectionFontSize}\selectfont}
-    {}
-    {\@tauthesis@spaceBetweenNumberAndTitle}
-    {#1} % Include the unnumbered section title text
+{\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@sectionFontSize}{\@tauthesis@sectionFontSize}\selectfont}
+{}
+{\@tauthesis@spaceBetweenNumberAndTitle}
+{#1} % Include the unnumbered section title text
 
 % Customize subsection titles
 \titleformat{\subsection}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSectionFontSize}{\@tauthesis@subSectionFontSize}\selectfont}
-    {\thesubsection}
-    {\@tauthesis@spaceBetweenNumberAndTitle}
-    {~#1} % Include the subsection title text
+{\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSectionFontSize}{\@tauthesis@subSectionFontSize}\selectfont}
+{\thesubsection}
+{\@tauthesis@spaceBetweenNumberAndTitle}
+{~#1} % Include the subsection title text
 
 % Customize unnumbered subsection titles
 \titleformat{name=\subsection,numberless}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSectionFontSize}{\@tauthesis@subSectionFontSize}\selectfont}
-    {}
-    {\@tauthesis@spaceBetweenNumberAndTitle}
-    {#1} % Include the unnumbered subsection title text
+{\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSectionFontSize}{\@tauthesis@subSectionFontSize}\selectfont}
+{}
+{\@tauthesis@spaceBetweenNumberAndTitle}
+{#1} % Include the unnumbered subsection title text
 
 % Customize subsubsection titles
 \titleformat{\subsubsection}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSubSectionFontSize}{\@tauthesis@subSubSectionFontSize}\selectfont}
-    {\thesubsubsection}
-    {\@tauthesis@spaceBetweenNumberAndTitle}
-    {~#1} % Include the subsubsection title text
+{\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@subSubSectionFontSize}{\@tauthesis@subSubSectionFontSize}\selectfont}
+{\thesubsubsection}
+{\@tauthesis@spaceBetweenNumberAndTitle}
+{~#1} % Include the subsubsection title text
 
 % Customize unnumbered subsubsection titles
 \titleformat{name=\subsubsection,numberless}
-    {\raggedright\normalfont\scshape\bfseries\fontsize{11}{\@tauthesis@subSubSectionFontSize}\selectfont}
-    {}
-    {\@tauthesis@spaceBetweenNumberAndTitle}
-    {#1} % Include the unnumbered subsubsection title text
+{\raggedright\normalfont\scshape\bfseries\fontsize{11}{\@tauthesis@subSubSectionFontSize}\selectfont}
+{}
+{\@tauthesis@spaceBetweenNumberAndTitle}
+{#1} % Include the unnumbered subsubsection title text
 
 % Language support for Finnish and English
 \RequirePackage[\@tauthesis@otherlanguage, main=\@tauthesis@mainlanguage]{babel}
@@ -844,7 +843,7 @@
 
 % Smart bibliography handling
 \RequirePackage
-    [backend=biber,
+[backend=biber,
     citestyle=\@tauthesis@citationstyle,
     bibstyle=\@tauthesis@citationstyle,
     sorting=\@tauthesis@citationsorting,
@@ -880,7 +879,7 @@
 
 % Caption formatting
 \RequirePackage
-    [labelfont={bf,color=black},
+[labelfont={bf,color=black},
     labelsep=colon]{caption}
 
 \renewcommand{\arraystretch}{1.25}
@@ -892,16 +891,16 @@
 \newglossarystyle{taulong}{%
     \setglossarystyle{long}%
     \renewenvironment{theglossary}{%
-      \tablehead{}%
-      \tabletail{}%
-      \begin{longtable}{p{\glsnamewidth}p{\glsdescwidth}}%
-    }{%
-      \end{longtable}%
+        \tablehead{}%
+        \tabletail{}%
+        \begin{longtable}{p{\glsnamewidth}p{\glsdescwidth}}%
+            }{%
+        \end{longtable}%
     }%
     \renewcommand{\glossentry}[2]{%
-    \raggedright
-    \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &
-    \glossentrydesc{##1}\glspostdescription\space ##2\tabularnewline
+        \raggedright
+        \glsentryitem{##1}\glstarget{##1}{\glossentryname{##1}} &
+        \glossentrydesc{##1}\glspostdescription\space ##2\tabularnewline
     }%
 }
 
@@ -934,10 +933,10 @@
 \lstset{texcl=true, captionpos=b, commentstyle=\tt}
 
 \titlecontents
-    {part}
-    [0pt]
-    {\bf}%
-    {\thecontentslabel}{}{\hfill\contentspage}
+{part}
+[0pt]
+{\bf}%
+{\thecontentslabel}{}{\hfill\contentspage}
 
 \RenewDocumentCommand\lstlistlistingname{}{\@tauthesis@listoflistingstitle}
 
@@ -1034,18 +1033,18 @@
 
     % Customize chapter titles
     \titleformat{\chapter}[hang]
-        {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{22}\selectfont}
-        {\scshape\appendixname~\thechapter:}
-        {1ex}
-        {##1} % Include the chapter title text
+    {\raggedright\normalfont\scshape\bfseries\fontsize{\@tauthesis@chapterFontSize}{22}\selectfont}
+    {\scshape\appendixname~\thechapter:}
+    {1ex}
+    {##1} % Include the chapter title text
 
     \titlecontents%
-        {chapter}%
-        [0pt]%
-        {\vspace{8.5pt}}%
-        {\raggedright\scshape\fontsize{\@tauthesis@tocChapterFontSize}{\@tauthesis@sectionFontSize}\selectfont\appendixname~\thecontentslabel:~}%
-        {}%
-        {\titlerule*[0.7pc]{.}\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont\contentspage}
+    {chapter}%
+    [0pt]%
+    {\vspace{8.5pt}}%
+    {\raggedright\scshape\fontsize{\@tauthesis@tocChapterFontSize}{\@tauthesis@sectionFontSize}\selectfont\appendixname~\thecontentslabel:~}%
+    {}%
+    {\titlerule*[0.7pc]{.}\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont\contentspage}
 
 }{}
 
@@ -1065,15 +1064,15 @@
 
 \renewcommand{\lstlistoflistings}{%
     \begingroup
-        \renewcommand{\l@lstlisting}[2]{%
-            \@dottedtocline
-                {1}
-                {\@tauthesis@tocSectionIndent}
-                {\mySectionNumberWidth}
-                {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
-                {\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont##2}
-        }
-        \origlstlistoflistings
+    \renewcommand{\l@lstlisting}[2]{%
+        \@dottedtocline
+        {1}
+        {\@tauthesis@tocSectionIndent}
+        {\mySectionNumberWidth}
+        {\fontsize{\@tauthesis@tocSectionFontSize}{\@tauthesis@tocSectionFontSize}\selectfont##1}
+        {\fontsize{\@tauthesis@tocPageNumberSize}{\@tauthesis@tocPageNumberSize}\selectfont##2}
+    }
+    \origlstlistoflistings
     \endgroup
 }
 
@@ -1092,8 +1091,8 @@
 
 % Functional language selection
 \newcommand{\xselectlanguage}[1]{%
-  \begingroup\edef\x{\endgroup
-    \noexpand\selectlanguage{#1}}\x
+    \begingroup\edef\x{\endgroup
+        \noexpand\selectlanguage{#1}}\x
 }
 
 \NewDocumentCommand\titlepagematter{}{
@@ -1110,46 +1109,46 @@
 
 % Originality texts
 \newcommand{\@finoriginalitytext}{%
-Tämän julkaisun alkuperäisyys on tarkastettu Turnitin Originality -ohjelmalla.
+    Tämän julkaisun alkuperäisyys on tarkastettu Turnitin Originality -ohjelmalla.
 }
 \newcommand{\@engoriginalitytext}{%
-The originality of this thesis has been checked using the Turnitin Originality service.
+    The originality of this thesis has been checked using the Turnitin Originality service.
 }
 
 % Make the abstracts
 \renewcommand{\abstract}{
     \clearpage
     \chapter*{\@tauthesis@abstractname}
-        \begingroup
-            \setlength{\parindent}{0pt}
-            \setlength{\parskip}{3pt}
-            \fontsize{11pt}{13pt}\selectfont
-            \def\metaSep{2pt}
-            \noindent\@tauthesis@author\\[\metaSep]
-            \@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle\\[\metaSep]
-            \noindent\@tauthesis@thesistype\\[\metaSep]
-            \noindent\@tauthesis@university\\[\metaSep]
-            \noindent\@tauthesis@programmename\\[\metaSep]
-            \noindent\DTMDisplaydate%
-                {\the\year}%
-                {\the\month}%
-                {\the\day}{-1}
-            \par
-            \makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
-            \par
-            \vspace*{\parskip}
-            \input{\@tauthesis@abstractfile}\par
-            \medskip
-            \begin{minipage}{\linewidth}
-                \textbf{\@tauthesis@keywordname:}
-                \@tauthesis@keywords
-            \end{minipage}
-            \par
-            \medskip
-            \begin{minipage}{\linewidth}
-                \@tauthesis@originalitytext
-            \end{minipage}
-        \endgroup
+    \begingroup
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{3pt}
+    \fontsize{11pt}{13pt}\selectfont
+    \def\metaSep{2pt}
+    \noindent\@tauthesis@author\\[\metaSep]
+    \@tauthesis@title\@tauthesis@subtitle@joiner\@tauthesis@subtitle\\[\metaSep]
+    \noindent\@tauthesis@thesistype\\[\metaSep]
+    \noindent\@tauthesis@university\\[\metaSep]
+    \noindent\@tauthesis@programmename\\[\metaSep]
+    \noindent\DTMDisplaydate%
+    {\the\year}%
+    {\the\month}%
+    {\the\day}{-1}
+    \par
+    \makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
+    \par
+    \vspace*{\parskip}
+    \input{\@tauthesis@abstractfile}\par
+    \medskip
+    \begin{minipage}{\linewidth}
+        \textbf{\@tauthesis@keywordname:}
+        \@tauthesis@keywords
+    \end{minipage}
+    \par
+    \medskip
+    \begin{minipage}{\linewidth}
+        \@tauthesis@originalitytext
+    \end{minipage}
+    \endgroup
     \clearpage
 }
 \newcommand{\otherabstract}{
@@ -1157,34 +1156,34 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \xselectlanguage{\@tauthesis@otherlanguage}
     \chapter*{\@tauthesis@otherabstractname}
     \begingroup
-        \setlength{\parindent}{0pt}
-        \setlength{\parskip}{3pt}
-        \fontsize{11pt}{13pt}\selectfont
-        \def\metaSep{2pt}
-        \noindent\@tauthesis@author\\[\metaSep]
-        \@tauthesis@othertitle\@tauthesis@othersubtitle@joiner\@tauthesis@othersubtitle\\[\metaSep]
-        \noindent\@tauthesis@otherthesistype\\[\metaSep]
-        \noindent\@tauthesis@otheruniversity\\[\metaSep]
-        \noindent\@tauthesis@otherprogrammename\\[\metaSep]
-        \noindent\DTMDisplaydate%
-            {\the\year}%
-            {\the\month}%
-            {\the\day}{-1}
-        \par
-        \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
-        \par
-        \vspace*{\parskip}
-        \input{\@tauthesis@otherabstractfile}\par
-        \medskip
-        \begin{minipage}{\linewidth}
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{3pt}
+    \fontsize{11pt}{13pt}\selectfont
+    \def\metaSep{2pt}
+    \noindent\@tauthesis@author\\[\metaSep]
+    \@tauthesis@othertitle\@tauthesis@othersubtitle@joiner\@tauthesis@othersubtitle\\[\metaSep]
+    \noindent\@tauthesis@otherthesistype\\[\metaSep]
+    \noindent\@tauthesis@otheruniversity\\[\metaSep]
+    \noindent\@tauthesis@otherprogrammename\\[\metaSep]
+    \noindent\DTMDisplaydate%
+    {\the\year}%
+    {\the\month}%
+    {\the\day}{-1}
+    \par
+    \noindent\makebox[\linewidth]{\color{taupurple}\rule{\linewidth}{1.5pt}}
+    \par
+    \vspace*{\parskip}
+    \input{\@tauthesis@otherabstractfile}\par
+    \medskip
+    \begin{minipage}{\linewidth}
         \textbf{\@tauthesis@otherkeywordname:}
         \@tauthesis@otherkeywords
-        \end{minipage}
-        \par
-        \medskip
-        \begin{minipage}{\linewidth}
+    \end{minipage}
+    \par
+    \medskip
+    \begin{minipage}{\linewidth}
         \@tauthesis@otheroriginalitytext
-        \end{minipage}
+    \end{minipage}
     \endgroup
     \xselectlanguage{\@tauthesis@mainlanguage}
 }
@@ -1198,9 +1197,9 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \DTMlangsetup[en-GB,finnish]{showdayofmonth=true}
     \noindent#1,
     \DTMdisplaydate%
-        {\the\year}%
-        {\the\month}%
-        {\the\day}{-1}\par
+    {\the\year}%
+    {\the\month}%
+    {\the\day}{-1}\par
     \bigskip
     \noindent\@tauthesis@author
     \clearpage
@@ -1292,20 +1291,20 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \addtolength{\publistlabelwidth}{\parindent}
 
 \defbibenvironment{thisdissertationstyle}
-    {\list
-        {\printtext[labelnumberwidth]{%
+{\list
+    {\printtext[labelnumberwidth]{%
             \printfield{labelprefix}%
             \printfield{labelnumber}}}
-        {\settowidth{\labelnumberwidth}{\@tauthesis@publicationname8888}%
-            \setlength{\labelwidth}{\labelnumberwidth}%
-            \setlength{\leftmargin}{\labelwidth}%
-            \setlength{\labelsep}{\biblabelsep}%
-            \addtolength{\leftmargin}{\labelsep}%
-            \setlength{\itemsep}{\bibitemsep}%
-            \setlength{\parsep}{\bibparsep}}%
-        \renewcommand*{\makelabel}[1]{##1\hss}}
-    {\endlist}
-    {\item}
+    {\settowidth{\labelnumberwidth}{\@tauthesis@publicationname8888}%
+        \setlength{\labelwidth}{\labelnumberwidth}%
+        \setlength{\leftmargin}{\labelwidth}%
+        \setlength{\labelsep}{\biblabelsep}%
+        \addtolength{\leftmargin}{\labelsep}%
+        \setlength{\itemsep}{\bibitemsep}%
+        \setlength{\parsep}{\bibparsep}}%
+    \renewcommand*{\makelabel}[1]{##1\hss}}
+{\endlist}
+{\item}
 
 \newlist{publikeenumerate}{enumerate}{1}
 \setlist[publikeenumerate,1]{label={\@tauthesis@publicationname{} \Roman*}, wide=0pt, widest=99, leftmargin=\publistlabelwidth, labelsep=*, itemsep=\bibitemsep}
@@ -1321,16 +1320,16 @@ The originality of this thesis has been checked using the Turnitin Originality s
 % Make the list of publications
 \newcommand{\listofpublications}{
     \begin{refcontext}[labelprefix=\@tauthesis@publicationname\addspace, sorting=none]
-    \hypertarget{entrykey}{}
-    \nocite{*}
-    \emergencystretch=2em
-    \setlength{\bibitemsep}{8.5pt}
-    \DeclareFieldFormat{labelnumber}{\ifinteger{##1}{\RN{##1}}{##1}}
-    \DeclareFieldFormat{labelnumberwidth}{##1}
-    \printbibliography[%
-        title=\@tauthesis@listpublicationname,%
-        keyword={thisdissertation},%
-        env=thisdissertationstyle]
+        \hypertarget{entrykey}{}
+        \nocite{*}
+        \emergencystretch=2em
+        \setlength{\bibitemsep}{8.5pt}
+        \DeclareFieldFormat{labelnumber}{\ifinteger{##1}{\RN{##1}}{##1}}
+        \DeclareFieldFormat{labelnumberwidth}{##1}
+        \printbibliography[%
+            title=\@tauthesis@listpublicationname,%
+            keyword={thisdissertation},%
+            env=thisdissertationstyle]
     \end{refcontext}
     \settowidth{\labelnumberwidth}{888}
     \authorcontribution
@@ -1339,102 +1338,102 @@ The originality of this thesis has been checked using the Turnitin Originality s
 
 % The \publicationmatter command
 \newcommand{\publicationmatter}{
-    \pagebreak
-    \fancyhf{}
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
-    \part*{\MakeUppercase\@tauthesis@publicationplural}
-    \thispagestyle{empty}
-    \addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
-    % APA related fixes
-    \if@apacitation
-        \newcommand*{\apablx@ifnotfinalname}{%
-            \ifboolexpr{
-                test {\ifnumless{\value{listcount}}{\value{liststop}}}
-                or
-                test \ifmorenames
-            }
+\pagebreak
+\fancyhf{}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{-10}}
+\part*{\MakeUppercase\@tauthesis@publicationplural}
+\thispagestyle{empty}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{3}}
+% APA related fixes
+\if@apacitation
+\newcommand*{\apablx@ifnotfinalname}{%
+    \ifboolexpr{
+        test {\ifnumless{\value{listcount}}{\value{liststop}}}
+        or
+        test \ifmorenames
+    }
+}
+\newcommand*{\apablx@ifrevnameappcomma}[2]{%
+    \ifdefvoid{##1}
+    {\ifdefvoid{##2}}
+    {\@secondoftwo}
+    {\@secondoftwo}
+    {\apablx@ifnotfinalname}%
+}
+\renewbibmacro*{name:apa:family-given}[5]{%
+\ifuseprefix{
+    \usebibmacro
+    {name:delim}
+    {##4##1}%
+    \usebibmacro
+    {name:hook}
+    {##4##1}%
+    \ifdefvoid
+    {##4}
+    {}
+    {%
+        \mkbibnameprefix{##4}\isdot%
+        \ifprefchar{}{\bibnamedelimc}
+    }%
+    \mkbibnamefamily{##1}\isdot%
+    \ifdefvoid{##2}
+    {}
+    {
+        \revsdnamepunct\bibnamedelimd\mkbibnamegiven{##3}\isdot%
+        \ifthenelse
+        {\value{uniquename}>1}
+        {\bibnamedelimd\mkbibbrackets{##2}}
+        {}
+    }%
+    \ifdefvoid
+    {##5}
+    {}
+    {\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
+    \apablx@ifrevnameappcomma
+    {##2}
+    {##5}
+    {\addcomma}
+    {}
+}
+{
+    \usebibmacro{name:delim}{##1}%
+    \usebibmacro{name:hook}{##1}%
+    \mkbibnamefamily{##1}\isdot
+    \ifboolexpe
+    {%
+        test {\ifdefvoid{##2}}
+        and
+        test {\ifdefvoid{##4}}
+    }
+    {}
+    {\revsdnamepunct}%
+    \ifdefvoid
+    {##2}
+    {}
+    {
+        \bibnamedelimd\mkbibnamegiven{##3}%
+        \ifthenelse
+        {\value{uniquename}>1}
+        {\bibnamedelimd\mkbibbrackets{##2}}
+        {}
+    }%
+    \ifdefvoid
+    {##4}
+    {}
+    {%
+        \bibnamedelimc\mkbibnameprefix{##4}%
+        \ifprefchar{}{\bibnamedelimc}
+    }%
+    \ifdefvoid
+        {##5}
+        {}
+        {\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
+        \apablx@ifrevnameappcomma
+        {##2}
+        {##5}
+        {\addcomma}
+        {}
         }
-        \newcommand*{\apablx@ifrevnameappcomma}[2]{%
-            \ifdefvoid{##1}
-            {\ifdefvoid{##2}}
-            {\@secondoftwo}
-            {\@secondoftwo}
-            {\apablx@ifnotfinalname}%
-        }
-        \renewbibmacro*{name:apa:family-given}[5]{%
-            \ifuseprefix{
-                \usebibmacro
-                    {name:delim}
-                    {##4##1}%
-                \usebibmacro
-                    {name:hook}
-                    {##4##1}%
-                \ifdefvoid
-                    {##4}
-                    {}
-                    {%
-                        \mkbibnameprefix{##4}\isdot%
-                        \ifprefchar{}{\bibnamedelimc}
-                    }%
-                 \mkbibnamefamily{##1}\isdot%
-                 \ifdefvoid{##2}
-                    {}
-                    {
-                        \revsdnamepunct\bibnamedelimd\mkbibnamegiven{##3}\isdot%
-                        \ifthenelse
-                            {\value{uniquename}>1}
-                            {\bibnamedelimd\mkbibbrackets{##2}}
-                            {}
-                    }%
-                \ifdefvoid
-                    {##5}
-                    {}
-                    {\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
-                    \apablx@ifrevnameappcomma
-                        {##2}
-                        {##5}
-                        {\addcomma}
-                        {}
-            }
-            {
-                \usebibmacro{name:delim}{##1}%
-                \usebibmacro{name:hook}{##1}%
-                \mkbibnamefamily{##1}\isdot
-                \ifboolexpe
-                    {%
-                        test {\ifdefvoid{##2}}
-                        and
-                        test {\ifdefvoid{##4}}
-                    }
-                    {}
-                    {\revsdnamepunct}%
-                \ifdefvoid
-                    {##2}
-                    {}
-                    {
-                        \bibnamedelimd\mkbibnamegiven{##3}%
-                        \ifthenelse
-                            {\value{uniquename}>1}
-                            {\bibnamedelimd\mkbibbrackets{##2}}
-                            {}
-                    }%
-                \ifdefvoid
-                    {##4}
-                    {}
-                    {%
-                        \bibnamedelimc\mkbibnameprefix{##4}%
-                        \ifprefchar{}{\bibnamedelimc}
-                    }%
-                \ifdefvoid
-                    {##5}
-                    {}
-                    {\addcomma\bibnamedelimd\mkbibnamesuffix{##5}\isdot}%
-                \apablx@ifrevnameappcomma
-                    {##2}
-                    {##5}
-                    {\addcomma}
-                    {}
-                }
         }
         \renewcommand*{\intitlepunct}{\space}
     \fi
@@ -1464,47 +1463,47 @@ The originality of this thesis has been checked using the Turnitin Originality s
         \centering\LARGE\scshape
         \MakeUppercase{\@tauthesis@publicationname}\\
         \Roman{publication}
-    \par}
+        \par}
     \vspace*{42pt}
     \label{\@tauthesis@publication@anchor@\thefield{entrykey}}
 }{%
-  {\centering\textbf{\usebibmacro{title}}\par}%
-  \medskip
-  {\centering\nopunct%
-  \printnames[][-\value{listtotal}]{author}\par}%
-  \bigskip
-  {\centering\small%
-  \ifentrytype{article}{%
-  \usebibmacro{journal+issuetitle}%
-  \usebibmacro{byeditor+others}%
-  \usebibmacro{note+pages}%
-  }{}%
-  \if@apacitation
-  \ifentrytype{inbook}{%
-  \usebibmacro{in:}%
-  \usebibmacro{editor+trans}%
-  \usebibmacro{maintitle+booktitle}%
-  \printlist{publisher}%
-  }{}
-  \else
-  \ifentrytype{incollection}{%
-  \usebibmacro{in:}%
-  \usebibmacro{maintitle+booktitle}%
-  \usebibmacro{byeditor+others}%
-  \printfield{edition}%
-  \iffieldundef{maintitle}
-    {\printfield{volume}%
-     \printfield{part}}{}%
-  \printfield{volumes}%
-  \usebibmacro{series+number}%
-  \printfield{note}%
-  \usebibmacro{publisher+location+date}%
-  \usebibmacro{chapter+pages}%
-  }{}%
-  \fi
-  \usebibmacro{addendum+pubstate}\par}%
-  {\centering\small\nopunct%
-  \usebibmacro{doi+eprint+url}\par}%
+    {\centering\textbf{\usebibmacro{title}}\par}%
+    \medskip
+    {\centering\nopunct%
+        \printnames[][-\value{listtotal}]{author}\par}%
+    \bigskip
+    {\centering\small%
+        \ifentrytype{article}{%
+            \usebibmacro{journal+issuetitle}%
+            \usebibmacro{byeditor+others}%
+            \usebibmacro{note+pages}%
+        }{}%
+        \if@apacitation
+            \ifentrytype{inbook}{%
+                \usebibmacro{in:}%
+                \usebibmacro{editor+trans}%
+                \usebibmacro{maintitle+booktitle}%
+                \printlist{publisher}%
+            }{}
+        \else
+            \ifentrytype{incollection}{%
+                \usebibmacro{in:}%
+                \usebibmacro{maintitle+booktitle}%
+                \usebibmacro{byeditor+others}%
+                \printfield{edition}%
+                \iffieldundef{maintitle}
+                {\printfield{volume}%
+                    \printfield{part}}{}%
+                \printfield{volumes}%
+                \usebibmacro{series+number}%
+                \printfield{note}%
+                \usebibmacro{publisher+location+date}%
+                \usebibmacro{chapter+pages}%
+            }{}%
+        \fi
+        \usebibmacro{addendum+pubstate}\par}%
+    {\centering\small\nopunct%
+        \usebibmacro{doi+eprint+url}\par}%
 }{}{
     \bigskip
     {\centering\textbf{\@tauthesis@copyrighttext}\par}
@@ -1540,11 +1539,11 @@ The originality of this thesis has been checked using the Turnitin Originality s
 \ExplSyntaxOff
 
 \NewDocumentCommand\publicationRef{O{\@tauthesis@publicationRefPrefix}m}{%
-  \hyperref[\@tauthesis@publication@anchor@#2]{#1~\ref{\@tauthesis@publication@anchor@#2}}%
+    \hyperref[\@tauthesis@publication@anchor@#2]{#1~\ref{\@tauthesis@publication@anchor@#2}}%
 }
 
 \DeclareCiteCommand{\pubcite}{\usebibmacro{prenote}}{%
-\mkbibbrackets{\bibhyperref[\@tauthesis@pubcitePrefix\thefield{entrykey}]{\@tauthesis@pubcitePrefix\thefield{labelnumber}}}%
+    \mkbibbrackets{\bibhyperref[\@tauthesis@pubcitePrefix\thefield{entrykey}]{\@tauthesis@pubcitePrefix\thefield{labelnumber}}}%
 }{\multicitedelim}{\usebibmacro{postnote}}
 
 \RequirePackage{pdfpages}
@@ -1692,10 +1691,10 @@ The originality of this thesis has been checked using the Turnitin Originality s
     \refstepcounter{@tauthesis@theoremCounter}
     \par
     \begingroup%
-        \textbf{%
-            #1~\the@tauthesis@theoremCounter
-            \IfValueT{#2}{~(#2)}.
-        }
+    \textbf{%
+        #1~\the@tauthesis@theoremCounter
+        \IfValueT{#2}{~(#2)}.
+    }
     \endgroup
     #3
     \par
