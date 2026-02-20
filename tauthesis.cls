@@ -497,7 +497,7 @@
     \par\medskip
     \vspace{102pt}
     {\raggedleft\fontsize{20pt}{0pt}\selectfont\@tauthesis@author\par}
-    \vspace{2cm}
+    \vspace{1cm}
     {\raggedleft\bf\fontsize{25pt}{25pt}\selectfont\color{taupurple}%
         \textsc{\@tauthesis@title}\par}
     {\raggedleft\fontsize{20pt}{20pt}\selectfont\color{taupurple}%
